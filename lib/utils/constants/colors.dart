@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class Colour {
   static const Color black = Colors.black;
+  static const Color greenishBlue = Color(0xff248598);
   static const Color white = Colors.white;
   static const Color transparent = Colors.transparent;
   static const Color blueCard = Color(0xFFb9b6ff);

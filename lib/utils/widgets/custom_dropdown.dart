@@ -1,3 +1,4 @@
+import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 
 import '../export_utilites.dart';
@@ -37,7 +38,7 @@ class CustomDropdown extends StatelessWidget {
               return Container(
                 alignment: Alignment.center,
                 child: SubHeading1(
-                  text: items[index],
+                  items[index],
                   size: 16,
                   color: Colour.white,
                 ),
@@ -51,7 +52,7 @@ class CustomDropdown extends StatelessWidget {
             return DropdownMenuItem<String>(
               value: items[index],
               child: SubHeading1(
-                text: items[index],
+                items[index],
                 size: 16,
                 color: Colour.black,
               ),

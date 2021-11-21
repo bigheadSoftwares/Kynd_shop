@@ -1,17 +1,15 @@
-import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../constants/colors.dart';
+import '../export_utilites.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
+    required this.controller,
     Key? key,
-    this.controller,
     this.labelText,
     this.inputTextStyle,
     this.keyboardType,
-    this.filled,
     this.textInputAction,
     this.prefixIcon,
     this.suffixIcon,
@@ -28,28 +26,33 @@ class CustomTextField extends StatelessWidget {
     this.maxLength,
     this.contentPadding,
     this.focus,
+    this.fillColor,
+    this.filled,
     this.borderColor,
     this.focusBorderColor,
     this.errorBorderColor,
     this.enabledBorderColor,
     this.disabledBorderColor,
+    this.hintText,
     this.borderRadius,
     this.focusBorderRadius,
     this.errorBorderRadius,
     this.enabledBorderRadius,
     this.disabledBorderRadius,
     this.isEnabled,
+    this.digitsOnly = false,
     this.labelStyle,
     this.hintStyle,
-    this.fillColor,
     this.prefixStyle,
-    this.hintText,
-    this.digitsOnly = false,
-    this.borderWidth,
+    this.prefixText,
+    this.validate,
+    this.textCapitalization,
+    this.isDense,
+    this.textAlign,
   }) : super(key: key);
 
   /// This will be the controller of `CustomTextField`
-  final TextEditingController? controller;
+  final TextEditingController controller;
 
   /// This will be the label Text for the `CustomTextField`
   final String? labelText;
@@ -110,29 +113,28 @@ class CustomTextField extends StatelessWidget {
 
   ///This is the focusNode of the textField
   final Color? fillColor;
-
   final bool? filled;
-
   final Color? borderColor;
   final Color? focusBorderColor;
   final Color? errorBorderColor;
   final Color? enabledBorderColor;
   final Color? disabledBorderColor;
-  final double? borderWidth;
   final String? hintText;
-
   final double? borderRadius;
   final double? focusBorderRadius;
   final double? errorBorderRadius;
   final double? enabledBorderRadius;
   final double? disabledBorderRadius;
-
   final bool? isEnabled;
   final bool digitsOnly;
-
   final TextStyle? labelStyle;
   final TextStyle? hintStyle;
   final TextStyle? prefixStyle;
+  final String? prefixText;
+  final String? Function(String?)? validate;
+  final bool? isDense;
+  final TextCapitalization? textCapitalization;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +143,10 @@ class CustomTextField extends StatelessWidget {
         if (digitsOnly) FilteringTextInputFormatter.digitsOnly,
         LengthLimitingTextInputFormatter(maxLength ?? 10000),
       ],
+      textAlign: textAlign ?? TextAlign.start,
+      validator: validate,
       autofocus: autofocus ?? false,
+      textCapitalization: textCapitalization ?? TextCapitalization.none,
       readOnly: readOnly ?? false,
       onTap: onTap ?? () {},
       onFieldSubmitted: onFieldSubmitted ?? (String text) {},
@@ -151,7 +156,7 @@ class CustomTextField extends StatelessWidget {
       keyboardType: keyboardType ?? TextInputType.text,
       textInputAction: textInputAction ?? TextInputAction.next,
       obscureText: obscureText ?? false,
-      style: inputTextStyle ?? textTheme(context).bodyText2,
+      style: inputTextStyle ?? Theme.of(context).textTheme.bodyText2,
       controller: controller,
       decoration: _decoration(
         context,
@@ -167,40 +172,51 @@ class CustomTextField extends StatelessWidget {
   }) {
     return InputDecoration(
       suffix: suffix,
+      prefixText: prefixText,
+      isDense: isDense,
       contentPadding: contentPadding ??
           const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       labelText: labelText,
       hintText: hintText,
       labelStyle: labelStyle ??
-          textTheme(context).bodyText2!.copyWith(color: Colour.lightGrey),
+          Theme.of(context).textTheme.bodyText2!.copyWith(
+                color: const Color(0xFFBEBECA),
+              ),
       prefixStyle: prefixStyle ??
-          textTheme(context).bodyText2!.copyWith(color: Colour.lightGrey),
+          Theme.of(context).textTheme.bodyText2!.copyWith(
+                color: const Color(0xFFBEBECA),
+              ),
       prefix: prefix ?? const SizedBox.shrink(),
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
       hintStyle: hintStyle ??
-          textTheme(context).bodyText2!.copyWith(color: Colour.lightGrey),
+          Theme.of(context).textTheme.bodyText2!.copyWith(
+                color: const Color(0xFFBEBECA),
+              ),
+      errorStyle: Theme.of(context).textTheme.subtitle1!.copyWith(
+            color: Colors.red,
+          ),
       enabled: isEnabled ?? true,
-      fillColor: fillColor,
-      filled: filled ?? false,
+      fillColor: fillColor ?? Colour.white,
+      filled: filled ?? true,
       border: _inputBorder(
-        color: borderColor ?? primaryColor(context),
+        color: borderColor ?? Colors.white,
         radius: borderRadius,
       ),
       focusedBorder: _inputBorder(
-        color: focusBorderColor ?? primaryColor(context),
+        color: focusBorderColor ?? Colors.white,
         radius: focusBorderRadius,
       ),
       enabledBorder: _inputBorder(
-        color: enabledBorderColor ?? primaryColor(context),
+        color: enabledBorderColor ?? Colors.white,
         radius: enabledBorderRadius,
       ),
       errorBorder: _inputBorder(
-        color: errorBorderColor ?? Colors.red,
+        color: errorBorderColor ?? Colors.white,
         radius: errorBorderRadius,
       ),
       disabledBorder: _inputBorder(
-        color: disabledBorderColor ?? Colors.grey,
+        color: disabledBorderColor ?? Colors.white,
         radius: disabledBorderRadius,
       ),
     );
@@ -209,8 +225,7 @@ class CustomTextField extends StatelessWidget {
   OutlineInputBorder _inputBorder({Color? color, double? radius}) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(radius ?? 10.0)),
-      borderSide:
-          BorderSide(color: color ?? Colors.white54, width: borderWidth ?? 1.0),
+      borderSide: BorderSide(color: color ?? Colors.white54, width: 1),
     );
   }
 }

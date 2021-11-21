@@ -33,42 +33,42 @@ class Heading extends StatelessWidget {
   }
 }
 
-class SubHeading1 extends StatelessWidget {
-  const SubHeading1({
-    Key? key,
-    required this.text,
-    this.color,
-    this.centerText = false,
-    this.size,
-    this.fontWeight,
-    this.darkText = false,
-    this.lines,
-  }) : super(key: key);
-  final String? text;
-  final Color? color;
-  final bool centerText;
-  final double? size;
-  final FontWeight? fontWeight;
-  final bool darkText;
-  final int? lines;
+// class SubHeading1 extends StatelessWidget {
+//   const SubHeading1({
+//     Key? key,
+//     required this.text,
+//     this.color,
+//     this.centerText = false,
+//     this.size,
+//     this.fontWeight,
+//     this.darkText = false,
+//     this.lines,
+//   }) : super(key: key);
+//   final String? text;
+//   final Color? color;
+//   final bool centerText;
+//   final double? size;
+//   final FontWeight? fontWeight;
+//   final bool darkText;
+//   final int? lines;
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text ?? '',
-      maxLines: lines,
-      style: textTheme(context).bodyText2!.copyWith(
-            fontSize: size ?? 14,
-            fontWeight: fontWeight ?? FontWeight.w400,
-            color: color ??
-                (darkText
-                    ? theme(context).colorScheme.secondary
-                    : Colour.lightGrey),
-          ),
-      textAlign: centerText ? TextAlign.center : TextAlign.start,
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Text(
+//       text ?? '',
+//       maxLines: lines,
+//       style: textTheme(context).bodyText2!.copyWith(
+//             fontSize: size ?? 14,
+//             fontWeight: fontWeight ?? FontWeight.w400,
+//             color: color ??
+//                 (darkText
+//                     ? theme(context).colorScheme.secondary
+//                     : Colour.lightGrey),
+//           ),
+//       textAlign: centerText ? TextAlign.center : TextAlign.start,
+//     );
+//   }
+// }
 
 class SubHeading2 extends StatelessWidget {
   const SubHeading2({
