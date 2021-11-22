@@ -2,7 +2,7 @@ import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import '../../utils/widgets/custom_button.dart';
 import '../../utils/widgets/heading.dart' as heading;
-import '../../utils/export_utilites.dart' as ex;
+import '../../utils/export_utilities.dart' as ex;
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);

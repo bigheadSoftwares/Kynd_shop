@@ -1,9 +1,9 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import '../../utils/widgets/custom_button.dart';
-import '../../utils/export_utilites.dart';
+import '../../utils/export_utilities.dart';
 import '../../utils/widgets/logo.dart';
-import '../../utils/export_utilites.dart' as ex;
+import '../../utils/export_utilities.dart' as ex;
 
 class AgeConfirmationScreen extends StatelessWidget {
   AgeConfirmationScreen({Key? key}) : super(key: key);

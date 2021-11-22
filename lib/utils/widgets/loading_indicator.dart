@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../export_utilites.dart';
+import '../export_utilities.dart';
 
 class LoadingIndicator extends StatelessWidget {
   const LoadingIndicator({

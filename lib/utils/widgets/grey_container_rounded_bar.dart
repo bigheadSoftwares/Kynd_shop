@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../export_utilites.dart';
+import '../export_utilities.dart';
 
 class GreyContainerRoundedBar extends StatelessWidget {
   const GreyContainerRoundedBar({

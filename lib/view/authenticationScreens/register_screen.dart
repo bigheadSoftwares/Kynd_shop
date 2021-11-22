@@ -1,14 +1,13 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/utils/widgets/custom_button.dart';
-import '../../utils/widgets/heading.dart';
-import '../../utils/export_utilites.dart' as ex;
+import '../../utils/export_utilities.dart';
+import '../../utils/export_utilities.dart' as ex;
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
   final TextEditingController mobileNumber = TextEditingController();
   final TextEditingController name = TextEditingController();
-  final TextEditingController referalCode = TextEditingController();
+  final TextEditingController referralCode = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,8 @@ class RegisterScreen extends StatelessWidget {
             padding:
                 EdgeInsets.fromLTRB(30, screenHeight(context) * 0.1, 30, 40),
             children: <Widget>[
-              const Heading(
-                text: 'Sign Up',
+              const Heading2(
+                'Sign Up',
                 size: 26,
                 fontWeight: FontWeight.w700,
               ),
@@ -69,7 +68,7 @@ class RegisterScreen extends StatelessWidget {
               ),
               sizedBoxHeight(screenHeight(context) * 0.015),
               ex.CustomTextField(
-                controller: referalCode,
+                controller: referralCode,
                 hintStyle: TextStyle(
                     color: ex.Colour.lightGrey.withOpacity(0.3),
                     fontWeight: FontWeight.w600),

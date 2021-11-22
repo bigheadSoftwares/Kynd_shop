@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../export_utilites.dart';
+import '../export_utilities.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({

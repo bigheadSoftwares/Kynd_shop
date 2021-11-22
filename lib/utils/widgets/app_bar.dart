@@ -1,7 +1,7 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 
-import '../export_utilites.dart';
+import '../export_utilities.dart';
 
 
 AppBar appBar(

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import '../../utils/widgets/logo.dart';
-import '../../utils/export_utilites.dart';
+import '../../utils/export_utilities.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
