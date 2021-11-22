@@ -34,8 +34,8 @@ class CustomMaterial extends StatelessWidget {
       title: 'Indcabs User',
       theme: state,
       debugShowCheckedModeBanner: false,
-      // home: const LoginScreen(),
-      onGenerateRoute: Routers.generateRoute,
+      initialRoute: Routes.introScreen,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../utils/widgets/custom_button.dart';
 import '../../utils/export_utilities.dart';
 import '../../utils/widgets/logo.dart';
-import '../../utils/export_utilities.dart' as ex;
 
 class AgeConfirmationScreen extends StatelessWidget {
   AgeConfirmationScreen({Key? key}) : super(key: key);
@@ -16,8 +15,8 @@ class AgeConfirmationScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: <Widget>[
-            const ex.BackgroundImageWidget(
-              backgroundImage: ex.Assets.ageBackground,
+            const BackgroundImageWidget(
+              backgroundImage: Assets.ageBackground,
             ),
             ListView(
               padding: EdgeInsets.fromLTRB(
@@ -28,7 +27,7 @@ class AgeConfirmationScreen extends StatelessWidget {
               ),
               children: <Widget>[
                 Logo(
-                  logoImage: ex.Assets.logoIcon,
+                  logoImage: Assets.logoIcon,
                   height: screenHeight(context) * 0.1,
                   width: screenWidth(context) * 0.3,
                 ),
@@ -48,12 +47,11 @@ class AgeConfirmationScreen extends StatelessWidget {
                 sizedBoxHeight(
                   screenHeight(context) * 0.03,
                 ),
-                ex.CustomTextField(
+                CustomTextField(
                   controller: age,
                   filled: true,
                   hintText: 'DD/MM/YYY',
-                  fillColor: ex.Colour.white,
-                  textAlign: TextAlign.center,
+                  fillColor: Colour.white,
                 ).outerNeumorphism(
                   offset: const Offset(8, 8),
                   borderRadius: 10,

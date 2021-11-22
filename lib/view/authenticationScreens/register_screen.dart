@@ -39,7 +39,7 @@ class RegisterScreen extends StatelessWidget {
                 size: 16,
               ),
               sizedBoxHeight(screenHeight(context) * 0.015),
-              ex.CustomTextField(
+              CustomTextField(
                 controller: name,
                 hintStyle: TextStyle(
                     color: ex.Colour.lightGrey.withOpacity(0.3),
@@ -53,7 +53,7 @@ class RegisterScreen extends StatelessWidget {
                 size: 16,
               ),
               sizedBoxHeight(screenHeight(context) * 0.015),
-              ex.CustomTextField(
+              CustomTextField(
                 controller: mobileNumber,
                 hintStyle: TextStyle(
                     color: ex.Colour.lightGrey.withOpacity(0.3),
@@ -67,7 +67,7 @@ class RegisterScreen extends StatelessWidget {
                 size: 16,
               ),
               sizedBoxHeight(screenHeight(context) * 0.015),
-              ex.CustomTextField(
+              CustomTextField(
                 controller: referralCode,
                 hintStyle: TextStyle(
                     color: ex.Colour.lightGrey.withOpacity(0.3),
