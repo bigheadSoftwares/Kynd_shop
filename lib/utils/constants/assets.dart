@@ -27,4 +27,15 @@ class Assets {
   static const String email = 'assets/icons/profile-message.png';
   static const String dob = 'assets/icons/profile-calendar.png';
   static const String mobileNumber = 'assets/icons/profile-smartphone.png';
+  static const String home = 'assets/icons/home-menu.png';
+  static const String costumerCare = 'assets/icons/support-menu.png';
+  static const String termsAndCondition = 'assets/icons/terms-menu.png';
+  static const String share = 'assets/icons/share-menu.png';
+  static const String logout = 'assets/icons/logout-menu.png';
+  static const String aboutUs = 'assets/icons/about-menu.png';
+  static const String myOrders = 'assets/icons/order-menu.png';
+  static const String wishList = 'assets/icons/wishlist-menu.png';
+  static const String referAndEarn = 'assets/icons/refer-menu.png';
+  static const String myAddress = 'assets/icons/address-menu.png';
+  static const String feedback = 'assets/icons/feedback-menu.png';
 }

@@ -9,3 +9,4 @@ export './widgets/custom_button.dart';
 export './widgets/app_bar.dart';
 export './widgets/elevated_container.dart';
 export './widgets/points.dart';
+export './widgets/custom_image_widget.dart';

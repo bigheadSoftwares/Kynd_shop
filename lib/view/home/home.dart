@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import '../sidebar/sidebar.dart';
 import '../../utils/widgets/product_card.dart';
 import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
@@ -21,6 +22,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colour.white,
+      drawer: const Sidebar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

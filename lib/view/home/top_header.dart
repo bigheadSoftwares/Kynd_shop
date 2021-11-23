@@ -20,9 +20,14 @@ class TopHeader extends StatelessWidget {
           sizedBoxHeight(20),
           Row(
             children: <Widget>[
-              const CustomImageWidget(
-                image: Assets.menu,
-                scale: 1.8,
+              InkWell(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: const CustomImageWidget(
+                  image: Assets.menu,
+                  scale: 1.8,
+                ),
               ),
               const Spacer(),
               const CustomImageWidget(
