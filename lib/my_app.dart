@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => ThemeCubit(),
         ),
       ],
-      child: BlocBuilder<ThemeCubit, ThemeData>(
+      child: BlocBuilder<ThemeCubit, ThemeData>(  
         builder: (BuildContext context, ThemeData state) {
           return CustomMaterial(
             state: state,

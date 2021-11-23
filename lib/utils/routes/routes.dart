@@ -52,6 +52,7 @@ class Routes {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Profile(),
         );
+     
       default:
         return MaterialPageRoute<dynamic>(
           builder: (_) => Scaffold(

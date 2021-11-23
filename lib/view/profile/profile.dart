@@ -1,11 +1,13 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../utils/export_utilities.dart';
 
 part 'base_card.dart';
 part 'profile_list_tile.dart';
 part 'profile_detail_card.dart';
+part 'edit_profile.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -19,10 +21,21 @@ class Profile extends StatelessWidget {
         title: 'My Profile',
         elevation: 0,
         actions: <Widget>[
-          Image.asset(
-            Assets.editUser,
-            height: 30,
-            width: 30,
+          InkWell(
+            onTap: () => push(
+              context,
+              const EditProfile(
+                name: 'Rohit Prajapati',
+                email: 'rohitprajapti@gmail.com',
+                mobileNo: '9599923968',
+                dateOfBirth: '06/06/2021',
+              ),
+            ),
+            child: Image.asset(
+              Assets.editUser,
+              height: 30,
+              width: 30,
+            ),
           ),
           sizedBoxWidth(12),
         ],
