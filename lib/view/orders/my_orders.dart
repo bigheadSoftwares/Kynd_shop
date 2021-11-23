@@ -2,6 +2,8 @@ import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import '../../utils/export_utilities.dart';
 
+part 'order_detail.dart';
+
 class MyOrders extends StatelessWidget {
   const MyOrders({Key? key}) : super(key: key);
 
@@ -34,6 +36,7 @@ class _OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoundContainer(
+      onTap: () => pushNamed(context, Routes.orderDetail),
       vPadding: 16,
       color: Colors.white,
       child: Column(
@@ -48,7 +51,10 @@ class _OrderCard extends StatelessWidget {
                 Assets.champagne,
                 height: 40,
               ),
-              title: const SubHeading2('Beer Shop'),
+              title: const SubHeading2(
+                'Beer Shop',
+                fontWeight: FontWeight.w500,
+              ),
               subtitle: const SubHeading2(
                 'New Delhi, Delhi',
                 size: 14,
@@ -76,7 +82,10 @@ class _OrderCard extends StatelessWidget {
                 color: Colour.subtitleColor,
               ),
               spaceBetweenTitleAndSubtitle: 2,
-              subtitle: SubHeading2('3 x Kingfisher beer chilled'),
+              subtitle: SubHeading2(
+                '6 x Kingfisher beer chilled',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           sizedBoxHeight(10),
@@ -89,7 +98,10 @@ class _OrderCard extends StatelessWidget {
                 size: 14,
               ),
               spaceBetweenTitleAndSubtitle: 2,
-              subtitle: SubHeading2('10 Nov, 2021 at 09:10 PM'),
+              subtitle: SubHeading2(
+                '10 Nov, 2021 at 09:10 PM',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           const Divider(height: 20),
@@ -106,7 +118,7 @@ class _OrderCard extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: '₹ 2700.00/-',
+                    text: '₹ 2500.00/-',
                     style: TextStyle(
                       fontSize: 16,
                       color: Colour.greenishBlue,

@@ -38,4 +38,6 @@ class Assets {
   static const String referAndEarn = 'assets/icons/refer-menu.png';
   static const String myAddress = 'assets/icons/address-menu.png';
   static const String feedback = 'assets/icons/feedback-menu.png';
+  static const String redLocationPin = 'assets/icons/location-pin.png';
+  static const String greenLocationPin = 'assets/icons/location-pin1.png';
 }

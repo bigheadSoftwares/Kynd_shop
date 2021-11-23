@@ -17,6 +17,7 @@ class Routes {
   static const String category = '/category';
   static const String myOrders = '/myOrders';
   static const String profile = '/profile';
+  static const String orderDetail = '/order-detail';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -52,7 +53,11 @@ class Routes {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Profile(),
         );
-     
+      case orderDetail:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const OrderDetail(),
+        );
+
       default:
         return MaterialPageRoute<dynamic>(
           builder: (_) => Scaffold(

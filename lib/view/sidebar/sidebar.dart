@@ -84,7 +84,14 @@ class Sidebar extends StatelessWidget {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return const _LogoutConfirmationDialog();
+          return ConfirmationDialog(
+            title: 'Are you sure ?',
+            subtitle: 'Please Confirm to Logout',
+            onConfirm: () => pushNamedAndRemoveUntil(
+              context,
+              Routes.loginScreen,
+            ),
+          );
         },
       );
     } else if (sidebarItem.name.toLowerCase() == 'share app') {
@@ -94,45 +101,5 @@ class Sidebar extends StatelessWidget {
     } else {
       pushNamed(context, sidebarItem.route);
     }
-  }
-}
-
-class _LogoutConfirmationDialog extends StatelessWidget {
-  const _LogoutConfirmationDialog({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const SubHeading1('Are you sure ?'),
-      content: const SubHeading2(
-        'Please Confirm to Logout',
-        color: Colour.subtitleColor,
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-      shape: RoundedRectangleBorder(
-        borderRadius: radius(8),
-      ),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => pop(context),
-          child: const SubHeading2(
-            'Cancel',
-            color: Colour.red,
-          ),
-        ),
-        TextButton(
-          onPressed: () => pushNamedAndRemoveUntil(
-            context,
-            Routes.loginScreen,
-          ),
-          child: const SubHeading2(
-            'Confirm',
-            color: Colour.greenishBlue,
-          ),
-        ),
-      ],
-    );
   }
 }
