@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/profile/profile.dart';
 import '../../view/orders/my_orders.dart';
 import '../../view/authenticationScreens/register_screen.dart';
 import '../../view/authenticationScreens/login_screen.dart';
@@ -11,6 +12,7 @@ class Routes {
   static const String loginScreen = '/loginScreen';
   static const String registerScreen = '/registerScreen';
   static const String myOrders = '/myOrders';
+  static const String profile = '/profile';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -33,6 +35,10 @@ class Routes {
       case myOrders:
         return MaterialPageRoute<dynamic>(
           builder: (_) =>const MyOrders(),
+        );
+      case profile:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) =>const Profile(),
         );
       default:
         return MaterialPageRoute<dynamic>(

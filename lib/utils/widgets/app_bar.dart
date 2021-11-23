@@ -7,10 +7,13 @@ AppBar appBar(
   BuildContext context, {
   required String title,
   bool? automaticallyImplyLeading,
+  double? elevation,
+  List<Widget>? actions,
 }) {
   return AppBar(
     backgroundColor: Colour.blue,
     automaticallyImplyLeading: automaticallyImplyLeading ?? true,
+    elevation: elevation,
     leading: IconButton(
       icon: const Icon(
         Icons.arrow_back_ios,
@@ -26,5 +29,7 @@ AppBar appBar(
             color: Colour.white,
           ),
     ),
+    actions: actions,
   );
 }
+

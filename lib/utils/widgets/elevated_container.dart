@@ -11,6 +11,7 @@ class ElevatedContainer extends StatelessWidget {
     this.color,
     this.padding,
     this.margin,
+    this.radius
   }) : super(key: key);
 
   final Widget? child;
@@ -19,6 +20,7 @@ class ElevatedContainer extends StatelessWidget {
   final Color? color;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class ElevatedContainer extends StatelessWidget {
       padding: padding,
       margin: margin,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(radius ?? 10),
         color: color ?? Colour.white,
         boxShadow: const <BoxShadow>[
           BoxShadow(

@@ -10,4 +10,11 @@ class Assets {
   static const String champagne = 'assets/icons/campange-category.png';
   static const String blueBeer = 'assets/icons/blue.png';
   static const String beer = 'assets/icons/beer.png';
+  static const String editUser = 'assets/icons/user-edit.png';
+  static const String profile = 'assets/icons/profile.png';
+  static const String coin = 'assets/icons/coin.png';
+  static const String person = 'assets/icons/edit-profile-profile.png';
+  static const String email = 'assets/icons/profile-message.png';
+  static const String dob = 'assets/icons/profile-calendar.png';
+  static const String mobileNumber = 'assets/icons/profile-smartphone.png';
 }
