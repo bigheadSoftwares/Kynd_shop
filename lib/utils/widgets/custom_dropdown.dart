@@ -1,19 +1,19 @@
+import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 
-import '../export_utilites.dart';
-import 'heading.dart';
+import '../export_utilities.dart';
 
 class CustomDropdown extends StatelessWidget {
   const CustomDropdown({
     Key? key,
     required this.items,
     required this.onChanged,
-    this.choosenValue,
+    this.chosenValue,
   }) : super(key: key);
 
   final List<String> items;
   final Function(String?) onChanged;
-  final String? choosenValue;
+  final String? chosenValue;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CustomDropdown extends StatelessWidget {
           color: Colour.white,
         ),
         underline: const SizedBox.shrink(),
-        value: choosenValue,
+        value: chosenValue,
         selectedItemBuilder: (BuildContext context) {
           return List<Widget>.generate(
             items.length,
@@ -37,7 +37,7 @@ class CustomDropdown extends StatelessWidget {
               return Container(
                 alignment: Alignment.center,
                 child: SubHeading1(
-                  text: items[index],
+                  items[index],
                   size: 16,
                   color: Colour.white,
                 ),
@@ -51,7 +51,7 @@ class CustomDropdown extends StatelessWidget {
             return DropdownMenuItem<String>(
               value: items[index],
               child: SubHeading1(
-                text: items[index],
+                items[index],
                 size: 16,
                 color: Colour.black,
               ),

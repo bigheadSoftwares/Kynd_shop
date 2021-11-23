@@ -2,14 +2,18 @@ import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton(
-      {this.onTap,
-      this.backgroundColor,
-      this.elevation,
-      this.radius,
-      this.width,
-      this.child,
-      this.padding, this.borderColor, this.borderWidth});
+  const CustomButton({
+    Key? key,
+    this.onTap,
+    this.backgroundColor,
+    this.elevation,
+    this.radius,
+    this.width,
+    this.child,
+    this.padding,
+    this.borderColor,
+    this.borderWidth,
+  }) : super(key: key);
 
   final Color? backgroundColor;
   final Color? borderColor;

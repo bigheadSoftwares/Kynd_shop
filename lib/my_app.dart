@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'logic/theme/theme_cubit.dart';
-import 'utils/export_utilites.dart';
+import 'utils/export_utilities.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -24,16 +26,16 @@ class MyApp extends StatelessWidget {
 }
 
 class CustomMaterial extends StatelessWidget {
-  const CustomMaterial({required this.state});
+  const CustomMaterial({Key? key,required this.state}):super(key:key);
   final ThemeData state;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Indcabs User',
+      title: 'Kynd Shop',
       theme: state,
       debugShowCheckedModeBanner: false,
-      // home: const LoginScreen(),
-      onGenerateRoute: Routers.generateRoute,
+      initialRoute: Routes.profile,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }
