@@ -30,7 +30,7 @@ List<_CustomTheme> customThemes = <_CustomTheme>[
         cursorColor: const Color(0xff0cba70),
         selectionColor: const Color(0xff0cba70).withOpacity(0.6),
       ),
-      fontFamily: 'Montserrat',
+      fontFamily: 'Muli',
       colorScheme: _colorScheme,
       textTheme: _textTheme,
       pageTransitionsTheme: _pageTransitionsTheme,

@@ -31,7 +31,7 @@ class CustomMaterial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Indcabs User',
+      title: 'Kynd Shop',
       theme: state,
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.introScreen,

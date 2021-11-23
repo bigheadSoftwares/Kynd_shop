@@ -20,4 +20,6 @@ class Colour {
   static const Color purple = Color(0xFFB9B6FF);
   static const Color lightBlue = Color(0xFF83c6f9);
   static const Color golden = Color(0xFFFFD700);
+  static const Color darkBlue = Color(0xff0c143f);
+  static const Color offWhite = Color(0xfff4f4f3);
 }
