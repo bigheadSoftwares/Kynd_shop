@@ -14,9 +14,12 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 3), () {
-      pushNamed(context, '/category');
-    });
+    Timer(
+      const Duration(seconds: 3),
+      () {
+        pushNamed(context, '/category');
+      },
+    );
     super.initState();
   }
 

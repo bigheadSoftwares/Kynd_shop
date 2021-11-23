@@ -1,6 +1,5 @@
-import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/utils/widgets/app_bar.dart';
+import '../../utils/widgets/app_bar.dart';
 import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/widgets/custom_image_widget.dart';
@@ -16,19 +15,6 @@ class CategoryTabs extends StatelessWidget {
       child: Scaffold(
         appBar: appBar(
           context,
-          backgroundColor: Colour.darkBlue,
-          // leading: IconButton(
-          //   onPressed: () {},
-          //   icon: const Icon(
-          //     Icons.arrow_back_ios,
-          //     color: Colour.white,
-          //   ),
-          // ),
-          // title: const SubHeading2(
-          //   'Beer',
-          //   fontWeight: FontWeight.bold,
-          //   color: Colour.white,
-          // ),
           title: 'Beer',
           actions: <Widget>[
             IconButton(

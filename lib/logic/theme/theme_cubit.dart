@@ -23,7 +23,7 @@ List<_CustomTheme> customThemes = <_CustomTheme>[
     themeName: 'Light Theme',
     theme: ThemeData(
       brightness: Brightness.light,
-      primaryColor: const Color(0xff0cba70),
+      primaryColor: const Color(0xff0C143F),
       scaffoldBackgroundColor: const Color(0xFFf7f7f7),
       errorColor: const Color(0xFFFD024A),
       textSelectionTheme: TextSelectionThemeData(
