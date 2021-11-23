@@ -34,7 +34,7 @@ class CustomMaterial extends StatelessWidget {
       title: 'Indcabs User',
       theme: state,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.introScreen,
+      initialRoute: Routes.myOrders,
       onGenerateRoute: Routes.generateRoute,
     );
   }

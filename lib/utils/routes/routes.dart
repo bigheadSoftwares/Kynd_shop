@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/orders/my_orders.dart';
 import '../../view/authenticationScreens/register_screen.dart';
 import '../../view/authenticationScreens/login_screen.dart';
 import '../../view/authenticationScreens/age_confirmation_screen.dart';
@@ -9,6 +10,7 @@ class Routes {
   static const String ageConfirmationScreen = '/ageConfirmation';
   static const String loginScreen = '/loginScreen';
   static const String registerScreen = '/registerScreen';
+  static const String myOrders = '/myOrders';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -27,6 +29,10 @@ class Routes {
       case registerScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => RegisterScreen(),
+        );
+      case myOrders:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) =>const MyOrders(),
         );
       default:
         return MaterialPageRoute<dynamic>(
