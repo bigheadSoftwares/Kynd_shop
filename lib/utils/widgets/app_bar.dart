@@ -8,9 +8,11 @@ AppBar appBar(
   BuildContext context, {
   required String title,
   bool? automaticallyImplyLeading,
+  Color? backgroundColor,
+  List<Widget>? actions,
 }) {
   return AppBar(
-    backgroundColor: Colour.transparent,
+    backgroundColor: backgroundColor ?? Colour.transparent,
     elevation: 0,
     centerTitle: true,
     automaticallyImplyLeading: automaticallyImplyLeading ?? true,
@@ -21,5 +23,6 @@ AppBar appBar(
             fontSize: 20,
           ),
     ),
+    actions: actions,
   );
 }

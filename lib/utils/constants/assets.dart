@@ -13,6 +13,8 @@ class Assets {
   static const String notification = 'assets/icons/notification.png';
   static const String pin1 = 'assets/icons/pin1.png';
   static const String search = 'assets/icons/search.png';
+  static const String search1 = 'assets/icons/search-1.png';
+  static const String filter = 'assets/icons/filter.png';
   static const String banner = 'assets/icons/banner.png';
   static const String beer = 'assets/icons/beer.png';
   static const String turborg = 'assets/icons/turborg-brand.png';
