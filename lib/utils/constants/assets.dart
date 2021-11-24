@@ -49,4 +49,5 @@ class Assets {
   static const String likeFill = 'assets/icons/like-fill.png';
   static const String like = 'assets/icons/like.png';
   static const String comment = 'assets/icons/comment.png';
+  static const String startDiscussion = 'assets/icons/feedback-menu.png';
 }

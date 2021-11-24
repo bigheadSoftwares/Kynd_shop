@@ -25,6 +25,8 @@ class Routes {
   static const String termsAndCondition = '/termsAndCondition';
   static const String aboutUs = '/aboutUs';
   static const String discussion = '/discussion';
+  static const String discussionDetails = '/discussion-details';
+  static const String startDiscussion = '/start-discussion';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -79,6 +81,14 @@ class Routes {
       case discussion:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Discussion(),
+        );
+      case discussionDetails:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const DiscussionDetails(),
+        );
+      case startDiscussion:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const StartDiscussion(),
         );
       default:
         return MaterialPageRoute<dynamic>(

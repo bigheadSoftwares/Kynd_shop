@@ -1,7 +1,7 @@
 part of 'discussion.dart';
 
-class _DiscussionDetails extends StatelessWidget {
-  const _DiscussionDetails({Key? key}) : super(key: key);
+class DiscussionDetails extends StatelessWidget {
+  const DiscussionDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

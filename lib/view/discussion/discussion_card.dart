@@ -66,9 +66,9 @@ class _DiscussionCard extends StatelessWidget {
                     sizedBoxWidth(16),
                     if (showComments)
                       GestureDetector(
-                        onTap: () => push(
+                        onTap: () => pushNamed(
                           context,
-                          const _DiscussionDetails(),
+                          Routes.discussionDetails,
                         ),
                         child: const _IconAndText(
                           iconAsset: Assets.comment,
