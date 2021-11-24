@@ -1,7 +1,13 @@
-part of 'home.dart';
 
-class _ProductListBlock extends StatelessWidget {
-  const _ProductListBlock({
+
+import 'package:easy_coding/big_head_softwares.dart';
+import 'package:flutter/material.dart';
+import '../constants/colors.dart';
+import 'product_card.dart';
+import 'title.dart';
+
+class ProductListBlock extends StatelessWidget {
+  const ProductListBlock({
     Key? key,
     required this.title,
     this.onTap,
@@ -19,7 +25,7 @@ class _ProductListBlock extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              _Title(title: title),
+              CustomTitle(title: title),
               InkWell(
                 onTap: onTap,
                 child: const SubHeading2(

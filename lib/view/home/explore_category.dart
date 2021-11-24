@@ -12,7 +12,7 @@ class _ExploreCategory extends StatelessWidget {
       children: <Widget>[
         const Padding(
           padding: EdgeInsets.only(left: 20),
-          child: _Title(
+          child: CustomTitle(
             title: 'Explore by Category',
           ),
         ),

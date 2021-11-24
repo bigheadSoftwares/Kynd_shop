@@ -27,4 +27,6 @@ class Assets {
   static const String email = 'assets/icons/profile-message.png';
   static const String dob = 'assets/icons/profile-calendar.png';
   static const String mobileNumber = 'assets/icons/profile-smartphone.png';
+  static const String close = 'assets/icons/not-close.png';
+  static const String notSearch = 'assets/icons/not-search.png';
 }

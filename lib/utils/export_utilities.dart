@@ -8,3 +8,5 @@ export './widgets/custom_button.dart';
 export './widgets/app_bar.dart';
 export './widgets/elevated_container.dart';
 export './widgets/points.dart';
+export './widgets/title.dart';
+export './widgets/product_list.dart';

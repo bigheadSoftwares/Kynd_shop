@@ -13,7 +13,7 @@ class _PopularBrands extends StatelessWidget {
       children: <Widget>[
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: _Title(title: 'Popular Brands'),
+          child: CustomTitle(title: 'Popular Brands'),
         ),
         sizedBoxHeight(15),
         SizedBox(
