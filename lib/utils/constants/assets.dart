@@ -41,4 +41,10 @@ class Assets {
   static const String redLocationPin = 'assets/icons/location-pin.png';
   static const String greenLocationPin = 'assets/icons/location-pin1.png';
   static const String point = 'assets/icons/point.png';
+  static const String follower = 'assets/icons/follower.png';
+  static const String bar1 = 'assets/icons/bar1.jpeg';
+  static const String bar2 = 'assets/icons/bar2.jpg';
+  static const String likeFill = 'assets/icons/like-fill.png';
+  static const String like = 'assets/icons/like.png';
+  static const String comment = 'assets/icons/comment.png';
 }

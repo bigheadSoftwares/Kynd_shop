@@ -30,9 +30,12 @@ class TopHeader extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              const CustomImageWidget(
-                image: Assets.discussion,
-                scale: 1.8,
+              InkWell(
+                onTap: ()=>pushNamed(context,Routes.discussion),
+                child: const  CustomImageWidget(
+                  image: Assets.discussion,
+                  scale: 1.8,
+                ),
               ),
               sizedBoxWidth(15),
               const CustomImageWidget(

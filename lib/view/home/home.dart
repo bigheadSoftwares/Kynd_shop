@@ -3,11 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import '../sidebar/sidebar.dart';
-import '../../utils/widgets/product_card.dart';
-import '../../utils/constants/assets.dart';
-import '../../utils/constants/colors.dart';
-import '../../utils/widgets/custom_image_widget.dart';
-
+import '../../utils/export_utilities.dart';
 part 'top_header.dart';
 part 'carousel.dart';
 part 'explore_category.dart';

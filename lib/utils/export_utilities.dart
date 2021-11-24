@@ -13,3 +13,4 @@ export './widgets/elevated_container.dart';
 export './widgets/points.dart';
 export './widgets/custom_image_widget.dart';
 export './widgets/confirmation_dialog.dart';
+export './widgets/product_card.dart';

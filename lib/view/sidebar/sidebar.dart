@@ -46,6 +46,7 @@ class Sidebar extends StatelessWidget {
               child: ListView.separated(
                 padding: const EdgeInsets.only(left: 20),
                 itemCount: _sidebarItems.length,
+                physics: const BouncingScrollPhysics(),
                 separatorBuilder: (BuildContext context, int index) =>
                     sizedBoxHeight(30),
                 itemBuilder: (BuildContext context, int index) {

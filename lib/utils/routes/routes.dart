@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/discussion/discussion.dart';
 import '../../view/about_us/about_us.dart';
 import '../../view/terms_and_condition/terms_and_condition.dart';
 import '../../view/category/category_tabs.dart';
@@ -23,6 +24,7 @@ class Routes {
   static const String pointEarned = '/point-earned';
   static const String termsAndCondition = '/termsAndCondition';
   static const String aboutUs = '/aboutUs';
+  static const String discussion = '/discussion';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -73,6 +75,10 @@ class Routes {
       case aboutUs:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const AboutUs(),
+        );
+      case discussion:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Discussion(),
         );
       default:
         return MaterialPageRoute<dynamic>(
