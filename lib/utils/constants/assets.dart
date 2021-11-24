@@ -40,4 +40,5 @@ class Assets {
   static const String feedback = 'assets/icons/feedback-menu.png';
   static const String redLocationPin = 'assets/icons/location-pin.png';
   static const String greenLocationPin = 'assets/icons/location-pin1.png';
+  static const String point = 'assets/icons/point.png';
 }

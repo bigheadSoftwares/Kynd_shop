@@ -18,6 +18,7 @@ class Routes {
   static const String myOrders = '/myOrders';
   static const String profile = '/profile';
   static const String orderDetail = '/order-detail';
+  static const String pointEarned = '/point-earned';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -56,6 +57,10 @@ class Routes {
       case orderDetail:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const OrderDetail(),
+        );
+      case pointEarned:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const PointEarned(),
         );
 
       default:

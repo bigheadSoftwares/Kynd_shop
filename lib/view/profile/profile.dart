@@ -8,6 +8,7 @@ part 'base_card.dart';
 part 'profile_list_tile.dart';
 part 'profile_detail_card.dart';
 part 'edit_profile.dart';
+part 'point_earned.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class Profile extends StatelessWidget {
         title: 'My Profile',
         elevation: 0,
         actions: <Widget>[
-          InkWell(
+          GestureDetector(
             onTap: () => push(
               context,
               const EditProfile(

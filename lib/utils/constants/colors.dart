@@ -9,6 +9,7 @@ class Colour {
   static const Color greenishBlue = Color(0xff248598);
   static const Color upcomingColor = Color(0xff248598);
   static const Color green = Color(0xFF0cba70);
+  static const Color parrotGreen = Color(0xFF6DD506);
   static const Color lightGreen = Color(0xFFdbf5ea);
   static const Color textFieldFillColor = Color(0xFFF2F7F9);
   static const Color lightGrey = Color(0xFF7B7B8B);
@@ -20,5 +21,5 @@ class Colour {
   static const Color golden = Color(0xFFFFD700);
   static const Color darkBlue = Color(0xff0c143f);
   static const Color offWhite = Color(0xfff4f4f3);
-  static const Color subtitleColor = Color(0xFFA7A8AA);
+  static const Color subtitleColor = Color(0xFF999A9B);
 }

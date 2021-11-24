@@ -24,7 +24,7 @@ List<_CustomTheme> customThemes = <_CustomTheme>[
     theme: ThemeData(
       brightness: Brightness.light,
       primaryColor: const Color(0xff0C143F),
-      scaffoldBackgroundColor: const Color(0xFFf7f7f7),
+      scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       errorColor: const Color(0xFFFD024A),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: const Color(0xff0cba70),
