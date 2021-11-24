@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../view/about_us/about_us.dart';
+import '../../view/terms_and_condition/terms_and_condition.dart';
 import '../../view/category/category_tabs.dart';
 import '../../view/home/home.dart';
 import '../../view/profile/profile.dart';
@@ -19,6 +21,8 @@ class Routes {
   static const String profile = '/profile';
   static const String orderDetail = '/order-detail';
   static const String pointEarned = '/point-earned';
+  static const String termsAndCondition = '/termsAndCondition';
+  static const String aboutUs = '/aboutUs';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -62,7 +66,14 @@ class Routes {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const PointEarned(),
         );
-
+      case termsAndCondition:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const TermsAndCondition(),
+        );
+      case aboutUs:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const AboutUs(),
+        );
       default:
         return MaterialPageRoute<dynamic>(
           builder: (_) => Scaffold(

@@ -20,7 +20,7 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
   SidebarItems(
     name: 'About Us',
     asset: Assets.aboutUs,
-    route: Routes.home,
+    route: Routes.aboutUs,
   ),
   SidebarItems(
     name: 'My Orders',
@@ -60,7 +60,7 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
   SidebarItems(
     name: 'Terms & Condition',
     asset: Assets.termsAndCondition,
-    route: Routes.home,
+    route: Routes.termsAndCondition,
   ),
   SidebarItems(
     name: 'Logout',
