@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/product_detail/product_detail.dart';
 import '../../view/search/search.dart';
 import '../../view/wishlist/wishlist.dart';
 import '../../view/category/category_tabs.dart';
@@ -21,6 +22,7 @@ class Routes {
   static const String profile = '/profile';
   static const String wishlist = '/wishlist';
   static const String search = '/search';
+  static const String productDetail = '/productDetail';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -63,6 +65,10 @@ class Routes {
       case search:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Search(),
+        );
+      case productDetail:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const ProductDetail(),
         );
       default:
         return MaterialPageRoute<dynamic>(

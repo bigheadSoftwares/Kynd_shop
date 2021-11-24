@@ -34,7 +34,7 @@ class CustomMaterial extends StatelessWidget {
       title: 'Kynd Shop',
       theme: state,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.profile,
+      initialRoute: Routes.productDetail,
       onGenerateRoute: Routes.generateRoute,
     );
   }
