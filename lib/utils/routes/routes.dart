@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kynd_shop/view/wishlist/wishlist.dart';
 import '../../view/category/category_tabs.dart';
 import '../../view/home/home.dart';
 import '../../view/profile/profile.dart';
@@ -17,6 +18,7 @@ class Routes {
   static const String category = '/category';
   static const String myOrders = '/myOrders';
   static const String profile = '/profile';
+  static const String wishlist = '/wishlist';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -51,6 +53,10 @@ class Routes {
       case profile:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Profile(),
+        );
+      case wishlist:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Wishlist(),
         );
       default:
         return MaterialPageRoute<dynamic>(
