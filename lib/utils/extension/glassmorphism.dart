@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../export_utilites.dart';
+import '../export_utilities.dart';
 
 
 
