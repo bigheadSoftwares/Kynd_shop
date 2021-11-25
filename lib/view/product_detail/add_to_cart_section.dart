@@ -1,6 +1,5 @@
 part of 'product_detail.dart';
 
-
 class _BottomCartSection extends StatelessWidget {
   const _BottomCartSection({
     Key? key,
@@ -18,44 +17,11 @@ class _BottomCartSection extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8.0, right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: <Widget>[
-                    IconButton(
-                      visualDensity: VisualDensity.compact,
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.remove,
-                        color: Colour.greenishBlue,
-                        size: 18,
-                      ),
-                    ),
-                    const RoundContainer(
-                      borderColor: Colour.greenishBlue,
-                      borderWidth: 1,
-                      radius: 4,
-                      child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 0),
-                        child: SubHeading2(
-                          '2',
-                          color: Colour.greenishBlue,
-                          size: 12,
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      visualDensity: VisualDensity.compact,
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.add,
-                        color: Colour.greenishBlue,
-                        size: 18,
-                      ),
-                    ),
-                  ],
+              children: const <Widget>[
+                IncrementDecrementButton(
+                  number: 2,
                 ),
-                const SubHeading2(
+                SubHeading2(
                   '\$234/-',
                   color: Colour.greenishBlue,
                   fontWeight: FontWeight.w500,
@@ -67,7 +33,9 @@ class _BottomCartSection extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
             child: RoundContainer(
-              onTap: () {},
+              onTap: () {
+                pushNamed(context, Routes.cart);
+              },
               hPadding: 10,
               vPadding: 10,
               radius: 30,

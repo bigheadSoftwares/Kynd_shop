@@ -12,6 +12,7 @@ class Assets {
   static const String coin = 'assets/icons/coin.png';
   static const String notification = 'assets/icons/notification.png';
   static const String pin1 = 'assets/icons/pin1.png';
+  static const String pin2 = 'assets/icons/pin2.png';
   static const String search = 'assets/icons/search.png';
   static const String search1 = 'assets/icons/search-1.png';
   static const String filter = 'assets/icons/filter.png';

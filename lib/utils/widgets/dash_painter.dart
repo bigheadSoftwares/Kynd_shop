@@ -10,7 +10,7 @@ class LineDashedPainter extends CustomPainter {
     double startX = 50;
     while (max >= 0) {
       canvas.drawLine(Offset(0 + max, 0), Offset(startX, 10 + dashWidth), paint);
-      final space = (dashSpace + dashWidth);
+      double space = (dashSpace + dashWidth);
       startX += space;
       max -= space;
     }
