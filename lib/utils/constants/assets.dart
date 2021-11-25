@@ -50,4 +50,6 @@ class Assets {
   static const String like = 'assets/icons/like.png';
   static const String comment = 'assets/icons/comment.png';
   static const String startDiscussion = 'assets/icons/feedback-menu.png';
+  static const String close = 'assets/icons/not-close.png';
+  static const String notSearch = 'assets/icons/not-search.png';
 }

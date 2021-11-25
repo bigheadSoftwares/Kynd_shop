@@ -8,7 +8,7 @@ class CustomImageWidget extends StatelessWidget {
     this.width,
     this.scale,
     this.fit,
-    this.color
+    this.color,
   }) : super(key: key);
 
   final String image;

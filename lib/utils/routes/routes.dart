@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../view/discussion/discussion.dart';
 import '../../view/about_us/about_us.dart';
 import '../../view/terms_and_condition/terms_and_condition.dart';
+import '../../view/product_detail/product_detail.dart';
+import '../../view/search/search.dart';
+import '../../view/wishlist/wishlist.dart';
 import '../../view/category/category_tabs.dart';
 import '../../view/home/home.dart';
 import '../../view/profile/profile.dart';
@@ -27,6 +30,9 @@ class Routes {
   static const String discussion = '/discussion';
   static const String discussionDetails = '/discussion-details';
   static const String startDiscussion = '/start-discussion';
+  static const String wishlist = '/wishlist';
+  static const String search = '/search';
+  static const String productDetail = '/productDetail';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -89,6 +95,18 @@ class Routes {
       case startDiscussion:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const StartDiscussion(),
+        );
+      case wishlist:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Wishlist(),
+        );
+      case search:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Search(),
+        );
+      case productDetail:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const ProductDetail(),
         );
       default:
         return MaterialPageRoute<dynamic>(

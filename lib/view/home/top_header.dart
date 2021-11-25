@@ -31,8 +31,8 @@ class TopHeader extends StatelessWidget {
               ),
               const Spacer(),
               InkWell(
-                onTap: ()=>pushNamed(context,Routes.discussion),
-                child: const  CustomImageWidget(
+                onTap: () => pushNamed(context, Routes.discussion),
+                child: const CustomImageWidget(
                   image: Assets.discussion,
                   scale: 1.8,
                 ),
@@ -77,6 +77,10 @@ class _CoinContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoundContainer(
+      onTap: () => pushNamed(
+        context,
+        Routes.pointEarned,
+      ),
       radius: 20,
       hPadding: 3,
       vPadding: 3,

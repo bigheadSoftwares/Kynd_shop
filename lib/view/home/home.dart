@@ -4,10 +4,15 @@ import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import '../sidebar/sidebar.dart';
 import '../../utils/export_utilities.dart';
+import '../../utils/widgets/product_list.dart';
+import '../../utils/widgets/title.dart';
+import '../../utils/constants/assets.dart';
+import '../../utils/constants/colors.dart';
+import '../../utils/widgets/custom_image_widget.dart';
+
 part 'top_header.dart';
 part 'carousel.dart';
 part 'explore_category.dart';
-part 'product_list.dart';
 part 'popular_brands.dart';
 part 'footer.dart';
 
@@ -32,7 +37,7 @@ class Home extends StatelessWidget {
             ),
             sizedBoxHeight(20),
             const _ExploreCategory(),
-            _ProductListBlock(
+            ProductListBlock(
               title: 'Bestsellers',
               onTap: () {},
             ),
@@ -40,13 +45,13 @@ class Home extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 20),
               color: Colour.offWhite,
-              child: _ProductListBlock(
+              child: ProductListBlock(
                 title: "What's New",
                 onTap: () {},
               ),
             ),
             sizedBoxHeight(10),
-            _ProductListBlock(
+            ProductListBlock(
               title: 'Combos',
               onTap: () {},
             ),
@@ -61,21 +66,4 @@ class Home extends StatelessWidget {
   }
 }
 
-class _Title extends StatelessWidget {
-  const _Title({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
 
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return SubHeading1(
-      title,
-      color: Colour.darkBlue,
-      size: 20,
-      fontWeight: FontWeight.w700,
-    );
-  }
-}

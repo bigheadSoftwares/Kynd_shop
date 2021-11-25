@@ -17,3 +17,5 @@ export './widgets/custom_image_widget.dart';
 export './widgets/confirmation_dialog.dart';
 export './widgets/product_card.dart';
 export './widgets/custom_dropdown.dart';
+export './widgets/title.dart';
+export './widgets/product_list.dart';

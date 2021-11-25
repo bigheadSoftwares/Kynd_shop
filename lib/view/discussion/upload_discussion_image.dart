@@ -53,36 +53,37 @@ class _PickImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        right: screenWidth(context) * 0.5,
-      ),
-      child: DottedBorder(
-        borderType: BorderType.RRect,
-        color: Colour.greenishBlue,
-        radius: const Radius.circular(12),
-        dashPattern: const <double>[6],
-        child: RoundContainer(
-          onTap: () => context.read<ImagePickingCubit>().pickFromGallery(),
-          alignment: Alignment.center,
-          height: 130,
-          color: Colour.greenishBlue.withOpacity(0.08),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const <Widget>[
-              Icon(
-                CupertinoIcons.cloud_upload,
-                size: 50,
-                color: Colour.greenishBlue,
-              ),
-              SubHeading2(
-                'Upload',
-                fontWeight: FontWeight.w500,
-              ),
-            ],
+    return Row(
+      children: <Widget>[
+        DottedBorder(
+          borderType: BorderType.RRect,
+          color: Colour.greenishBlue,
+          radius: const Radius.circular(12),
+          dashPattern: const <double>[6],
+          child: RoundContainer(
+            width: screenWidth(context)*0.4,
+            
+            onTap: () => context.read<ImagePickingCubit>().pickFromGallery(),
+            alignment: Alignment.center,
+            height: 130,
+            color: Colour.greenishBlue.withOpacity(0.08),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const <Widget>[
+                Icon(
+                  CupertinoIcons.cloud_upload,
+                  size: 50,
+                  color: Colour.greenishBlue,
+                ),
+                SubHeading2(
+                  'Upload',
+                  fontWeight: FontWeight.w500,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

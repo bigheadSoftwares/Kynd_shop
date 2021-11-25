@@ -1,8 +1,9 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import '../export_utilities.dart';
 
+import '../export_utilities.dart';
 import 'custom_image_widget.dart';
+import 'cut_mrp.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({Key? key}) : super(key: key);
@@ -34,23 +35,7 @@ class ProductCard extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                       sizedBoxHeight(6),
-                      Row(
-                        children: const <Widget>[
-                          SubHeading2(
-                            'MRP: ',
-                            size: 12,
-                            color: Colour.lightGrey,
-                          ),
-                          Text(
-                            '\$435.00',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colour.lightGrey,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                        ],
-                      ),
+                      const CutMrp(mrp: 232),
                       sizedBoxHeight(6),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -22,7 +22,7 @@ class DiscussionDetails extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Heading2(
               '3852 Comments',
-              size: 20,
+              size: 18,
             ),
           ),
           ListView.separated(
@@ -53,10 +53,13 @@ class DiscussionDetails extends StatelessWidget {
                             bottomRight: Radius.circular(20),
                           )),
                       child: const CustomListTile(
-                        title: SubHeading1('Vikas Kumar'),
+                        title: SubHeading1(
+                          'Vikas Kumar',
+                          size: 16,
+                        ),
                         subtitle: SubHeading2(
                           'Random comment just for testing purpose and nothing much. Please ignore it.',
-                          size: 16,
+                          size: 14,
                         ),
                       ),
                     ),
