@@ -19,7 +19,7 @@ class Payment extends StatelessWidget {
             CustomPrimaryButton(
               title: 'PROCEED TO CHECKOUT',
               onTap: () {
-                // pushNamed(context, Routes.payment);
+                pushNamed(context, Routes.paymentSuccessful);
               },
             ),
           ],

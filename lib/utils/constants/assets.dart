@@ -55,4 +55,5 @@ class Assets {
   static const String notSearch = 'assets/icons/not-search.png';
   static const String radio = 'assets/icons/radio.png';
   static const String unradio = 'assets/icons/unradio.png';
+  static const String check1 = 'assets/icons/check-1.png';
 }
