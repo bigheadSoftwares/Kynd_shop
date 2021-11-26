@@ -53,4 +53,6 @@ class Assets {
   static const String startDiscussion = 'assets/icons/feedback-menu.png';
   static const String close = 'assets/icons/not-close.png';
   static const String notSearch = 'assets/icons/not-search.png';
+  static const String radio = 'assets/icons/radio.png';
+  static const String unradio = 'assets/icons/unradio.png';
 }

@@ -50,19 +50,11 @@ class _CartBottomSection extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
-            child: RoundContainer(
-              onTap: () {},
-              hPadding: 10,
-              vPadding: 10,
-              radius: 30,
-              color: Colour.greenishBlue,
-              width: double.infinity,
-              child: const Center(
-                child: SubHeading1(
-                  'CONTINUE',
-                  color: Colour.white,
-                ),
-              ),
+            child: CustomPrimaryButton(
+              title: 'CONTINUE',
+              onTap: () {
+                pushNamed(context, Routes.payment);
+              },
             ),
           )
         ],

@@ -6,7 +6,6 @@ import '../../utils/export_utilities.dart';
 part 'cart_item_tile.dart';
 part 'cart_bottom_section.dart';
 part 'promo.dart';
-part 'cart_summary.dart';
 
 class Cart extends StatelessWidget {
   const Cart({Key? key}) : super(key: key);

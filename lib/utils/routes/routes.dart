@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kynd_shop/view/payment/payment.dart';
 import '../../view/cart/cart.dart';
 import '../../view/discussion/discussion.dart';
 import '../../view/about_us/about_us.dart';
@@ -35,6 +36,7 @@ class Routes {
   static const String search = '/search';
   static const String productDetail = '/productDetail';
   static const String cart = '/cart';
+  static const String payment = '/payment';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -113,6 +115,10 @@ class Routes {
       case cart:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Cart(),
+        );
+      case payment:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Payment(),
         );
       default:
         return MaterialPageRoute<dynamic>(

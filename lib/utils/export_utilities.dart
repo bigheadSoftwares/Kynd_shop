@@ -19,4 +19,6 @@ export './widgets/product_card.dart';
 export './widgets/custom_dropdown.dart';
 export './widgets/title.dart';
 export './widgets/product_list.dart';
+export './widgets/cart_summary.dart';
 export './widgets/increment_decrement_button.dart';
+export './widgets/custom_primary_button.dart';
