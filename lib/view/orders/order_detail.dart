@@ -129,8 +129,6 @@ class OrderDetail extends StatelessWidget {
   }
 }
 
-
-
 class _BillDetailItem extends StatelessWidget {
   const _BillDetailItem({
     Key? key,

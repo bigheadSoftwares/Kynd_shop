@@ -1,5 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'logic/best_sellers/bestsellers_cubit.dart';
+import 'logic/new_products/new_products_cubit.dart';
+import 'logic/category/category_cubit.dart';
 import 'logic/theme/theme_cubit.dart';
 import 'utils/export_utilities.dart';
 
@@ -13,8 +17,17 @@ class MyApp extends StatelessWidget {
         BlocProvider<ThemeCubit>(
           create: (BuildContext context) => ThemeCubit(),
         ),
+        BlocProvider<CategoryCubit>(
+          create: (BuildContext context) => CategoryCubit(),
+        ),
+        BlocProvider<NewProductsCubit>(
+          create: (BuildContext context) => NewProductsCubit(),
+        ),
+        BlocProvider<BestsellersCubit>(
+          create: (BuildContext context) => BestsellersCubit(),
+        ),
       ],
-      child: BlocBuilder<ThemeCubit, ThemeData>(  
+      child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (BuildContext context, ThemeData state) {
           return CustomMaterial(
             state: state,
@@ -26,7 +39,7 @@ class MyApp extends StatelessWidget {
 }
 
 class CustomMaterial extends StatelessWidget {
-  const CustomMaterial({Key? key,required this.state}):super(key:key);
+  const CustomMaterial({Key? key, required this.state}) : super(key: key);
   final ThemeData state;
   @override
   Widget build(BuildContext context) {

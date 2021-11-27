@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../export_utilities.dart';
 
 class ElevatedContainer extends StatelessWidget {
-  const ElevatedContainer({
-    Key? key,
-    this.child,
-    this.height,
-    this.width,
-    this.color,
-    this.padding,
-    this.margin,
-    this.radius
-  }) : super(key: key);
+  const ElevatedContainer(
+      {Key? key,
+      this.child,
+      this.height,
+      this.width,
+      this.color,
+      this.padding,
+      this.margin,
+      this.radius})
+      : super(key: key);
 
   final Widget? child;
   final double? height;
