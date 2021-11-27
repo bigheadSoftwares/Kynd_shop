@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../export_utilities.dart';
 
-
-
 extension Glassmorphism on Widget {
   Container addGlassmorphism({
     double horizontalMargin = 0.0,

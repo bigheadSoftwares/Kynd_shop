@@ -23,7 +23,7 @@ class Filter extends StatelessWidget {
           size: 18,
           fontWeight: FontWeight.w500,
         ),
-        actions: [
+        actions: <Widget>[
           InkWell(
             onTap: () {},
             child: const Padding(

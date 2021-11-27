@@ -61,8 +61,7 @@ class _PickImageWidget extends StatelessWidget {
           radius: const Radius.circular(12),
           dashPattern: const <double>[6],
           child: RoundContainer(
-            width: screenWidth(context)*0.4,
-            
+            width: screenWidth(context) * 0.4,
             onTap: () => context.read<ImagePickingCubit>().pickFromGallery(),
             alignment: Alignment.center,
             height: 130,

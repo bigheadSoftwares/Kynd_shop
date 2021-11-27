@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../export_utilities.dart';
 
-
 Future<DateTime?> pickDate(BuildContext context) async {
   final DateTime? pickedDate = await showDatePicker(
     context: context,

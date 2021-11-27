@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/view/filters/filter.dart';
+import '../../view/filters/filter.dart';
 import '../../view/payment/payment.dart';
 import '../../view/payment/payment_successful.dart';
 import '../../view/cart/cart.dart';

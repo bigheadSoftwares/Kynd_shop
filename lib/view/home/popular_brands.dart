@@ -1,6 +1,5 @@
 part of 'home.dart';
 
-
 class _PopularBrands extends StatelessWidget {
   const _PopularBrands({
     Key? key,
