@@ -50,7 +50,7 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
   SidebarItems(
     name: 'Costumer Care',
     asset: Assets.costumerCare,
-    route: Routes.home,
+    route: Routes.support,
   ),
   SidebarItems(
     name: 'Share App',

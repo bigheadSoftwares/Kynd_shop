@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/support/support.dart';
 import '../../view/discussion/discussion.dart';
 import '../../view/about_us/about_us.dart';
 import '../../view/terms_and_condition/terms_and_condition.dart';
@@ -33,6 +34,7 @@ class Routes {
   static const String wishlist = '/wishlist';
   static const String search = '/search';
   static const String productDetail = '/productDetail';
+  static const String support = '/support';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -107,6 +109,10 @@ class Routes {
       case productDetail:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const ProductDetail(),
+        );
+      case support:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Support(),
         );
       default:
         return MaterialPageRoute<dynamic>(

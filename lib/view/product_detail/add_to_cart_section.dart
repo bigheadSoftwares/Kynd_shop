@@ -18,7 +18,7 @@ class _BottomCartSection extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8.0, right: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: <Widget>[
                 Row(
                   children: <Widget>[
                     IconButton(

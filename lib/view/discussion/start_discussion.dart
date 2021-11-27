@@ -85,7 +85,7 @@ class _StartDiscussionState extends State<StartDiscussion> {
               controller: _description,
               borderRadius: 10,
               filled: true,
-              minLines: 5,
+              minLines: 4,
               maxLines: 10,
               cursorColor: Colour.greenishBlue,
               focusBorderColor: Colour.greenishBlue,
