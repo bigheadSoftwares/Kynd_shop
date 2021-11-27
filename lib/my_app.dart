@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'logic/brands/brands_cubit.dart';
 import 'logic/category/category_cubit.dart';
 import 'logic/theme/theme_cubit.dart';
 import 'utils/export_utilities.dart';
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CategoryCubit>(
           create: (BuildContext context) => CategoryCubit(),
+        ),
+        BlocProvider<BrandsCubit>(
+          create: (BuildContext context) => BrandsCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

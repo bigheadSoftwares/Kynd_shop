@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/brands/brands_cubit.dart';
 import '../../logic/category/category_cubit.dart';
 import '../../utils/widgets/loading_indicator.dart';
 import '../sidebar/sidebar.dart';
@@ -39,7 +40,7 @@ class Home extends StatelessWidget {
               child: const CarouselWithIndicatorDemo(),
             ),
             sizedBoxHeight(20),
-            // const _ExploreCategory(),
+            const _ExploreCategory(),
             ProductListBlock(
               title: 'Bestsellers',
               onTap: () {},
