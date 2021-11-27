@@ -35,7 +35,7 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
   SidebarItems(
     name: 'Refer & Earn',
     asset: Assets.referAndEarn,
-    route: Routes.home,
+    route: Routes.referAndEarn,
   ),
   SidebarItems(
     name: 'My Address',

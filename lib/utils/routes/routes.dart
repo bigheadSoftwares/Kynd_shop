@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/refer_and_earn/refer_and_earn.dart';
 import '../../view/feedback/feedback.dart' as feedback_screen;
 import '../../view/support/support.dart';
 import '../../view/discussion/discussion.dart';
@@ -37,6 +38,7 @@ class Routes {
   static const String productDetail = '/productDetail';
   static const String support = '/support';
   static const String feedback = '/feedback';
+  static const String referAndEarn = '/referAndEarn';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -119,6 +121,10 @@ class Routes {
       case feedback:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const feedback_screen.Feedback(),
+        );
+      case referAndEarn:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const ReferAndEarn(),
         );
       default:
         return MaterialPageRoute<dynamic>(

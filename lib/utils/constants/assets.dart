@@ -59,4 +59,11 @@ class Assets {
   static const String colouredSmile1 = 'assets/icons/smile1.png';
   static const String colouredSmile2 = 'assets/icons/smile2-1.png';
   static const String colouredSmile3 = 'assets/icons/smile3-3.png';
+  static const String whatsApp = 'assets/icons/whatsapp.png';
+  static const String twitter = 'assets/icons/twitter.png';
+  static const String facebook = 'assets/icons/facebook.png';
+  static const String contact = 'assets/icons/contact.png';
+  static const String shareViaEmail = 'assets/icons/email.png';
+  static const String link = 'assets/icons/link.png';
+
 }
