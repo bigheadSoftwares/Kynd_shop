@@ -45,7 +45,7 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
   SidebarItems(
     name: 'Feedback',
     asset: Assets.feedback,
-    route: Routes.home,
+    route: Routes.feedback,
   ),
   SidebarItems(
     name: 'Costumer Care',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/feedback/feedback.dart' as feedback_screen;
 import '../../view/support/support.dart';
 import '../../view/discussion/discussion.dart';
 import '../../view/about_us/about_us.dart';
@@ -35,6 +36,7 @@ class Routes {
   static const String search = '/search';
   static const String productDetail = '/productDetail';
   static const String support = '/support';
+  static const String feedback = '/feedback';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -113,6 +115,10 @@ class Routes {
       case support:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Support(),
+        );
+      case feedback:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const feedback_screen.Feedback(),
         );
       default:
         return MaterialPageRoute<dynamic>(

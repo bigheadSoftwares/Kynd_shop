@@ -53,4 +53,10 @@ class Assets {
   static const String close = 'assets/icons/not-close.png';
   static const String notSearch = 'assets/icons/not-search.png';
   static const String support = 'assets/icons/support.png';
+  static const String smile1 = 'assets/icons/smile.png';
+  static const String smile2 = 'assets/icons/smile2.png';
+  static const String smile3 = 'assets/icons/smile3.png';
+  static const String colouredSmile1 = 'assets/icons/smile1.png';
+  static const String colouredSmile2 = 'assets/icons/smile2-1.png';
+  static const String colouredSmile3 = 'assets/icons/smile3-3.png';
 }
