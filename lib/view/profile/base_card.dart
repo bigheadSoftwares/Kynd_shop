@@ -1,6 +1,5 @@
 part of 'profile.dart';
 
-
 class _BaseCard extends StatelessWidget {
   const _BaseCard({
     Key? key,

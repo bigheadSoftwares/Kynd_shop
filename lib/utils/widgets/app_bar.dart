@@ -32,4 +32,3 @@ AppBar appBar(
     actions: actions,
   );
 }
-

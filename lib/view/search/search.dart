@@ -10,7 +10,8 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, title: '', elevation: 0),
-      body: Column(        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const <Widget>[
           _SearchField(),
           CustomImageWidget(

@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
               sizedBoxHeight(screenHeight(context) * 0.015),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[ 
+                children: <Widget>[
                   const SubHeading1(
                     'Don\'t have an account? ',
                     size: 14,

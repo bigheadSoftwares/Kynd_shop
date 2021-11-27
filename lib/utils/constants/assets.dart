@@ -12,6 +12,7 @@ class Assets {
   static const String coin = 'assets/icons/coin.png';
   static const String notification = 'assets/icons/notification.png';
   static const String pin1 = 'assets/icons/pin1.png';
+  static const String pin2 = 'assets/icons/pin2.png';
   static const String search = 'assets/icons/search.png';
   static const String search1 = 'assets/icons/search-1.png';
   static const String filter = 'assets/icons/filter.png';
@@ -65,5 +66,9 @@ class Assets {
   static const String contact = 'assets/icons/contact.png';
   static const String shareViaEmail = 'assets/icons/email.png';
   static const String link = 'assets/icons/link.png';
-
+  static const String radio = 'assets/icons/radio.png';
+  static const String unradio = 'assets/icons/unradio.png';
+  static const String check1 = 'assets/icons/check-1.png';
+  static const String check = 'assets/icons/check.png';
+  static const String uncheck = 'assets/icons/uncheck.png';
 }

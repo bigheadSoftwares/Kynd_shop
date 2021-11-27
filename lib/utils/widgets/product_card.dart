@@ -14,6 +14,9 @@ class ProductCard extends StatelessWidget {
       elevation: 2,
       borderRadius: BorderRadius.circular(6),
       child: RoundContainer(
+        onTap: () {
+          pushNamed(context, Routes.productDetail);
+        },
         width: 200,
         hPadding: 0,
         vPadding: 0,

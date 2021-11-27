@@ -17,23 +17,34 @@ class _ExploreCategory extends StatelessWidget {
           ),
         ),
         sizedBoxHeight(15),
-        SizedBox(
-          height: 100,
-          child: ListView.builder(
-            padding: const EdgeInsets.only(left: 12, right: 12),
-            itemCount: 6,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: DrinkCategoryCard(
-                  backgroundColor: Colour.lightGreen,
-                  image: Assets.beer,
-                  name: 'Beer',
+        BlocBuilder<CategoryCubit, CategoryState>(
+          bloc: context.read<CategoryCubit>()..getDrinkCategories(),
+          builder: (BuildContext context, CategoryState state) {
+            if (state is CategoryInitial) {
+              return const LoadingIndicator();
+            } else if (state is CategoryLoaded) {
+              return SizedBox(
+                height: 100,
+                child: ListView.builder(
+                  padding: const EdgeInsets.only(left: 12, right: 12),
+                  itemCount: state.categoryModel.data?.length ?? 0,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: DrinkCategoryCard(
+                        backgroundColor: Colour.lightGreen,
+                        image: state.categoryModel.data?[index].icon ?? '',
+                        name: state.categoryModel.data?[index].name ?? '',
+                      ),
+                    );
+                  },
                 ),
               );
-            },
-          ),
+            } else {
+              return Container();
+            }
+          },
         ),
         sizedBoxHeight(20),
       ],
@@ -65,7 +76,7 @@ class DrinkCategoryCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             color: backgroundColor,
           ),
-          child: CustomImageWidget(
+          child: CustomNetworkImageWidget(
             image: image,
             fit: BoxFit.contain,
           ),
@@ -81,4 +92,3 @@ class DrinkCategoryCard extends StatelessWidget {
     );
   }
 }
-

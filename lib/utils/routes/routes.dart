@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import '../../view/refer_and_earn/refer_and_earn.dart';
 import '../../view/feedback/feedback.dart' as feedback_screen;
 import '../../view/support/support.dart';
+import '../../view/filters/filter.dart';
+import '../../view/payment/payment.dart';
+import '../../view/payment/payment_successful.dart';
+import '../../view/cart/cart.dart';
 import '../../view/discussion/discussion.dart';
 import '../../view/about_us/about_us.dart';
 import '../../view/terms_and_condition/terms_and_condition.dart';
@@ -39,6 +43,10 @@ class Routes {
   static const String support = '/support';
   static const String feedback = '/feedback';
   static const String referAndEarn = '/referAndEarn';
+  static const String cart = '/cart';
+  static const String payment = '/payment';
+  static const String paymentSuccessful = '/paymentSuccessful';
+  static const String filter = '/filter';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -125,6 +133,22 @@ class Routes {
       case referAndEarn:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const ReferAndEarn(),
+        );
+      case cart:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Cart(),
+        );
+      case payment:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Payment(),
+        );
+      case paymentSuccessful:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const PaymentSuccessful(),
+        );
+      case filter:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Filter(),
         );
       default:
         return MaterialPageRoute<dynamic>(

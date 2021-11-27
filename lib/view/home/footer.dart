@@ -1,6 +1,5 @@
 part of 'home.dart';
 
-
 class _Footer extends StatelessWidget {
   const _Footer({
     Key? key,
