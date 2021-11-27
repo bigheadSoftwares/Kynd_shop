@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kynd_shop/view/filters/filter.dart';
 import '../../view/payment/payment.dart';
 import '../../view/payment/payment_successful.dart';
 import '../../view/cart/cart.dart';
@@ -39,6 +40,7 @@ class Routes {
   static const String cart = '/cart';
   static const String payment = '/payment';
   static const String paymentSuccessful = '/paymentSuccessful';
+  static const String filter = '/filter';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -125,6 +127,10 @@ class Routes {
       case paymentSuccessful:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const PaymentSuccessful(),
+        );
+      case filter:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Filter(),
         );
       default:
         return MaterialPageRoute<dynamic>(
