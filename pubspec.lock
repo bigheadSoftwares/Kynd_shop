@@ -150,7 +150,7 @@ packages:
     source: hosted
     version: "8.0.8"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -219,7 +219,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-<<<<<<< HEAD
   mime:
     dependency: transitive
     description:
@@ -227,8 +226,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
-=======
->>>>>>> 6450d8a81229eb88a2a8d3cdaeb873b54f0e9017
   nested:
     dependency: transitive
     description:
