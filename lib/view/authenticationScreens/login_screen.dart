@@ -53,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                 backgroundColor: Colour.greenishBlue,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 onTap: () {
-                  pushNamed(context, '/loginScreen');
+                  pushNamed(context, '/home');
                 },
                 child: const SubHeading2(
                   'LOGIN',
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
               sizedBoxHeight(screenHeight(context) * 0.015),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[ 
+                children: <Widget>[
                   const SubHeading1(
                     'Don\'t have an account? ',
                     size: 14,

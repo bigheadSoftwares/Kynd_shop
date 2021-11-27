@@ -17,6 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       const Duration(seconds: 3),
       () {
+        pushNamed(context, '/ageConfirmation');
         // pushNamed(context, '/search');
       },
     );

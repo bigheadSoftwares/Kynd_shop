@@ -56,4 +56,7 @@ class Assets {
   static const String radio = 'assets/icons/radio.png';
   static const String unradio = 'assets/icons/unradio.png';
   static const String check1 = 'assets/icons/check-1.png';
+  static const String intro1 = 'assets/icons/how-1.png';
+  static const String intro2 = 'assets/icons/how-2.png';
+  static const String intro3 = 'assets/icons/how-3.png';
 }

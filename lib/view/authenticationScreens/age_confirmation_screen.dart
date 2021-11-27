@@ -99,14 +99,14 @@ class AgeConfirmationScreen extends StatelessWidget {
                   ),
                 ),
                 sizedBoxHeight(
-                  screenHeight(context) * 0.1,
+                  screenHeight(context) * 0.04,
                 ),
                 CustomButton(
                   radius: 25,
                   backgroundColor: Colour.greenishBlue,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   onTap: () {
-                    pushNamed(context, '/loginScreen');
+                    pushNamed(context, '/introScreen');
                   },
                   child: const SubHeading2(
                     'CONTINUE',
