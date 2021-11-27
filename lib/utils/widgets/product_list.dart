@@ -1,7 +1,7 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+
 import '../constants/colors.dart';
-import 'product_card.dart';
 import 'title.dart';
 
 class ProductListBlock extends StatelessWidget {
@@ -9,10 +9,12 @@ class ProductListBlock extends StatelessWidget {
     Key? key,
     required this.title,
     this.onTap,
+    this.list,
   }) : super(key: key);
 
   final String title;
   final Function()? onTap;
+  final Widget? list;
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +40,7 @@ class ProductListBlock extends StatelessWidget {
         sizedBoxHeight(15),
         SizedBox(
           height: 340,
-          child: ListView.builder(
-            padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
-            primary: false,
-            itemCount: 5,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return const Padding(
-                padding: EdgeInsets.only(bottom: 10, left: 14),
-                child: ProductCard(),
-              );
-            },
-          ),
+          child: list,
         ),
       ],
     );

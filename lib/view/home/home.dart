@@ -3,6 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kynd_shop/logic/best_sellers/bestsellers_cubit.dart';
+import '../../logic/new_products/new_products_cubit.dart';
 import '../../logic/category/category_cubit.dart';
 import '../../utils/widgets/loading_indicator.dart';
 import '../sidebar/sidebar.dart';
@@ -18,6 +20,8 @@ part 'carousel.dart';
 part 'explore_category.dart';
 part 'popular_brands.dart';
 part 'footer.dart';
+part 'whats_new.dart';
+part 'best_sellers.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -40,19 +44,10 @@ class Home extends StatelessWidget {
             ),
             sizedBoxHeight(20),
             const _ExploreCategory(),
-            ProductListBlock(
-              title: 'Bestsellers',
-              onTap: () {},
-            ),
             sizedBoxHeight(10),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              color: Colour.offWhite,
-              child: ProductListBlock(
-                title: "What's New",
-                onTap: () {},
-              ),
-            ),
+            const _BestSellers(),
+            sizedBoxHeight(10),
+            const _WhatsNew(),
             sizedBoxHeight(10),
             ProductListBlock(
               title: 'Combos',

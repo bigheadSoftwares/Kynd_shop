@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'logic/best_sellers/bestsellers_cubit.dart';
+import 'logic/new_products/new_products_cubit.dart';
 import 'logic/category/category_cubit.dart';
 import 'logic/theme/theme_cubit.dart';
 import 'utils/export_utilities.dart';
@@ -17,6 +19,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CategoryCubit>(
           create: (BuildContext context) => CategoryCubit(),
+        ),
+        BlocProvider<NewProductsCubit>(
+          create: (BuildContext context) => NewProductsCubit(),
+        ),
+        BlocProvider<BestsellersCubit>(
+          create: (BuildContext context) => BestsellersCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

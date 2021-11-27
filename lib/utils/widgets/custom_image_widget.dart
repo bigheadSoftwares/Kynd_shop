@@ -30,6 +30,7 @@ class CustomImageWidget extends StatelessWidget {
     );
   }
 }
+
 class CustomNetworkImageWidget extends StatelessWidget {
   const CustomNetworkImageWidget({
     Key? key,
