@@ -6,7 +6,17 @@ import 'custom_image_widget.dart';
 import 'cut_mrp.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key}) : super(key: key);
+  const ProductCard({
+    Key? key,
+    this.productName,
+    this.productImage,
+    this.basePrice,
+    this.baseDiscountedPrice,
+  }) : super(key: key);
+  final String? productName;
+  final String? productImage;
+  final int? basePrice;
+  final int? baseDiscountedPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -26,26 +36,27 @@ class ProductCard extends StatelessWidget {
               children: <Widget>[
                 const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: CustomImageWidget(image: Assets.beer, height: 140),
+                  child:
+                      CustomImageWidget(image: Assets.beer, height: 140),
                 ),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      const SubHeading2(
-                        'Kingfisher Premium Beer 330 ml',
+                      SubHeading2(
+                        productName ?? '',
                         fontWeight: FontWeight.w500,
                       ),
                       sizedBoxHeight(6),
-                      const CutMrp(mrp: 232),
+                      CutMrp(mrp: basePrice ?? baseDiscountedPrice!),
                       sizedBoxHeight(6),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          const SubHeading2(
-                            '\$335.00/-',
+                          SubHeading2(
+                            '\$$baseDiscountedPrice/-',
                             fontWeight: FontWeight.w500,
                           ),
                           RoundContainer(

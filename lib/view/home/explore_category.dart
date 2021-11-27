@@ -76,8 +76,8 @@ class DrinkCategoryCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             color: backgroundColor,
           ),
-          child: CustomNetworkImageWidget(
-            image: image,
+          child: const CustomImageWidget(
+            image: Assets.beer,
             fit: BoxFit.contain,
           ),
         ),

@@ -9,7 +9,7 @@ part of 'category_model.dart';
 CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
     CategoryModel(
       data: (json['data'] as List<dynamic>?)
-          ?.map((dynamic e) => Datum.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
           .toList(),
       success: json['success'] as bool?,
       status: json['status'] as int?,
