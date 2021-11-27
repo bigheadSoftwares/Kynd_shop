@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/brands/brands_repo.dart';
 import '../../logic/brands/brands_cubit.dart';
 import '../../logic/best_sellers/bestsellers_cubit.dart';
 import '../../logic/new_products/new_products_cubit.dart';

@@ -4,6 +4,7 @@ export '../utils/constants/constants.dart';
 export '../utils/constants/assets.dart';
 export './extension/glassmorphism.dart';
 export './extension/neumorphism.dart';
+export './extension/shimmer.dart';
 export './functions/pick_date.dart';
 export './functions/show_sheet.dart';
 export './functions/show_toast.dart';

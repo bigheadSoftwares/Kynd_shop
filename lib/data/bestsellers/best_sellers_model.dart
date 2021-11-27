@@ -24,7 +24,7 @@ class BestSellersModel {
   factory BestSellersModel.fromJson(Map<String, dynamic> json) =>
       BestSellersModel(
         data: List<Datum>.from(
-            json['data'].map((x) => Datum.fromJson(x as Map<String, dynamic>))
+            json['data'].map((dynamic x) => Datum.fromJson(x as Map<String, dynamic>))
                 as Iterable<dynamic>),
         success: json['success'] as bool,
         status: json['status'] as int,
