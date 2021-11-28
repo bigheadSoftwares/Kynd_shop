@@ -15,7 +15,7 @@ class BackgroundImageWidget extends StatelessWidget {
       backgroundImage,
       height: screenHeight(context),
       width: screenWidth(context),
-      fit: BoxFit.fill,
+      fit: BoxFit.cover,
     );
   }
 }

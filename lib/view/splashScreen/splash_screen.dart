@@ -27,26 +27,24 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            const BackgroundImageWidget(
-              backgroundImage: Assets.backGroundImage,
+      body: Stack(
+        children: <Widget>[
+          const BackgroundImageWidget(
+            backgroundImage: Assets.backGroundImage,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: screenHeight(context) * 0.1),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Logo(
+                  height: screenHeight(context) * 0.3,
+                  width: screenWidth(context) * 0.65,
+                ),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(top: screenHeight(context) * 0.1),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Logo(
-                    height: screenHeight(context) * 0.3,
-                    width: screenWidth(context) * 0.65,
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
