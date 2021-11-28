@@ -9,6 +9,7 @@ import '../../utils/export_utilities.dart';
 part 'add_address.dart';
 part 'save_as.dart';
 part 'add_address_text_field.dart';
+part 'map.dart';
 
 class MyAddress extends StatelessWidget {
   const MyAddress({Key? key}) : super(key: key);
