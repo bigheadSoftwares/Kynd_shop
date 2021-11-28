@@ -73,4 +73,5 @@ class Assets {
   static const String uncheck = 'assets/icons/uncheck.png';
   static const String addressHome = 'assets/icons/address-home.png';
   static const String addressCompany = 'assets/icons/address-company.png';
+  static const String marker = 'assets/icons/marker.png';
 }
