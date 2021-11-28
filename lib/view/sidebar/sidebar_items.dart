@@ -40,7 +40,7 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
   SidebarItems(
     name: 'My Address',
     asset: Assets.myAddress,
-    route: Routes.home,
+    route: Routes.myAddress,
   ),
   SidebarItems(
     name: 'Feedback',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../view/address/my_address.dart';
 import '../../view/refer_and_earn/refer_and_earn.dart';
 import '../../view/feedback/feedback.dart' as feedback_screen;
 import '../../view/support/support.dart';
@@ -47,6 +48,8 @@ class Routes {
   static const String payment = '/payment';
   static const String paymentSuccessful = '/paymentSuccessful';
   static const String filter = '/filter';
+  static const String myAddress = '/my-address';
+  static const String addAddress = '/add-address';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -149,6 +152,14 @@ class Routes {
       case filter:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Filter(),
+        );
+      case myAddress:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const MyAddress(),
+        );
+      case addAddress:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const AddAddress(),
         );
       default:
         return MaterialPageRoute<dynamic>(

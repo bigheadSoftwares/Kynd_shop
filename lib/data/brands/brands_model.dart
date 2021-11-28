@@ -34,38 +34,18 @@ class Brands {
   Brands({
     required this.name,
     required this.logo,
-    required this.links,
   });
 
   String name;
   String logo;
-  Links links;
 
   factory Brands.fromJson(Map<String, dynamic> json) => Brands(
         name: json['name'] as String,
         logo: json['logo'] as String,
-        links: Links.fromJson(json['links'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => <String,dynamic>{
         'name': name,
         'logo': logo,
-        'links': links.toJson(),
-      };
-}
-
-class Links {
-  Links({
-    required this.products,
-  });
-
-  String products;
-
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        products: json['products'] as String,
-      );
-
-  Map<String, dynamic> toJson() => <String,dynamic>{
-        'products': products,
       };
 }

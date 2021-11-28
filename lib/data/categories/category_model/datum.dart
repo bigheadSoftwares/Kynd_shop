@@ -1,8 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'links.dart';
-
 part 'datum.g.dart';
 
 @JsonSerializable()
@@ -13,7 +11,6 @@ class Datum extends Equatable {
     this.banner,
     this.icon,
     this.numberOfChildren,
-    this.links,
   });
 
   final int? id;
@@ -22,7 +19,6 @@ class Datum extends Equatable {
   final String? icon;
   @JsonKey(name: 'number_of_children')
   final int? numberOfChildren;
-  final Links? links;
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
 
@@ -33,7 +29,6 @@ class Datum extends Equatable {
     String? banner,
     String? icon,
     int? numberOfChildren,
-    Links? links,
   }) {
     return Datum(
       id: id ?? this.id,
@@ -41,7 +36,6 @@ class Datum extends Equatable {
       banner: banner ?? this.banner,
       icon: icon ?? this.icon,
       numberOfChildren: numberOfChildren ?? this.numberOfChildren,
-      links: links ?? this.links,
     );
   }
 
@@ -56,7 +50,6 @@ class Datum extends Equatable {
       banner,
       icon,
       numberOfChildren,
-      links,
     ];
   }
 }
