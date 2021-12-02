@@ -21,7 +21,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
         if (state is BannersInitial) {
           return const LoadingIndicator();
         } else if (state is BannersLoaded) {
-          print('This is list ${state.list}');
           return Column(
             children: <Widget>[
               Expanded(

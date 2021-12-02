@@ -20,7 +20,7 @@ extension Glassmorphism on Widget {
   }) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: horizontalMargin,
+        horizontal: horizontalMargin, 
         vertical: verticalMargin,
       ),
       child: ClipRRect(
