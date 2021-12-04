@@ -35,102 +35,121 @@ class _OrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RoundContainer(
+    return GestureDetector(
       onTap: () => pushNamed(context, Routes.orderDetail),
-      vPadding: 16,
-      color: Colors.white,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          sizedBoxHeight(20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: CustomListTile(
-              leading: Image.asset(
-                Assets.champagne,
-                height: 40,
-              ),
-              title: const SubHeading2(
-                'Beer Shop',
-                fontWeight: FontWeight.w500,
-              ),
-              subtitle: const SubHeading2(
-                'New Delhi, Delhi',
-                size: 14,
-                color: Colour.subtitleColor,
-              ),
-              trailingTop: const Chip(
-                padding: EdgeInsets.zero,
-                visualDensity: VisualDensity(vertical: -4),
-                label: SubHeading2(
-                  'Upcoming',
-                  size: 10,
-                  color: Colour.white,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: radius(4),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey.shade300,
+              blurRadius: 10.0,
+              spreadRadius: 2.0
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            sizedBoxHeight(20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: CustomListTile(
+                leading: ClipRRect(
+                  borderRadius: radius(4),
+                  child: Image.asset(
+                    Assets.bar2,
+                    height: 40,
+                    width: 40,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                backgroundColor: Colour.upcomingColor,
-              ),
-            ),
-          ),
-          const Divider(height: 20),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: CustomListTile(
-              title: SubHeading2(
-                'ITEMS',
-                size: 14,
-                color: Colour.subtitleColor,
-              ),
-              spaceBetweenTitleAndSubtitle: 2,
-              subtitle: SubHeading2(
-                '6 x Kingfisher beer chilled',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          sizedBoxHeight(10),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
-            child: CustomListTile(
-              title: SubHeading2(
-                'ORDERED ON',
-                color: Colour.subtitleColor,
-                size: 14,
-              ),
-              spaceBetweenTitleAndSubtitle: 2,
-              subtitle: SubHeading2(
-                '10 Nov, 2021 at 09:10 PM',
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const Divider(height: 20),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 21.0),
-            child: Text.rich(
-              TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: 'Total: ',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                title: const SubHeading2(
+                  'Beer Shop',
+                  fontWeight: FontWeight.w500,
+                ),
+                subtitle: const SubHeading2(
+                  'New Delhi, Delhi',
+                  size: 14,
+                  color: Colour.subtitleColor,
+                ),
+                trailingTop: const Chip(
+                  padding: EdgeInsets.zero,
+                  labelPadding: EdgeInsets.symmetric(horizontal: 10),
+                  visualDensity: VisualDensity(vertical: -4),
+                  label: SubHeading2(
+                    'Upcoming',
+                    size: 12,
+                    color: Colour.white,
+                    fontWeight: FontWeight.bold,
                   ),
-                  TextSpan(
-                    text: '₹ 2500.00/-',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colour.greenishBlue,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
+                  backgroundColor: Colour.upcomingColor,
+                ),
               ),
             ),
-          )
-        ],
+            const Divider(height: 20),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: CustomListTile(
+                title: SubHeading2(
+                  'ITEMS',
+                  size: 14,
+                  color: Colour.subtitleColor,
+                ),
+                spaceBetweenTitleAndSubtitle: 2,
+                subtitle: SubHeading2(
+                  '6 x Kingfisher beer chilled',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            sizedBoxHeight(10),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: CustomListTile(
+                title: SubHeading2(
+                  'ORDERED ON',
+                  color: Colour.subtitleColor,
+                  size: 14,
+                ),
+                spaceBetweenTitleAndSubtitle: 2,
+                subtitle: SubHeading2(
+                  '10 Nov, 2021 at 09:10 PM',
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            const Divider(height: 20),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 21.0),
+              child: Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Total: ',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text: '₹ 2500.00/-',
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colour.greenishBlue,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
-    ).outerNeumorphism();
+    );
   }
 }

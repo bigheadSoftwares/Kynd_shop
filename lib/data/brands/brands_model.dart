@@ -23,7 +23,7 @@ class BrandsModel {
         status: json['status'] as int,
       );
 
-  Map<String, dynamic> toJson() => <String,dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'data': List<dynamic>.from(data.map((dynamic x) => x.toJson())),
         'success': success,
         'status': status,
@@ -31,21 +31,20 @@ class BrandsModel {
 }
 
 class Brands {
-  Brands({
-    required this.name,
-    required this.logo,
-  });
+  Brands({required this.name, required this.logo, required this.id});
 
   String name;
   String logo;
+  int id;
 
   factory Brands.fromJson(Map<String, dynamic> json) => Brands(
-        name: json['name'] as String,
-        logo: json['logo'] as String,
-      );
+      name: json['name'] as String,
+      logo: json['logo'] as String,
+      id: json['id'] as int);
 
-  Map<String, dynamic> toJson() => <String,dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'name': name,
         'logo': logo,
+        'id': id,
       };
 }
