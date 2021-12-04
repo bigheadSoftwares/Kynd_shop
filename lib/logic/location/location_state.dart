@@ -11,10 +11,7 @@ class LocationInitial extends LocationState {}
 
 class LocationFetched extends LocationState {
   const LocationFetched(this.location);
-  final Position location;
-
-  @override
-  List<Object> get props => <Position>[location];
+  final Position? location;
 }
 
 class LocationError extends LocationState {

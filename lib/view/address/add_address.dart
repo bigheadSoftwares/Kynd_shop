@@ -8,7 +8,8 @@ class AddAddress extends StatefulWidget {
 }
 
 class _AddAddressState extends State<AddAddress> {
-  final TextEditingController _yourLocation = TextEditingController();
+  final TextEditingController _yourLocation = TextEditingController()
+    ..text = '${Constants.initialLatitude}, ${Constants.initialLongitude}';
   final TextEditingController _flat = TextEditingController();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _mobile = TextEditingController();
@@ -85,7 +86,7 @@ class _AddAddressState extends State<AddAddress> {
         ],
       ),
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: CustomButton(
           radius: 25,
           backgroundColor: Colour.greenishBlue,

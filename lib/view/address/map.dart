@@ -26,7 +26,7 @@ class _MapState extends State<Map> {
       listener: (BuildContext context, LocationState state) {
         if (state is LocationFetched) {
           widget.yourLocation.text =
-              '${state.location.latitude}, ${state.location.longitude}';
+              '${state.location?.latitude}, ${state.location?.longitude}';
         }
       },
       builder: (BuildContext context, LocationState state) {
@@ -47,8 +47,8 @@ class _MapState extends State<Map> {
                       zoomControlsEnabled: false,
                       initialCameraPosition: CameraPosition(
                         target: LatLng(
-                          state.location.latitude,
-                          state.location.longitude,
+                          state.location?.latitude ?? Constants.initialLatitude,
+                          state.location?.longitude ?? Constants.initialLongitude,
                         ),
                         zoom: 14.5,
                       ),

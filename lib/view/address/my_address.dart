@@ -27,7 +27,7 @@ class MyAddress extends StatelessWidget {
           horizontal: 16,
           vertical: 20,
         ),
-        itemCount: 4,
+        itemCount: 5,
         separatorBuilder: (BuildContext context, int index) =>
             sizedBoxHeight(20),
         itemBuilder: (BuildContext context, int index) {
@@ -47,19 +47,21 @@ class MyAddress extends StatelessWidget {
           ).outerNeumorphism();
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomButton(
-        radius: 8,
-        width: screenWidth(context) * 0.9,
-        backgroundColor: Colour.greyishBlue,
-        padding: const EdgeInsets.symmetric(vertical: 15),
-        onTap: () {
-          pushNamed(context, Routes.addAddress);
-        },
-        child: const SubHeading1(
-          'ADD ADDRESS',
-          color: Colour.greenishBlue,
-          size: 18,
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.fromLTRB(16, 0, 16, 20),
+        child: CustomButton(
+          radius: 8,
+          width: screenWidth(context) * 0.9,
+          backgroundColor: Colour.greyishBlue,
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          onTap: () {
+            pushNamed(context, Routes.addAddress);
+          },
+          child: const SubHeading1(
+            'ADD ADDRESS',
+            color: Colour.greenishBlue,
+            size: 18,
+          ),
         ),
       ),
     );
