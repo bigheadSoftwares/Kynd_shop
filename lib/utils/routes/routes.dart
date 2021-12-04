@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kynd_shop/view/authenticationScreens/otp_screen.dart';
+import '../../view/introduction_screens/introduction_screens.dart';
 import '../../view/address/my_address.dart';
 import '../../view/refer_and_earn/refer_and_earn.dart';
 import '../../view/feedback/feedback.dart' as feedback_screen;
@@ -29,6 +31,7 @@ class Routes {
   static const String registerScreen = '/registerScreen';
   static const String home = '/home';
   static const String category = '/category';
+  static const String categoryTabs = '/categoryTabs';
   static const String myOrders = '/myOrders';
   static const String profile = '/profile';
   static const String orderDetail = '/order-detail';
@@ -47,9 +50,11 @@ class Routes {
   static const String cart = '/cart';
   static const String payment = '/payment';
   static const String paymentSuccessful = '/paymentSuccessful';
+  static const String introScreens = '/introScreen';
   static const String filter = '/filter';
   static const String myAddress = '/my-address';
   static const String addAddress = '/add-address';
+  static const String otpScreen = '/otp-screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -64,6 +69,10 @@ class Routes {
       case loginScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => LoginScreen(),
+        );
+      case otpScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => OtpScreen(),
         );
       case registerScreen:
         return MaterialPageRoute<dynamic>(
@@ -145,10 +154,16 @@ class Routes {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Payment(),
         );
+      case categoryTabs:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const CategoryTabs(),
+        );
       case paymentSuccessful:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const PaymentSuccessful(),
         );
+      case introScreens:
+        return MaterialPageRoute<dynamic>(builder: (_) => const IntroScreens());
       case filter:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Filter(),

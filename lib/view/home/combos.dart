@@ -1,20 +1,23 @@
 part of 'home.dart';
 
-class _BestSellers extends StatelessWidget {
-  const _BestSellers({Key? key}) : super(key: key);
+class _Combos extends StatelessWidget {
+  const _Combos({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
-      child: BlocBuilder<BestsellersCubit, BestsellersState>(
-        bloc: context.read<BestsellersCubit>()..getBestSellers(),
-        builder: (BuildContext context, BestsellersState state) {
-          if (state is BestsellersInitial) {
-            return const LoadingIndicator();
-          } else if (state is BestsellersLoaded) {
+      child: BlocBuilder<CombosCubit, CombosState>(
+        bloc: context.read<CombosCubit>()..getCombos(),
+        builder: (BuildContext context, CombosState state) {
+          // if (state is CombosInitial) {
+          //   return const LoadingIndicator();
+          // } else
+           if (state is CombosLoaded) {
             return ProductListBlock(
-              title: 'Bestsellers',
+              title: 'Combos',
               onTap: () {},
               list: ListView.builder(
                 padding: const EdgeInsets.only(
@@ -23,20 +26,18 @@ class _BestSellers extends StatelessWidget {
                   bottom: 12,
                 ),
                 primary: false,
-                itemCount: state.bestSellersModel.data?.length ?? 0,
+                itemCount: state.combosModel.data?.length ?? 0,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10, left: 14),
                     child: ProductCard(
-                      productName:
-                          state.bestSellersModel.data?[index].name ?? '',
+                      productName: state.combosModel.data?[index].name ?? '',
                       productImage:
-                          state.bestSellersModel.data?[index].thumbnailImage ??
-                              '',
-                      basePrice: state.bestSellersModel.data?[index].basePrice,
-                      baseDiscountedPrice: state
-                          .bestSellersModel.data?[index].baseDiscountedPrice,
+                          state.combosModel.data?[index].thumbnailImage ?? '',
+                      basePrice: state.combosModel.data?[index].basePrice,
+                      baseDiscountedPrice:
+                          state.combosModel.data?[index].baseDiscountedPrice,
                     ),
                   );
                 },
@@ -44,7 +45,7 @@ class _BestSellers extends StatelessWidget {
             );
           } else {
             return ProductListBlock(
-              title: 'Bestsellers',
+              title: 'Combos',
               onTap: () {},
               list: ListView.builder(
                 padding: const EdgeInsets.only(
@@ -53,19 +54,18 @@ class _BestSellers extends StatelessWidget {
                   bottom: 12,
                 ),
                 primary: false,
-                itemCount: 4,
+                itemCount: 5,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   return const Padding(
                     padding:  EdgeInsets.only(bottom: 10, left: 14),
                     child: ProductCard(
-                      productName:
-                          'Kingfisher Beer',
+                      productName:  'Signature and Kingfisher Beer',
                       productImage:
-                          
-                              '',
-                      basePrice: 400,
-                      baseDiscountedPrice: 300,
+                          '',
+                      basePrice: 1500,
+                      baseDiscountedPrice:
+                          1200,
                     ),
                   );
                 },

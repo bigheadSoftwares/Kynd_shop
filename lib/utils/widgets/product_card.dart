@@ -36,8 +36,7 @@ class ProductCard extends StatelessWidget {
               children: <Widget>[
                 const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child:
-                      CustomImageWidget(image: Assets.beer, height: 140),
+                  child: CustomImageWidget(image: Assets.beer, height: 140),
                 ),
                 const Divider(),
                 Padding(
@@ -49,14 +48,14 @@ class ProductCard extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                       sizedBoxHeight(6),
-                      CutMrp(mrp: basePrice ?? baseDiscountedPrice!),
+                      CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 500),
                       sizedBoxHeight(6),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           SubHeading2(
-                            '\$$baseDiscountedPrice/-',
+                            '\$${baseDiscountedPrice ?? '400'}/-',
                             fontWeight: FontWeight.w500,
                           ),
                           RoundContainer(

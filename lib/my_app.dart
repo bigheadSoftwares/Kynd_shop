@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'logic/banners/banners_cubit.dart';
+import 'logic/combos/combos_cubit.dart';
 import 'logic/location/location_cubit.dart';
 import 'logic/brands/brands_cubit.dart';
 import 'logic/best_sellers/bestsellers_cubit.dart';
@@ -31,6 +33,12 @@ class MyApp extends StatelessWidget {
         BlocProvider<BestsellersCubit>(
           create: (BuildContext context) => BestsellersCubit(),
         ),
+        BlocProvider<CombosCubit>(
+          create: (BuildContext context) => CombosCubit(),
+        ),
+        BlocProvider<BannersCubit>(
+          create: (BuildContext context) => BannersCubit(),
+        ),
         BlocProvider<LocationCubit>(
           create: (BuildContext context) => LocationCubit(),
         ),
@@ -55,7 +63,7 @@ class CustomMaterial extends StatelessWidget {
       title: 'Kynd Shop',
       theme: state,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.home,
+      // initialRoute: Routes.home,
       onGenerateRoute: Routes.generateRoute,
     );
   }

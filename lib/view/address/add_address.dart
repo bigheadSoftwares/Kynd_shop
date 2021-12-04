@@ -91,7 +91,7 @@ class _AddAddressState extends State<AddAddress> {
           backgroundColor: Colour.greenishBlue,
           padding: const EdgeInsets.symmetric(vertical: 12),
           onTap: () {
-            pop(context);
+            pushReplacementNamed(context, Routes.home);
           },
           child: const SubHeading2(
             'SAVE',
@@ -103,5 +103,3 @@ class _AddAddressState extends State<AddAddress> {
     );
   }
 }
-
-
