@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:kynd_shop/view/authenticationScreens/otp_screen.dart';
 import '../../view/introduction_screens/introduction_screens.dart';
+import '../../view/address/my_address.dart';
+import '../../view/refer_and_earn/refer_and_earn.dart';
+import '../../view/feedback/feedback.dart' as feedback_screen;
+import '../../view/support/support.dart';
 import '../../view/filters/filter.dart';
 import '../../view/payment/payment.dart';
 import '../../view/payment/payment_successful.dart';
@@ -26,6 +31,7 @@ class Routes {
   static const String registerScreen = '/registerScreen';
   static const String home = '/home';
   static const String category = '/category';
+  static const String categoryTabs = '/categoryTabs';
   static const String myOrders = '/myOrders';
   static const String profile = '/profile';
   static const String orderDetail = '/order-detail';
@@ -38,11 +44,17 @@ class Routes {
   static const String wishlist = '/wishlist';
   static const String search = '/search';
   static const String productDetail = '/productDetail';
+  static const String support = '/support';
+  static const String feedback = '/feedback';
+  static const String referAndEarn = '/referAndEarn';
   static const String cart = '/cart';
   static const String payment = '/payment';
   static const String paymentSuccessful = '/paymentSuccessful';
   static const String introScreens = '/introScreen';
   static const String filter = '/filter';
+  static const String myAddress = '/my-address';
+  static const String addAddress = '/add-address';
+  static const String otpScreen = '/otp-screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -57,6 +69,10 @@ class Routes {
       case loginScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => LoginScreen(),
+        );
+      case otpScreen:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => OtpScreen(),
         );
       case registerScreen:
         return MaterialPageRoute<dynamic>(
@@ -118,6 +134,18 @@ class Routes {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const ProductDetail(),
         );
+      case support:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const Support(),
+        );
+      case feedback:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const feedback_screen.Feedback(),
+        );
+      case referAndEarn:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const ReferAndEarn(),
+        );
       case cart:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Cart(),
@@ -125,6 +153,10 @@ class Routes {
       case payment:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Payment(),
+        );
+      case categoryTabs:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const CategoryTabs(),
         );
       case paymentSuccessful:
         return MaterialPageRoute<dynamic>(
@@ -135,6 +167,14 @@ class Routes {
       case filter:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Filter(),
+        );
+      case myAddress:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const MyAddress(),
+        );
+      case addAddress:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const AddAddress(),
         );
       default:
         return MaterialPageRoute<dynamic>(

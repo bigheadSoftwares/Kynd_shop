@@ -32,10 +32,15 @@ class _ExploreCategory extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: DrinkCategoryCard(
-                        backgroundColor: Colour.lightGreen,
-                        image: state.categoryModel.data?[index].icon ?? '',
-                        name: state.categoryModel.data?[index].name ?? '',
+                      child: GestureDetector(
+                        onTap: () {
+                          pushNamed(context, Routes.categoryTabs);
+                        },
+                        child: DrinkCategoryCard(
+                          backgroundColor: Colour.lightGreen,
+                          image: state.categoryModel.data?[index].icon ?? '',
+                          name: state.categoryModel.data?[index].name ?? '',
+                        ),
                       ),
                     );
                   },

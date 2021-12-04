@@ -43,7 +43,34 @@ class _BestSellers extends StatelessWidget {
               ),
             );
           } else {
-            return Container();
+            return ProductListBlock(
+              title: 'Bestsellers',
+              onTap: () {},
+              list: ListView.builder(
+                padding: const EdgeInsets.only(
+                  left: 12,
+                  right: 12,
+                  bottom: 12,
+                ),
+                primary: false,
+                itemCount: 4,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return const Padding(
+                    padding:  EdgeInsets.only(bottom: 10, left: 14),
+                    child: ProductCard(
+                      productName:
+                          'Kingfisher Beer',
+                      productImage:
+                          
+                              '',
+                      basePrice: 400,
+                      baseDiscountedPrice: 300,
+                    ),
+                  );
+                },
+              ),
+            );
           }
         },
       ),

@@ -74,7 +74,7 @@ class Datum {
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json['id'] == null ? null : json['id'] as int,
-        name: json['name'] == null ? null : json['name'] as String,
+        name: json['name'].toString(),
         photos: json['photos'] == null
             ? null
             : List<Map<String, String>>.from(json['photos'].map(

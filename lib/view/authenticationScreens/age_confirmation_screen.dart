@@ -20,7 +20,7 @@ class AgeConfirmationScreen extends StatelessWidget {
           ListView(
             padding: EdgeInsets.fromLTRB(
               25,
-              screenHeight(context) * 0.06,
+              screenHeight(context) * 0.08,
               25,
               20,
             ),

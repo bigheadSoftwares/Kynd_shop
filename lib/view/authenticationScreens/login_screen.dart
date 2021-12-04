@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
             backgroundColor: Colour.greenishBlue,
             padding: const EdgeInsets.symmetric(vertical: 15),
             onTap: () {
-              pushNamed(context, '/home');
+                      pushReplacementNamed(context, Routes.otpScreen);
             },
             child: const SubHeading2(
               'LOGIN',

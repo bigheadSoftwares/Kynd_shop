@@ -12,9 +12,10 @@ class _Combos extends StatelessWidget {
       child: BlocBuilder<CombosCubit, CombosState>(
         bloc: context.read<CombosCubit>()..getCombos(),
         builder: (BuildContext context, CombosState state) {
-          if (state is CombosInitial) {
-            return const LoadingIndicator();
-          } else if (state is CombosLoaded) {
+          // if (state is CombosInitial) {
+          //   return const LoadingIndicator();
+          // } else
+           if (state is CombosLoaded) {
             return ProductListBlock(
               title: 'Combos',
               onTap: () {},
@@ -43,7 +44,33 @@ class _Combos extends StatelessWidget {
               ),
             );
           } else {
-            return Container();
+            return ProductListBlock(
+              title: 'Combos',
+              onTap: () {},
+              list: ListView.builder(
+                padding: const EdgeInsets.only(
+                  left: 12,
+                  right: 12,
+                  bottom: 12,
+                ),
+                primary: false,
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return const Padding(
+                    padding:  EdgeInsets.only(bottom: 10, left: 14),
+                    child: ProductCard(
+                      productName:  'Signature and Kingfisher Beer',
+                      productImage:
+                          '',
+                      basePrice: 1500,
+                      baseDiscountedPrice:
+                          1200,
+                    ),
+                  );
+                },
+              ),
+            );
           }
         },
       ),

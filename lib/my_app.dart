@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'logic/banners/banners_cubit.dart';
 import 'logic/combos/combos_cubit.dart';
+import 'logic/location/location_cubit.dart';
+import 'logic/brands/brands_cubit.dart';
 import 'logic/best_sellers/bestsellers_cubit.dart';
 import 'logic/new_products/new_products_cubit.dart';
 import 'logic/category/category_cubit.dart';
@@ -22,6 +24,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<CategoryCubit>(
           create: (BuildContext context) => CategoryCubit(),
         ),
+        BlocProvider<BrandsCubit>(
+          create: (BuildContext context) => BrandsCubit(),
+        ),
         BlocProvider<NewProductsCubit>(
           create: (BuildContext context) => NewProductsCubit(),
         ),
@@ -33,6 +38,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<BannersCubit>(
           create: (BuildContext context) => BannersCubit(),
+        ),
+        BlocProvider<LocationCubit>(
+          create: (BuildContext context) => LocationCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

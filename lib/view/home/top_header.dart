@@ -24,9 +24,12 @@ class TopHeader extends StatelessWidget {
                 onTap: () {
                   Scaffold.of(context).openDrawer();
                 },
-                child: const CustomImageWidget(
-                  image: Assets.menu,
-                  scale: 1.8,
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const CustomImageWidget(
+                    image: Assets.menu,
+                    scale: 1.8,
+                  ),
                 ),
               ),
               const Spacer(),

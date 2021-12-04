@@ -35,22 +35,22 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
   SidebarItems(
     name: 'Refer & Earn',
     asset: Assets.referAndEarn,
-    route: Routes.home,
+    route: Routes.referAndEarn,
   ),
   SidebarItems(
     name: 'My Address',
     asset: Assets.myAddress,
-    route: Routes.home,
+    route: Routes.myAddress,
   ),
   SidebarItems(
     name: 'Feedback',
     asset: Assets.feedback,
-    route: Routes.home,
+    route: Routes.feedback,
   ),
   SidebarItems(
     name: 'Costumer Care',
     asset: Assets.costumerCare,
-    route: Routes.home,
+    route: Routes.support,
   ),
   SidebarItems(
     name: 'Share App',

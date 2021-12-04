@@ -53,6 +53,19 @@ class Assets {
   static const String startDiscussion = 'assets/icons/feedback-menu.png';
   static const String close = 'assets/icons/not-close.png';
   static const String notSearch = 'assets/icons/not-search.png';
+  static const String support = 'assets/icons/support.png';
+  static const String smile1 = 'assets/icons/smile.png';
+  static const String smile2 = 'assets/icons/smile2.png';
+  static const String smile3 = 'assets/icons/smile3.png';
+  static const String colouredSmile1 = 'assets/icons/smile1.png';
+  static const String colouredSmile2 = 'assets/icons/smile2-1.png';
+  static const String colouredSmile3 = 'assets/icons/smile3-3.png';
+  static const String whatsApp = 'assets/icons/whatsapp.png';
+  static const String twitter = 'assets/icons/twitter.png';
+  static const String facebook = 'assets/icons/facebook.png';
+  static const String contact = 'assets/icons/contact.png';
+  static const String shareViaEmail = 'assets/icons/email.png';
+  static const String link = 'assets/icons/link.png';
   static const String radio = 'assets/icons/radio.png';
   static const String unradio = 'assets/icons/unradio.png';
   static const String check1 = 'assets/icons/check-1.png';
@@ -61,4 +74,8 @@ class Assets {
   static const String intro3 = 'assets/icons/how-3.png';
   static const String check = 'assets/icons/check.png';
   static const String uncheck = 'assets/icons/uncheck.png';
+  static const String addressHome = 'assets/icons/address-home.png';
+  static const String addressCompany = 'assets/icons/address-company.png';
+  static const String marker = 'assets/icons/marker.png';
+  static const String otpBackground = 'assets/icons/otp.png';
 }

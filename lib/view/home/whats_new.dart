@@ -1,6 +1,5 @@
 part of 'home.dart';
 
-
 class _WhatsNew extends StatelessWidget {
   const _WhatsNew({
     Key? key,
@@ -14,9 +13,10 @@ class _WhatsNew extends StatelessWidget {
       child: BlocBuilder<NewProductsCubit, NewProductsState>(
         bloc: context.read<NewProductsCubit>()..getNewProducts(),
         builder: (BuildContext context, NewProductsState state) {
-          if (state is NewProductsInitial) {
-            return const LoadingIndicator();
-          } else if (state is NewProductsLoaded) {
+          // if (state is NewProductsInitial) {
+          //   return const LoadingIndicator();
+          // }
+            if (state is NewProductsLoaded) {
             return ProductListBlock(
               title: "What's New",
               onTap: () {},
@@ -47,7 +47,31 @@ class _WhatsNew extends StatelessWidget {
               ),
             );
           } else {
-            return Container();
+            return ProductListBlock(
+              title: "What's New",
+              onTap: () {},
+              list: ListView.builder(
+                padding: const EdgeInsets.only(
+                  left: 12,
+                  right: 12,
+                  bottom: 12,
+                ),
+                primary: false,
+                itemCount: 6,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return const Padding(
+                    padding: EdgeInsets.only(bottom: 10, left: 14),
+                    child: ProductCard(
+                      productName: 'Blue and White Whiskey',
+                      productImage: '',
+                      basePrice: 1100,
+                      baseDiscountedPrice: 800,
+                    ),
+                  );
+                },
+              ),
+            );
           }
         },
       ),
