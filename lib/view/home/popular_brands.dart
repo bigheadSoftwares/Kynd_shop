@@ -23,14 +23,18 @@ class _PopularBrandsState extends State<_PopularBrands> {
       children: <Widget>[
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: CustomTitle(title: 'Popular Brands'),
+          child: Heading1(
+            'Popular Brands',
+            size: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         sizedBoxHeight(15),
         BlocBuilder<BrandsCubit, BrandsState>(
           builder: (BuildContext context, BrandsState state) {
             if (state is BrandsSuccess) {
               return SizedBox(
-                height: 100,
+                height: 90,
                 child: ListView.builder(
                   padding: const EdgeInsets.only(left: 20),
                   itemCount: state.brandsModel.data.length,
@@ -68,7 +72,7 @@ class _ImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding:  EdgeInsets.all(4.0),
+      padding: EdgeInsets.all(4.0),
       child: CircleAvatar(
         radius: 50,
         backgroundImage: AssetImage(Assets.turborg),

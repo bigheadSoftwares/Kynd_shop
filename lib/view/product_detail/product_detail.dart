@@ -29,8 +29,39 @@ class ProductDetail extends StatelessWidget {
               height: screenHeight(context),
             ),
             const _ProductImage(),
-            const _ProductDetail()
+            const _ProductDetail(),
+            const _FavoriteIcon()
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _FavoriteIcon extends StatelessWidget {
+  const _FavoriteIcon({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: screenHeight(context) * 0.35,
+      right: 25,
+      child: Container(
+        height: 50,
+        width: 50,
+        decoration: const BoxDecoration(
+            color: Colour.greenishBlue,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10),
+            )),
+        child: const Icon(
+          Icons.favorite,
+          color: Colour.white,
+          size: 30,
         ),
       ),
     );

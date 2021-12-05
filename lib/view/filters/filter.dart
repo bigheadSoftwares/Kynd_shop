@@ -12,7 +12,9 @@ class Filter extends StatelessWidget {
         elevation: 1,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            pop(context);
+          },
           icon: const Icon(
             Icons.close,
             color: Colour.black,

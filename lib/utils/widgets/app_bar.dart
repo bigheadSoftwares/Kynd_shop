@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +16,21 @@ AppBar appBar(
     backgroundColor: Colour.blue,
     automaticallyImplyLeading: automaticallyImplyLeading ?? true,
     elevation: elevation,
-    leading: IconButton(
-      icon: const Icon(
-        Icons.arrow_back_ios,
-        color: Colour.white,
-      ),
-      onPressed: () => pop(context),
-    ),
+    leading: Platform.isIOS
+        ? IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colour.white,
+            ),
+            onPressed: () => pop(context),
+          )
+        : IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colour.white,
+            ),
+            onPressed: () => pop(context),
+          ),
     title: Text(
       title,
       style: textTheme(context).bodyText1!.copyWith(

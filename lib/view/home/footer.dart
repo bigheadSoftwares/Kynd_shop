@@ -19,12 +19,17 @@ class _Footer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const CustomTitle(title: 'THE KIND\nSHOP'),
+                const Heading1(
+                  'THE KYND\nSHOP',
+                  size: 22,
+                  fontWeight: FontWeight.w700,
+                ),
+                const CustomTitle(title: ''),
                 Heading1(
                   '© KYND',
-                  color: Colour.lightGrey.withOpacity(0.6),
+                  color: Colour.lightGrey.withOpacity(0.8),
                   size: 18,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w400,
                 ),
               ],
             ),

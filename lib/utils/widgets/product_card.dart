@@ -21,6 +21,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colour.white,
       elevation: 2,
       borderRadius: BorderRadius.circular(6),
       child: RoundContainer(
@@ -42,14 +43,15 @@ class ProductCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SubHeading2(
                         productName ?? '',
                         fontWeight: FontWeight.w500,
                       ),
-                      sizedBoxHeight(6),
+                      sizedBoxHeight(4),
                       CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 500),
-                      sizedBoxHeight(6),
+                      sizedBoxHeight(4),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -95,6 +97,15 @@ class ProductCard extends StatelessWidget {
                   color: Colour.lightGrey,
                   size: 26,
                 ),
+              ),
+            ),
+            Positioned(
+              top: 5,
+              left: -5,
+              // alignment: Alignment.topLeft,
+              child: Transform.scale(
+                scale: 0.6,
+                child: const Points(points: 7),
               ),
             )
           ],

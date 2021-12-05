@@ -48,6 +48,7 @@ class _CartBottomSection extends StatelessWidget {
               ),
             ),
           ),
+          sizedBoxHeight(20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
             child: CustomPrimaryButton(
@@ -56,7 +57,8 @@ class _CartBottomSection extends StatelessWidget {
                 pushNamed(context, Routes.payment);
               },
             ),
-          )
+          ),
+          sizedBoxHeight(10),
         ],
       ),
     );

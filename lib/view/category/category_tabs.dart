@@ -1,4 +1,7 @@
+import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import '../filters/filter.dart';
+import '../search/search.dart';
 import '../../utils/widgets/app_bar.dart';
 import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
@@ -18,7 +21,9 @@ class CategoryTabs extends StatelessWidget {
           title: 'Beer',
           actions: <Widget>[
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // push(context, const Search());
+              },
               color: Colour.white,
               icon: const Padding(
                 padding: EdgeInsets.all(6.0),
@@ -28,7 +33,9 @@ class CategoryTabs extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // push(context, const Filter());
+              },
               color: Colour.white,
               icon: const Padding(
                 padding: EdgeInsets.all(6.0),
@@ -67,13 +74,15 @@ class _TabView extends StatelessWidget {
             ),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.55,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
+              childAspectRatio: 0.58,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
             ),
             itemCount: 10,
             itemBuilder: (BuildContext context, int index) {
-              return const ProductCard();
+              return const ProductCard(
+                productName: 'Kingfisher Premium Beer - 300 ml',
+              );
             },
           ),
           Container(),

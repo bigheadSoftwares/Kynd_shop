@@ -15,8 +15,8 @@ class CustomTitle extends StatelessWidget {
     return SubHeading1(
       title,
       color: Colour.darkBlue,
-      size: 20,
-      fontWeight: FontWeight.w700,
+      size: 18,
+      fontWeight: FontWeight.w500,
     );
   }
 }

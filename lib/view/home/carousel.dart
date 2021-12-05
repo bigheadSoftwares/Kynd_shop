@@ -58,7 +58,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colour.greenishBlue
-                              .withOpacity(_current == entry.key ? 0.7 : 0.4)),
+                              .withOpacity(_current == entry.key ? 1 : 0.4)),
                     ),
                   );
                 }).toList(),

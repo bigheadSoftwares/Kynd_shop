@@ -12,7 +12,7 @@ class IncrementDecrementButton extends StatelessWidget {
   }) : super(key: key);
   final Function()? onTapInc;
   final Function()? onTapDec;
-  final double number;
+  final int number;
   final Color? color;
 
   @override

@@ -8,7 +8,7 @@ class _WhatsNew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       color: Colour.offWhite,
       child: BlocBuilder<NewProductsCubit, NewProductsState>(
         bloc: context.read<NewProductsCubit>()..getNewProducts(),
