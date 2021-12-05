@@ -22,10 +22,10 @@ class _BottomCartSection extends StatelessWidget {
                   number: 2,
                 ),
                 SubHeading2(
-                  '\$234/-',
+                  '\$234.00/-',
                   color: Colour.greenishBlue,
                   fontWeight: FontWeight.w500,
-                  size: 18,
+                  size: 20,
                 )
               ],
             ),

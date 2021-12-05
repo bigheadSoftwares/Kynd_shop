@@ -43,7 +43,7 @@ class Points extends StatelessWidget {
             ),
             sizedBoxWidth(2),
             SubHeading2(
-              '${points.toStringAsFixed(2)} Pts',
+              '${points.toStringAsFixed(0)} Pts',
               color: Colour.white,
               fontWeight: FontWeight.w400,
             ),

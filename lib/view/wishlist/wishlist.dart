@@ -22,7 +22,9 @@ class Wishlist extends StatelessWidget {
         ),
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
-          return const ProductCard();
+          return const ProductCard(
+            productName: 'Kingfisher Premium Beer - 300 ml',
+          );
         },
       ),
     );

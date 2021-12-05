@@ -40,12 +40,12 @@ class TopHeader extends StatelessWidget {
                   scale: 1.8,
                 ),
               ),
-              sizedBoxWidth(15),
+              sizedBoxWidth(18),
               const CustomImageWidget(
                 image: Assets.notification,
                 scale: 1.8,
               ),
-              sizedBoxWidth(15),
+              sizedBoxWidth(18),
               const _CoinContainer(),
             ],
           ),
@@ -58,9 +58,10 @@ class TopHeader extends StatelessWidget {
               ),
               sizedBoxWidth(5),
               const SubHeading2(
-                '204, kingstreet, malbourne - 235345',
+                '204, Foxrun, St.Davison - MI 48423',
+                fontWeight: FontWeight.w500,
                 color: Colour.white,
-                size: 12,
+                size: 14,
               )
             ],
           ),
@@ -87,6 +88,7 @@ class _CoinContainer extends StatelessWidget {
       radius: 20,
       hPadding: 3,
       vPadding: 3,
+      borderWidth: 1.4,
       borderColor: Colour.white,
       child: Row(
         children: const <Widget>[
@@ -94,10 +96,14 @@ class _CoinContainer extends StatelessWidget {
             image: Assets.coin,
             scale: 1.8,
           ),
-          SubHeading2(
-            '2000 Kynd Points',
-            size: 8,
-            color: Colour.white,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 4.0),
+            child: SubHeading2(
+              '2000 Kynd Points',
+              size: 10,
+              fontWeight: FontWeight.bold,
+              color: Colour.white,
+            ),
           )
         ],
       ),
@@ -120,15 +126,21 @@ class _SearchFieldState extends State<SearchField> {
   Widget build(BuildContext context) {
     return CustomTextField(
       controller: _textEditingController,
+      inputTextStyle: const TextStyle(
+        color: Colour.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
       filled: true,
-      fillColor: Colour.white.withOpacity(0.1),
+      fillColor: Colour.fillColor,
       borderColor: Colour.transparent,
       enabledBorderColor: Colour.transparent,
       disabledBorderColor: Colour.transparent,
       hintText: 'Type something...',
       hintStyle: TextStyle(
-        color: Colour.white.withOpacity(0.5),
-      ),
+          color: Colour.white.withOpacity(0.7),
+          fontSize: 16,
+          fontWeight: FontWeight.w400),
       prefixIcon: const Padding(
         padding: EdgeInsets.all(14.0),
         child: CustomImageWidget(
