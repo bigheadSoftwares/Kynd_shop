@@ -25,9 +25,13 @@ class _ProductImage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          CustomNetworkImageWidget(
-            image: imageUrl,
+        children: const <Widget>[
+          // CustomNetworkImageWidget(
+          //   image: Assets.beer,
+          //   fit: BoxFit.contain,
+          // ),
+          CustomImageWidget(
+            image: Assets.beer,
             fit: BoxFit.contain,
           ),
         ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/view/authenticationScreens/otp_screen.dart';
+import '../../view/authenticationScreens/otp_screen.dart';
 import '../../view/introduction_screens/introduction_screens.dart';
 import '../../view/address/my_address.dart';
 import '../../view/refer_and_earn/refer_and_earn.dart';

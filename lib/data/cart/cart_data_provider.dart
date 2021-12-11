@@ -17,8 +17,7 @@ class CartDataProvider {
         'Content-Type': 'application/json'
       },
     );
-    print(
-        'This is response ${rawData.body} and this is status code ${rawData.statusCode}');
+   
     if (rawData.statusCode == 200) {
       return true;
     } else {
