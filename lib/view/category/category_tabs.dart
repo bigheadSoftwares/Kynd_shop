@@ -74,7 +74,7 @@ class _TabView extends StatelessWidget {
             ),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.58,
+              childAspectRatio: 0.48,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
             ),

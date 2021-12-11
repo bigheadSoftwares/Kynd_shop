@@ -44,10 +44,9 @@ class _OrderCard extends StatelessWidget {
           borderRadius: radius(4),
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.grey.shade300,
-              blurRadius: 10.0,
-              spreadRadius: 2.0
-            ),
+                color: Colors.grey.shade300,
+                blurRadius: 10.0,
+                spreadRadius: 2.0),
           ],
         ),
         child: Column(
@@ -70,19 +69,20 @@ class _OrderCard extends StatelessWidget {
                 title: const SubHeading2(
                   'Beer Shop',
                   fontWeight: FontWeight.w500,
+                  size: 14,
                 ),
                 subtitle: const SubHeading2(
                   'New Delhi, Delhi',
-                  size: 14,
+                  size: 12,
                   color: Colour.subtitleColor,
                 ),
                 trailingTop: const Chip(
                   padding: EdgeInsets.zero,
-                  labelPadding: EdgeInsets.symmetric(horizontal: 10),
+                  labelPadding: EdgeInsets.symmetric(horizontal: 15),
                   visualDensity: VisualDensity(vertical: -4),
                   label: SubHeading2(
                     'Upcoming',
-                    size: 12,
+                    size: 10,
                     color: Colour.white,
                     fontWeight: FontWeight.bold,
                   ),
@@ -96,13 +96,15 @@ class _OrderCard extends StatelessWidget {
               child: CustomListTile(
                 title: SubHeading2(
                   'ITEMS',
-                  size: 14,
+                  size: 12,
                   color: Colour.subtitleColor,
+                  fontWeight: FontWeight.w500,
                 ),
                 spaceBetweenTitleAndSubtitle: 2,
                 subtitle: SubHeading2(
                   '6 x Kingfisher beer chilled',
                   fontWeight: FontWeight.w500,
+                  size: 14,
                 ),
               ),
             ),
@@ -113,12 +115,14 @@ class _OrderCard extends StatelessWidget {
                 title: SubHeading2(
                   'ORDERED ON',
                   color: Colour.subtitleColor,
-                  size: 14,
+                  size: 12,
+                  fontWeight: FontWeight.w500,
                 ),
                 spaceBetweenTitleAndSubtitle: 2,
                 subtitle: SubHeading2(
                   '10 Nov, 2021 at 09:10 PM',
                   fontWeight: FontWeight.w500,
+                  size: 14,
                 ),
               ),
             ),
@@ -131,14 +135,14 @@ class _OrderCard extends StatelessWidget {
                     TextSpan(
                       text: 'Total: ',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     TextSpan(
                       text: '₹ 2500.00/-',
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 15,
                         color: Colour.greenishBlue,
                         fontWeight: FontWeight.w800,
                       ),

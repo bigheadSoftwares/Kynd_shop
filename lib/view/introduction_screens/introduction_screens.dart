@@ -30,7 +30,8 @@ class _IntroScreensState extends State<IntroScreens> {
             Image.asset(
               _images[index],
               height: screenHeight(context),
-              fit: BoxFit.fill,
+              width: screenWidth(context),
+              fit: BoxFit.cover,
             ),
             Container(
               decoration: BoxDecoration(
