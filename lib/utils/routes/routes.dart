@@ -68,11 +68,13 @@ class Routes {
         );
       case loginScreen:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => LoginScreen(),
+          builder: (_) => const LoginScreen(),
         );
       case otpScreen:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => OtpScreen(),
+          builder: (_) => OtpScreen(
+            phoneNumber: settings.arguments as String,
+          ),
         );
       case registerScreen:
         return MaterialPageRoute<dynamic>(

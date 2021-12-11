@@ -1,12 +1,13 @@
-import 'dart:async';
-
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/authentication/authentication_cubit.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../utils/export_utilities.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({Key? key}) : super(key: key);
+  const OtpScreen({Key? key, required this.phoneNumber}) : super(key: key);
+  final String phoneNumber;
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -14,27 +15,9 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   TextEditingController textEditingController = TextEditingController();
-  // ..text = "123456";
-
-  // ignore: close_sinks
-  StreamController<ErrorAnimationType>? errorController;
 
   bool hasError = false;
-  String currentText = "";
-  final formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    errorController = StreamController<ErrorAnimationType>();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    errorController!.close();
-
-    super.dispose();
-  }
+  String currentText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -60,74 +43,75 @@ class _OtpScreenState extends State<OtpScreen> {
                 size: 16,
               ),
               SubHeading1(
-                '+91 8888888888',
+                widget.phoneNumber,
                 color: Colour.lightGrey.withOpacity(0.7),
                 size: 14,
               ),
               sizedBoxHeight(screenHeight(context) * 0.08),
-              Form(
-                key: formKey,
-                child: PinCodeTextField(
-                  appContext: context,
-                  pastedTextStyle: TextStyle(
-                    color: Colors.green.shade600,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  length: 4,
-                  obscureText: false,
-                  blinkWhenObscuring: false,
-                  animationType: AnimationType.fade,
-                  // validator: (String? v) {
-                  //   if (v!.length < 3) {
-                  //     return "I'm from validator";
-                  //   } else {
-                  //     return null;
-                  //   }
-                  // },
-     
-                  pinTheme: PinTheme(
-                    shape: PinCodeFieldShape.box,
-                    borderRadius: BorderRadius.circular(25),
-                    errorBorderColor: Colour.greenishBlue,
-                    fieldHeight: 65,
-                    fieldWidth: 60,
-                    inactiveColor: Colors.transparent,
-                    activeColor: Colors.transparent,
-                    disabledColor: Colors.transparent,
-                    selectedColor: Colors.transparent,
-                    activeFillColor: Colors.white,
-                    inactiveFillColor: Colour.greenishBlue,
-                    selectedFillColor: Colors.white,
-                  ),
-                  cursorColor: Colors.black,
-                  animationDuration: const Duration(milliseconds: 300),
-                  enableActiveFill: true,
-                  errorAnimationController: errorController,
-                  controller: textEditingController,
-                  keyboardType: TextInputType.number,
-                  boxShadows: const <BoxShadow>[
-                    BoxShadow(
-                      offset: Offset(0, 1),
-                      color: Colors.black12,
-                      blurRadius: 10,
-                    )
-                  ],
-                  onCompleted: (String v) {
-                  },
-                  // onTap: () {
-                  //   print("Pressed");
-                  // },
-                  onChanged: (value) {
-                    setState(() {
-                      currentText = value;
-                    });
-                  },
-                  beforeTextPaste: (text) {
-                    //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                    //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                    return true;
-                  },
-                ),
+              BlocConsumer<AuthenticationCubit, AuthenticationState>(
+                listener: (BuildContext context, AuthenticationState state) {
+                  if (state is AuthenticationSuccessful) {
+                    pushNamed(context, Routes.home);
+                  }
+                },
+                builder: (BuildContext context, AuthenticationState state) {
+                  return Column(
+                    children: <Widget>[
+                      PinCodeTextField(
+                        appContext: context,
+                        pastedTextStyle: TextStyle(
+                          color: Colors.green.shade600,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        length: 4,
+                        obscureText: false,
+                        blinkWhenObscuring: false,
+                        animationType: AnimationType.fade,
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(25),
+                          errorBorderColor: Colour.greenishBlue,
+                          fieldHeight: 65,
+                          fieldWidth: 60,
+                          inactiveColor: Colors.transparent,
+                          activeColor: Colors.transparent,
+                          disabledColor: Colors.transparent,
+                          selectedColor: Colors.transparent,
+                          activeFillColor: Colors.white,
+                          inactiveFillColor: Colour.greenishBlue,
+                          selectedFillColor: Colors.white,
+                        ),
+                        cursorColor: Colors.black,
+                        animationDuration: const Duration(milliseconds: 300),
+                        enableActiveFill: true,
+                        controller: textEditingController,
+                        keyboardType: TextInputType.number,
+                        boxShadows: const <BoxShadow>[
+                          BoxShadow(
+                            offset: Offset(0, 1),
+                            color: Colors.black12,
+                            blurRadius: 10,
+                          )
+                        ],
+                        onCompleted: (String v) {},
+                        onChanged: (String value) {
+                          setState(() {
+                            currentText = value;
+                          });
+                        },
+                        beforeTextPaste: (String? text) {
+                          return true;
+                        },
+                      ),
+                      if (state is AuthenticationError)
+                        SubHeading2(
+                          state.error.message,
+                          color: Colour.red,
+                          size: 14,
+                        ),
+                    ],
+                  );
+                },
               ),
               sizedBoxHeight(screenHeight(context) * 0.04),
               CustomButton(
@@ -135,7 +119,10 @@ class _OtpScreenState extends State<OtpScreen> {
                 backgroundColor: Colour.greenishBlue,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 onTap: () {
-                  pushReplacementNamed(context, Routes.addAddress);
+                  context.read<AuthenticationCubit>().validateAndLogin(
+                        phoneNo: widget.phoneNumber,
+                        otp: textEditingController.text,
+                      );
                 },
                 child: const SubHeading2(
                   'VERIFY',
@@ -147,7 +134,7 @@ class _OtpScreenState extends State<OtpScreen> {
               sizedBoxHeight(screenHeight(context) * 0.03),
               Center(
                 child: SubHeading1(
-                  'I did not recieve a code',
+                  'I did not receive a code',
                   color: Colour.lightGrey.withOpacity(0.7),
                   size: 12,
                 ),
