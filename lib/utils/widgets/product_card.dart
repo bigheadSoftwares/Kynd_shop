@@ -12,11 +12,13 @@ class ProductCard extends StatelessWidget {
     this.productImage,
     this.basePrice,
     this.baseDiscountedPrice,
+    this.productId,
   }) : super(key: key);
   final String? productName;
   final String? productImage;
   final int? basePrice;
   final int? baseDiscountedPrice;
+  final int? productId;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,11 @@ class ProductCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(6),
       child: RoundContainer(
         onTap: () {
-          pushNamed(context, Routes.productDetail);
+          pushNamed(
+            context,
+            Routes.productDetail,
+            arguments: productId,
+          );
         },
         width: 200,
         hPadding: 0,

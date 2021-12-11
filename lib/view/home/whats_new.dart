@@ -16,7 +16,7 @@ class _WhatsNew extends StatelessWidget {
           // if (state is NewProductsInitial) {
           //   return const LoadingIndicator();
           // }
-            if (state is NewProductsLoaded) {
+          if (state is NewProductsLoaded) {
             return ProductListBlock(
               title: "What's New",
               onTap: () {},

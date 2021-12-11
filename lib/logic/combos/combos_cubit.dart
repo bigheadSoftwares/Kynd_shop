@@ -9,7 +9,7 @@ part 'combos_state.dart';
 class CombosCubit extends Cubit<CombosState> {
   CombosCubit() : super(CombosInitial());
 
-   void getCombos() {
+  void getCombos() {
     // CombosRepository.getCombos().then(
     //   (CombosModel combosModel) => emit(
     //     CombosLoaded(combosModel),

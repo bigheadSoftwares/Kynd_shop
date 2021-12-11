@@ -44,10 +44,9 @@ class _OrderCard extends StatelessWidget {
           borderRadius: radius(4),
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: Colors.grey.shade300,
-              blurRadius: 10.0,
-              spreadRadius: 2.0
-            ),
+                color: Colors.grey.shade300,
+                blurRadius: 10.0,
+                spreadRadius: 2.0),
           ],
         ),
         child: Column(

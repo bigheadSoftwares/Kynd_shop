@@ -20,11 +20,7 @@ class _Combos extends StatelessWidget {
               title: 'Combos',
               onTap: () {},
               list: ListView.builder(
-                padding: const EdgeInsets.only(
-                  left: 12,
-                  right: 12,
-                  bottom: 12
-                ),
+                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
                 primary: false,
                 itemCount: state.combosModel.data?.length ?? 0,
                 scrollDirection: Axis.horizontal,
@@ -48,11 +44,7 @@ class _Combos extends StatelessWidget {
               title: 'Combos',
               onTap: () {},
               list: ListView.builder(
-                padding: const EdgeInsets.only(
-                  left: 12,
-                  right: 12,
-                  bottom: 12
-                ),
+                padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
                 primary: false,
                 itemCount: 5,
                 scrollDirection: Axis.horizontal,

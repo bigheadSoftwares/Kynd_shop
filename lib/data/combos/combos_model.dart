@@ -4,32 +4,35 @@
 
 import 'dart:convert';
 
-CombosModel combosModelFromJson(String str) => CombosModel.fromJson(json.decode(str)as Map<String, dynamic>);
+CombosModel combosModelFromJson(String str) =>
+    CombosModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String combosModelToJson(CombosModel data) => json.encode(data.toJson());
 
 class CombosModel {
-    CombosModel({
-        this.data,
-        this.success,
-        this.status,
-    });
+  CombosModel({
+    this.data,
+    this.success,
+    this.status,
+  });
 
-    List<Datum>? data;
-    bool? success;
-    int? status;
+  List<Datum>? data;
+  bool? success;
+  int? status;
 
-    factory CombosModel.fromJson(Map<String, dynamic> json) => CombosModel(
-        data: List<Datum>.from(json['data'].map((x) => Datum.fromJson(x as Map<String, dynamic>))as Iterable<dynamic>) ,
+  factory CombosModel.fromJson(Map<String, dynamic> json) => CombosModel(
+        data: List<Datum>.from(
+            json['data'].map((x) => Datum.fromJson(x as Map<String, dynamic>))
+                as Iterable<dynamic>),
         success: json['success'] as bool,
         status: json['status'] as int,
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         'data': List<dynamic>.from(data!.map((x) => x.toJson())),
         'success': success,
         'status': status,
-    };
+      };
 }
 
 class Datum {

@@ -1,4 +1,3 @@
-
 part of 'new_products_repository.dart';
 
 class NewProductsDataProvider {
