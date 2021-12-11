@@ -7,7 +7,7 @@ class Colour {
   static const Color blue = Color(0xFF0C143F);
   static const Color lightBlue = Color(0xFF83c6f9);
   static const Color greenishBlue = Color(0xff248598);
-  static const Color upcomingColor = Color(0xFF1F7586);
+  static const Color upcomingColor = Color(0xFF006083);
   static const Color green = Color(0xFF0cba70);
   static const Color parrotGreen = Color(0xFF6DD506);
   static const Color lightGreen = Color(0xFFdbf5ea);

@@ -5,7 +5,7 @@ import 'order_data_provider.dart';
 import 'order_list_model/order_list_model.dart';
 
 class OrderRepository {
-  ///Function to get what's new products [`OrderListModel`] of home screen
+  ///Function to get orders list [`OrderListModel`] of home screen
   static Future<OrderListModel> orderListModel() async {
     final Response _response = await OrderDataProvider.orderList();
     OrderListModel _orderListModel = OrderListModel.fromJson(

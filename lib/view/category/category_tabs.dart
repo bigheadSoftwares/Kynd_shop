@@ -1,7 +1,7 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/view/filters/filter.dart';
-import 'package:kynd_shop/view/search/search.dart';
+import '../filters/filter.dart';
+import '../search/search.dart';
 import '../../utils/widgets/app_bar.dart';
 import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
@@ -74,7 +74,7 @@ class _TabView extends StatelessWidget {
             ),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.58,
+              childAspectRatio: 0.48,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
             ),

@@ -29,28 +29,29 @@ class _MyOrdersState extends State<MyOrders> {
       ),
       body: BlocBuilder<OrderListCubit, OrderListState>(
         builder: (BuildContext context, OrderListState state) {
-          if(state is OrderListInitial){
+          if (state is OrderListInitial) {
             return const LoadingIndicator();
-          }else if(state is OrderListLoaded){
-          return ListView.separated(
-            padding: const EdgeInsets.all(12),
-            itemCount: 5,
-            physics: const BouncingScrollPhysics(),
-            separatorBuilder: (BuildContext context, int index) =>
-                sizedBoxHeight(18),
-            itemBuilder: (BuildContext context, int index) {
-              return _OrderCard(
-                shopName: 'Beer Shop',
-                itemName: state.orderListModel.data?[index].productName,
-                orderedOn: 'NA',
-                quantity: state.orderListModel.data?[index].quantity,
-                deliveryStatus: state.orderListModel.data?[index].deliveryStatus,
-                price: state.orderListModel.data?[index].price,
-                shopAddress: 'NA',
-              );
-            },
-          );
-          }else{
+          } else if (state is OrderListLoaded) {
+            return ListView.separated(
+              padding: const EdgeInsets.all(12),
+              itemCount: state.orderListModel.data?.length ?? 0,
+              physics: const BouncingScrollPhysics(),
+              separatorBuilder: (BuildContext context, int index) =>
+                  sizedBoxHeight(18),
+              itemBuilder: (BuildContext context, int index) {
+                return _OrderCard(
+                  shopName: 'Beer Shop',
+                  itemName: state.orderListModel.data?[index].productName,
+                  orderedOn: 'NA',
+                  quantity: state.orderListModel.data?[index].quantity,
+                  deliveryStatus:
+                      state.orderListModel.data?[index].deliveryStatus,
+                  price: state.orderListModel.data?[index].price,
+                  shopAddress: 'NA',
+                );
+              },
+            );
+          } else {
             return SubHeading2((state as OrderListFailure).failure.message);
           }
         },
@@ -114,6 +115,7 @@ class _OrderCard extends StatelessWidget {
                 title: SubHeading2(
                   shopName ?? '',
                   fontWeight: FontWeight.w500,
+                  size: 14,
                 ),
                 subtitle: SubHeading2(
                   shopAddress ?? '',
@@ -140,13 +142,15 @@ class _OrderCard extends StatelessWidget {
               child: CustomListTile(
                 title: const SubHeading2(
                   'ITEMS',
-                  size: 14,
+                  size: 12,
                   color: Colour.subtitleColor,
+                  fontWeight: FontWeight.w500,
                 ),
                 spaceBetweenTitleAndSubtitle: 2,
                 subtitle: SubHeading2(
                   '$quantity x $itemName',
                   fontWeight: FontWeight.w500,
+                  size: 14,
                 ),
               ),
             ),
@@ -157,12 +161,14 @@ class _OrderCard extends StatelessWidget {
                 title: const SubHeading2(
                   'ORDERED ON',
                   color: Colour.subtitleColor,
-                  size: 14,
+                  size: 12,
+                  fontWeight: FontWeight.w500,
                 ),
                 spaceBetweenTitleAndSubtitle: 2,
                 subtitle: SubHeading2(
                   orderedOn ?? '',
                   fontWeight: FontWeight.w500,
+                  size: 14,
                 ),
               ),
             ),
@@ -175,7 +181,7 @@ class _OrderCard extends StatelessWidget {
                     const TextSpan(
                       text: 'Total: ',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

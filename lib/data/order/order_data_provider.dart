@@ -1,5 +1,5 @@
 import 'package:http/http.dart';
-import 'package:kynd_shop/utils/export_utilities.dart';
+import '../../utils/export_utilities.dart';
 
 class OrderDataProvider {
   static Future<Response> orderList() async {

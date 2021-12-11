@@ -16,8 +16,8 @@ Future<DateTime?> pickDate(BuildContext context) async {
             textTheme: ButtonTextTheme.primary,
           ),
           colorScheme: ColorScheme.light(
-            primary: Colour.blue.withOpacity(0.8),
-            secondary: Colour.blue,
+            primary: Colour.greenishBlue.withOpacity(0.8),
+            secondary: Colour.greenishBlue,
           ),
         ),
         child: child!,

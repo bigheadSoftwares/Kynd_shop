@@ -4,9 +4,14 @@ import '../../utils/widgets/custom_button.dart';
 import '../../utils/export_utilities.dart';
 import '../../utils/widgets/logo.dart';
 
-class AgeConfirmationScreen extends StatelessWidget {
+class AgeConfirmationScreen extends StatefulWidget {
   AgeConfirmationScreen({Key? key}) : super(key: key);
 
+  @override
+  State<AgeConfirmationScreen> createState() => _AgeConfirmationScreenState();
+}
+
+class _AgeConfirmationScreenState extends State<AgeConfirmationScreen> {
   final TextEditingController age = TextEditingController();
 
   @override
@@ -50,6 +55,18 @@ class AgeConfirmationScreen extends StatelessWidget {
                 controller: age,
                 filled: true,
                 hintText: 'DD/MM/YYY',
+                readOnly: true,
+                onTap: () async {
+                  DateTime? dateOfBirth = await pickDate(context);
+                  if (dateOfBirth == null) {
+                    showToast('Please slelect your date of birth');
+                  } else {
+                    setState(() {
+                      age.text =
+                          '${dateOfBirth.day}/${dateOfBirth.month}/${dateOfBirth.year}';
+                    });
+                  }
+                },
                 fillColor: Colour.white,
               ).outerNeumorphism(
                 offset: const Offset(8, 8),

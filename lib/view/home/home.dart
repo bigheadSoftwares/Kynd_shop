@@ -1,9 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/cart/add_to_cart_cubit.dart';
+import '../../utils/functions/snackbar.dart';
 import '../../logic/banners/banners_cubit.dart';
 import '../../logic/combos/combos_cubit.dart';
 import '../../data/brands/brands_repo.dart';

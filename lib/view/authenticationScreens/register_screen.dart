@@ -1,7 +1,8 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import '../../utils/export_utilities.dart';
+
 import '../../utils/export_utilities.dart' as ex;
+import '../../utils/export_utilities.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
@@ -41,6 +42,8 @@ class RegisterScreen extends StatelessWidget {
               sizedBoxHeight(screenHeight(context) * 0.015),
               CustomTextField(
                 controller: name,
+                filled: true,
+                fillColor: Colour.white,
                 hintStyle: TextStyle(
                     color: ex.Colour.lightGrey.withOpacity(0.3),
                     fontWeight: FontWeight.w600),
@@ -55,6 +58,8 @@ class RegisterScreen extends StatelessWidget {
               sizedBoxHeight(screenHeight(context) * 0.015),
               CustomTextField(
                 controller: mobileNumber,
+                filled: true,
+                fillColor: Colour.white,
                 hintStyle: TextStyle(
                     color: ex.Colour.lightGrey.withOpacity(0.3),
                     fontWeight: FontWeight.w600),
@@ -69,6 +74,8 @@ class RegisterScreen extends StatelessWidget {
               sizedBoxHeight(screenHeight(context) * 0.015),
               CustomTextField(
                 controller: referralCode,
+                filled: true,
+                fillColor: Colour.white,
                 hintStyle: TextStyle(
                     color: ex.Colour.lightGrey.withOpacity(0.3),
                     fontWeight: FontWeight.w600),
