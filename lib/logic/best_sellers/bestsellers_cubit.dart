@@ -9,6 +9,7 @@ part 'bestsellers_state.dart';
 class BestsellersCubit extends Cubit<BestsellersState> {
   BestsellersCubit() : super(BestsellersInitial());
   void getBestSellers() {
+    emit(BestsellersLoading());
     BestSellersRepository.newProducts().then(
       (BestSellersModel bestSellersModel) => emit(
         BestsellersLoaded(bestSellersModel),

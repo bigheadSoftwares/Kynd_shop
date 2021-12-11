@@ -56,6 +56,8 @@ class Datum {
     this.rating,
     this.sales,
     this.slug,
+    this.isAddedToCart,
+    this.cartQuantity,
   });
 
   final int? id;
@@ -71,35 +73,37 @@ class Datum {
   final int? rating;
   final int? sales;
   final String? slug;
+  final bool? isAddedToCart;
+  final int? cartQuantity;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json['id'] == null ? null : json['id'] as int,
-        name: json['name'].toString(),
-        photos: json['photos'] == null
-            ? null
-            : List<Map<String, String>>.from(json['photos'].map(
-                (x) => Map.from(x as Map<dynamic, dynamic>).map(
-                  (k, v) => MapEntry<String, String>(k as String, v as String),
-                ),
-              ) as Iterable<dynamic>),
-        thumbnailImage: json['thumbnail_image'] == null
-            ? null
-            : json['thumbnail_image'] as String,
-        basePrice:
-            json['base_price'] == null ? null : json['base_price'] as int,
-        baseDiscountedPrice: json['base_discounted_price'] == null
-            ? null
-            : json['base_discounted_price'] as int,
-        whatsNew: json['whats_new'] == null ? null : json['whats_new'] as int,
-        unit: json['unit'] == null ? null : json['unit'] as String,
-        discount: json['discount'] == null ? null : json['discount'] as int,
-        discountType: json['discount_type'] == null
-            ? null
-            : json['discount_type'] as String,
-        rating: json['rating'] == null ? null : json['rating'] as int,
-        sales: json['sales'] == null ? null : json['sales'] as int,
-        slug: json['slug'] == null ? null : json['slug'] as String,
-      );
+      id: json['id'] == null ? null : json['id'] as int,
+      name: json['name'].toString(),
+      photos: json['photos'] == null
+          ? null
+          : List<Map<String, String>>.from(json['photos'].map(
+              (x) => Map.from(x as Map<dynamic, dynamic>).map(
+                (k, v) => MapEntry<String, String>(k as String, v as String),
+              ),
+            ) as Iterable<dynamic>),
+      thumbnailImage: json['thumbnail_img'] == null
+          ? null
+          : json['thumbnail_img'] as String,
+      basePrice: json['base_price'] == null ? null : json['base_price'] as int,
+      baseDiscountedPrice: json['base_discounted_price'] == null
+          ? null
+          : json['base_discounted_price'] as int,
+      whatsNew: json['whats_new'] == null ? null : json['whats_new'] as int,
+      unit: json['unit'] == null ? null : json['unit'] as String,
+      discount: json['discount'] == null ? null : json['discount'] as int,
+      discountType: json['discount_type'] == null
+          ? null
+          : json['discount_type'] as String,
+      rating: json['rating'] == null ? null : json['rating'] as int,
+      sales: json['sales'] == null ? null : json['sales'] as int,
+      slug: json['slug'] == null ? null : json['slug'] as String,
+      isAddedToCart: json['is_added_to_cart'] as int == 0 ? false : true,
+      cartQuantity: json['cart_quantity'] as int);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,

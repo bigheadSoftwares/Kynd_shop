@@ -9,18 +9,18 @@ part 'combos_state.dart';
 class CombosCubit extends Cubit<CombosState> {
   CombosCubit() : super(CombosInitial());
 
-   void getCombos() {
-    // CombosRepository.getCombos().then(
-    //   (CombosModel combosModel) => emit(
-    //     CombosLoaded(combosModel),
-    //   ),
-    //   onError: (dynamic error, dynamic stack) {
-    //     emit(
-    //       CombosFailure(
-    //         handleError(error),
-    //       ),
-    //     );
-    //   },
-    // );
+  void getCombos() {
+    CombosRepository.getCombos().then(
+      (CombosModel combosModel) => emit(
+        CombosLoaded(combosModel),
+      ),
+      onError: (dynamic error, dynamic stack) {
+        emit(
+          CombosFailure(
+            handleError(error),
+          ),
+        );
+      },
+    );
   }
 }

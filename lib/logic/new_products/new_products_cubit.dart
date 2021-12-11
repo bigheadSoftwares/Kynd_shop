@@ -9,17 +9,17 @@ part 'new_products_state.dart';
 class NewProductsCubit extends Cubit<NewProductsState> {
   NewProductsCubit() : super(NewProductsInitial());
   void getNewProducts() {
-    // NewProductsRepository.newProducts().then(
-    //   (NewProductsModel newProductsModel) => emit(
-    //     NewProductsLoaded(newProductsModel),
-    //   ),
-    //   onError: (dynamic error, dynamic stack) {
-    //     emit(
-    //       NewProductsFailure(
-    //         handleError(error),
-    //       ),
-    //     );
-    //   },
-    // );
+    NewProductsRepository.newProducts().then(
+      (NewProductsModel newProductsModel) => emit(
+        NewProductsLoaded(newProductsModel),
+      ),
+      onError: (dynamic error, dynamic stack) {
+        emit(
+          NewProductsFailure(
+            handleError(error),
+          ),
+        );
+      },
+    );
   }
 }
