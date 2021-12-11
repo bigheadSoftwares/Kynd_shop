@@ -1,16 +1,33 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/product/product_detail_cubit.dart';
 import '../../utils/export_utilities.dart';
 import '../../utils/widgets/cut_mrp.dart';
-import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/widgets/custom_image_widget.dart';
 part 'product_image.dart';
 part 'details.dart';
 part 'add_to_cart_section.dart';
 
-class ProductDetail extends StatelessWidget {
-  const ProductDetail({Key? key}) : super(key: key);
+class ProductDetail extends StatefulWidget {
+  const ProductDetail({
+    Key? key,
+    this.productId,
+  }) : super(key: key);
+  final int? productId;
+
+  @override
+  State<ProductDetail> createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<ProductDetailCubit>(context)
+        .getProductDetail(widget.productId ?? 0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +39,42 @@ class ProductDetail extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
-            SizedBox(
-              height: screenHeight(context),
-            ),
-            const _ProductImage(),
-            const _ProductDetail(),
-            const _FavoriteIcon()
-          ],
-        ),
+      body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
+        builder: (BuildContext context, ProductDetailState state) {
+          if (state is ProductDetailInitial) {
+            return const LoadingIndicator();
+          } else if (state is ProductDetailLoaded) {
+            return SingleChildScrollView(
+              child: Stack(
+                children: <Widget>[
+                  SizedBox(
+                    height: screenHeight(context),
+                  ),
+                  _ProductImage(
+                    imageUrl:
+                        state.productDetailModel.data?[0].thumbnailImage ?? '',
+                  ),
+                  _ProductDetail(
+                    productName: state.productDetailModel.data?[0].name ?? '',
+                    basePrice:
+                        (state.productDetailModel.data?[0].priceLower ?? 0) +
+                            (state.productDetailModel.data?[0].discount ?? 0),
+                    description:
+                        state.productDetailModel.data?[0].description ?? '',
+                    discountedPrice:
+                        state.productDetailModel.data?[0].priceLower ?? 0,
+                  ),
+                  const _FavoriteIcon()
+                ],
+              ),
+            );
+          } else {
+            return Center(
+              child:
+                  SubHeading2((state as ProductDetailFailure).failure.message),
+            );
+          }
+        },
       ),
     );
   }

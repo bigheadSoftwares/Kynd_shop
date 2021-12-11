@@ -132,7 +132,9 @@ class Routes {
         );
       case productDetail:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const ProductDetail(),
+          builder: (_) => ProductDetail(
+            productId: settings.arguments as int,
+          ),
         );
       case support:
         return MaterialPageRoute<dynamic>(

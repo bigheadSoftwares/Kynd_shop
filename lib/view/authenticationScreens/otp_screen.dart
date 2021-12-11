@@ -84,7 +84,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   //     return null;
                   //   }
                   // },
-     
+
                   pinTheme: PinTheme(
                     shape: PinCodeFieldShape.box,
                     borderRadius: BorderRadius.circular(25),

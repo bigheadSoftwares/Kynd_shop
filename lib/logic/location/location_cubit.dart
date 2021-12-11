@@ -15,24 +15,24 @@ class LocationCubit extends Cubit<LocationState> {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // await Geolocator.requestPermission();
-     await openLocationSetting();
-    } 
-      permission = await Geolocator.checkPermission();
+      await openLocationSetting();
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
-        if (permission == LocationPermission.denied) {
-          permission = await Geolocator.requestPermission();
-          return;
-        }
+        return;
       }
-
-      if (permission == LocationPermission.deniedForever) {
-        permission = await Geolocator.requestPermission();
-      }
-      Position _location = await Geolocator.getCurrentPosition();
-      emit(LocationFetched(_location));
     }
+
+    if (permission == LocationPermission.deniedForever) {
+      permission = await Geolocator.requestPermission();
+    }
+    Position _location = await Geolocator.getCurrentPosition();
+    emit(LocationFetched(_location));
   }
+}
 
 Future<void> openLocationSetting() async {
   const AndroidIntent intent = AndroidIntent(

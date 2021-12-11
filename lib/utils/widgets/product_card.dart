@@ -1,8 +1,6 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/logic/cart/add_to_cart_cubit.dart';
-import 'package:kynd_shop/utils/constants/constants.dart';
-import 'package:provider/src/provider.dart';
+import '../constants/constants.dart';
 
 import '../export_utilities.dart';
 import 'custom_image_widget.dart';
@@ -36,7 +34,11 @@ class ProductCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(6),
       child: RoundContainer(
         onTap: () {
-          pushNamed(context, Routes.productDetail);
+          pushNamed(
+            context,
+            Routes.productDetail,
+            arguments: productId,
+          );
         },
         width: 200,
         hPadding: 0,
