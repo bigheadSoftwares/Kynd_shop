@@ -8,6 +8,7 @@ abstract class BestsellersState extends Equatable {
 }
 
 class BestsellersInitial extends BestsellersState {}
+
 class BestsellersLoading extends BestsellersState {}
 
 class BestsellersLoaded extends BestsellersState {

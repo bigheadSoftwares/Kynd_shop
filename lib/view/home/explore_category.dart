@@ -34,7 +34,11 @@ class _ExploreCategory extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: GestureDetector(
                         onTap: () {
-                          pushNamed(context, Routes.categoryTabs);
+                          pushNamed(context, Routes.category,
+                              arguments: <dynamic>[
+                                state.categoryModel.data?[index].id ?? 0,
+                                state.categoryModel.data?[index].name ?? ''
+                              ]);
                         },
                         child: DrinkCategoryCard(
                           backgroundColor: Colour.lightGreen,

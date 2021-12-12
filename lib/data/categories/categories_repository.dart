@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import '../../utils/constants/constants.dart';
 import 'category_model/category_model.dart';
+import 'sub_category_model/sub_category_model.dart';
 part 'categories_data_provider.dart';
 
 class CategoryRepository {
@@ -12,5 +13,14 @@ class CategoryRepository {
     CategoryModel _categoryModel = CategoryModel.fromJson(
         jsonDecode(_response.body) as Map<String, dynamic>);
     return _categoryModel;
+  }
+
+  ///Function to get the sub categories [`SubCategoryModel`] of the category
+  static Future<SubCategoryModel> subCategories(int categoryId) async {
+    final Response _response =
+        await CategoryDataProvider._getSubCategories(categoryId);
+    SubCategoryModel _subCategoryModel = SubCategoryModel.fromJson(
+        jsonDecode(_response.body) as Map<String, dynamic>);
+    return _subCategoryModel;
   }
 }
