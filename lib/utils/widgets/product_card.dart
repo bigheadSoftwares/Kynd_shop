@@ -1,6 +1,6 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/view/product_detail/product_detail.dart';
+import '../../view/product_detail/product_detail.dart';
 import '../constants/constants.dart';
 
 import '../export_utilities.dart';
@@ -68,14 +68,14 @@ class ProductCard extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                       sizedBoxHeight(4),
-                      CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 500),
+                      CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 0),
                       sizedBoxHeight(4),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           SubHeading2(
-                            '${Constants.rupee} ${baseDiscountedPrice ?? '400'}/-',
+                            '${Constants.rupee} ${baseDiscountedPrice ?? 'NA'}/-',
                             fontWeight: FontWeight.w500,
                           ),
                           isAddedToCart == true

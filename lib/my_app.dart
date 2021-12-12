@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/category/sub_category_cubit.dart';
+import 'logic/category/sub_category_cubit.dart';
+import 'logic/category/sub_category_products_cubit.dart';
 import 'logic/order/order_list_cubit.dart';
 import 'logic/product/product_detail_cubit.dart';
 import 'logic/wishlist/fetch_wishlist_cubit.dart';
@@ -57,6 +58,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<SubCategoryCubit>(
           create: (BuildContext context) => SubCategoryCubit(),
+        ),
+        BlocProvider<SubCategoryProductsCubit>(
+          create: (BuildContext context) => SubCategoryProductsCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

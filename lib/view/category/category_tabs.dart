@@ -1,7 +1,12 @@
+import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kynd_shop/data/categories/sub_category_products_model/datum.dart';
+
+import 'package:kynd_shop/utils/export_utilities.dart';
 
 import '../../logic/category/sub_category_cubit.dart';
+import '../../logic/category/sub_category_products_cubit.dart';
 import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/widgets/app_bar.dart';
@@ -28,6 +33,8 @@ class _CategoryTabsState extends State<CategoryTabs> {
     BlocProvider.of<SubCategoryCubit>(context).getSubCategory(
       widget.categoryId,
     );
+    BlocProvider.of<SubCategoryProductsCubit>(context)
+        .getSubCategoryProducts(4);
   }
 
   @override
@@ -73,7 +80,9 @@ class _CategoryTabsState extends State<CategoryTabs> {
                   _Tabs(
                     state: state,
                   ),
-                  const _TabView(),
+                  _TabView(
+                    tabLength: state.subCategoryModel.data?.length ?? 0,
+                  ),
                 ],
               ),
             ),
@@ -89,7 +98,9 @@ class _CategoryTabsState extends State<CategoryTabs> {
 class _TabView extends StatefulWidget {
   const _TabView({
     Key? key,
+    required this.tabLength,
   }) : super(key: key);
+  final int tabLength;
 
   @override
   State<_TabView> createState() => _TabViewState();
@@ -97,27 +108,57 @@ class _TabView extends StatefulWidget {
 
 class _TabViewState extends State<_TabView> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: TabBarView(
         children: <Widget>[
-          GridView.builder(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 20,
+          ...List<Widget>.generate(
+            widget.tabLength,
+            (int index) =>
+                BlocBuilder<SubCategoryProductsCubit, SubCategoryProductsState>(
+              builder: (BuildContext context, SubCategoryProductsState state) {
+                if (state is SubCategoryProductsLoaded) {
+                  return GridView.builder(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 20,
+                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.48,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemCount: state.subCategoryProductsModel.data?.length ?? 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      Datum? datum =
+                          state.subCategoryProductsModel.data?[index];
+                      return ProductCard(
+                        productName: datum?.name,
+                        productImage: datum?.thumbnailImg,
+                        productId: datum?.id,
+                        basePrice: datum?.basePrice,
+                        baseDiscountedPrice: datum?.baseDiscountedPrice,
+                        cartQuantity: datum?.cartQuantity,
+                        isAddedToCart: datum?.isAddedToCart == 0 ? false : true,
+                      );
+                    },
+                  );
+                } else if (state is SubCategoryInitial) {
+                  return const LoadingIndicator();
+                } else {
+                  return SubHeading2(
+                    (state as SubCategoryProductsFailure).failure.message,
+                  );
+                }
+              },
             ),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 0.48,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-            ),
-            itemCount: 10,
-            itemBuilder: (BuildContext context, int index) {
-              return const ProductCard(
-                productName: 'Kingfisher Premium Beer - 300 ml',
-              );
-            },
           ),
         ],
       ),
