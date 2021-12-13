@@ -171,10 +171,7 @@ class _RegisterButton extends StatelessWidget {
       },
       builder: (BuildContext context, AuthenticationState state) {
         if (state is AuthenticationLoading) {
-          return const CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colour.greenishBlue),
-            strokeWidth: 3,
-          );
+          return const LoadingIndicator(height: 40);
         } else {
           return CustomButton(
             radius: 25,

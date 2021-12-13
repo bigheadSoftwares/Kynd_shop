@@ -114,23 +114,27 @@ class _OtpScreenState extends State<OtpScreen> {
                 },
               ),
               sizedBoxHeight(screenHeight(context) * 0.04),
-              CustomButton(
-                radius: 25,
-                backgroundColor: Colour.greenishBlue,
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                onTap: () {
-                  context.read<AuthenticationCubit>().validateAndLogin(
-                        phoneNo: widget.phoneNumber,
-                        otp: textEditingController.text,
-                      );
-                },
-                child: const SubHeading2(
-                  'VERIFY',
-                  color: Colour.white,
-                  size: 18,
-                  fontWeight: FontWeight.w500,
+              if (context.watch<AuthenticationCubit>().state
+                  is AuthenticationLoading)
+                const LoadingIndicator(height: 40)
+              else
+                CustomButton(
+                  radius: 25,
+                  backgroundColor: Colour.greenishBlue,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  onTap: () {
+                    context.read<AuthenticationCubit>().validateAndLogin(
+                          phoneNo: widget.phoneNumber,
+                          otp: textEditingController.text,
+                        );
+                  },
+                  child: const SubHeading2(
+                    'VERIFY',
+                    color: Colour.white,
+                    size: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
               sizedBoxHeight(screenHeight(context) * 0.03),
               Center(
                 child: SubHeading1(
