@@ -1,7 +1,8 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import '../../logic/authentication/authentication_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../utils/export_utilities.dart' as ex;
 import '../../utils/export_utilities.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -10,116 +11,193 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController name = TextEditingController();
   final TextEditingController referralCode = TextEditingController();
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          const ex.BackgroundImageWidget(
-            backgroundImage: ex.Assets.registerBackground,
-          ),
-          ListView(
-            padding:
-                EdgeInsets.fromLTRB(30, screenHeight(context) * 0.1, 30, 40),
-            children: <Widget>[
-              const Heading2(
-                'Sign Up',
-                size: 26,
-                fontWeight: FontWeight.w700,
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.01),
-              SubHeading1(
-                'Let\'s get you started',
-                color: ex.Colour.lightGrey.withOpacity(0.7),
-                size: 16,
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.05),
-              const SubHeading1(
-                'Name',
-                // color: Colour.lightGrey.withOpacity(0.7),
-                size: 16,
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.015),
-              CustomTextField(
-                controller: name,
-                filled: true,
-                fillColor: Colour.white,
-                hintStyle: TextStyle(
-                    color: ex.Colour.lightGrey.withOpacity(0.3),
-                    fontWeight: FontWeight.w600),
-                hintText: 'Enter your name',
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.03),
-              const SubHeading1(
-                'Mobile number',
-                // color: Colour.lightGrey.withOpacity(0.7),
-                size: 16,
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.015),
-              CustomTextField(
-                controller: mobileNumber,
-                filled: true,
-                fillColor: Colour.white,
-                hintStyle: TextStyle(
-                    color: ex.Colour.lightGrey.withOpacity(0.3),
-                    fontWeight: FontWeight.w600),
-                hintText: 'Enter your mobile number',
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.03),
-              const SubHeading1(
-                'Referral Code',
-                // color: Colour.lightGrey.withOpacity(0.7),
-                size: 16,
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.015),
-              CustomTextField(
-                controller: referralCode,
-                filled: true,
-                fillColor: Colour.white,
-                hintStyle: TextStyle(
-                    color: ex.Colour.lightGrey.withOpacity(0.3),
-                    fontWeight: FontWeight.w600),
-                hintText: 'Enter your referral code',
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.2),
-              CustomButton(
-                radius: 25,
-                backgroundColor: ex.Colour.greenishBlue,
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                onTap: () {
-                  pushNamed(context, '/loginScreen');
-                },
-                child: const SubHeading1(
-                  'SIGNUP',
-                  color: ex.Colour.white,
-                  size: 18,
-                  fontWeight: FontWeight.w500,
+      body: Form(
+        key: _formKey,
+        child: Stack(
+          children: <Widget>[
+            const BackgroundImageWidget(
+              backgroundImage: Assets.registerBackground,
+            ),
+            ListView(
+              padding:
+                  EdgeInsets.fromLTRB(30, screenHeight(context) * 0.1, 30, 40),
+              children: <Widget>[
+                const Heading2(
+                  'Sign Up',
+                  size: 26,
+                  fontWeight: FontWeight.w700,
                 ),
-              ),
-              sizedBoxHeight(screenHeight(context) * 0.015),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const SubHeading1(
-                    'Already have an account? ',
-                    size: 14,
+                sizedBoxHeight(screenHeight(context) * 0.01),
+                SubHeading1(
+                  'Let\'s get you started',
+                  color: Colour.lightGrey.withOpacity(0.7),
+                  size: 16,
+                ),
+                sizedBoxHeight(screenHeight(context) * 0.05),
+                const SubHeading1(
+                  'Name',
+                  // color: Colour.lightGrey.withOpacity(0.7),
+                  size: 16,
+                ),
+                sizedBoxHeight(screenHeight(context) * 0.015),
+                CustomTextField(
+                  controller: name,
+                  filled: true,
+                  fillColor: Colour.white,
+                  hintStyle: TextStyle(
+                    color: Colour.lightGrey.withOpacity(0.3),
+                    fontWeight: FontWeight.w600,
                   ),
-                  InkWell(
-                    onTap: () {
-                      pushReplacementNamed(context, '/loginScreen');
-                    },
-                    child: const SubHeading1(
-                      'Login Now ',
+                  hintText: 'Enter your name',
+                  validate: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your name';
+                    }
+                    return null;
+                  },
+                ),
+                sizedBoxHeight(screenHeight(context) * 0.03),
+                const SubHeading1(
+                  'Mobile number',
+                  // color: Colour.lightGrey.withOpacity(0.7),
+                  size: 16,
+                ),
+                sizedBoxHeight(screenHeight(context) * 0.015),
+                CustomTextField(
+                  controller: mobileNumber,
+                  filled: true,
+                  fillColor: Colour.white,
+                  maxLength: 10,
+                  digitsOnly: true,
+                  hintStyle: TextStyle(
+                    color: Colour.lightGrey.withOpacity(0.3),
+                    fontWeight: FontWeight.w600,
+                  ),
+                  hintText: 'Enter your mobile number',
+                  validate: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your mobile number';
+                    }
+                    return null;
+                  },
+                ),
+                sizedBoxHeight(screenHeight(context) * 0.03),
+                const SubHeading1(
+                  'Referral Code',
+                  // color: Colour.lightGrey.withOpacity(0.7),
+                  size: 16,
+                ),
+                sizedBoxHeight(screenHeight(context) * 0.015),
+                CustomTextField(
+                  controller: referralCode,
+                  filled: true,
+                  fillColor: Colour.white,
+                  hintStyle: TextStyle(
+                      color: Colour.lightGrey.withOpacity(0.3),
+                      fontWeight: FontWeight.w600),
+                  hintText: 'Enter your referral code',
+                ),
+                sizedBoxHeight(screenHeight(context) * 0.2),
+                _RegisterButton(
+                    formKey: _formKey,
+                    name: name,
+                    mobileNumber: mobileNumber,
+                    referralCode: referralCode),
+                sizedBoxHeight(screenHeight(context) * 0.015),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const SubHeading1(
+                      'Already have an account? ',
                       size: 14,
-                      color: ex.Colour.greenishBlue,
                     ),
-                  ),
-                ],
-              )
-            ],
-          )
-        ],
+                    InkWell(
+                      onTap: () => pop(context),
+                      child: const SubHeading1(
+                        'Login Now ',
+                        size: 14,
+                        color: Colour.greenishBlue,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class _RegisterButton extends StatelessWidget {
+  const _RegisterButton({
+    Key? key,
+    required GlobalKey<FormState> formKey,
+    required this.name,
+    required this.mobileNumber,
+    required this.referralCode,
+  })  : _formKey = formKey,
+        super(key: key);
+
+  final GlobalKey<FormState> _formKey;
+  final TextEditingController name;
+  final TextEditingController mobileNumber;
+  final TextEditingController referralCode;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<AuthenticationCubit, AuthenticationState>(
+      listener: (BuildContext context, AuthenticationState state) {
+        if (state is RegistrationSuccessful) {
+          pop(context);
+          showToast(
+            'Registration Successful Please Login',
+            duration: 6,
+          );
+        } else if (state is RegistrationError) {
+          debugPrint('$state -> ${state.error.serverMessage}');
+          showToast(
+            state.error.serverMessage ?? state.error.message,
+            duration: 6,
+          );
+        }
+        context.read<AuthenticationCubit>().reset();
+      },
+      builder: (BuildContext context, AuthenticationState state) {
+        if (state is AuthenticationLoading) {
+          return const CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colour.greenishBlue),
+            strokeWidth: 3,
+          );
+        } else {
+          return CustomButton(
+            radius: 25,
+            backgroundColor: Colour.greenishBlue,
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            onTap: () {
+              if (_formKey.currentState!.validate()) {
+                context.read<AuthenticationCubit>().register(
+                      name: name.text,
+                      phoneNo: mobileNumber.text,
+                      referral: referralCode.text,
+                    );
+              }
+            },
+            child: const SubHeading1(
+              'SIGNUP',
+              color: Colour.white,
+              size: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          );
+        }
+      },
     );
   }
 }

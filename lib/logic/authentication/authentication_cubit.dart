@@ -66,5 +66,23 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     );
   }
 
+  Future<void> register({
+    required String phoneNo,
+    required String name,
+    String? referral,
+  }) async {
+    _repo
+        .register(
+      phoneNo: phoneNo,
+      name: name,
+      referral: referral,
+    )
+        .then((_) {
+      emit(RegistrationSuccessful());
+    }, onError: (dynamic error, StackTrace stackTrace) {
+      emit(RegistrationError(handleError(error)));
+    });
+  }
+
   void reset() => emit(AuthenticationInitial());
 }

@@ -75,10 +75,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: Colour.greenishBlue,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   onTap: () {
-                    //Todo: Use AuthenticationCubit sendOtp function to send OTP for the 
+                    //Todo: Use AuthenticationCubit sendOtp function to send OTP for the
 
-                    if(_formKey.currentState!.validate()){
-                    pushNamed(context, Routes.otpScreen,arguments: mobileNumber.text);
+                    if (_formKey.currentState!.validate()) {
+                      pushNamed(
+                        context,
+                        Routes.otpScreen,
+                        arguments: mobileNumber.text,
+                      );
                     }
                   },
                   child: const SubHeading2(
@@ -98,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        pushReplacementNamed(context, '/registerScreen');
+                        pushNamed(context, Routes.registerScreen);
                       },
                       child: const SubHeading1(
                         'Signup Now ',

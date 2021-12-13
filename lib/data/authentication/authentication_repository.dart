@@ -7,10 +7,10 @@ class AuthenticationRepository extends Authentication {
     AuthenticationModel _model;
     final http.Response response = await _login(phoneNo);
     if (response.statusCode < 200 || response.statusCode >= 300) {
-      if(response.statusCode == 401){
+      if (response.statusCode == 401) {
         throw const Failure(message: 'User Not Found');
       }
-     
+
       throw handleError(response);
     }
     try {
@@ -28,6 +28,24 @@ class AuthenticationRepository extends Authentication {
     );
     if (response.statusCode < 200 || response.statusCode >= 300) {
       throw handleError(response);
+    }
+  }
+
+  Future<void> register({
+    required String phoneNo,
+    required String name,
+    String? referral,
+  }) async {
+    final http.Response response = await _register(
+      phoneNo: phoneNo,
+      name: name,
+      referral: referral,
+    );
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      throw handleError(
+        response,
+        serverMessage: jsonDecode(response.body)['message'] as String,
+      );
     }
   }
 }

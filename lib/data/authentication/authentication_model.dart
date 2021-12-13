@@ -8,7 +8,7 @@ String authenticationModelToJson(AuthenticationModel data) =>
 
 class AuthenticationModel {
   AuthenticationModel({
-   required this.success,
+    required this.success,
   });
 
   Success success;
@@ -22,18 +22,18 @@ class AuthenticationModel {
 
   factory AuthenticationModel.fromJson(Map<String, dynamic> json) =>
       AuthenticationModel(
-        success: Success.fromJson(json['success'] as Map<String,dynamic>),
+        success: Success.fromJson(json['success'] as Map<String, dynamic>),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'success': success.toJson(),
       };
 }
 
 class Success {
   Success({
-   required this.customerId,
-   required this.token,
+    required this.customerId,
+    required this.token,
   });
 
   int customerId;
@@ -49,11 +49,11 @@ class Success {
       );
 
   factory Success.fromJson(Map<String, dynamic> json) => Success(
-        customerId: json['customer_id']as int,
+        customerId: json['customer_id'] as int,
         token: json['token'] as String,
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => <String,dynamic>{
         'customer_id': customerId,
         'token': token,
       };
