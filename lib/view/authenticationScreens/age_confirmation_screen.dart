@@ -132,14 +132,18 @@ class _AgeConfirmationScreenState extends State<AgeConfirmationScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      pushNamed(context, Routes.introScreens);
+                      if (Constants.isIntroSeen) {
+                        pushNamed(context, Routes.loginScreen);
+                      } else {
+                        pushNamed(context, Routes.introScreens);
+                      }
                     }
                   },
                   child: const SubHeading2(
                     'CONTINUE',
                     color: Colour.white,
                     size: 18,
-                  ), 
+                  ),
                 ),
               ],
             )

@@ -1,5 +1,6 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import '../../utils/export_utilities.dart';
 import '../../utils/constants/assets.dart';
 import '../../utils/constants/colors.dart';
 
@@ -13,7 +14,7 @@ class IntroScreens extends StatefulWidget {
 class _IntroScreensState extends State<IntroScreens> {
   int _current = 0;
   final PageController _controller = PageController();
-  final List<String> _images = [
+  final List<String> _images = <String>[
     Assets.intro1,
     Assets.intro2,
     Assets.intro3,
@@ -74,6 +75,10 @@ class _IntroScreensState extends State<IntroScreens> {
                         width: screenWidth(context) * 0.4,
                         text: 'Get Started',
                         onTap: () {
+                          saveBool(
+                            key: Constants.introScreenStatus,
+                            value: true,
+                          );
                           pushReplacementNamed(context, '/loginScreen');
                         },
                         backgroundColor: Colour.white,

@@ -93,7 +93,7 @@ class Sidebar extends StatelessWidget {
               await deleteLocalKey(Constants.loginStatus);
               pushNamedAndRemoveUntil(
                 context,
-                Routes.loginScreen,
+                Routes.ageConfirmationScreen,
               );
             },
           );

@@ -25,7 +25,7 @@ import '../../view/authenticationScreens/age_confirmation_screen.dart';
 import '../../view/splashScreen/splash_screen.dart';
 
 class Routes {
-  static const String introScreen = '/';
+  static const String entryScreen = '/';
   static const String ageConfirmationScreen = '/ageConfirmation';
   static const String loginScreen = '/loginScreen';
   static const String registerScreen = '/registerScreen';
@@ -58,13 +58,13 @@ class Routes {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case introScreen:
+      case entryScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const SplashScreen(),
         );
       case ageConfirmationScreen:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => AgeConfirmationScreen(),
+          builder: (_) => const AgeConfirmationScreen(),
         );
       case loginScreen:
         return MaterialPageRoute<dynamic>(

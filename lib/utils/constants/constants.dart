@@ -8,8 +8,11 @@ class Constants {
   static const String host = 'http://blogeetech.com/kynd_store/api/v1/';
   static const double initialLatitude = 28.7041;
   static const double initialLongitude = 77.1025;
+  static bool isLoggedIn = false;
+  static bool isIntroSeen = false;
 
   //? Keys
   static const String loginModelKey = 'loginModel';
   static const String loginStatus = 'loginStatus';
+  static const String introScreenStatus = 'introScreenStatus';
 }
