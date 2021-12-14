@@ -10,6 +10,7 @@ import 'logic/best_sellers/bestsellers_cubit.dart';
 import 'logic/new_products/new_products_cubit.dart';
 import 'logic/category/category_cubit.dart';
 import 'logic/theme/theme_cubit.dart';
+import 'logic/user/user_cubit.dart';
 import 'utils/export_utilities.dart';
 
 class MyApp extends StatelessWidget {
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AuthenticationCubit>(
           create: (BuildContext context) => AuthenticationCubit(),
+        ),
+        BlocProvider<UserCubit>(
+          create: (BuildContext context) => UserCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
