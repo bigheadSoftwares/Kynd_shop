@@ -1,3 +1,4 @@
+
 import '../../data/authentication/authentication.dart';
 
 class Constants {
@@ -15,4 +16,6 @@ class Constants {
   static const String loginModelKey = 'loginModel';
   static const String loginStatus = 'loginStatus';
   static const String introScreenStatus = 'introScreenStatus';
+  static const int userId = 25;
+  
 }

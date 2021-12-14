@@ -15,7 +15,7 @@ class BrandsSuccess extends BrandsState {
   const BrandsSuccess(this.brandsModel);
   final BrandsModel brandsModel;
 
-@override
+  @override
   List<Object> get props => <BrandsModel>[brandsModel];
 }
 

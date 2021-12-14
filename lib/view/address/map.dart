@@ -48,7 +48,8 @@ class _MapState extends State<Map> {
                       initialCameraPosition: CameraPosition(
                         target: LatLng(
                           state.location?.latitude ?? Constants.initialLatitude,
-                          state.location?.longitude ?? Constants.initialLongitude,
+                          state.location?.longitude ??
+                              Constants.initialLongitude,
                         ),
                         zoom: 14.5,
                       ),

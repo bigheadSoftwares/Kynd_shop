@@ -23,9 +23,9 @@ class BestSellersModel {
 
   factory BestSellersModel.fromJson(Map<String, dynamic> json) =>
       BestSellersModel(
-        data: List<Datum>.from(
-            json['data'].map((dynamic x) => Datum.fromJson(x as Map<String, dynamic>))
-                as Iterable<dynamic>),
+        data: List<Datum>.from(json['data']
+                .map((dynamic x) => Datum.fromJson(x as Map<String, dynamic>))
+            as Iterable<dynamic>),
         success: json['success'] as bool,
         status: json['status'] as int,
       );
@@ -52,6 +52,8 @@ class Datum {
     this.rating,
     this.sales,
     this.slug,
+    this.isAddedToCart,
+    this.cartQuantity,
   });
 
   final int? id;
@@ -67,6 +69,8 @@ class Datum {
   final int? rating;
   final int? sales;
   final String? slug;
+  final bool? isAddedToCart;
+  final int? cartQuantity;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json['id'] as int,
@@ -75,7 +79,7 @@ class Datum {
           (x) => Map.from(x as Map<dynamic, dynamic>).map(
               (k, v) => MapEntry<String, String>(k as String, v as String)),
         ) as Iterable<dynamic>),
-        thumbnailImage: json['thumbnail_image'] as String,
+        thumbnailImage: json['thumbnail_img'] as String,
         basePrice: json['base_price'] as int,
         baseDiscountedPrice: json['base_discounted_price'] as int,
         whatsNew: json['whats_new'] as int,
@@ -85,6 +89,8 @@ class Datum {
         rating: json['rating'] as int,
         sales: json['sales'] as int,
         slug: json['slug'] as String,
+        isAddedToCart: json['is_added_to_cart'] as int == 0 ? false : true , 
+        cartQuantity: json['cart_quantity'] as int
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{

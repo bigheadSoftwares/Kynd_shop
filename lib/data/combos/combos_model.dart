@@ -4,32 +4,35 @@
 
 import 'dart:convert';
 
-CombosModel combosModelFromJson(String str) => CombosModel.fromJson(json.decode(str)as Map<String, dynamic>);
+CombosModel combosModelFromJson(String str) =>
+    CombosModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String combosModelToJson(CombosModel data) => json.encode(data.toJson());
 
 class CombosModel {
-    CombosModel({
-        this.data,
-        this.success,
-        this.status,
-    });
+  CombosModel({
+    this.data,
+    this.success,
+    this.status,
+  });
 
-    List<Datum>? data;
-    bool? success;
-    int? status;
+  List<Datum>? data;
+  bool? success;
+  int? status;
 
-    factory CombosModel.fromJson(Map<String, dynamic> json) => CombosModel(
-        data: List<Datum>.from(json['data'].map((x) => Datum.fromJson(x as Map<String, dynamic>))as Iterable<dynamic>) ,
+  factory CombosModel.fromJson(Map<String, dynamic> json) => CombosModel(
+        data: List<Datum>.from(
+            json['data'].map((x) => Datum.fromJson(x as Map<String, dynamic>))
+                as Iterable<dynamic>),
         success: json['success'] as bool,
         status: json['status'] as int,
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         'data': List<dynamic>.from(data!.map((x) => x.toJson())),
         'success': success,
         'status': status,
-    };
+      };
 }
 
 class Datum {
@@ -47,6 +50,8 @@ class Datum {
     this.rating,
     this.sales,
     this.slug,
+    this.isAddedToCart,
+    this.cartQuantity,
   });
 
   final int? id;
@@ -62,25 +67,28 @@ class Datum {
   final int? rating;
   final int? sales;
   final String? slug;
+  final bool? isAddedToCart;
+  final int? cartQuantity;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json['id'] as int,
-        name: json['name'] as String,
-        photos: List<Map<String, String>>.from(json['photos'].map(
-          (x) => Map.from(x as Map<dynamic, dynamic>).map(
-              (k, v) => MapEntry<String, String>(k as String, v as String)),
-        ) as Iterable<dynamic>),
-        thumbnailImage: json['thumbnail_image'] as String,
-        basePrice: json['base_price'] as int,
-        baseDiscountedPrice: json['base_discounted_price'] as int,
-        whatsNew: json['whats_new'] as int,
-        unit: json['unit'] as String,
-        discount: json['discount'] as int,
-        discountType: json['discount_type'] as String,
-        rating: json['rating'] as int,
-        sales: json['sales'] as int,
-        slug: json['slug'] as String,
-      );
+      id: json['id'] as int,
+      name: json['name'] as String,
+      photos: List<Map<String, String>>.from(json['photos'].map(
+        (x) => Map.from(x as Map<dynamic, dynamic>)
+            .map((k, v) => MapEntry<String, String>(k as String, v as String)),
+      ) as Iterable<dynamic>),
+      thumbnailImage: json['thumbnail_img'] as String,
+      basePrice: json['base_price'] as int,
+      baseDiscountedPrice: json['base_discounted_price'] as int,
+      whatsNew: json['whats_new'] as int,
+      unit: json['unit'] as String,
+      discount: json['discount'] as int,
+      discountType: json['discount_type'] as String,
+      rating: json['rating'] as int,
+      sales: json['sales'] as int,
+      slug: json['slug'] as String,
+      isAddedToCart: json['is_added_to_cart'] as int == 0 ? false : true,
+      cartQuantity: json['cart_quantity'] as int);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,

@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'utils/export_utilities.dart';
 import 'logic/authentication/authentication_cubit.dart';
+import 'logic/product/product_detail_cubit.dart';
+import 'logic/wishlist/fetch_wishlist_cubit.dart';
 import 'logic/banners/banners_cubit.dart';
 import 'logic/combos/combos_cubit.dart';
 import 'logic/location/location_cubit.dart';
@@ -11,7 +14,6 @@ import 'logic/new_products/new_products_cubit.dart';
 import 'logic/category/category_cubit.dart';
 import 'logic/theme/theme_cubit.dart';
 import 'logic/user/user_cubit.dart';
-import 'utils/export_utilities.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -49,6 +51,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<UserCubit>(
           create: (BuildContext context) => UserCubit(),
+        ),
+        BlocProvider<FetchWishlistCubit>(
+          create: (BuildContext context) => FetchWishlistCubit(),
+        ),
+        BlocProvider<ProductDetailCubit>(
+          create: (BuildContext context) => ProductDetailCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

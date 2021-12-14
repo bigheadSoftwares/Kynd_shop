@@ -22,11 +22,13 @@ class BannersCubit extends Cubit<BannersState> {
     BannerRepository.getBanner().then(
       (BannerModel bannerModel) {
         _list = <Widget>[];
-        bannerModel.data!.map(
-          (Datum e) => _list.add(
-            const CustomImageWidget(image: Assets.banner),
-          ),
-        ).toList();
+        bannerModel.data!
+            .map(
+              (Datum e) => _list.add(
+                const CustomImageWidget(image: Assets.banner),
+              ),
+            )
+            .toList();
         emit(
           BannersLoaded(_list),
         );

@@ -3,7 +3,15 @@ part of 'product_detail.dart';
 class _ProductDetail extends StatelessWidget {
   const _ProductDetail({
     Key? key,
+    required this.productName,
+    required this.basePrice,
+    required this.discountedPrice,
+    required this.description,
   }) : super(key: key);
+  final String productName;
+  final int basePrice;
+  final int discountedPrice;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +32,20 @@ class _ProductDetail extends StatelessWidget {
             ),
             sizedBoxHeight(5),
 
-            const CustomTitle(title: 'Kingfisher Premium Beer - 300 ml'),
+            CustomTitle(title: productName),
             sizedBoxHeight(5),
             Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                const SubHeading2(
-                  '\$345/-',
+                SubHeading2(
+                  '\$$discountedPrice/-',
                   color: Colour.greenishBlue,
                   fontWeight: FontWeight.w600,
                   size: 16,
                 ),
                 sizedBoxWidth(10),
-                const CutMrp(
-                  mrp: 345,
+                CutMrp(
+                  mrp: basePrice,
                   size: 12,
                 ),
               ],
@@ -50,8 +58,8 @@ class _ProductDetail extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             sizedBoxHeight(10),
-            const SubHeading2(
-              'Eiusmod et culpa laborum mollit Lorem commodo tempor magna non occaecat cillum dolore reprehenderit. Anim quis deserunt duis ipsum sint eiusmod ipsum pariatur eu laborum excepteur aliqua. Reprehenderit eu minim amet voluptate aliquip eu do elit dolore cupidatat nulla. Nostrud nulla duis excepteur cillum ut est qui laborum consectetur exercitation labore proident est et.',
+            SubHeading2(
+              description,
               color: Colour.lightGrey,
               size: 15,
             )

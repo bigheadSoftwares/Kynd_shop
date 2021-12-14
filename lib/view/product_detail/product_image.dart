@@ -3,7 +3,9 @@ part of 'product_detail.dart';
 class _ProductImage extends StatelessWidget {
   const _ProductImage({
     Key? key,
+    required this.imageUrl,
   }) : super(key: key);
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,10 @@ class _ProductImage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: const <Widget>[
+          // CustomNetworkImageWidget(
+          //   image: Assets.beer,
+          //   fit: BoxFit.contain,
+          // ),
           CustomImageWidget(
             image: Assets.beer,
             fit: BoxFit.contain,

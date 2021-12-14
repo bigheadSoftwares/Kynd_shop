@@ -1,7 +1,10 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import 'package:kynd_shop/view/product_detail/product_detail.dart';
+import '../constants/constants.dart';
 
 import '../export_utilities.dart';
+import 'add_to_cart_widget.dart';
 import 'custom_image_widget.dart';
 import 'cut_mrp.dart';
 
@@ -12,11 +15,19 @@ class ProductCard extends StatelessWidget {
     this.productImage,
     this.basePrice,
     this.baseDiscountedPrice,
+    this.productId,
+    this.isAddedToCart,
+    this.cartQuantity,
+    this.onAddToCart,
   }) : super(key: key);
   final String? productName;
   final String? productImage;
   final int? basePrice;
+  final int? productId;
   final int? baseDiscountedPrice;
+  final bool? isAddedToCart;
+  final int? cartQuantity;
+  final VoidCallback? onAddToCart;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +37,14 @@ class ProductCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(6),
       child: RoundContainer(
         onTap: () {
-          pushNamed(context, Routes.productDetail);
+          push(
+              context,
+              ProductDetail(
+                productId: productId,
+                isAddedToCart: isAddedToCart,
+                cartQuantity: cartQuantity,
+                productPrice: baseDiscountedPrice,
+              ));
         },
         width: 200,
         hPadding: 0,
@@ -57,30 +75,16 @@ class ProductCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           SubHeading2(
-                            '\$${baseDiscountedPrice ?? '400'}/-',
+                            '${Constants.rupee} ${baseDiscountedPrice ?? '400'}/-',
                             fontWeight: FontWeight.w500,
                           ),
-                          RoundContainer(
-                            onTap: () {},
-                            hPadding: 5,
-                            borderWidth: 1,
-                            borderColor: Colour.greenishBlue,
-                            radius: 4,
-                            child: Row(
-                              children: const <Widget>[
-                                SubHeading2(
-                                  'Add',
-                                  color: Colour.greenishBlue,
-                                  size: 13,
-                                ),
-                                Icon(
-                                  Icons.add,
-                                  color: Colour.greenishBlue,
-                                  size: 13,
+                          isAddedToCart == true
+                              ? IncrementDecrementButton(
+                                  number: cartQuantity ?? 1,
                                 )
-                              ],
-                            ),
-                          ),
+                              : AddToCartWidget(
+                                  onAddToCart: onAddToCart,
+                                ),
                         ],
                       ),
                     ],
