@@ -20,6 +20,12 @@ class _OtpScreenState extends State<OtpScreen> {
   String currentText = '';
 
   @override
+  void initState() {
+    super.initState();
+    context.read<AuthenticationCubit>().reset();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(

@@ -18,6 +18,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+    context.read<AuthenticationCubit>().reset();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
