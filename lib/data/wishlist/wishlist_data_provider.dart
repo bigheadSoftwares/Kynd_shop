@@ -24,7 +24,11 @@ class WishlistDataProvider {
   static Future<Response> getWishlist() async {
     final Response response = await get(
       Uri.parse('${Constants.host}wishlists/1'), //TODO: make userId dynamic
-      headers: Constants.headers,
+      headers: <String, String>{
+        'Authorization':
+            Constants.authenticationModel!.success.token,
+        'Content-Type': 'application/json'
+      },
     );
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['success'] == true) {

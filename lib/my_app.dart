@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'logic/cart/cart_summary_cubit.dart';
 import 'logic/cart/cart_details_cubit.dart';
+import 'utils/export_utilities.dart';
+import 'logic/authentication/authentication_cubit.dart';
 import 'logic/product/product_detail_cubit.dart';
 import 'logic/wishlist/fetch_wishlist_cubit.dart';
 import 'logic/banners/banners_cubit.dart';
@@ -13,7 +15,7 @@ import 'logic/best_sellers/bestsellers_cubit.dart';
 import 'logic/new_products/new_products_cubit.dart';
 import 'logic/category/category_cubit.dart';
 import 'logic/theme/theme_cubit.dart';
-import 'utils/export_utilities.dart';
+import 'logic/user/user_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -45,6 +47,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<LocationCubit>(
           create: (BuildContext context) => LocationCubit(),
+        ),
+        BlocProvider<AuthenticationCubit>(
+          create: (BuildContext context) => AuthenticationCubit(),
+        ),
+        BlocProvider<UserCubit>(
+          create: (BuildContext context) => UserCubit(),
         ),
         BlocProvider<FetchWishlistCubit>(
           create: (BuildContext context) => FetchWishlistCubit(),
@@ -79,7 +87,6 @@ class CustomMaterial extends StatelessWidget {
       title: 'Kynd Shop',
       theme: state,
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.home,
       onGenerateRoute: Routes.generateRoute,
     );
   }

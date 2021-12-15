@@ -88,10 +88,14 @@ class Sidebar extends StatelessWidget {
           return ConfirmationDialog(
             title: 'Are you sure ?',
             subtitle: 'Please Confirm to Logout',
-            onConfirm: () => pushNamedAndRemoveUntil(
-              context,
-              Routes.loginScreen,
-            ),
+            onConfirm: () async {
+              await deleteLocalKey(Constants.loginModelKey);
+              await deleteLocalKey(Constants.loginStatus);
+              pushNamedAndRemoveUntil(
+                context,
+                Routes.ageConfirmationScreen,
+              );
+            },
           );
         },
       );

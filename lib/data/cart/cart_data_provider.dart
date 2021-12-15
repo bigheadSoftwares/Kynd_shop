@@ -13,7 +13,7 @@ class CartDataProvider {
       body: jsonEncode(
           <String, dynamic>{'id': productId, 'user_id': Constants.userId}),
       headers: <String, String>{
-        'Authorization': Constants.token,
+        'Authorization': Constants.authenticationModel!.success.token,
         'Content-Type': 'application/json'
       },
     );
@@ -27,8 +27,12 @@ class CartDataProvider {
 
   static Future<Response> getCartDetails() async {
     final Response response = await get(
-        Uri.parse('${Constants.host}carts/${Constants.userId}'),
-        headers: Constants.headers);
+      Uri.parse('${Constants.host}carts/${Constants.userId}'),
+      headers: <String, String>{
+        'Authorization': Constants.authenticationModel!.success.token,
+        'Content-Type': 'application/json'
+      },
+    );
 
     if (response.statusCode == 200) {
       return response;
@@ -39,8 +43,12 @@ class CartDataProvider {
 
   static Future<Response> getCartSummary() async {
     final Response response = await get(
-        Uri.parse('${Constants.host}cart-summary/${Constants.userId}'),
-        headers: Constants.headers);
+      Uri.parse('${Constants.host}cart-summary/${Constants.userId}'),
+      headers: <String, String>{
+        'Authorization': Constants.authenticationModel!.success.token,
+        'Content-Type': 'application/json'
+      },
+    );
     if (response.statusCode == 200) {
       return response;
     } else {
