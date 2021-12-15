@@ -1,9 +1,20 @@
 part of 'home.dart';
 
-class _ExploreCategory extends StatelessWidget {
+class _ExploreCategory extends StatefulWidget {
   const _ExploreCategory({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<_ExploreCategory> createState() => _ExploreCategoryState();
+}
+
+class _ExploreCategoryState extends State<_ExploreCategory> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CategoryCubit>().getDrinkCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +29,9 @@ class _ExploreCategory extends StatelessWidget {
         ),
         sizedBoxHeight(15),
         BlocBuilder<CategoryCubit, CategoryState>(
-          bloc: context.read<CategoryCubit>()..getDrinkCategories(),
           builder: (BuildContext context, CategoryState state) {
             if (state is CategoryInitial) {
-              return const LoadingIndicator();
+              return const ShimmerBox();
             } else if (state is CategoryLoaded) {
               return SizedBox(
                 height: 115,

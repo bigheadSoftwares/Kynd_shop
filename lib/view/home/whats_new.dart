@@ -24,7 +24,11 @@ class _WhatsNewState extends State<_WhatsNew> {
       child: BlocBuilder<NewProductsCubit, NewProductsState>(
         builder: (BuildContext context, NewProductsState state) {
           if (state is NewProductsInitial) {
-            return const LoadingIndicator();
+            return const ShimmerBox(
+              height: 140,
+              width: 150,
+              itemCount: 4,
+            );
           }
           if (state is NewProductsLoaded) {
             return ProductListBlock(

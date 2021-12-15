@@ -24,3 +24,4 @@ export './widgets/cart_summary.dart';
 export './widgets/increment_decrement_button.dart';
 export './widgets/custom_primary_button.dart';
 export './widgets/loading_indicator.dart';
+export './widgets/shimmer_box.dart';

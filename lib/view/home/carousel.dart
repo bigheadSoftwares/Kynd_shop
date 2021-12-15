@@ -23,7 +23,11 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
     return BlocBuilder<BannersCubit, BannersState>(
       builder: (BuildContext context, BannersState state) {
         if (state is BannersInitial) {
-          return const LoadingIndicator();
+          return ShimmerBox(
+            itemCount: 2,
+            height: 60,
+            width: screenWidth(context) * 0.8,
+          );
         } else if (state is BannersLoaded) {
           return Column(
             children: <Widget>[

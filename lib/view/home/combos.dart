@@ -23,7 +23,7 @@ class _CombosState extends State<_Combos> {
       child: BlocBuilder<CombosCubit, CombosState>(
         builder: (BuildContext context, CombosState state) {
           if (state is CombosInitial) {
-            return const LoadingIndicator();
+            return Container();
           } else if (state is CombosLoaded) {
             return ProductListBlock(
               title: 'Combos',

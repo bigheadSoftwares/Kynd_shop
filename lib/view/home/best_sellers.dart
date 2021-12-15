@@ -19,7 +19,11 @@ class _BestSellersState extends State<_BestSellers> {
     return BlocBuilder<BestsellersCubit, BestsellersState>(
       builder: (BuildContext context, BestsellersState state) {
         if (state is BestsellersInitial) {
-          return const LoadingIndicator();
+          return const ShimmerBox(
+            height: 140,
+            width: 150,
+            itemCount: 4,
+          );
         } else if (state is BestsellersLoaded) {
           return ProductListBlock(
             title: 'Bestsellers',
