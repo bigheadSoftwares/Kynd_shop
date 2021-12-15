@@ -1,6 +1,6 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/view/product_detail/product_detail.dart';
+import '../../view/product_detail/product_detail.dart';
 import '../constants/constants.dart';
 
 import '../export_utilities.dart';
