@@ -3,8 +3,9 @@ part of 'cart.dart';
 class _CartItemTile extends StatelessWidget {
   const _CartItemTile({
     Key? key,
+    required this.item,
   }) : super(key: key);
-
+  final Datum item;
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
@@ -21,9 +22,9 @@ class _CartItemTile extends StatelessWidget {
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Expanded(
+          Expanded(
               child: SubHeading2(
-            'Kingfisher Premium Beer - 300 ml',
+            item.product!.name!,
             fontWeight: FontWeight.bold,
           )),
           InkWell(
@@ -50,8 +51,8 @@ class _CartItemTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              const SubHeading2(
-                '${Constants.rupee}234.00/-',
+              SubHeading2(
+                '${Constants.rupee} ${item.price}/-',
                 size: 14,
                 fontWeight: FontWeight.bold,
                 color: Colour.greenishBlue,
@@ -85,11 +86,11 @@ class _CartItemTile extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10.0, vertical: 0),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 0),
                         child: SubHeading2(
-                          '2',
+                          '${item.quantity}',
                           color: Colour.black,
                           size: 12,
                           fontWeight: FontWeight.bold,

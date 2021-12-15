@@ -112,8 +112,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       blurRadius: 10,
                     )
                   ],
-                  onCompleted: (String v) {
-                  },
+                  onCompleted: (String v) {},
                   // onTap: () {
                   //   print("Pressed");
                   // },

@@ -11,6 +11,7 @@ class _PromoContainer extends StatefulWidget {
 
 class _PromoContainerState extends State<_PromoContainer> {
   TextEditingController textEditingController = TextEditingController();
+  bool isCoupnApplied = false;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

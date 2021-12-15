@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'logic/cart/cart_summary_cubit.dart';
+import 'logic/cart/cart_details_cubit.dart';
 import 'logic/product/product_detail_cubit.dart';
 import 'logic/wishlist/fetch_wishlist_cubit.dart';
 import 'logic/banners/banners_cubit.dart';
@@ -49,6 +51,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ProductDetailCubit>(
           create: (BuildContext context) => ProductDetailCubit(),
+        ),
+        BlocProvider<CartDetailsCubit>(
+          create: (BuildContext context) => CartDetailsCubit(),
+        ),
+        BlocProvider<CartSummaryCubit>(
+          create: (BuildContext context) => CartSummaryCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

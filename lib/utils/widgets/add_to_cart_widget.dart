@@ -14,25 +14,25 @@ class AddToCartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RoundContainer(
-        onTap: onAddToCart ?? () {},
-        hPadding: 5,
-        borderWidth: 1,
-        borderColor: Colour.greenishBlue,
-        radius: 4,
-        child: Row(
-          children: const <Widget>[
-            SubHeading2(
-              'Add',
-              color: Colour.greenishBlue,
-              size: 13,
-            ),
-            Icon(
-              Icons.add,
-              color: Colour.greenishBlue,
-              size: 13,
-            )
-          ],
-        ),
-      );
+      onTap: onAddToCart ?? () {},
+      hPadding: 5,
+      borderWidth: 1,
+      borderColor: Colour.greenishBlue,
+      radius: 4,
+      child: Row(
+        children: const <Widget>[
+          SubHeading2(
+            'Add',
+            color: Colour.greenishBlue,
+            size: 13,
+          ),
+          Icon(
+            Icons.add,
+            color: Colour.greenishBlue,
+            size: 13,
+          )
+        ],
+      ),
+    );
   }
 }

@@ -55,7 +55,7 @@ class _TotalSavings extends StatelessWidget {
       color: Colour.greenishBlue.withOpacity(0.15),
       child: const CartSummary(
         title: 'Total Savings',
-        amount: 432.45,
+        amount: '432.45',
         size: 14,
         color: Colour.greenishBlue,
       ),
@@ -91,31 +91,31 @@ class _PaymentDetails extends StatelessWidget {
           const CartSummary(
             title: 'Subtotal',
             size: 14,
-            amount: 7774,
+            amount: '7774',
           ),
           const CartSummary(
             title: 'Coupon Discount',
-            amount: -24,
+            amount: '-24',
             size: 14,
           ),
           const CartSummary(
             title: 'Charity Donation',
-            amount: 87,
+            amount: '87',
             size: 14,
           ),
           const CartSummary(
             title: 'Tax Rates',
-            amount: 34,
+            amount: '34',
             size: 14,
           ),
           const CartSummary(
             title: 'Delivery fee',
-            amount: 54,
+            amount: '54',
             size: 14,
           ),
           const CartSummary(
             title: 'Total Amount',
-            amount: 8234,
+            amount: '8234',
             isBold: true,
             size: 14,
           ),

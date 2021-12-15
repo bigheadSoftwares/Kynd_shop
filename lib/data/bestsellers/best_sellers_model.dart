@@ -73,25 +73,24 @@ class Datum {
   final int? cartQuantity;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json['id'] as int,
-        name: json['name'] as String,
-        photos: List<Map<String, String>>.from(json['photos'].map(
-          (x) => Map.from(x as Map<dynamic, dynamic>).map(
-              (k, v) => MapEntry<String, String>(k as String, v as String)),
-        ) as Iterable<dynamic>),
-        thumbnailImage: json['thumbnail_img'] as String,
-        basePrice: json['base_price'] as int,
-        baseDiscountedPrice: json['base_discounted_price'] as int,
-        whatsNew: json['whats_new'] as int,
-        unit: json['unit'] as String,
-        discount: json['discount'] as int,
-        discountType: json['discount_type'] as String,
-        rating: json['rating'] as int,
-        sales: json['sales'] as int,
-        slug: json['slug'] as String,
-        isAddedToCart: json['is_added_to_cart'] as int == 0 ? false : true , 
-        cartQuantity: json['cart_quantity'] as int
-      );
+      id: json['id'] as int,
+      name: json['name'] as String,
+      photos: List<Map<String, String>>.from(json['photos'].map(
+        (x) => Map.from(x as Map<dynamic, dynamic>)
+            .map((k, v) => MapEntry<String, String>(k as String, v as String)),
+      ) as Iterable<dynamic>),
+      thumbnailImage: json['thumbnail_img'] as String,
+      basePrice: json['base_price'] as int,
+      baseDiscountedPrice: json['base_discounted_price'] as int,
+      whatsNew: json['whats_new'] as int,
+      unit: json['unit'] as String,
+      discount: json['discount'] as int,
+      discountType: json['discount_type'] as String,
+      rating: json['rating'] as int,
+      sales: json['sales'] as int,
+      slug: json['slug'] as String,
+      isAddedToCart: json['is_added_to_cart'] as int == 0 ? false : true,
+      cartQuantity: json['cart_quantity'] as int);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,

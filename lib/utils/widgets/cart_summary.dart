@@ -13,7 +13,7 @@ class CartSummary extends StatelessWidget {
     this.color,
   }) : super(key: key);
   final String title;
-  final double amount;
+  final String amount;
   final bool? isBold;
   final double? size;
   final Color? color;
