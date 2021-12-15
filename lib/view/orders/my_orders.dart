@@ -1,11 +1,24 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/order/order_list_cubit.dart';
 import '../../utils/export_utilities.dart';
 
 part 'order_detail.dart';
 
-class MyOrders extends StatelessWidget {
+class MyOrders extends StatefulWidget {
   const MyOrders({Key? key}) : super(key: key);
+
+  @override
+  State<MyOrders> createState() => _MyOrdersState();
+}
+
+class _MyOrdersState extends State<MyOrders> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<OrderListCubit>(context).getOrderList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +27,33 @@ class MyOrders extends StatelessWidget {
         context,
         title: 'My Orders',
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(12),
-        itemCount: 5,
-        physics: const BouncingScrollPhysics(),
-        separatorBuilder: (BuildContext context, int index) =>
-            sizedBoxHeight(18),
-        itemBuilder: (BuildContext context, int index) {
-          return const _OrderCard();
+      body: BlocBuilder<OrderListCubit, OrderListState>(
+        builder: (BuildContext context, OrderListState state) {
+          if (state is OrderListInitial) {
+            return const LoadingIndicator();
+          } else if (state is OrderListLoaded) {
+            return ListView.separated(
+              padding: const EdgeInsets.all(12),
+              itemCount: state.orderListModel.data?.length ?? 0,
+              physics: const BouncingScrollPhysics(),
+              separatorBuilder: (BuildContext context, int index) =>
+                  sizedBoxHeight(18),
+              itemBuilder: (BuildContext context, int index) {
+                return _OrderCard(
+                  shopName: 'Beer Shop',
+                  itemName: state.orderListModel.data?[index].productName,
+                  orderedOn: 'NA',
+                  quantity: state.orderListModel.data?[index].quantity,
+                  deliveryStatus:
+                      state.orderListModel.data?[index].deliveryStatus,
+                  price: state.orderListModel.data?[index].price,
+                  shopAddress: 'NA',
+                );
+              },
+            );
+          } else {
+            return SubHeading2((state as OrderListFailure).failure.message);
+          }
         },
       ),
     );
@@ -31,7 +63,21 @@ class MyOrders extends StatelessWidget {
 class _OrderCard extends StatelessWidget {
   const _OrderCard({
     Key? key,
+    this.shopName,
+    this.shopAddress,
+    this.deliveryStatus,
+    this.itemName,
+    this.quantity,
+    this.price,
+    this.orderedOn,
   }) : super(key: key);
+  final String? shopName;
+  final String? shopAddress;
+  final String? deliveryStatus;
+  final String? itemName;
+  final int? quantity;
+  final String? price;
+  final String? orderedOn;
 
   @override
   Widget build(BuildContext context) {
@@ -66,23 +112,23 @@ class _OrderCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                title: const SubHeading2(
-                  'Beer Shop',
+                title: SubHeading2(
+                  shopName ?? '',
                   fontWeight: FontWeight.w500,
                   size: 14,
                 ),
-                subtitle: const SubHeading2(
-                  'New Delhi, Delhi',
-                  size: 12,
+                subtitle: SubHeading2(
+                  shopAddress ?? '',
+                  size: 14,
                   color: Colour.subtitleColor,
                 ),
-                trailingTop: const Chip(
+                trailingTop: Chip(
                   padding: EdgeInsets.zero,
-                  labelPadding: EdgeInsets.symmetric(horizontal: 15),
-                  visualDensity: VisualDensity(vertical: -4),
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 10),
+                  visualDensity: const VisualDensity(vertical: -4),
                   label: SubHeading2(
-                    'Upcoming',
-                    size: 10,
+                    deliveryStatus ?? '',
+                    size: 12,
                     color: Colour.white,
                     fontWeight: FontWeight.bold,
                   ),
@@ -91,10 +137,10 @@ class _OrderCard extends StatelessWidget {
               ),
             ),
             const Divider(height: 20),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: CustomListTile(
-                title: SubHeading2(
+                title: const SubHeading2(
                   'ITEMS',
                   size: 12,
                   color: Colour.subtitleColor,
@@ -102,17 +148,17 @@ class _OrderCard extends StatelessWidget {
                 ),
                 spaceBetweenTitleAndSubtitle: 2,
                 subtitle: SubHeading2(
-                  '6 x Kingfisher beer chilled',
+                  '$quantity x $itemName',
                   fontWeight: FontWeight.w500,
                   size: 14,
                 ),
               ),
             ),
             sizedBoxHeight(10),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: CustomListTile(
-                title: SubHeading2(
+                title: const SubHeading2(
                   'ORDERED ON',
                   color: Colour.subtitleColor,
                   size: 12,
@@ -120,19 +166,19 @@ class _OrderCard extends StatelessWidget {
                 ),
                 spaceBetweenTitleAndSubtitle: 2,
                 subtitle: SubHeading2(
-                  '10 Nov, 2021 at 09:10 PM',
+                  orderedOn ?? '',
                   fontWeight: FontWeight.w500,
                   size: 14,
                 ),
               ),
             ),
             const Divider(height: 20),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 21.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 21.0),
               child: Text.rich(
                 TextSpan(
                   children: <TextSpan>[
-                    TextSpan(
+                    const TextSpan(
                       text: 'Total: ',
                       style: TextStyle(
                         fontSize: 14,
@@ -140,9 +186,9 @@ class _OrderCard extends StatelessWidget {
                       ),
                     ),
                     TextSpan(
-                      text: '₹ 2500.00/-',
-                      style: TextStyle(
-                        fontSize: 15,
+                      text: '₹ $price/-',
+                      style: const TextStyle(
+                        fontSize: 17,
                         color: Colour.greenishBlue,
                         fontWeight: FontWeight.w800,
                       ),

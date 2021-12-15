@@ -10,4 +10,38 @@ class CategoryDataProvider {
       throw Exception(response);
     }
   }
+
+  static Future<Response> _getSubCategories(int categoryId) async {
+    final Response response =
+        await get(Uri.parse('${Constants.host}sub-categories/$categoryId'));
+    if (response.statusCode == 200) {
+      return response;
+    } else {
+      throw Exception(response);
+    }
+  }
+
+  static Future<Response> _getSubCategoryProducts(int subCategoryId) async {
+    final Response response = await post(
+      Uri.parse(
+        '${Constants.host}products/sub-category',
+      ),
+      body: jsonEncode(
+        <String, dynamic>{
+          'category_id': subCategoryId,
+          'customer_id': 1 //TODO: make customer id dynamic
+        },
+      ),
+      headers: <String, String>{
+        'Authorization': Constants.authenticationModel!.success.token,
+        'Content-Type': 'application/json'
+      },
+    );
+    print('${response.body}');
+    if (response.statusCode == 200) {
+      return response;
+    } else {
+      throw Exception(response);
+    }
+  }
 }

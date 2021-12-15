@@ -86,7 +86,10 @@ class Routes {
         );
       case category:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const CategoryTabs(),
+          builder: (_) => CategoryTabs(
+            categoryId: (settings.arguments as List<dynamic>)[0] as int,
+            categoryName: (settings.arguments as List<dynamic>)[1] as String,
+          ),
         );
       case myOrders:
         return MaterialPageRoute<dynamic>(
@@ -157,10 +160,6 @@ class Routes {
       case payment:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const Payment(),
-        );
-      case categoryTabs:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => const CategoryTabs(),
         );
       case paymentSuccessful:
         return MaterialPageRoute<dynamic>(

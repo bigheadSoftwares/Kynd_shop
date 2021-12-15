@@ -1,6 +1,7 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/wishlist/wishlist_model/datum.dart';
 import '../../logic/wishlist/fetch_wishlist_cubit.dart';
 import '../../utils/widgets/product_card.dart';
 import '../../utils/export_utilities.dart';
@@ -41,8 +42,14 @@ class _WishlistState extends State<Wishlist> {
               ),
               itemCount: state.wishlistModel.data?.length ?? 0,
               itemBuilder: (BuildContext context, int index) {
-                return const ProductCard(
-                  productName: 'Kingfisher Premium Beer - 300 ml',
+                Datum? datum = state.wishlistModel.data?[index];
+                return ProductCard(
+                  productName: datum?.product?.name,
+                  productImage: datum?.product?.thumbnailImage,
+                  productId: datum?.id,
+                  basePrice: datum?.product?.basePrice,
+                  baseDiscountedPrice: datum?.product?.baseDiscountedPrice,
+                  cartQuantity: datum?.product?.baseDiscountedPrice,
                 );
               },
             );
