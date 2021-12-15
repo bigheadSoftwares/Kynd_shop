@@ -14,6 +14,14 @@ class NewProductsLoaded extends NewProductsState {
   final NewProductsModel newProductsModel;
   @override
   List<Object> get props => <Object>[newProductsModel];
+
+  NewProductsLoaded copyWith({
+    NewProductsModel? newProductsModel,
+  }) {
+    return NewProductsLoaded(
+      newProductsModel ?? this.newProductsModel,
+    );
+  }
 }
 
 class NewProductsFailure extends NewProductsState {

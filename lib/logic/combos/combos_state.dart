@@ -14,7 +14,15 @@ class CombosLoaded extends CombosState {
   final CombosModel combosModel;
 
   @override
-  List<Object> get props => <Object>[CombosModel];
+  List<Object> get props => <Object>[combosModel];
+
+  CombosLoaded copyWith({
+    CombosModel? combosModel,
+  }) {
+    return CombosLoaded(
+      combosModel ?? this.combosModel,
+    );
+  }
 }
 
 class CombosFailure extends CombosState {

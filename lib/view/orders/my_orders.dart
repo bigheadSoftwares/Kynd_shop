@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kynd_shop/data/order/order_detail_model/datum.dart';
+import 'package:kynd_shop/logic/order/order_detail_cubit.dart';
+
 import '../../logic/order/order_list_cubit.dart';
 import '../../utils/export_utilities.dart';
 
@@ -40,14 +45,12 @@ class _MyOrdersState extends State<MyOrders> {
                   sizedBoxHeight(18),
               itemBuilder: (BuildContext context, int index) {
                 return _OrderCard(
-                  shopName: 'Beer Shop',
-                  itemName: state.orderListModel.data?[index].productName,
-                  orderedOn: 'NA',
-                  quantity: state.orderListModel.data?[index].quantity,
+                  orderId: state.orderListModel.data?[index].id ?? 0,
+                  shopName: 'Kynd Shop',
+                  orderedOn: state.orderListModel.data?[index].date,
                   deliveryStatus:
                       state.orderListModel.data?[index].deliveryStatus,
-                  price: state.orderListModel.data?[index].price,
-                  shopAddress: 'NA',
+                  price: state.orderListModel.data?[index].grandTotal,
                 );
               },
             );
@@ -63,26 +66,22 @@ class _MyOrdersState extends State<MyOrders> {
 class _OrderCard extends StatelessWidget {
   const _OrderCard({
     Key? key,
+    required this.orderId,
     this.shopName,
-    this.shopAddress,
     this.deliveryStatus,
-    this.itemName,
-    this.quantity,
     this.price,
     this.orderedOn,
   }) : super(key: key);
+  final int orderId;
   final String? shopName;
-  final String? shopAddress;
   final String? deliveryStatus;
-  final String? itemName;
-  final int? quantity;
-  final String? price;
+  final int? price;
   final String? orderedOn;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => pushNamed(context, Routes.orderDetail),
+      onTap: () => pushNamed(context, Routes.orderDetail, arguments: orderId),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),
         decoration: BoxDecoration(
@@ -117,11 +116,11 @@ class _OrderCard extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   size: 14,
                 ),
-                subtitle: SubHeading2(
-                  shopAddress ?? '',
-                  size: 14,
-                  color: Colour.subtitleColor,
-                ),
+                // subtitle: SubHeading2(
+                //   shopAddress ?? '',
+                //   size: 14,
+                //   color: Colour.subtitleColor,
+                // ),
                 trailingTop: Chip(
                   padding: EdgeInsets.zero,
                   labelPadding: const EdgeInsets.symmetric(horizontal: 10),
@@ -137,23 +136,23 @@ class _OrderCard extends StatelessWidget {
               ),
             ),
             const Divider(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: CustomListTile(
-                title: const SubHeading2(
-                  'ITEMS',
-                  size: 12,
-                  color: Colour.subtitleColor,
-                  fontWeight: FontWeight.w500,
-                ),
-                spaceBetweenTitleAndSubtitle: 2,
-                subtitle: SubHeading2(
-                  '$quantity x $itemName',
-                  fontWeight: FontWeight.w500,
-                  size: 14,
-                ),
-              ),
-            ),
+            // const Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 12.0),
+            //   child: CustomListTile(
+            //     title: SubHeading2(
+            //       'ITEMS',
+            //       size: 12,
+            //       color: Colour.subtitleColor,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //     spaceBetweenTitleAndSubtitle: 2,
+            //     // subtitle: SubHeading2(
+            //     //   '$quantity x $itemName',
+            //     //   fontWeight: FontWeight.w500,
+            //     //   size: 14,
+            //     // ),
+            //   ),
+            // ),
             sizedBoxHeight(10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),

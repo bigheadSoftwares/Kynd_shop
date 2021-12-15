@@ -24,7 +24,7 @@ class _ExploreCategory extends StatelessWidget {
               return const LoadingIndicator();
             } else if (state is CategoryLoaded) {
               return SizedBox(
-                height: 96,
+                height: 115,
                 child: ListView.builder(
                   padding: const EdgeInsets.only(left: 12, right: 12),
                   itemCount: state.categoryModel.data?.length ?? 0,
