@@ -13,7 +13,7 @@ class WishlistDataProvider {
         Uri.parse('${Constants.host}wishlists-add-product'),
         body: body,
         headers: Constants.headers);
-
+    print(response.body);
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['is_in_wishlist'] == true) {
       return true;
@@ -31,6 +31,7 @@ class WishlistDataProvider {
         Uri.parse('${Constants.host}wishlists-removeproduct'),
         body: body,
         headers: Constants.headers);
+    print(response.body);
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['is_in_wishlist'] == false) {
       return true;

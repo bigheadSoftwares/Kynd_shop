@@ -1,6 +1,7 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kynd_shop/logic/cart/add_to_cart_cubit.dart';
 import '../../data/categories/sub_category_products_model/datum.dart';
 import '../../utils/export_utilities.dart';
 
@@ -143,6 +144,25 @@ class _TabViewState extends State<_TabView> {
                       Datum? datum =
                           state.subCategoryProductsModel.data?[index];
                       return ProductCard(
+                        isWishlisted: state
+                            .subCategoryProductsModel.data?[index].isWishlisted,
+                        onLike: () {
+                          BlocProvider.of<SubCategoryProductsCubit>(context)
+                              .addProductToWishlist(
+                            state.subCategoryProductsModel.data![index].id!,
+                          );
+                        },
+                        onDislike: () {
+                          BlocProvider.of<SubCategoryProductsCubit>(context)
+                              .removeProductFromWishlist(
+                            state.subCategoryProductsModel.data![index].id!,
+                          );
+                        },
+                        onAddToCart: () async {
+                          context.read<AddToCartCubit>().addToCart(
+                              state.subCategoryProductsModel.data?[index].id ??
+                                  2);
+                        },
                         productName: datum?.name,
                         productImage: datum?.thumbnailImg,
                         productId: datum?.id,

@@ -70,6 +70,7 @@ class Datum extends Equatable {
     this.isAddedToCart,
     this.cartQuantity,
     this.taxes,
+    this.isWishlisted,
   });
 
   final int? id;
@@ -174,6 +175,7 @@ class Datum extends Equatable {
   final int? isAddedToCart;
   @JsonKey(name: 'cart_quantity')
   final int? cartQuantity;
+  final int? isWishlisted;
   final List<Tax>? taxes;
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
@@ -243,6 +245,7 @@ class Datum extends Equatable {
     int? isAddedToCart,
     int? cartQuantity,
     List<Tax>? taxes,
+    int? isWishlisted,
   }) {
     return Datum(
       id: id ?? this.id,
@@ -307,6 +310,7 @@ class Datum extends Equatable {
       isAddedToCart: isAddedToCart ?? this.isAddedToCart,
       cartQuantity: cartQuantity ?? this.cartQuantity,
       taxes: taxes ?? this.taxes,
+      isWishlisted: isWishlisted ?? this.isWishlisted,
     );
   }
 
@@ -378,6 +382,7 @@ class Datum extends Equatable {
       isAddedToCart,
       cartQuantity,
       taxes,
+      isWishlisted,
     ];
   }
 }
