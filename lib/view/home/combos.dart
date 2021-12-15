@@ -49,6 +49,7 @@ class _CombosState extends State<_Combos> {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 10, left: 14),
                         child: ProductCard(
+                          productId: state.combosModel.data?[index].id,
                           isWishlisted:
                               state.combosModel.data?[index].isWishlisted,
                           onLike: () {
