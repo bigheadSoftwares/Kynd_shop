@@ -37,7 +37,6 @@ class CategoryDataProvider {
         'Content-Type': 'application/json'
       },
     );
-    print('${response.body}');
     if (response.statusCode == 200) {
       return response;
     } else {
