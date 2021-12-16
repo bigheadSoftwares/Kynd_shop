@@ -1,9 +1,9 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/data/categories/sub_category_products_model/datum.dart';
-
-import 'package:kynd_shop/utils/export_utilities.dart';
+import 'package:kynd_shop/logic/cart/add_to_cart_cubit.dart';
+import '../../data/categories/sub_category_products_model/datum.dart';
+import '../../utils/export_utilities.dart';
 
 import '../../logic/category/sub_category_cubit.dart';
 import '../../logic/category/sub_category_products_cubit.dart';
@@ -39,59 +39,63 @@ class _CategoryTabsState extends State<CategoryTabs> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SubCategoryCubit, SubCategoryState>(
-      builder: (BuildContext context, SubCategoryState state) {
-        if (state is SubCategoryLoaded) {
-          return DefaultTabController(
-            length: state.subCategoryModel.data?.length ?? 0,
-            child: Scaffold(
-              appBar: appBar(
-                context,
-                title: widget.categoryName,
-                actions: <Widget>[
-                  IconButton(
-                    onPressed: () {
-                      // push(context, const Search());
-                    },
-                    color: Colour.white,
-                    icon: const Padding(
-                      padding: EdgeInsets.all(6.0),
-                      child: CustomImageWidget(
-                        image: Assets.search1,
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      // push(context, const Filter());
-                    },
-                    color: Colour.white,
-                    icon: const Padding(
-                      padding: EdgeInsets.all(6.0),
-                      child: CustomImageWidget(
-                        image: Assets.filter,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              body: Column(
-                children: <Widget>[
-                  _Tabs(
-                    state: state,
-                  ),
-                  _TabView(
-                    tabLength: state.subCategoryModel.data?.length ?? 0,
-                  ),
-                ],
+    return Scaffold(
+        appBar: appBar(
+          context,
+          title: widget.categoryName,
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                // push(context, const Search());
+              },
+              color: Colour.white,
+              icon: const Padding(
+                padding: EdgeInsets.all(6.0),
+                child: CustomImageWidget(
+                  image: Assets.search1,
+                ),
               ),
             ),
-          );
-        } else {
-          return Container();
-        }
-      },
-    );
+            IconButton(
+              onPressed: () {
+                // push(context, const Filter());
+              },
+              color: Colour.white,
+              icon: const Padding(
+                padding: EdgeInsets.all(6.0),
+                child: CustomImageWidget(
+                  image: Assets.filter,
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: BlocBuilder<SubCategoryCubit, SubCategoryState>(
+          builder: (BuildContext context, SubCategoryState state) {
+            if (state is SubCategoryLoaded) {
+              if (state.subCategoryModel.data!.isEmpty) {
+                return const Center(child: SubHeading2('Nothing Available'));
+              }
+              return DefaultTabController(
+                length: state.subCategoryModel.data?.length ?? 0,
+                child: Column(
+                  children: <Widget>[
+                    _Tabs(
+                      state: state,
+                    ),
+                    _TabView(
+                      tabLength: state.subCategoryModel.data?.length ?? 0,
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return const Scaffold(
+                body: LoadingIndicator(),
+              );
+            }
+          },
+        ));
   }
 }
 
@@ -140,6 +144,25 @@ class _TabViewState extends State<_TabView> {
                       Datum? datum =
                           state.subCategoryProductsModel.data?[index];
                       return ProductCard(
+                        isWishlisted: state
+                            .subCategoryProductsModel.data?[index].isWishlisted,
+                        onLike: () {
+                          BlocProvider.of<SubCategoryProductsCubit>(context)
+                              .addProductToWishlist(
+                            state.subCategoryProductsModel.data![index].id!,
+                          );
+                        },
+                        onDislike: () {
+                          BlocProvider.of<SubCategoryProductsCubit>(context)
+                              .removeProductFromWishlist(
+                            state.subCategoryProductsModel.data![index].id!,
+                          );
+                        },
+                        onAddToCart: () async {
+                          context.read<AddToCartCubit>().addToCart(
+                              state.subCategoryProductsModel.data?[index].id ??
+                                  2);
+                        },
                         productName: datum?.name,
                         productImage: datum?.thumbnailImg,
                         productId: datum?.id,
@@ -150,7 +173,7 @@ class _TabViewState extends State<_TabView> {
                       );
                     },
                   );
-                } else if (state is SubCategoryInitial) {
+                } else if (state is SubCategoryProductsInitial) {
                   return const LoadingIndicator();
                 } else {
                   return SubHeading2(

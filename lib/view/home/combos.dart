@@ -1,19 +1,29 @@
 part of 'home.dart';
 
-class _Combos extends StatelessWidget {
+class _Combos extends StatefulWidget {
   const _Combos({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<_Combos> createState() => _CombosState();
+}
+
+class _CombosState extends State<_Combos> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<CombosCubit>().getCombos();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 10),
       child: BlocBuilder<CombosCubit, CombosState>(
-        bloc: context.read<CombosCubit>()..getCombos(),
         builder: (BuildContext context, CombosState state) {
           if (state is CombosInitial) {
-            return const LoadingIndicator();
+            return Container();
           } else if (state is CombosLoaded) {
             return ProductListBlock(
               title: 'Combos',
@@ -39,6 +49,21 @@ class _Combos extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 10, left: 14),
                         child: ProductCard(
+                          productId: state.combosModel.data?[index].id,
+                          isWishlisted:
+                              state.combosModel.data?[index].isWishlisted,
+                          onLike: () {
+                            BlocProvider.of<CombosCubit>(context)
+                                .addProductToWishlist(
+                              state.combosModel.data![index].id!,
+                            );
+                          },
+                          onDislike: () {
+                            BlocProvider.of<CombosCubit>(context)
+                                .removeProductFromWishlist(
+                              state.combosModel.data![index].id!,
+                            );
+                          },
                           onAddToCart: () async {
                             context.read<AddToCartCubit>().addToCart(
                                 state.combosModel.data?[index].id ?? 2);

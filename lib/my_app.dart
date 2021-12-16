@@ -5,6 +5,7 @@ import 'logic/cart/cart_summary_cubit.dart';
 import 'logic/cart/cart_details_cubit.dart';
 import 'utils/export_utilities.dart';
 import 'logic/authentication/authentication_cubit.dart';
+import 'package:kynd_shop/logic/order/order_detail_cubit.dart';
 import 'logic/category/sub_category_cubit.dart';
 import 'logic/category/sub_category_products_cubit.dart';
 import 'logic/order/order_list_cubit.dart';
@@ -77,6 +78,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<SubCategoryProductsCubit>(
           create: (BuildContext context) => SubCategoryProductsCubit(),
+        ),
+        BlocProvider<OrderDetailCubit>(
+          create: (BuildContext context) => OrderDetailCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

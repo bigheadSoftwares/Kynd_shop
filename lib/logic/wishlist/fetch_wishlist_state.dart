@@ -14,6 +14,14 @@ class FetchWishlistLoaded extends FetchWishlistState {
   const FetchWishlistLoaded(this.wishlistModel);
   @override
   List<Object> get props => <Object>[wishlistModel];
+
+  FetchWishlistLoaded copyWith({
+    WishlistModel? wishlistModel,
+  }) {
+    return FetchWishlistLoaded(
+      wishlistModel ?? this.wishlistModel,
+    );
+  }
 }
 
 class FetchWishlistFailure extends FetchWishlistState {

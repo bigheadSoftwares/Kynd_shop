@@ -10,11 +10,30 @@ class WishlistDataProvider {
       'user_id': 1 //TODO: make it dynamic
     });
     final Response response = await post(
-      Uri.parse('${Constants.host}wishlists-add-product'),
-      body: body,
-    );
+        Uri.parse('${Constants.host}wishlists-add-product'),
+        body: body,
+        headers: Constants.headers);
+    print(response.body);
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['is_in_wishlist'] == true) {
+      return true;
+    } else {
+      throw Exception(response);
+    }
+  }
+
+  static Future<bool> removeWishlist(int productId) async {
+    final String body = jsonEncode(<String, dynamic>{
+      'product_id': productId,
+      'user_id': 1 //TODO: make it dynamic
+    });
+    final Response response = await post(
+        Uri.parse('${Constants.host}wishlists-removeproduct'),
+        body: body,
+        headers: Constants.headers);
+    print(response.body);
+    if (response.statusCode == 200 &&
+        jsonDecode(response.body)['is_in_wishlist'] == false) {
       return true;
     } else {
       throw Exception(response);

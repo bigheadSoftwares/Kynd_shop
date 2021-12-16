@@ -1,15 +1,29 @@
 part of 'home.dart';
 
-class _BestSellers extends StatelessWidget {
+class _BestSellers extends StatefulWidget {
   const _BestSellers({Key? key}) : super(key: key);
+
+  @override
+  State<_BestSellers> createState() => _BestSellersState();
+}
+
+class _BestSellersState extends State<_BestSellers> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<BestsellersCubit>().getBestSellers();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BestsellersCubit, BestsellersState>(
-      bloc: context.read<BestsellersCubit>()..getBestSellers(),
       builder: (BuildContext context, BestsellersState state) {
         if (state is BestsellersInitial) {
-          return const LoadingIndicator();
+          return const ShimmerBox(
+            height: 140,
+            width: 150,
+            itemCount: 4,
+          );
         } else if (state is BestsellersLoaded) {
           return ProductListBlock(
             title: 'Bestsellers',
@@ -37,6 +51,20 @@ class _BestSellers extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 10, left: 14),
                       child: ProductCard(
+                        isWishlisted:
+                            state.bestSellersModel.data?[index].isWishlisted,
+                        onLike: () {
+                          BlocProvider.of<BestsellersCubit>(context)
+                              .addProductToWishlist(
+                            state.bestSellersModel.data![index].id!,
+                          );
+                        },
+                        onDislike: () {
+                          BlocProvider.of<BestsellersCubit>(context)
+                              .removeProductFromWishlist(
+                            state.bestSellersModel.data![index].id!,
+                          );
+                        },
                         onAddToCart: () async {
                           context.read<AddToCartCubit>().addToCart(
                               state.bestSellersModel.data?[index].id ?? 2);

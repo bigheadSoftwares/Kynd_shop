@@ -29,6 +29,13 @@ class _WishlistState extends State<Wishlist> {
           if (state is FetchWishlistInitial) {
             return const LoadingIndicator();
           } else if (state is FetchWishlistLoaded) {
+            if (state.wishlistModel.data!.isEmpty) {
+              return const Center(
+                child: SubHeading2(
+                  'Nothing in wishlist',
+                ),
+              );
+            }
             return GridView.builder(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
@@ -36,7 +43,7 @@ class _WishlistState extends State<Wishlist> {
               ),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.55,
+                childAspectRatio: 0.55, 
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
               ),
@@ -44,6 +51,21 @@ class _WishlistState extends State<Wishlist> {
               itemBuilder: (BuildContext context, int index) {
                 Datum? datum = state.wishlistModel.data?[index];
                 return ProductCard(
+                  isWishlisted: state.wishlistModel.data?[index].isWishlisted,
+                  onLike: () {
+                    BlocProvider.of<FetchWishlistCubit>(context)
+                        .addProductToWishlist(
+                      state.wishlistModel.data![index].id!,
+                    );
+                  },
+                  onDislike: () {
+                    BlocProvider.of<FetchWishlistCubit>(context)
+                        .removeProductFromWishlist(
+                      state.wishlistModel.data![index].id!,
+                    );
+                    // BlocProvider.of<FetchWishlistCubit>(context)
+                    //     .fetchWishlist();
+                  },
                   productName: datum?.product?.name,
                   productImage: datum?.product?.thumbnailImage,
                   productId: datum?.id,

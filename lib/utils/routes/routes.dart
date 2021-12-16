@@ -101,7 +101,9 @@ class Routes {
         );
       case orderDetail:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const OrderDetail(),
+          builder: (_) => OrderDetail(
+            orderId: settings.arguments as int,
+          ),
         );
       case pointEarned:
         return MaterialPageRoute<dynamic>(

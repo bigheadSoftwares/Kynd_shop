@@ -33,6 +33,17 @@ class CombosModel {
         'success': success,
         'status': status,
       };
+  CombosModel copyWith({
+    List<Datum>? data,
+    bool? success,
+    int? status,
+  }) {
+    return CombosModel(
+      data: data ?? this.data,
+      success: success ?? this.success,
+      status: status ?? this.status,
+    );
+  }
 }
 
 class Datum {
@@ -52,6 +63,7 @@ class Datum {
     this.slug,
     this.isAddedToCart,
     this.cartQuantity,
+    this.isWishlisted,
   });
 
   final int? id;
@@ -69,26 +81,29 @@ class Datum {
   final String? slug;
   final bool? isAddedToCart;
   final int? cartQuantity;
+  final int? isWishlisted;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      photos: List<Map<String, String>>.from(json['photos'].map(
-        (x) => Map.from(x as Map<dynamic, dynamic>)
-            .map((k, v) => MapEntry<String, String>(k as String, v as String)),
-      ) as Iterable<dynamic>),
-      thumbnailImage: json['thumbnail_img'] as String,
-      basePrice: json['base_price'] as int,
-      baseDiscountedPrice: json['base_discounted_price'] as int,
-      whatsNew: json['whats_new'] as int,
-      unit: json['unit'] as String,
-      discount: json['discount'] as int,
-      discountType: json['discount_type'] as String,
-      rating: json['rating'] as int,
-      sales: json['sales'] as int,
-      slug: json['slug'] as String,
-      isAddedToCart: json['is_added_to_cart'] as int == 0 ? false : true,
-      cartQuantity: json['cart_quantity'] as int);
+        id: json['id'] as int,
+        name: json['name'] as String,
+        photos: List<Map<String, String>>.from(json['photos'].map(
+          (x) => Map.from(x as Map<dynamic, dynamic>).map(
+              (k, v) => MapEntry<String, String>(k as String, v as String)),
+        ) as Iterable<dynamic>),
+        thumbnailImage: json['thumbnail_img'] as String,
+        basePrice: json['base_price'] as int,
+        baseDiscountedPrice: json['base_discounted_price'] as int,
+        whatsNew: json['whats_new'] as int,
+        unit: json['unit'] as String,
+        discount: json['discount'] as int,
+        discountType: json['discount_type'] as String,
+        rating: json['rating'] as int,
+        sales: json['sales'] as int,
+        slug: json['slug'] as String,
+        isAddedToCart: json['is_added_to_cart'] as int == 0 ? false : true,
+        cartQuantity: json['cart_quantity'] as int,
+        isWishlisted: json['is_wishlisted'] as int,
+      );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
@@ -109,5 +124,44 @@ class Datum {
         'rating': rating,
         'sales': sales,
         'slug': slug,
+        'isWishlisted': isWishlisted
       };
+
+  Datum copyWith({
+    int? id,
+    String? name,
+    List<Map<String, String>>? photos,
+    String? thumbnailImage,
+    int? basePrice,
+    int? baseDiscountedPrice,
+    int? whatsNew,
+    String? unit,
+    int? discount,
+    String? discountType,
+    int? rating,
+    int? sales,
+    String? slug,
+    bool? isAddedToCart,
+    int? cartQuantity,
+    int? isWishlisted,
+  }) {
+    return Datum(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      photos: photos ?? this.photos,
+      thumbnailImage: thumbnailImage ?? this.thumbnailImage,
+      basePrice: basePrice ?? this.basePrice,
+      baseDiscountedPrice: baseDiscountedPrice ?? this.baseDiscountedPrice,
+      whatsNew: whatsNew ?? this.whatsNew,
+      unit: unit ?? this.unit,
+      discount: discount ?? this.discount,
+      discountType: discountType ?? this.discountType,
+      rating: rating ?? this.rating,
+      sales: sales ?? this.sales,
+      slug: slug ?? this.slug,
+      isAddedToCart: isAddedToCart ?? this.isAddedToCart,
+      cartQuantity: cartQuantity ?? this.cartQuantity,
+      isWishlisted: isWishlisted ?? this.isWishlisted,
+    );
+  }
 }

@@ -14,6 +14,14 @@ class SubCategoryProductsLoaded extends SubCategoryProductsState {
   const SubCategoryProductsLoaded(this.subCategoryProductsModel);
   @override
   List<Object> get props => <Object>[subCategoryProductsModel];
+
+  SubCategoryProductsLoaded copyWith({
+    SubCategoryProductsModel? subCategoryProductsModel,
+  }) {
+    return SubCategoryProductsLoaded(
+      subCategoryProductsModel ?? this.subCategoryProductsModel,
+    );
+  }
 }
 
 class SubCategoryProductsFailure extends SubCategoryProductsState {

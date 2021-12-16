@@ -17,6 +17,14 @@ class BestsellersLoaded extends BestsellersState {
 
   @override
   List<Object> get props => <Object>[bestSellersModel];
+
+  BestsellersLoaded copyWith({
+    BestSellersModel? bestSellersModel,
+  }) {
+    return BestsellersLoaded(
+      bestSellersModel ?? this.bestSellersModel,
+    );
+  }
 }
 
 class BestsellersFailure extends BestsellersState {

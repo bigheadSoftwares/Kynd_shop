@@ -1,77 +1,93 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'links.dart';
+import 'shipping_address.dart';
+import 'user.dart';
+
 part 'datum.g.dart';
 
 @JsonSerializable()
 class Datum extends Equatable {
   const Datum({
-    this.productId,
-    this.productName,
-    this.variation,
-    this.price,
-    this.tax,
-    this.shippingCost,
-    this.couponDiscount,
-    this.quantity,
+    this.code,
+    this.id,
+    this.user,
+    this.shippingAddress,
+    this.paymentType,
     this.paymentStatus,
-    this.paymentStatusString,
+    this.grandTotal,
+    this.couponDiscount,
+    this.shippingCost,
+    this.subtotal,
+    this.tax,
+    this.date,
     this.deliveryStatus,
     this.deliveryStatusString,
+    this.links,
   });
 
-  @JsonKey(name: 'product_id')
-  final int? productId;
-  @JsonKey(name: 'product_name')
-  final String? productName;
-  final dynamic variation;
-  final String? price;
-  final String? tax;
-  @JsonKey(name: 'shipping_cost')
-  final String? shippingCost;
-  @JsonKey(name: 'coupon_discount')
-  final String? couponDiscount;
-  final int? quantity;
+  final String? code;
+  final int? id;
+  final User? user;
+  @JsonKey(name: 'shipping_address')
+  final ShippingAddress? shippingAddress;
+  @JsonKey(name: 'payment_type')
+  final String? paymentType;
   @JsonKey(name: 'payment_status')
   final String? paymentStatus;
-  @JsonKey(name: 'payment_status_string')
-  final String? paymentStatusString;
+  @JsonKey(name: 'grand_total')
+  final int? grandTotal;
+  @JsonKey(name: 'coupon_discount')
+  final int? couponDiscount;
+  @JsonKey(name: 'shipping_cost')
+  final int? shippingCost;
+  final int? subtotal;
+  final int? tax;
+  final String? date;
   @JsonKey(name: 'delivery_status')
   final String? deliveryStatus;
   @JsonKey(name: 'delivery_status_string')
   final String? deliveryStatusString;
+  final Links? links;
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
 
   Map<String, dynamic> toJson() => _$DatumToJson(this);
 
   Datum copyWith({
-    int? productId,
-    String? productName,
-    dynamic variation,
-    String? price,
-    String? tax,
-    String? shippingCost,
-    String? couponDiscount,
-    int? quantity,
+    String? code,
+    int? id,
+    User? user,
+    ShippingAddress? shippingAddress,
+    String? paymentType,
     String? paymentStatus,
-    String? paymentStatusString,
+    int? grandTotal,
+    int? couponDiscount,
+    int? shippingCost,
+    int? subtotal,
+    int? tax,
+    String? date,
     String? deliveryStatus,
     String? deliveryStatusString,
+    Links? links,
   }) {
     return Datum(
-      productId: productId ?? this.productId,
-      productName: productName ?? this.productName,
-      variation: variation ?? this.variation,
-      price: price ?? this.price,
-      tax: tax ?? this.tax,
-      shippingCost: shippingCost ?? this.shippingCost,
-      couponDiscount: couponDiscount ?? this.couponDiscount,
-      quantity: quantity ?? this.quantity,
+      code: code ?? this.code,
+      id: id ?? this.id,
+      user: user ?? this.user,
+      shippingAddress: shippingAddress ?? this.shippingAddress,
+      paymentType: paymentType ?? this.paymentType,
       paymentStatus: paymentStatus ?? this.paymentStatus,
-      paymentStatusString: paymentStatusString ?? this.paymentStatusString,
+      grandTotal: grandTotal ?? this.grandTotal,
+      couponDiscount: couponDiscount ?? this.couponDiscount,
+      shippingCost: shippingCost ?? this.shippingCost,
+      subtotal: subtotal ?? this.subtotal,
+      tax: tax ?? this.tax,
+      date: date ?? this.date,
       deliveryStatus: deliveryStatus ?? this.deliveryStatus,
       deliveryStatusString: deliveryStatusString ?? this.deliveryStatusString,
+      links: links ?? this.links,
     );
   }
 
@@ -81,18 +97,21 @@ class Datum extends Equatable {
   @override
   List<Object?> get props {
     return [
-      productId,
-      productName,
-      variation,
-      price,
-      tax,
-      shippingCost,
-      couponDiscount,
-      quantity,
+      code,
+      id,
+      user,
+      shippingAddress,
+      paymentType,
       paymentStatus,
-      paymentStatusString,
+      grandTotal,
+      couponDiscount,
+      shippingCost,
+      subtotal,
+      tax,
+      date,
       deliveryStatus,
       deliveryStatusString,
+      links,
     ];
   }
 }

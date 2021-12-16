@@ -1,7 +1,22 @@
 part of 'my_orders.dart';
 
-class OrderDetail extends StatelessWidget {
-  const OrderDetail({Key? key}) : super(key: key);
+class OrderDetail extends StatefulWidget {
+  const OrderDetail({
+    Key? key,
+    required this.orderId,
+  }) : super(key: key);
+  final int orderId;
+
+  @override
+  State<OrderDetail> createState() => _OrderDetailState();
+}
+
+class _OrderDetailState extends State<OrderDetail> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<OrderDetailCubit>(context).getOrderDetail(widget.orderId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,89 +26,22 @@ class OrderDetail extends StatelessWidget {
         context,
         title: 'Order Details',
       ),
-      body: Column(
-        children: <Widget>[
-          sizedBoxHeight(16),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: _OrderDetailAddressTile(
-              name: 'Beer Shop',
-              address: 'Shop No. 5, Vaishali Main Road, Rohini, New Delhi',
-              asset: Assets.redLocationPin,
-            ),
-          ),
-          sizedBoxHeight(16),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: _OrderDetailAddressTile(
-              name: 'Home',
-              address: 'House No -62/2, Vaishali Main Road, Rohini, New Delhi',
-              asset: Assets.greenLocationPin,
-            ),
-          ),
-          sizedBoxHeight(16),
-          Container(
-            height: 40,
-            width: screenWidth(context),
-            color: Colour.offWhite,
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.symmetric(horizontal: 22),
-            child: const SubHeading2(
-              'Bill Details',
-              size: 14,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          sizedBoxHeight(16),
-          ListView.separated(
-            itemCount: 3,
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            separatorBuilder: (BuildContext context, int index) =>
-                sizedBoxHeight(10),
-            itemBuilder: (BuildContext context, int index) {
-              return _BillDetailItem(
-                item: 'Kingfisher beer chilled x ${index + 1}',
-                amount: '₹${400 * (index + 1)}',
-              );
-            },
-          ),
-          const Divider(
-            height: 32,
-            indent: 22,
-            endIndent: 22,
-          ),
-          const _BillDetailItem(
-            item: 'Order Price',
-            amount: '₹2400',
-          ),
-          sizedBoxHeight(10),
-          const _BillDetailItem(
-            item: 'Discount',
-            amount: '- ₹100',
-            amountColor: Colour.subtitleColor,
-          ),
-          sizedBoxHeight(10),
-          const _BillDetailItem(
-            item: 'Taxes and Charges',
-            amount: '₹100',
-          ),
-          sizedBoxHeight(10),
-          const _BillDetailItem(
-            item: 'Delivery Fee',
-            amount: '₹100',
-          ),
-          sizedBoxHeight(10),
-          const _BillDetailItem(
-            item: 'Total',
-            itemColor: Colour.greenishBlue,
-            itemTextSize: 20,
-            itemTextWeight: FontWeight.w500,
-            amount: '₹2500',
-            amountTextSize: 20,
-            amountColor: Colour.greenishBlue,
-          ),
-        ],
+      body: BlocBuilder<OrderDetailCubit, OrderDetailState>(
+        builder: (BuildContext context, OrderDetailState state) {
+          if (state is OrderDetailInitial) {
+            return const LoadingIndicator();
+          } else if (state is OrderDetailLoaded) {
+            return _OrderDetailColumn(
+              state: state,
+            );
+          } else {
+            return Center(
+              child: SubHeading2(
+                (state as OrderDetailFailure).failure.message,
+              ),
+            );
+          }
+        },
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(
@@ -127,6 +75,113 @@ class OrderDetail extends StatelessWidget {
       ),
     );
   }
+}
+
+class _OrderDetailColumn extends StatelessWidget {
+  const _OrderDetailColumn({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
+  final OrderDetailLoaded state;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        // sizedBoxHeight(16),
+        // const Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: 12),
+        //   child: _OrderDetailAddressTile(
+        //     name: 'Kynd Shop',
+        //     address: '',
+        //     asset: Assets.redLocationPin,
+        //   ),
+        // ),
+        sizedBoxHeight(16),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: _OrderDetailAddressTile(
+            name: 'Home',
+            address: jsonDecode(
+                state.orderDetailModel.data?[0].shippingAddress ??
+                    '')['address'] as String,
+            asset: Assets.greenLocationPin,
+          ),
+        ),
+        sizedBoxHeight(16),
+        Container(
+          height: 40,
+          width: screenWidth(context),
+          color: Colour.offWhite,
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.symmetric(horizontal: 22),
+          child: const SubHeading2(
+            'Bill Details',
+            size: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        sizedBoxHeight(16),
+        ListView.separated(
+          itemCount: state.orderDetailModel.data?.length ?? 0,
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          separatorBuilder: (BuildContext context, int index) =>
+              sizedBoxHeight(10),
+          itemBuilder: (BuildContext context, int index) {
+            return _BillDetailItem(
+              item:
+                  '${state.orderDetailModel.data?[index].productName} x ${state.orderDetailModel.data?[index].quantity}',
+              amount: '${state.orderDetailModel.data?[index].price}',
+            );
+          },
+        ),
+        const Divider(
+          height: 32,
+          indent: 22,
+          endIndent: 22,
+        ),
+        const _BillDetailItem(
+          item: 'Order Price',
+          amount: '₹2400',
+        ),
+        sizedBoxHeight(10),
+        const _BillDetailItem(
+          item: 'Discount',
+          amount: '- ₹100',
+          amountColor: Colour.subtitleColor,
+        ),
+        sizedBoxHeight(10),
+        const _BillDetailItem(
+          item: 'Taxes and Charges',
+          amount: '₹100',
+        ),
+        sizedBoxHeight(10),
+        const _BillDetailItem(
+          item: 'Delivery Fee',
+          amount: '₹100',
+        ),
+        sizedBoxHeight(10),
+        const _BillDetailItem(
+          item: 'Total',
+          itemColor: Colour.greenishBlue,
+          itemTextSize: 20,
+          itemTextWeight: FontWeight.w500,
+          amount: 'Rs. NA',
+          amountTextSize: 20,
+          amountColor: Colour.greenishBlue,
+        ),
+      ],
+    );
+  }
+
+  // double calculateTotal(List<Datum> datum) {
+  //   double sum = 0;
+  //   for (var data in datum) {
+  //     sum += (double.tryParse(data.price ?? '0') ?? 0);
+  //   }
+  //   return sum;
+  // }
 }
 
 class _BillDetailItem extends StatelessWidget {

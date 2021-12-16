@@ -1,8 +1,8 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+
 import '../../view/product_detail/product_detail.dart';
 import '../constants/constants.dart';
-
 import '../export_utilities.dart';
 import 'add_to_cart_widget.dart';
 import 'custom_image_widget.dart';
@@ -14,11 +14,14 @@ class ProductCard extends StatelessWidget {
     this.productName,
     this.productImage,
     this.basePrice,
-    this.baseDiscountedPrice,
     this.productId,
+    this.baseDiscountedPrice,
     this.isAddedToCart,
     this.cartQuantity,
+    this.isWishlisted = 0,
     this.onAddToCart,
+    this.onLike,
+    this.onDislike,
   }) : super(key: key);
   final String? productName;
   final String? productImage;
@@ -27,7 +30,10 @@ class ProductCard extends StatelessWidget {
   final int? baseDiscountedPrice;
   final bool? isAddedToCart;
   final int? cartQuantity;
+  final int? isWishlisted;
   final VoidCallback? onAddToCart;
+  final VoidCallback? onLike;
+  final VoidCallback? onDislike;
 
   @override
   Widget build(BuildContext context) {
@@ -94,14 +100,23 @@ class ProductCard extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite_border_outlined,
-                  color: Colour.lightGrey,
-                  size: 26,
-                ),
-              ),
+              child: isWishlisted == 1
+                  ? IconButton(
+                      onPressed: onDislike,
+                      icon: const Icon(
+                        Icons.favorite,
+                        color: Colour.red,
+                        size: 26,
+                      ),
+                    )
+                  : IconButton(
+                      onPressed: onLike,
+                      icon: const Icon(
+                        Icons.favorite_outline_rounded,
+                        color: Colour.lightGrey,
+                        size: 26,
+                      ),
+                    ),
             ),
             Positioned(
               top: 5,
