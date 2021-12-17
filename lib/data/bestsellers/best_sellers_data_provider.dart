@@ -5,7 +5,8 @@ class BestSellersDataProvider {
     final Response response = await get(
       Uri.parse('${Constants.host}products/best-seller/${Constants.userId}'),
       headers: <String, String>{
-        HttpHeaders.authorizationHeader: Constants.authenticationModel!.success.token
+        HttpHeaders.authorizationHeader:
+            Constants.authenticationModel!.success.token
       },
     );
     if (response.statusCode == 200) {

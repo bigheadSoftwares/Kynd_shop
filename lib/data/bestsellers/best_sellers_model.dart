@@ -149,22 +149,21 @@ class Datum {
     int? isWishlisted,
   }) {
     return Datum(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      photos: photos ?? this.photos,
-      thumbnailImage: thumbnailImage ?? this.thumbnailImage,
-      basePrice: basePrice ?? this.basePrice,
-      baseDiscountedPrice: baseDiscountedPrice ?? this.baseDiscountedPrice,
-      whatsNew: whatsNew ?? this.whatsNew,
-      unit: unit ?? this.unit,
-      discount: discount ?? this.discount,
-      discountType: discountType ?? this.discountType,
-      rating: rating ?? this.rating,
-      sales: sales ?? this.sales,
-      slug: slug ?? this.slug,
-      isAddedToCart: isAddedToCart ?? this.isAddedToCart,
-      cartQuantity: cartQuantity ?? this.cartQuantity,
-      isWishlisted: isWishlisted ?? this.isWishlisted
-    );
+        id: id ?? this.id,
+        name: name ?? this.name,
+        photos: photos ?? this.photos,
+        thumbnailImage: thumbnailImage ?? this.thumbnailImage,
+        basePrice: basePrice ?? this.basePrice,
+        baseDiscountedPrice: baseDiscountedPrice ?? this.baseDiscountedPrice,
+        whatsNew: whatsNew ?? this.whatsNew,
+        unit: unit ?? this.unit,
+        discount: discount ?? this.discount,
+        discountType: discountType ?? this.discountType,
+        rating: rating ?? this.rating,
+        sales: sales ?? this.sales,
+        slug: slug ?? this.slug,
+        isAddedToCart: isAddedToCart ?? this.isAddedToCart,
+        cartQuantity: cartQuantity ?? this.cartQuantity,
+        isWishlisted: isWishlisted ?? this.isWishlisted);
   }
 }

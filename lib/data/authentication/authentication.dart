@@ -15,14 +15,12 @@ class Authentication {
       'phone': phoneNo,
     });
 
-
     final Uri url = Uri.parse('${Constants.host}auth/login');
     final http.Response response = await http.post(
       url,
       body: body,
       headers: <String, String>{
         'Content-Type': 'application/json',
-
       },
     );
     return response;
@@ -42,8 +40,9 @@ class Authentication {
     return response;
   }
 
-  Future<http.Response> _register({required String phoneNo,required String name,String? referral}) async {
-     final String body = jsonEncode(<String, String>{
+  Future<http.Response> _register(
+      {required String phoneNo, required String name, String? referral}) async {
+    final String body = jsonEncode(<String, String>{
       'phone': phoneNo,
       'name': name,
       'referral_code': referral ?? '',
@@ -55,9 +54,8 @@ class Authentication {
       body: body,
       headers: <String, String>{
         'Content-Type': 'application/json',
-
       },
     );
-    return response; 
+    return response;
   }
 }

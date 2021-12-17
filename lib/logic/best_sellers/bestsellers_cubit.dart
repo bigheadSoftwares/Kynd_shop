@@ -39,10 +39,10 @@ class BestsellersCubit extends Cubit<BestsellersState> {
   }
 
   void removeProductFromWishlist(int productId) {
-    updateModel(productId, false);//removing product from the model locally
+    updateModel(productId, false); //removing product from the model locally
     WishlistDataProvider.removeWishlist(productId).then((bool value) {
       if (!value) {
-        updateModel(productId, true);//wishlist again on server failure
+        updateModel(productId, true); //wishlist again on server failure
       }
     });
   }

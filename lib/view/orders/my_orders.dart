@@ -55,7 +55,9 @@ class _MyOrdersState extends State<MyOrders> {
               },
             );
           } else {
-            return SubHeading2((state as OrderListFailure).failure.message);
+            return Center(
+                child:
+                    SubHeading2((state as OrderListFailure).failure.message));
           }
         },
       ),

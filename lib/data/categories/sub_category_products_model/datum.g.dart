@@ -65,12 +65,13 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       baseDiscountedPrice: json['base_discounted_price'] as int?,
       basePrice: json['base_price'] as int?,
       isUserLogin: json['is_user_login'] as int?,
-      // customerId: json['customer_id'] as String?,
+      customerId: json['customer_id'] as String?,
       isAddedToCart: json['is_added_to_cart'] as int?,
       cartQuantity: json['cart_quantity'] as int?,
       taxes: (json['taxes'] as List<dynamic>?)
           ?.map((e) => Tax.fromJson(e as Map<String, dynamic>))
           .toList(),
+      isWishlisted: json['isWishlisted'] as int?,
     );
 
 Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
@@ -135,5 +136,6 @@ Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
       'customer_id': instance.customerId,
       'is_added_to_cart': instance.isAddedToCart,
       'cart_quantity': instance.cartQuantity,
+      'isWishlisted': instance.isWishlisted,
       'taxes': instance.taxes,
     };

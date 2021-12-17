@@ -44,8 +44,7 @@ class WishlistDataProvider {
     final Response response = await get(
       Uri.parse('${Constants.host}wishlists/1'), //TODO: make userId dynamic
       headers: <String, String>{
-        'Authorization':
-            Constants.authenticationModel!.success.token,
+        'Authorization': Constants.authenticationModel!.success.token,
         'Content-Type': 'application/json'
       },
     );

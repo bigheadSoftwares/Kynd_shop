@@ -43,7 +43,7 @@ class _WishlistState extends State<Wishlist> {
               ),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.55, 
+                childAspectRatio: 0.55,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
               ),
@@ -76,7 +76,9 @@ class _WishlistState extends State<Wishlist> {
               },
             );
           } else {
-            return SubHeading2((state as FetchWishlistFailure).failure.message);
+            return Center(
+                child: SubHeading2(
+                    (state as FetchWishlistFailure).failure.message));
           }
         },
       ),

@@ -10,8 +10,10 @@ class CartDataProvider {
   }) async {
     final Response rawData = await post(
       Uri.parse('${Constants.host}carts/add'),
-      body: jsonEncode(
-          <String, dynamic>{'id': productId, 'user_id': Constants.authenticationModel!.success.customerId}),
+      body: jsonEncode(<String, dynamic>{
+        'id': productId,
+        'user_id': Constants.authenticationModel!.success.customerId
+      }),
       headers: <String, String>{
         'Authorization': Constants.authenticationModel!.success.token,
         'Content-Type': 'application/json'
@@ -27,7 +29,8 @@ class CartDataProvider {
 
   static Future<Response> getCartDetails() async {
     final Response response = await get(
-      Uri.parse('${Constants.host}carts/${Constants.authenticationModel!.success.customerId}'),
+      Uri.parse(
+          '${Constants.host}carts/${Constants.authenticationModel!.success.customerId}'),
       headers: <String, String>{
         'Authorization': Constants.authenticationModel!.success.token,
         'Content-Type': 'application/json'
@@ -44,7 +47,8 @@ class CartDataProvider {
   static Future<Response> getCartSummary() async {
     print('This is ${Constants.userId} and this is token');
     final Response response = await get(
-      Uri.parse('${Constants.host}cart-summary/${Constants.authenticationModel!.success.customerId}'),
+      Uri.parse(
+          '${Constants.host}cart-summary/${Constants.authenticationModel!.success.customerId}'),
       headers: <String, String>{
         'Authorization': Constants.authenticationModel!.success.token,
         'Content-Type': 'application/json'

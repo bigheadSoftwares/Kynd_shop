@@ -9,7 +9,7 @@ part 'cart_summary_state.dart';
 class CartSummaryCubit extends Cubit<CartSummaryState> {
   CartSummaryCubit() : super(CartSummaryInitial());
 
-    void getCartSummary() {
+  void getCartSummary() {
     CartRepository.getCartSummary().then(
       (CartSummaryModel cartSummaryModel) => emit(
         CartSummaryLoaded(cartSummaryModel),

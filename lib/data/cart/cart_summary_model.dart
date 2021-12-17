@@ -23,7 +23,8 @@ class CartSummaryModel extends Equatable {
     this.couponApplied,
   });
 
-  factory CartSummaryModel.fromMap(Map<String, dynamic> data) => CartSummaryModel(
+  factory CartSummaryModel.fromMap(Map<String, dynamic> data) =>
+      CartSummaryModel(
         subTotal: data['sub_total'] as String?,
         tax: data['tax'] as String?,
         shippingCost: data['shipping_cost'] as String?,
