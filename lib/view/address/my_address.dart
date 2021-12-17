@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/models/add_address_model.dart';
+import '../../logic/address/create_address_cubit.dart';
+import '../../utils/functions/snackbar.dart';
 import '../../logic/address/address_cubit.dart';
 import '../../logic/location/location_cubit.dart';
 import '../../utils/export_utilities.dart';
@@ -45,7 +48,10 @@ class _MyAddressState extends State<MyAddress> {
               backgroundColor: Colour.greyishBlue,
               padding: const EdgeInsets.symmetric(vertical: 15),
               onTap: () {
-                pushNamed(context, Routes.addAddress);
+                pushNamed(context, Routes.addAddress).then(
+                  (value) =>
+                      BlocProvider.of<AddressCubit>(context).getMyAddresses(),
+                );
               },
               child: const SubHeading1(
                 'ADD ADDRESS',
@@ -70,7 +76,11 @@ class _Addresses extends StatelessWidget {
     return BlocBuilder<AddressCubit, AddressState>(
       builder: (BuildContext context, AddressState state) {
         if (state is AddressInitial) {
-          return const LoadingIndicator();
+          return ShimmerBox(
+            height: 250,
+            width: screenWidth(context) * 0.8,
+            itemCount: 3,
+          );
         } else if (state is AddressLoaded) {
           return ListView.separated(
             padding: const EdgeInsets.symmetric(

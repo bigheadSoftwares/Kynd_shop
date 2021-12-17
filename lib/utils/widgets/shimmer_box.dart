@@ -9,11 +9,12 @@ class ShimmerBox extends StatelessWidget {
     Key? key,
     this.height,
     this.width,
-    this.itemCount,
+    this.itemCount, this.axis,
   }) : super(key: key);
   final double? height;
   final double? width;
   final int? itemCount;
+  final Axis? axis;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,8 @@ class ShimmerBox extends StatelessWidget {
       child: ListView.builder(
         padding: const EdgeInsets.only(left: 12, right: 12),
         itemCount: itemCount ?? 8,
-        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        scrollDirection: axis ?? Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
