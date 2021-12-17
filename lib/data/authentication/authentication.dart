@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:easy_coding/handle_error.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import '../../utils/export_utilities.dart';
 
 part 'authentication_repository.dart';
@@ -15,14 +16,12 @@ class Authentication {
       'phone': phoneNo,
     });
 
-
     final Uri url = Uri.parse('${Constants.host}auth/login');
     final http.Response response = await http.post(
       url,
       body: body,
       headers: <String, String>{
         'Content-Type': 'application/json',
-
       },
     );
     return response;
@@ -42,10 +41,16 @@ class Authentication {
     return response;
   }
 
-  Future<http.Response> _register({required String phoneNo,required String name,String? referral}) async {
-     final String body = jsonEncode(<String, String>{
+  Future<http.Response> _register({
+    required String phoneNo,
+    required String name,
+    required DateTime dob,
+    String? referral,
+  }) async {
+    final String body = jsonEncode(<String, String>{
       'phone': phoneNo,
       'name': name,
+      'dob': DateFormat('dd-mm-yyyy').format(dob),
       'referral_code': referral ?? '',
     });
 
@@ -55,9 +60,8 @@ class Authentication {
       body: body,
       headers: <String, String>{
         'Content-Type': 'application/json',
-
       },
     );
-    return response; 
+    return response;
   }
 }

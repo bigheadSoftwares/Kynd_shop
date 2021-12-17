@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:easy_coding/handle_error.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/export_utilities.dart';
@@ -21,6 +22,17 @@ class UserRepository extends User {
     } catch (e) {
       throw const Failure(
         message: 'Something went wrong with user model data parsing',
+      );
+    }
+  }
+
+  Future<void> updateUserInfo(UserModel user) async {
+    http.Response response = await _updateUser(user: user);
+
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      throw handleError(
+        response,
+        serverMessage: jsonDecode(response.body)['message'] as String,
       );
     }
   }

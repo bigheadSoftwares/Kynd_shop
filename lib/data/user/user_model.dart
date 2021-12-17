@@ -11,6 +11,7 @@ class UserModel {
     this.referredBy,
     this.providerId,
     required this.userType,
+    this.dob,
     required this.name,
     this.email,
     this.emailVerifiedAt,
@@ -29,6 +30,7 @@ class UserModel {
   });
 
   int id;
+  String? dob;
   String? referredBy;
   int? providerId;
   String userType;
@@ -50,6 +52,7 @@ class UserModel {
 
   UserModel copyWith({
     int? id,
+    String? dob,
     String? referredBy,
     int? providerId,
     String? userType,
@@ -71,6 +74,7 @@ class UserModel {
   }) =>
       UserModel(
         id: id ?? this.id,
+        dob: dob ?? this.dob,
         referredBy: referredBy ?? this.referredBy,
         providerId: providerId ?? this.providerId,
         userType: userType ?? this.userType,
@@ -93,6 +97,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json['id'] == null ? 1 : json['id'] as int,
+        dob: json['dob'] == null ? null : json['dob'] as String,
         referredBy:
             json['referred_by'] == null ? null : json['referred_by'] as String,
         providerId:
@@ -124,24 +129,9 @@ class UserModel {
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'referred_by': referredBy,
-        'provider_id': providerId,
-        'user_type': userType,
+        'user_id': id,
+        'dob': dob,
         'name': name,
         'email': email,
-        'email_verified_at': emailVerifiedAt,
-        'avatar': avatar,
-        'avatar_original': avatarOriginal,
-        'address': address,
-        'country': country,
-        'city': city,
-        'postal_code': postalCode,
-        'phone': phone,
-        'balance': balance,
-        'banned': banned,
-        'referral_code': referralCode,
-        'remaining_uploads': remainingUploads,
-        'charity': charity,
       };
 }
