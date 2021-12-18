@@ -7,12 +7,16 @@ class _IconAndText extends StatelessWidget {
     required this.text,
     this.fontSize,
     this.iconScale,
+    this.iconColor,
+    this.textColor,
   }) : super(key: key);
 
   final String iconAsset;
   final double? iconScale;
   final String text;
   final double? fontSize;
+  final Color? iconColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +27,14 @@ class _IconAndText extends StatelessWidget {
           CustomImageWidget(
             image: iconAsset,
             scale: iconScale ?? 1.5,
+            color: iconColor,
+            
           ),
           sizedBoxWidth(8),
           SubHeading2(
             text,
             size: fontSize ?? 12,
-            color: Colour.subtitleColor,
+            color: textColor ?? Colour.subtitleColor,
           )
         ],
       ),

@@ -4,9 +4,11 @@ class _DiscussionCard extends StatelessWidget {
   const _DiscussionCard({
     Key? key,
     this.showComments = true,
+    required this.blog,
   }) : super(key: key);
 
   final bool showComments;
+  final Datum blog;
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +26,23 @@ class _DiscussionCard extends StatelessWidget {
                   child: CustomListTile(
                     leading: Image.asset(
                       Assets.follower,
-                      scale: 1.8,
+                      height: 50,
+                      width: 50,
+                      fit: BoxFit.cover,
                     ),
-                    title: const SubHeading1('Rohit Prajapati'),
-                    subtitle: const SubHeading2(
-                      '19/11/2021',
+                    title: SubHeading1(blog.title ?? ''),
+                    subtitle: SubHeading2(
+                      DateFormat('dd/MM/yyyy').format(DateTime.now()),
                       size: 14,
                       color: Colour.subtitleColor,
                     ),
                   ),
                 ),
                 const Divider(height: 24),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: SubHeading2(
-                    'Just Writing this caption for testing purpose and nothing else',
+                    blog.description ?? '',
                     size: 15,
                   ),
                 ),
@@ -50,16 +54,18 @@ class _DiscussionCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
                 sizedBoxHeight(12),
-                const _IconAndText(
+                _IconAndText(
                   iconAsset: Assets.likeFill,
-                  text: '2,400',
+                  text: blog.totalLike.toString(),
                 ),
                 const Divider(height: 24),
                 Row(
                   children: <Widget>[
-                    const _IconAndText(
+                    _IconAndText(
                       iconAsset: Assets.like,
+                      iconColor: blog.status == 1 ? Colour.greenishBlue : null,
                       text: 'Like',
+                      textColor: blog.status == 1 ? Colour.greenishBlue : null,
                       fontSize: 14,
                       iconScale: 2,
                     ),
@@ -69,6 +75,7 @@ class _DiscussionCard extends StatelessWidget {
                         onTap: () => pushNamed(
                           context,
                           Routes.discussionDetails,
+                          arguments: blog,
                         ),
                         child: const _IconAndText(
                           iconAsset: Assets.comment,
