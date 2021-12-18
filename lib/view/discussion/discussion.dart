@@ -5,6 +5,7 @@ import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/blog/blog_cubit.dart';
 import '../../logic/image_picking/image_picking_cubit.dart';
 import '../../utils/export_utilities.dart';
 
@@ -14,9 +15,20 @@ part 'discussion_details.dart';
 part 'start_discussion.dart';
 part 'upload_discussion_image.dart';
 
-class Discussion extends StatelessWidget {
+class Discussion extends StatefulWidget {
   const Discussion({Key? key}) : super(key: key);
 
+  @override
+  State<Discussion> createState() => _DiscussionState();
+}
+
+class _DiscussionState extends State<Discussion> {
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<BlogCubit>().getBlogs();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

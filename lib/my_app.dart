@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'logic/blog/blog_cubit.dart';
 import 'utils/export_utilities.dart';
 import 'logic/authentication/authentication_cubit.dart';
 import 'logic/product/product_detail_cubit.dart';
@@ -57,6 +58,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ProductDetailCubit>(
           create: (BuildContext context) => ProductDetailCubit(),
+        ),
+        BlocProvider<BlogCubit>(
+          create: (BuildContext context) => BlogCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
