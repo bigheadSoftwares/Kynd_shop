@@ -69,12 +69,14 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   Future<void> register({
     required String phoneNo,
     required String name,
+    required DateTime dob,
     String? referral,
   }) async {
     _repo
         .register(
       phoneNo: phoneNo,
       name: name,
+      dob: dob,
       referral: referral,
     )
         .then((_) {

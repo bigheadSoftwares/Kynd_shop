@@ -19,4 +19,13 @@ class UserCubit extends Cubit<UserState> {
       },
     );
   }
+
+  Future<void> updateUser(UserModel user) async {
+    _repo.updateUserInfo(user).then((_) => emit(UserUpdatedSuccessfully()),
+        onError: (dynamic error, StackTrace trace) {
+      emit(UserFailure(handleError(error)));
+    });
+  }
+
+  void reset() => emit(UserInitial());
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/user/user_repository.dart';
 import '../../logic/user/user_cubit.dart';
 
 import '../../utils/export_utilities.dart';
@@ -21,6 +22,12 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<UserCubit>().reset();
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -43,12 +50,7 @@ class _ProfileState extends State<Profile> {
                   onTap: () {
                     push(
                       context,
-                      EditProfile(
-                        name: state.user.name,
-                        email: state.user.email ?? 'Please update your email',
-                        mobileNo: state.user.phone,
-                        dateOfBirth: '06/06/2021',
-                      ),
+                      EditProfile(user: state.user),
                     );
                   },
                   child: Image.asset(
@@ -70,7 +72,11 @@ class _ProfileState extends State<Profile> {
                         physics: const BouncingScrollPhysics(),
                         children: <Widget>[
                           sizedBoxHeight(screenHeight(context) * 0.1),
-                          const _ProfileDetailCard(),
+                          _ProfileDetailCard(
+                            name: state.user.name,
+                            email: state.user.email ?? '',
+                            phone: state.user.phone,
+                          ),
                           sizedBoxHeight(20),
                           _ProfileListTile(
                             title: 'Name',
@@ -91,9 +97,10 @@ class _ProfileState extends State<Profile> {
                             image: Assets.mobileNumber,
                           ),
                           sizedBoxHeight(20),
-                          const _ProfileListTile(
+                          _ProfileListTile(
                             title: 'Date of Birth',
-                            subtitle: '06/06/1999',
+                            subtitle:
+                                state.user.dob ?? 'Please update your DOB',
                             image: Assets.dob,
                           ),
                         ],

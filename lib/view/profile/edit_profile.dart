@@ -3,16 +3,10 @@ part of 'profile.dart';
 class EditProfile extends StatefulWidget {
   const EditProfile({
     Key? key,
-    required this.name,
-    required this.email,
-    required this.mobileNo,
-    required this.dateOfBirth,
+    required this.user,
   }) : super(key: key);
 
-  final String name;
-  final String email;
-  final String mobileNo;
-  final String dateOfBirth;
+  final UserModel user;
 
   @override
   State<EditProfile> createState() => _EditProfileState();
@@ -28,10 +22,11 @@ class _EditProfileState extends State<EditProfile> {
   @override
   void initState() {
     super.initState();
-    _name.text = widget.name;
-    _email.text = widget.email;
-    _mobileNo.text = widget.mobileNo;
-    _dob.text = widget.dateOfBirth;
+    _name.text = widget.user.name;
+    _email.text = widget.user.email ?? 'Please update your email';
+    _mobileNo.text = widget.user.phone;
+
+    _dob.text = widget.user.dob ?? 'Please update your date of birth';
   }
 
   @override
@@ -83,6 +78,7 @@ class _EditProfileState extends State<EditProfile> {
             sizedBoxHeight(20),
             _EditScreenTextField(
               controller: _mobileNo,
+              readOnly: true,
               label: 'Mobile No',
               validator: (String? value) {
                 if (value == null || value == '') {
@@ -98,7 +94,7 @@ class _EditProfileState extends State<EditProfile> {
               onTap: () async {
                 DateTime? date = await pickDate(context);
                 if (date != null) {
-                  _dob.text = DateFormat('dd/MM/yyyy').format(date);
+                  _dob.text = DateFormat('dd-MM-yyyy').format(date);
                 }
               },
               validator: (String? value) {
@@ -115,19 +111,37 @@ class _EditProfileState extends State<EditProfile> {
           horizontal: 16.0,
           vertical: 16,
         ),
-        child: CustomButton(
-          radius: 25,
-          backgroundColor: Colour.greenishBlue,
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          onTap: () {
-            if (_formKey.currentState!.validate()) {
+        child: BlocListener<UserCubit, UserState>(
+          listener: (BuildContext context, UserState state) {
+            if (state is UserUpdatedSuccessfully) {
+              context.read<UserCubit>().getUser();
               pop(context);
+              showToast('Updated Successfully');
+            } else if (state is UserUpdateFailed) {
+              showToast(state.failure.serverMessage ?? state.failure.message);
             }
           },
-          child: const SubHeading2(
-            'SAVE',
-            color: Colour.white,
-            size: 18,
+          child: CustomButton(
+            radius: 25,
+            backgroundColor: Colour.greenishBlue,
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            onTap: () {
+              if (_formKey.currentState!.validate()) {
+                context.read<UserCubit>().updateUser(
+                      widget.user.copyWith(
+                        name: _name.text,
+                        email: _email.text,
+                        phone: _mobileNo.text,
+                        dob: _dob.text,
+                      ),
+                    );
+              }
+            },
+            child: const SubHeading2(
+              'SAVE',
+              color: Colour.white,
+              size: 18,
+            ),
           ),
         ),
       ),

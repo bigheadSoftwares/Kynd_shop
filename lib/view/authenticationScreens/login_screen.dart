@@ -81,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   onTap: () {
                     //Todo: Use AuthenticationCubit sendOtp function to send OTP for the
-
                     if (_formKey.currentState!.validate()) {
                       pushNamed(
                         context,

@@ -182,6 +182,7 @@ class _RegisterButton extends StatelessWidget {
                 context.read<AuthenticationCubit>().register(
                       name: name.text,
                       phoneNo: mobileNumber.text,
+                      dob: Constants.pickedAge!,
                       referral: referralCode.text,
                     );
               }

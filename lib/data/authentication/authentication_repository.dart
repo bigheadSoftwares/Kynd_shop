@@ -34,11 +34,14 @@ class AuthenticationRepository extends Authentication {
   Future<void> register({
     required String phoneNo,
     required String name,
+    required DateTime dob,
+
     String? referral,
   }) async {
     final http.Response response = await _register(
       phoneNo: phoneNo,
       name: name,
+      dob: dob,
       referral: referral,
     );
     if (response.statusCode < 200 || response.statusCode >= 300) {

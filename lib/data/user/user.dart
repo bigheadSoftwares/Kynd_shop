@@ -19,7 +19,8 @@ class User {
       _url,
       body: userModelToJson(user),
       headers: <String, String>{
-        'Authorization':
+        'Content-Type': 'application/json',
+        HttpHeaders.authorizationHeader:
             'Bearer ${Constants.authenticationModel!.success.token}',
       },
     );

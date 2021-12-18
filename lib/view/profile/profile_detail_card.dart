@@ -3,8 +3,14 @@ part of 'profile.dart';
 class _ProfileDetailCard extends StatelessWidget {
   const _ProfileDetailCard({
     Key? key,
+    required this.name,
+    required this.email,
+    required this.phone,
   }) : super(key: key);
 
+  final String name;
+  final String email;
+  final String phone;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,15 +24,15 @@ class _ProfileDetailCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                const SubHeading1('Rohit Prajapati', size: 20),
+                SubHeading1(name, size: 20),
                 sizedBoxHeight(4),
-                const SubHeading2(
-                  'RohitPrajapati@gmail.com',
+                SubHeading2(
+                  email,
                   color: Colour.subtitleColor,
                 ),
                 sizedBoxHeight(4),
-                const SubHeading2(
-                  '+91 9599923968',
+                  SubHeading2(
+                  phone,
                   color: Colour.subtitleColor,
                 ),
                 sizedBoxHeight(4),
