@@ -76,7 +76,9 @@ class _WishlistState extends State<Wishlist> {
               },
             );
           } else {
-            return SubHeading2((state as FetchWishlistFailure).failure.message);
+            return Center(
+                child: SubHeading2(
+                    (state as FetchWishlistFailure).failure.message));
           }
         },
       ),

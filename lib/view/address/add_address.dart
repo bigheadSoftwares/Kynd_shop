@@ -85,21 +85,55 @@ class _AddAddressState extends State<AddAddress> {
           ),
         ],
       ),
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        child: CustomButton(
-          radius: 25,
-          backgroundColor: Colour.greenishBlue,
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          onTap: () {
-            pushReplacementNamed(context, Routes.home);
-          },
-          child: const SubHeading2(
-            'SAVE',
-            color: Colour.white,
-            size: 18,
-          ),
-        ),
+      bottomNavigationBar: BlocConsumer<CreateAddressCubit, CreateAddressState>(
+        listener: (BuildContext context, CreateAddressState state) {
+          if (state is CreateAddressLoaded) {
+            pop(context);
+          } else if (state is CreateAddressFailure) {
+            showSnackBar(context: context, msg: state.failure.message);
+          }
+        },
+        builder: (BuildContext context, CreateAddressState state) {
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: CustomButton(
+              radius: 25,
+              backgroundColor: Colour.greenishBlue,
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              onTap: () {
+                if (_flat.text.isEmpty ||
+                    _mobile.text.isEmpty ||
+                    _yourLocation.text.isEmpty ||
+                    _name.text.isEmpty ||
+                    _saveAs.text.isEmpty) {
+                  showToast('Please enter all details');
+                } else {
+                  BlocProvider.of<CreateAddressCubit>(context).createAddress(
+                    AddAddressModel(
+                      user_id:
+                          Constants.authenticationModel!.success.customerId,
+                      address: _flat.text,
+                      country: _yourLocation.text,
+                      city: _yourLocation.text,
+                      postal_code: _yourLocation.text,
+                      phone: _mobile.text,
+                      set_default: 1,
+                    ),
+                  );
+                }
+              },
+              child: state is CreateAddressInitial
+                  ? const LoadingIndicator(
+                      height: 40,
+                    )
+                  : const SubHeading2(
+                      'SAVE',
+                      color: Colour.white,
+                      size: 18,
+                    ),
+            ),
+          );
+        },
       ),
     );
   }
