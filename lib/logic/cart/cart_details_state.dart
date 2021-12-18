@@ -14,6 +14,14 @@ class CartDetailsLoaded extends CartDetailsState {
   final CartDetaiilsModel cartDetaiilsModel;
   @override
   List<Object> get props => <Object>[cartDetaiilsModel];
+
+  CartDetailsLoaded copyWith({
+    CartDetaiilsModel? cartDetaiilsModel,
+  }) {
+    return CartDetailsLoaded(
+      cartDetaiilsModel ?? this.cartDetaiilsModel,
+    );
+  }
 }
 
 class CartDetailsFailure extends CartDetailsState {

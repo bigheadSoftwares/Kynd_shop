@@ -39,9 +39,45 @@ class Cart extends StatelessWidget {
                     itemCount: state.cartDetaiilsModel.data!.length,
                     itemBuilder: (BuildContext context, int index) {
                       Datum item = state.cartDetaiilsModel.data![index];
-                      return _CartItemTile(
-                        item: item,
-                      );
+                      return item.quantity == 0
+                          ? const SizedBox.shrink()
+                          : _CartItemTile(
+                              item: item,
+                              onaddInc: () async {
+                                BlocProvider.of<CartDetailsCubit>(context)
+                                    .addProductToCart(
+                                        state
+                                            .cartDetaiilsModel.data![index].id!,
+                                        state.cartDetaiilsModel.data![index]
+                                            .quantity!);
+
+                                context
+                                    .read<CartSummaryCubit>()
+                                    .getCartSummary();
+                              },
+                              onRemoveItem: () async {
+                                BlocProvider.of<CartDetailsCubit>(context)
+                                    .removeCartItem(
+                                        state
+                                            .cartDetaiilsModel.data![index].id!,
+                                        state.cartDetaiilsModel.data![index]
+                                            .quantity!);
+                                context
+                                    .read<CartSummaryCubit>()
+                                    .getCartSummary();
+                              },
+                              onaddDec: () async {
+                                BlocProvider.of<CartDetailsCubit>(context)
+                                    .removeProductFromCart(
+                                        state
+                                            .cartDetaiilsModel.data![index].id!,
+                                        state.cartDetaiilsModel.data![index]
+                                            .quantity!);
+                                context
+                                    .read<CartSummaryCubit>()
+                                    .getCartSummary();
+                              },
+                            );
                     },
                     separatorBuilder: (BuildContext context, int index) {
                       return sizedBoxHeight(15);

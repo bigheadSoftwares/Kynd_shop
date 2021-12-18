@@ -8,7 +8,7 @@ class CartSummaryModel extends Equatable {
   final String? shippingCost;
   final String? discount;
   final String? grandTotal;
-  final int? grandTotalValue;
+  final String? grandTotalValue;
   final String? couponCode;
   final bool? couponApplied;
 
@@ -23,13 +23,14 @@ class CartSummaryModel extends Equatable {
     this.couponApplied,
   });
 
-  factory CartSummaryModel.fromMap(Map<String, dynamic> data) => CartSummaryModel(
+  factory CartSummaryModel.fromMap(Map<String, dynamic> data) =>
+      CartSummaryModel(
         subTotal: data['sub_total'] as String?,
         tax: data['tax'] as String?,
         shippingCost: data['shipping_cost'] as String?,
         discount: data['discount'] as String?,
         grandTotal: data['grand_total'] as String?,
-        grandTotalValue: data['grand_total_value'] as int?,
+        grandTotalValue: data['grand_total_value'].toString(),
         couponCode: data['coupon_code'] as String?,
         couponApplied: data['coupon_applied'] as bool?,
       );
@@ -63,7 +64,7 @@ class CartSummaryModel extends Equatable {
     String? shippingCost,
     String? discount,
     String? grandTotal,
-    int? grandTotalValue,
+    String? grandTotalValue,
     String? couponCode,
     bool? couponApplied,
   }) {

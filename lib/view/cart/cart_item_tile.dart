@@ -4,8 +4,15 @@ class _CartItemTile extends StatelessWidget {
   const _CartItemTile({
     Key? key,
     required this.item,
+    required this.onaddInc,
+    required this.onaddDec,
+    required this.onRemoveItem,
   }) : super(key: key);
   final Datum item;
+  final VoidCallback onaddInc;
+  final VoidCallback onaddDec;
+  final VoidCallback onRemoveItem;
+
   @override
   Widget build(BuildContext context) {
     return CustomListTile(
@@ -28,7 +35,7 @@ class _CartItemTile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           )),
           InkWell(
-            onTap: () {},
+            onTap: onRemoveItem,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: Icon(
@@ -65,8 +72,9 @@ class _CartItemTile extends StatelessWidget {
                 ),
                 child: Row(
                   children: <Widget>[
-                    const InkWell(
-                      child: Padding(
+                    InkWell(
+                      onTap: onaddDec,
+                      child: const Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 6.0, vertical: 0),
                         child: Icon(
@@ -97,8 +105,9 @@ class _CartItemTile extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const InkWell(
-                      child: Padding(
+                    InkWell(
+                      onTap: onaddInc,
+                      child: const Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 6.0, vertical: 0),
                         child: Icon(

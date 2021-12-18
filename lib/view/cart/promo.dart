@@ -4,7 +4,6 @@ class _PromoContainer extends StatefulWidget {
   const _PromoContainer({
     Key? key,
   }) : super(key: key);
-
   @override
   State<_PromoContainer> createState() => _PromoContainerState();
 }
@@ -12,6 +11,7 @@ class _PromoContainer extends StatefulWidget {
 class _PromoContainerState extends State<_PromoContainer> {
   TextEditingController textEditingController = TextEditingController();
   bool isCoupnApplied = false;
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

@@ -6,8 +6,6 @@ import '../../utils/widgets/add_to_cart_widget.dart';
 import '../../logic/product/product_detail_cubit.dart';
 import '../../utils/export_utilities.dart';
 import '../../utils/widgets/cut_mrp.dart';
-import '../../utils/constants/colors.dart';
-import '../../utils/widgets/custom_image_widget.dart';
 part 'product_image.dart';
 part 'details.dart';
 part 'add_to_cart_section.dart';

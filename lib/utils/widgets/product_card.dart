@@ -2,27 +2,27 @@ import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 
 import '../../view/product_detail/product_detail.dart';
-import '../constants/constants.dart';
 import '../export_utilities.dart';
 import 'add_to_cart_widget.dart';
-import 'custom_image_widget.dart';
 import 'cut_mrp.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
-    Key? key,
-    this.productName,
-    this.productImage,
-    this.basePrice,
-    this.productId,
-    this.baseDiscountedPrice,
-    this.isAddedToCart,
-    this.cartQuantity,
-    this.isWishlisted = 0,
-    this.onAddToCart,
-    this.onLike,
-    this.onDislike,
-  }) : super(key: key);
+  const ProductCard(
+      {Key? key,
+      this.productName,
+      this.productImage,
+      this.basePrice,
+      this.productId,
+      this.baseDiscountedPrice,
+      this.isAddedToCart,
+      this.cartQuantity,
+      this.isWishlisted = 0,
+      this.onAddToCart,
+      this.onLike,
+      this.onDislike,
+      this.onDecTap,
+      this.onIncTap})
+      : super(key: key);
   final String? productName;
   final String? productImage;
   final int? basePrice;
@@ -34,9 +34,12 @@ class ProductCard extends StatelessWidget {
   final VoidCallback? onAddToCart;
   final VoidCallback? onLike;
   final VoidCallback? onDislike;
+  final VoidCallback? onIncTap;
+  final VoidCallback? onDecTap;
 
   @override
   Widget build(BuildContext context) {
+    print('THis is cartQuantity $cartQuantity');
     return Material(
       color: Colour.white,
       elevation: 2,
@@ -84,9 +87,11 @@ class ProductCard extends StatelessWidget {
                             '${Constants.rupee} ${baseDiscountedPrice ?? 'NA'}/-',
                             fontWeight: FontWeight.w500,
                           ),
-                          isAddedToCart == true
+                          isAddedToCart == true && cartQuantity != 0
                               ? IncrementDecrementButton(
                                   number: cartQuantity ?? 1,
+                                  onTapInc: onIncTap,
+                                  onTapDec: onDecTap,
                                 )
                               : AddToCartWidget(
                                   onAddToCart: onAddToCart,

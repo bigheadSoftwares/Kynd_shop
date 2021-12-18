@@ -29,7 +29,7 @@ class CategoryDataProvider {
       body: jsonEncode(
         <String, dynamic>{
           'category_id': subCategoryId,
-          'customer_id': 1 //TODO: make customer id dynamic
+          'customer_id': Constants.authenticationModel!.success.customerId
         },
       ),
       headers: <String, String>{

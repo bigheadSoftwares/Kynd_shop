@@ -7,7 +7,7 @@ class WishlistDataProvider {
   static Future<bool> addToWishlist(int productId) async {
     final String body = jsonEncode(<String, dynamic>{
       'product_id': productId,
-      'user_id': 1 //TODO: make it dynamic
+      'user_id': Constants.authenticationModel!.success.customerId
     });
     final Response response = await post(
         Uri.parse('${Constants.host}wishlists-add-product'),
@@ -25,7 +25,7 @@ class WishlistDataProvider {
   static Future<bool> removeWishlist(int productId) async {
     final String body = jsonEncode(<String, dynamic>{
       'product_id': productId,
-      'user_id': 1 //TODO: make it dynamic
+      'user_id': Constants.authenticationModel!.success.customerId
     });
     final Response response = await post(
         Uri.parse('${Constants.host}wishlists-removeproduct'),
@@ -42,10 +42,10 @@ class WishlistDataProvider {
 
   static Future<Response> getWishlist() async {
     final Response response = await get(
-      Uri.parse('${Constants.host}wishlists/1'), //TODO: make userId dynamic
+      Uri.parse(
+          '${Constants.host}wishlists/${Constants.authenticationModel!.success.customerId}'),
       headers: <String, String>{
-        'Authorization':
-            Constants.authenticationModel!.success.token,
+        'Authorization': Constants.authenticationModel!.success.token,
         'Content-Type': 'application/json'
       },
     );

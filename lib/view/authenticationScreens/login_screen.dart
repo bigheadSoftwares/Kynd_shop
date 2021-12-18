@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../logic/authentication/authentication_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/export_utilities.dart';
-import '../../utils/widgets/custom_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

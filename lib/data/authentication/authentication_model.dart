@@ -53,7 +53,7 @@ class Success {
         token: json['token'] as String,
       );
 
-  Map<String, dynamic> toJson() => <String,dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'customer_id': customerId,
         'token': token,
       };

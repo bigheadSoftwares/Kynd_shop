@@ -52,14 +52,14 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  isAddedToCart == true
+                  isAddedToCart == true && cartQuantity != 0
                       ? IncrementDecrementButton(
                           number: cartQuantity!,
                         )
                       : AddToCartWidget(onAddToCart: () {
                           context
                               .read<AddToCartCubit>()
-                              .addToCart(productId ?? 1);
+                              .addToCart(productId ?? 1, 1);
                         }),
                   SubHeading2(
                     '${Constants.rupee} $productPrice/-',
@@ -75,7 +75,7 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
               child: RoundContainer(
                 onTap: () {
-                  pushNamed(context, Routes.cart);
+                  pushReplacementNamed(context, Routes.cart);
                 },
                 hPadding: 10,
                 vPadding: 10,

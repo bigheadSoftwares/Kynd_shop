@@ -5,7 +5,7 @@ class OrderDataProvider {
   static Future<Response> orderList() async {
     final Response response = await get(
       Uri.parse(
-        '${Constants.host}purchase-history/1', //TODO:make the customer id dynamic
+        '${Constants.host}purchase-history/${Constants.authenticationModel!.success.customerId}',
       ),
       headers: Constants.headers,
     );

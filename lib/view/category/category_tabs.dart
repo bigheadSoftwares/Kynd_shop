@@ -159,9 +159,28 @@ class _TabViewState extends State<_TabView> {
                           );
                         },
                         onAddToCart: () async {
-                          context.read<AddToCartCubit>().addToCart(
-                              state.subCategoryProductsModel.data?[index].id ??
-                                  2);
+                          BlocProvider.of<SubCategoryProductsCubit>(context)
+                              .addProductToCart(
+                                  state.subCategoryProductsModel.data![index]
+                                      .id!,
+                                  state.subCategoryProductsModel.data![index]
+                                      .cartQuantity!);
+                        },
+                        onIncTap: () async {
+                          BlocProvider.of<SubCategoryProductsCubit>(context)
+                              .addProductToCart(
+                                  state.subCategoryProductsModel.data![index]
+                                      .id!,
+                                  state.subCategoryProductsModel.data![index]
+                                      .cartQuantity!);
+                        },
+                        onDecTap: () async {
+                          BlocProvider.of<SubCategoryProductsCubit>(context)
+                              .removeProductFromCart(
+                                  state.subCategoryProductsModel.data![index]
+                                      .id!,
+                                  state.subCategoryProductsModel.data![index]
+                                      .cartQuantity!);
                         },
                         productName: datum?.name,
                         productImage: datum?.thumbnailImg,

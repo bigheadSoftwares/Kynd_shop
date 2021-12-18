@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
+import '../../data/cart/cart_data_provider.dart';
 import '../../data/wishlist/wishlist_data_provider.dart';
 import '../../data/new_products/new_products_repository.dart';
 import '../../data/new_products/new_products_model.dart';
@@ -26,6 +27,45 @@ class NewProductsCubit extends Cubit<NewProductsState> {
         );
       },
     );
+  }
+
+  void addProductToCart(int productId, int quantity) {
+    updateCartModel(productId, true, quantity);
+    CartDataProvider.addToCart(productId: productId, quantity: quantity + 1)
+        .then((bool value) {
+      if (!value) {
+        updateCartModel(productId, false, quantity);
+      }
+    });
+  }
+
+  void removeProductFromCart(int productId, int quantity) {
+    updateCartModel(
+        productId, false, quantity); //removing product from the model locally
+    CartDataProvider.addToCart(productId: productId, quantity: quantity - 1)
+        .then((bool value) {
+      if (!value) {
+        updateCartModel(
+            productId, true, quantity); //wishlist again on server failure
+      }
+    });
+  }
+
+  void updateCartModel(int productId, bool isAdd, int quanitity) {
+    List<Datum>? data = newProductsModel.data?.map((Datum e) {
+      if (e.id == productId) {
+        return e.copyWith(
+            cartQuantity: isAdd ? quanitity + 1 : quanitity - 1,
+            isAddedToCart: true);
+      }
+      return e;
+    }).toList();
+    emit(
+      NewProductsLoaded(newProductsModel).copyWith(
+        newProductsModel: newProductsModel.copyWith(data: data),
+      ),
+    );
+    newProductsModel = newProductsModel.copyWith(data: data);
   }
 
   void addProductToWishlist(int productId) {
