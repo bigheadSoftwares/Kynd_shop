@@ -79,6 +79,7 @@ class _CategoryTabsState extends State<CategoryTabs> {
               return DefaultTabController(
                 length: state.subCategoryModel.data?.length ?? 0,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     _Tabs(
                       state: state,
@@ -135,7 +136,7 @@ class _TabViewState extends State<_TabView> {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.48,
+                      childAspectRatio: 0.55,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
                     ),

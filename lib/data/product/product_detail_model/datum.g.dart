@@ -36,6 +36,11 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       rating: json['rating'] as int?,
       ratingCount: json['rating_count'] as int?,
       description: json['description'] as String?,
+      isUserLogin: json['is_user_login'] as int?,
+      customerId: json['customer_id'] as String?,
+      isAddedToCart: json['is_added_to_cart'] as int?,
+      cartQuantity: json['cart_quantity'] as int?,
+      isWishlisted: json['is_wishlisted'] as int?,
     );
 
 Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
@@ -63,4 +68,9 @@ Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
       'rating': instance.rating,
       'rating_count': instance.ratingCount,
       'description': instance.description,
+      'is_user_login': instance.isUserLogin,
+      'customer_id': instance.customerId,
+      'is_added_to_cart': instance.isAddedToCart,
+      'cart_quantity': instance.cartQuantity,
+      'is_wishlisted': instance.isWishlisted,
     };

@@ -52,7 +52,7 @@ class ProductCard extends StatelessWidget {
                 productPrice: baseDiscountedPrice,
               ));
         },
-        width: 200,
+        width: 170,
         hPadding: 0,
         vPadding: 0,
         child: Stack(
@@ -71,6 +71,8 @@ class ProductCard extends StatelessWidget {
                     children: <Widget>[
                       SubHeading2(
                         productName ?? '',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                         fontWeight: FontWeight.w500,
                       ),
                       sizedBoxHeight(4),

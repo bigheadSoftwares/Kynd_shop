@@ -65,7 +65,7 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       baseDiscountedPrice: json['base_discounted_price'] as int?,
       basePrice: json['base_price'] as int?,
       isUserLogin: json['is_user_login'] as int?,
-      customerId: json['customer_id'] as String?,
+      customerId: json['customer_id'] as int?,
       isAddedToCart: json['is_added_to_cart'] as int?,
       cartQuantity: json['cart_quantity'] as int?,
       taxes: (json['taxes'] as List<dynamic>?)

@@ -33,6 +33,11 @@ class Datum extends Equatable {
     this.rating,
     this.ratingCount,
     this.description,
+    this.isUserLogin,
+    this.customerId,
+    this.isAddedToCart,
+    this.cartQuantity,
+    this.isWishlisted,
   });
 
   final int? id;
@@ -71,6 +76,16 @@ class Datum extends Equatable {
   @JsonKey(name: 'rating_count')
   final int? ratingCount;
   final String? description;
+  @JsonKey(name: 'is_user_login')
+  final int? isUserLogin;
+  @JsonKey(name: 'customer_id')
+  final String? customerId;
+  @JsonKey(name: 'is_added_to_cart')
+  final int? isAddedToCart;
+  @JsonKey(name: 'cart_quantity')
+  final int? cartQuantity;
+  @JsonKey(name: 'is_wishlisted')
+  final int? isWishlisted;
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
 
@@ -101,6 +116,11 @@ class Datum extends Equatable {
     int? rating,
     int? ratingCount,
     String? description,
+    int? isUserLogin,
+    String? customerId,
+    int? isAddedToCart,
+    int? cartQuantity,
+    int? isWishlisted,
   }) {
     return Datum(
       id: id ?? this.id,
@@ -127,6 +147,11 @@ class Datum extends Equatable {
       rating: rating ?? this.rating,
       ratingCount: ratingCount ?? this.ratingCount,
       description: description ?? this.description,
+      isUserLogin: isUserLogin ?? this.isUserLogin,
+      customerId: customerId ?? this.customerId,
+      isAddedToCart: isAddedToCart ?? this.isAddedToCart,
+      cartQuantity: cartQuantity ?? this.cartQuantity,
+      isWishlisted: isWishlisted ?? this.isWishlisted,
     );
   }
 
@@ -160,6 +185,11 @@ class Datum extends Equatable {
       rating,
       ratingCount,
       description,
+      isUserLogin,
+      customerId,
+      isAddedToCart,
+      cartQuantity,
+      isWishlisted,
     ];
   }
 }
