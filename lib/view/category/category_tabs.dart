@@ -34,7 +34,7 @@ class _CategoryTabsState extends State<CategoryTabs> {
       widget.categoryId,
     );
     BlocProvider.of<SubCategoryProductsCubit>(context)
-        .getSubCategoryProducts(4);
+        .getSubCategoryProducts(widget.categoryId);
   }
 
   @override

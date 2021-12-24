@@ -1,4 +1,5 @@
 import 'package:easy_coding/big_head_softwares.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -99,10 +100,13 @@ class _Addresses extends StatelessWidget {
                 color: Colour.white,
                 child: CustomListTile(
                   leading: const _AddressIcon(),
-                  title: const SubHeading1('Home'),
+                  title: SubHeading1(
+                      state.myAddressesModel.data?[index].nameTag ?? 'home'),
                   spaceBetweenTitleAndSubtitle: 4,
                   subtitle: SubHeading2(
                     '+91 ${state.myAddressesModel.data?[index].phone}\n${state.myAddressesModel.data?[index].address} ${state.myAddressesModel.data?[index].city}, ${state.myAddressesModel.data?[index].country} ${state.myAddressesModel.data?[index].postalCode}',
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     color: Colour.subtitleColor,
                   ),
                 ),

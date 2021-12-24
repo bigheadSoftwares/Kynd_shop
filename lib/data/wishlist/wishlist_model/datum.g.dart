@@ -11,7 +11,7 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       product: json['product'] == null
           ? null
           : Product.fromJson(json['product'] as Map<String, dynamic>),
-      isWishlisted: json['isWishlisted'] as int?,
+      isWishlisted: 1,
     );
 
 Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{

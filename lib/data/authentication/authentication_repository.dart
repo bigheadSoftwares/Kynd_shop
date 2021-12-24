@@ -35,7 +35,6 @@ class AuthenticationRepository extends Authentication {
     required String phoneNo,
     required String name,
     required DateTime dob,
-
     String? referral,
   }) async {
     final http.Response response = await _register(

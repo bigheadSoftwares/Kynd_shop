@@ -99,6 +99,4 @@ class CartDetailsCubit extends Cubit<CartDetailsState> {
     );
     cartDetaiilsModel = cartDetaiilsModel.copyWith(data: data);
   }
-
-
 }

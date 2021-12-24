@@ -31,7 +31,7 @@ class _ProfileDetailCard extends StatelessWidget {
                   color: Colour.subtitleColor,
                 ),
                 sizedBoxHeight(4),
-                  SubHeading2(
+                SubHeading2(
                   phone,
                   color: Colour.subtitleColor,
                 ),

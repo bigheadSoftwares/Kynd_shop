@@ -14,6 +14,14 @@ class ProductDetailLoaded extends ProductDetailState {
   const ProductDetailLoaded(this.productDetailModel);
   @override
   List<Object> get props => <Object>[productDetailModel];
+
+  ProductDetailLoaded copyWith({
+    ProductDetailModel? productDetailModel,
+  }) {
+    return ProductDetailLoaded(
+      productDetailModel ?? this.productDetailModel,
+    );
+  }
 }
 
 class ProductDetailFailure extends ProductDetailState {

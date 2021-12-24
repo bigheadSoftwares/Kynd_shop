@@ -9,7 +9,7 @@ part 'create_address_state.dart';
 class CreateAddressCubit extends Cubit<CreateAddressState> {
   CreateAddressCubit() : super(CreateAddressInitial());
   void createAddress(AddAddressModel data) {
-    emit(CreateAddressInitial());
+    emit(CreateAddressLoading());
     AddressDataProvider.createAddress(data).then(
       (bool value) {
         if (value) {
