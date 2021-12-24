@@ -20,7 +20,8 @@ class IncrementDecrementButton extends StatelessWidget {
     return Row(
       children: <Widget>[
         IconButton(
-          visualDensity: VisualDensity.compact,
+          padding: EdgeInsets.zero,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
           onPressed: onTapDec,
           icon: Icon(
             Icons.remove,
@@ -42,7 +43,8 @@ class IncrementDecrementButton extends StatelessWidget {
           ),
         ),
         IconButton(
-          visualDensity: VisualDensity.compact,
+          padding: EdgeInsets.zero,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
           onPressed: onTapInc,
           icon: Icon(
             Icons.add,

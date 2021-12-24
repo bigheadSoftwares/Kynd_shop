@@ -39,7 +39,7 @@ class ProductListBlock extends StatelessWidget {
         ),
         sizedBoxHeight(15),
         SizedBox(
-          height: 330,
+          height: 320,
           child: list,
         ),
       ],

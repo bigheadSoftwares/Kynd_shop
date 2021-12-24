@@ -9,7 +9,8 @@ class ShimmerBox extends StatelessWidget {
     Key? key,
     this.height,
     this.width,
-    this.itemCount, this.axis,
+    this.itemCount,
+    this.axis,
   }) : super(key: key);
   final double? height;
   final double? width;
