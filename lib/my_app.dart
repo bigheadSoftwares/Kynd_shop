@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/address/address_cubit.dart';
-import 'package:kynd_shop/logic/address/create_address_cubit.dart';
+import 'logic/address/address_cubit.dart';
+import 'logic/address/create_address_cubit.dart';
 import 'logic/cart/cart_summary_cubit.dart';
 import 'logic/cart/cart_details_cubit.dart';
 import 'utils/export_utilities.dart';
 import 'logic/authentication/authentication_cubit.dart';
-import 'package:kynd_shop/logic/order/order_detail_cubit.dart';
+import 'logic/order/order_detail_cubit.dart';
 import 'logic/category/sub_category_cubit.dart';
 import 'logic/category/sub_category_products_cubit.dart';
 import 'logic/order/order_list_cubit.dart';

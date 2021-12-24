@@ -3,7 +3,6 @@ import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '../../utils/export_utilities.dart';
-import '../../utils/widgets/custom_image_widget.dart';
 import '../../data/banners/banner_model.dart';
 import '../../data/banners/banner_repository.dart';
 

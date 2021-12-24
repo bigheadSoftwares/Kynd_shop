@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/data/cart/cart_data_provider.dart';
-import 'package:kynd_shop/data/cart/cart_detaiils_model/datum.dart';
+import '../../data/cart/cart_data_provider.dart';
+import '../../data/cart/cart_detaiils_model/datum.dart';
+import '../../data/cart/cart_summary_model.dart';
 import '../../data/cart/cart_repository.dart';
 import '../../data/cart/cart_detaiils_model/cart_detaiils_model.dart';
 
@@ -98,4 +99,6 @@ class CartDetailsCubit extends Cubit<CartDetailsState> {
     );
     cartDetaiilsModel = cartDetaiilsModel.copyWith(data: data);
   }
+
+
 }

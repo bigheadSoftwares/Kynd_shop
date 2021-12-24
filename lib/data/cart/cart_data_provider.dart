@@ -15,7 +15,6 @@ class CartDataProvider {
           'quantity': quantity
         }),
         headers: Constants.headers);
-    print(rawData.body);
     if (rawData.statusCode == 200) {
       return true;
     } else {
@@ -54,7 +53,6 @@ class CartDataProvider {
         Uri.parse('${Constants.host}carts/change-quantity'),
         body: jsonEncode(<String, dynamic>{'id': cartId, 'quantity': quantity}),
         headers: Constants.headers);
-    print(rawData.body);
     if (rawData.statusCode == 200) {
       return true;
     } else {
@@ -63,8 +61,7 @@ class CartDataProvider {
   }
 
   static Future<bool> cartDestroy(int cartId) async {
-    print(
-        'This is ${Constants.authenticationModel!.success.customerId} and this is token');
+
     final Response response = await get(
         Uri.parse('${Constants.host}cart/destroy/$cartId}'),
         headers: Constants.headers);
