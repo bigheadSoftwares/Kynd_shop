@@ -43,9 +43,11 @@ class Datum {
     this.title,
     this.slug,
     this.description,
+    required this.isLiked,
     required this.totalLike,
     required this.totalUnlike,
     required this.status,
+    required this.createdAt,
   });
 
   int id;
@@ -54,9 +56,11 @@ class Datum {
   String? title;
   String? slug;
   String? description;
+  int isLiked;
   int totalLike;
   int totalUnlike;
   int status;
+  String createdAt;
 
   Datum copyWith({
     int? id,
@@ -65,9 +69,11 @@ class Datum {
     String? title,
     String? slug,
     String? description,
+    int? isLiked,
     int? totalLike,
     int? totalUnlike,
     int? status,
+    String? createdAt,
   }) =>
       Datum(
         id: id ?? this.id,
@@ -79,21 +85,27 @@ class Datum {
         totalLike: totalLike ?? this.totalLike,
         totalUnlike: totalUnlike ?? this.totalUnlike,
         status: status ?? this.status,
+        createdAt: createdAt ?? this.createdAt,
+        isLiked: isLiked ?? this.isLiked,
       );
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json['id'] as int,
         image: json['image'] == null ? null : json['image'] as String,
-        categoryId: json['category_id'] == null ? null : json['category_id'] as int,
+        categoryId:
+            json['category_id'] == null ? null : json['category_id'] as int,
         title: json['title'] == null ? null : json['title'] as String,
         slug: json['slug'] == null ? null : json['slug'] as String,
-        description: json['description'] == null ? null : json['description'] as String,
-        totalLike: json['total_like']   as int,
+        description:
+            json['description'] == null ? null : json['description'] as String,
+        totalLike: json['total_like'] as int,
         totalUnlike: json['total_unlike'] as int,
-        status: json['status']  as int,
+        status: json['status'] as int,
+        createdAt: json['created_at'] as String,
+        isLiked: json['isLiked'] as int,
       );
 
-  Map<String, dynamic> toJson() => <String,dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'image': image,
         'category_id': categoryId,

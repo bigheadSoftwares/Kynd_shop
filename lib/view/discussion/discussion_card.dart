@@ -32,7 +32,7 @@ class _DiscussionCard extends StatelessWidget {
                     ),
                     title: SubHeading1(blog.title ?? ''),
                     subtitle: SubHeading2(
-                      DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                      DateFormat('dd/MM/yyyy').format(DateTime.parse(blog.createdAt)),
                       size: 14,
                       color: Colour.subtitleColor,
                     ),
@@ -63,9 +63,9 @@ class _DiscussionCard extends StatelessWidget {
                   children: <Widget>[
                     _IconAndText(
                       iconAsset: Assets.like,
-                      iconColor: blog.status == 1 ? Colour.greenishBlue : null,
+                      iconColor: blog.isLiked == 1 ? Colour.greenishBlue : null,
                       text: 'Like',
-                      textColor: blog.status == 1 ? Colour.greenishBlue : null,
+                      textColor: blog.isLiked == 1 ? Colour.greenishBlue : null,
                       fontSize: 14,
                       iconScale: 2,
                     ),
