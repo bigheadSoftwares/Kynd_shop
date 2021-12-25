@@ -27,4 +27,24 @@ class BlogRepository extends Blog {
       );
     }
   }
+
+  Future<void> addBlog({
+    required String title,
+    required String description,
+    required String image,
+    required int category,
+  }) async {
+    final http.StreamedResponse response = await _addBlog(
+      title: title,
+      description: description,
+      image: image,
+      category: category,
+    );
+
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      throw handleError(response);
+    }
+  }
+
+  
 }

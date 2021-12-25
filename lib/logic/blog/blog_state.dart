@@ -26,3 +26,5 @@ class BlogError extends BlogState {
   @override
   List<Object> get props => <Object>[error];
 }
+
+class BlogAdded extends BlogState {}

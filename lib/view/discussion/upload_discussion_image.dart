@@ -61,17 +61,17 @@ class _PickImageWidget extends StatelessWidget {
           radius: const Radius.circular(12),
           dashPattern: const <double>[6],
           child: RoundContainer(
-            width: screenWidth(context) * 0.4,
+            width: screenWidth(context) * 0.34,
             onTap: () => context.read<ImagePickingCubit>().pickFromGallery(),
             alignment: Alignment.center,
-            height: 130,
+            height: 100,
             color: Colour.greenishBlue.withOpacity(0.08),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: const <Widget>[
                 Icon(
                   CupertinoIcons.cloud_upload,
-                  size: 50,
+                  size: 40,
                   color: Colour.greenishBlue,
                 ),
                 SubHeading2(
