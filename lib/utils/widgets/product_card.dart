@@ -39,7 +39,6 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('THis is cartQuantity $cartQuantity');
     return Material(
       color: Colour.white,
       elevation: 2,
@@ -74,7 +73,7 @@ class ProductCard extends StatelessWidget {
                     children: <Widget>[
                       SubHeading2(
                         productName ?? '',
-                        overflow: TextOverflow.ellipsis,
+                        // overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         fontWeight: FontWeight.w500,
                       ),
