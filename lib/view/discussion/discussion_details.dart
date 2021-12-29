@@ -1,7 +1,9 @@
 part of 'discussion.dart';
 
 class DiscussionDetails extends StatelessWidget {
-  const DiscussionDetails({Key? key}) : super(key: key);
+  const DiscussionDetails({Key? key, required this.blog}) : super(key: key);
+
+  final Datum blog;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,9 @@ class DiscussionDetails extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         children: <Widget>[
-          const _DiscussionCard(
+          _DiscussionCard(
             showComments: false,
+            blog: blog,
           ),
           sizedBoxHeight(20),
           const Padding(
