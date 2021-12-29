@@ -1,25 +1,44 @@
+import 'dart:io';
+
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 
-import '../export_utilites.dart';
-
+import '../export_utilities.dart';
 
 AppBar appBar(
   BuildContext context, {
   required String title,
   bool? automaticallyImplyLeading,
+  double? elevation,
+  List<Widget>? actions,
 }) {
   return AppBar(
-    backgroundColor: Colour.transparent,
-    elevation: 0,
-    centerTitle: true,
+    backgroundColor: Colour.blue,
     automaticallyImplyLeading: automaticallyImplyLeading ?? true,
+    elevation: elevation,
+    leading: Platform.isIOS
+        ? IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: Colour.white,
+            ),
+            onPressed: () => pop(context),
+          )
+        : IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colour.white,
+            ),
+            onPressed: () => pop(context),
+          ),
     title: Text(
       title,
       style: textTheme(context).bodyText1!.copyWith(
             fontWeight: FontWeight.w600,
             fontSize: 20,
+            color: Colour.white,
           ),
     ),
+    actions: actions,
   );
 }

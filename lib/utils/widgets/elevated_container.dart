@@ -1,18 +1,18 @@
-import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 
-import '../export_utilites.dart';
+import '../export_utilities.dart';
 
 class ElevatedContainer extends StatelessWidget {
-  const ElevatedContainer({
-    Key? key,
-    this.child,
-    this.height,
-    this.width,
-    this.color,
-    this.padding,
-    this.margin,
-  }) : super(key: key);
+  const ElevatedContainer(
+      {Key? key,
+      this.child,
+      this.height,
+      this.width,
+      this.color,
+      this.padding,
+      this.margin,
+      this.radius})
+      : super(key: key);
 
   final Widget? child;
   final double? height;
@@ -20,6 +20,7 @@ class ElevatedContainer extends StatelessWidget {
   final Color? color;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class ElevatedContainer extends StatelessWidget {
       padding: padding,
       margin: margin,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(radius ?? 10),
         color: color ?? Colour.white,
         boxShadow: const <BoxShadow>[
           BoxShadow(

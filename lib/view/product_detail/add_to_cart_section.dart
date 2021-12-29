@@ -1,0 +1,98 @@
+part of 'product_detail.dart';
+
+class _BottomCartSection extends StatefulWidget {
+  const _BottomCartSection({
+    Key? key,
+    this.productPrice,
+    this.isAddedToCart,
+    this.cartQuantity,
+    this.productId,
+  }) : super(key: key);
+  final int? productPrice;
+  final bool? isAddedToCart;
+  final int? cartQuantity;
+  final int? productId;
+  @override
+  State<_BottomCartSection> createState() => _BottomCartSectionState();
+}
+
+class _BottomCartSectionState extends State<_BottomCartSection> {
+  bool? isAddedToCart = false;
+  int? cartQuantity;
+  int? productPrice;
+  int? productId;
+
+  @override
+  void initState() {
+    super.initState();
+    isAddedToCart = widget.isAddedToCart;
+    cartQuantity = widget.cartQuantity;
+    productPrice = widget.productPrice;
+    productId = widget.productId;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      elevation: 10,
+      color: Colour.white,
+      child: BlocListener<AddToCartCubit, AddToCartState>(
+        listener: (BuildContext context, AddToCartState state) {
+          if (state is AddToCartLoaded) {
+            isAddedToCart = !isAddedToCart!;
+            cartQuantity = (cartQuantity! + 1);
+            setState(() {});
+          }
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  isAddedToCart == true && cartQuantity != 0
+                      ? IncrementDecrementButton(
+                          number: cartQuantity!,
+                        )
+                      : AddToCartWidget(onAddToCart: () {
+                          context
+                              .read<AddToCartCubit>()
+                              .addToCart(productId ?? 1, 1);
+                        }),
+                  SubHeading2(
+                    '${Constants.rupee} $productPrice/-',
+                    color: Colour.greenishBlue,
+                    fontWeight: FontWeight.w500,
+                    size: 20,
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+              child: RoundContainer(
+                onTap: () {
+                  pushReplacementNamed(context, Routes.cart);
+                },
+                hPadding: 10,
+                vPadding: 10,
+                radius: 30,
+                color: Colour.greenishBlue,
+                width: double.infinity,
+                child: const Center(
+                  child: SubHeading1(
+                    'Go to Cart',
+                    color: Colour.white,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}

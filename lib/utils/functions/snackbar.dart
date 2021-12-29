@@ -11,7 +11,7 @@ void showSnackBar({
     ..removeCurrentSnackBar(reason: SnackBarClosedReason.dismiss)
     ..showSnackBar(
       SnackBar(
-        duration: Duration(milliseconds: showTime ?? 1000),
+        duration: Duration(milliseconds: showTime ?? 3000),
         backgroundColor: backgroundColor ?? Colors.black,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
