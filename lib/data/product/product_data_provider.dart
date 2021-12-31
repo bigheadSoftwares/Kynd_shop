@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart';
 import '../../utils/export_utilities.dart';
 
@@ -18,8 +17,6 @@ class ProductDataProvider {
         'Content-Type': 'application/json'
       },
     );
-    print(
-        "This is body ${response.body} and this is status code ${response.statusCode}");
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['success'] == true) {
       return response;
