@@ -4,6 +4,7 @@ import 'logic/address/address_cubit.dart';
 import 'logic/address/create_address_cubit.dart';
 import 'logic/cart/cart_summary_cubit.dart';
 import 'logic/cart/cart_details_cubit.dart';
+import 'logic/product/search_product_cubit.dart';
 import 'utils/export_utilities.dart';
 import 'logic/authentication/authentication_cubit.dart';
 import 'logic/order/order_detail_cubit.dart';
@@ -88,6 +89,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CreateAddressCubit>(
           create: (BuildContext context) => CreateAddressCubit(),
+        ),
+        BlocProvider<SearchProductCubit>(
+          create: (BuildContext context) => SearchProductCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
