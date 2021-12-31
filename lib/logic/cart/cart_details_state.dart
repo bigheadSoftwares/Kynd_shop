@@ -24,7 +24,6 @@ class CartDetailsLoaded extends CartDetailsState {
   }
 }
 
-
 class CartDetailsFailure extends CartDetailsState {
   const CartDetailsFailure(this.failure);
   final Failure failure;

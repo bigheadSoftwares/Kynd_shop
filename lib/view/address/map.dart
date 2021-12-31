@@ -1,11 +1,15 @@
 part of 'my_address.dart';
 
 class Map extends StatefulWidget {
-  const Map({
+  Map({
     Key? key,
     required this.yourLocation,
+    required this.latitude,
+    required this.longitude,
   }) : super(key: key);
   final TextEditingController yourLocation;
+  final TextEditingController latitude;
+  final TextEditingController longitude;
 
   @override
   State<Map> createState() => _MapState();
@@ -27,6 +31,8 @@ class _MapState extends State<Map> {
         if (state is LocationFetched) {
           widget.yourLocation.text =
               '${state.location?.latitude}, ${state.location?.longitude}';
+          widget.latitude.text = state.location?.latitude.toString() ?? '0.0';
+          widget.longitude.text = state.location?.longitude.toString() ?? '0.0';
         }
       },
       builder: (BuildContext context, LocationState state) {

@@ -15,6 +15,10 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       postalCode: json['postal_code'] as String?,
       phone: json['phone'] as String?,
       setDefault: json['set_default'] as int?,
+      username: json['username'] as String?,
+      nameTag: json['name_tag'] as String?,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
@@ -26,4 +30,8 @@ Map<String, dynamic> _$DatumToJson(Datum instance) => <String, dynamic>{
       'postal_code': instance.postalCode,
       'phone': instance.phone,
       'set_default': instance.setDefault,
+      'username': instance.username,
+      'name_tag': instance.nameTag,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
     };

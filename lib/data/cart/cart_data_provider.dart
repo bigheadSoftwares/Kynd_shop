@@ -61,7 +61,6 @@ class CartDataProvider {
   }
 
   static Future<bool> cartDestroy(int cartId) async {
-
     final Response response = await get(
         Uri.parse('${Constants.host}cart/destroy/$cartId}'),
         headers: Constants.headers);

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
+import 'package:kynd_shop/data/authentication/login_data_model.dart';
 import '../../utils/export_utilities.dart';
 
 import '../../data/authentication/authentication.dart';
@@ -18,14 +19,34 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   Future<void> validateAndLogin({
     required String phoneNo,
-    required String otp,
+  }) async {
+    // if (otp.length < 4 || otp != this.otp) {
+    emit(AuthenticationLoading());
+    _repo.loginData(phoneNo: phoneNo).then(
+      (LoginDataModel value) {
+        emit(LoginSuccessful(value));
+      },
+      onError: (dynamic error, StackTrace stackTrace) {
+        emit(LoginError(handleError(error)));
+      },
+    );
+  }
+
+  Future<void> confirmCode({
+    required int userId,
+    required int confirmCode,
   }) async {
     // if (otp.length < 4 || otp != this.otp) {
     if (2 == 3) {
       emit(const AuthenticationError(Failure(message: 'Invalid OTP')));
     } else {
       emit(AuthenticationLoading());
-      _repo.loginData(phoneNo: phoneNo).then(
+      _repo
+          .confirmCode(
+        userId: userId,
+        verificationCode: confirmCode,
+      )
+          .then(
         (AuthenticationModel value) {
           _authenticationModel = value;
           Constants.authenticationModel = value;

@@ -1,13 +1,15 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kynd_shop/data/authentication/login_data_model.dart';
+import 'package:kynd_shop/utils/functions/snackbar.dart';
 import '../../logic/authentication/authentication_cubit.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../utils/export_utilities.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({Key? key, required this.phoneNumber}) : super(key: key);
-  final String phoneNumber;
+  const OtpScreen({Key? key, required this.loginDataModel}) : super(key: key);
+  final LoginDataModel loginDataModel;
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -49,7 +51,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 size: 16,
               ),
               SubHeading1(
-                widget.phoneNumber,
+                widget.loginDataModel.success.userDetails.phone,
                 color: Colour.lightGrey.withOpacity(0.7),
                 size: 14,
               ),
@@ -129,10 +131,17 @@ class _OtpScreenState extends State<OtpScreen> {
                   backgroundColor: Colour.greenishBlue,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   onTap: () {
-                    context.read<AuthenticationCubit>().validateAndLogin(
-                          phoneNo: widget.phoneNumber,
-                          otp: textEditingController.text,
-                        );
+                    if (textEditingController.text ==
+                        widget.loginDataModel.success.code.toString()) {
+                      context.read<AuthenticationCubit>().confirmCode(
+                            userId: widget.loginDataModel.success.customerId,
+                            confirmCode: widget.loginDataModel.success.code,
+                            // confirmCode: 376488
+                          );
+                    } else {
+                      showSnackBar(
+                          context: context, msg: 'Please enter correct otp');
+                    }
                   },
                   child: const SubHeading2(
                     'VERIFY',

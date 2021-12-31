@@ -1,14 +1,16 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../logic/cart/add_to_cart_cubit.dart';
-import '../../utils/widgets/add_to_cart_widget.dart';
 import '../../logic/product/product_detail_cubit.dart';
 import '../../utils/export_utilities.dart';
+import '../../utils/widgets/add_to_cart_widget.dart';
 import '../../utils/widgets/cut_mrp.dart';
-part 'product_image.dart';
-part 'details.dart';
+
 part 'add_to_cart_section.dart';
+part 'details.dart';
+part 'product_image.dart';
 
 class ProductDetail extends StatefulWidget {
   const ProductDetail({
@@ -39,14 +41,11 @@ class _ProductDetailState extends State<ProductDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colour.white,
-      bottomNavigationBar: BlocProvider<AddToCartCubit>(
-        create: (BuildContext context) => AddToCartCubit(),
-        child: _BottomCartSection(
-          productPrice: widget.productPrice,
-          isAddedToCart: widget.isAddedToCart,
-          cartQuantity: widget.cartQuantity,
-          productId: widget.productId,
-        ),
+      bottomNavigationBar: _BottomCartSection(
+        productPrice: widget.productPrice,
+        isAddedToCart: widget.isAddedToCart,
+        cartQuantity: widget.cartQuantity,
+        productId: widget.productId,
       ),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -79,7 +78,13 @@ class _ProductDetailState extends State<ProductDetail> {
                     discountedPrice:
                         state.productDetailModel.data?[0].priceLower ?? 0,
                   ),
-                  const _FavoriteIcon()
+                  _FavoriteIcon(
+                      isWishlist:
+                          state.productDetailModel.data?[0].isWishlisted == 1
+                              ? true
+                              : false,
+                      productId: state.productDetailModel.data?[0].id ?? 0),
+                  
                 ],
               ),
             );
@@ -98,27 +103,40 @@ class _ProductDetailState extends State<ProductDetail> {
 class _FavoriteIcon extends StatelessWidget {
   const _FavoriteIcon({
     Key? key,
+    required this.isWishlist,
+    required this.productId,
   }) : super(key: key);
+  final bool isWishlist;
+  final int productId;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
       top: screenHeight(context) * 0.35,
       right: 25,
-      child: Container(
-        height: 50,
-        width: 50,
-        decoration: const BoxDecoration(
-            color: Colour.greenishBlue,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10),
-            )),
-        child: const Icon(
-          Icons.favorite,
-          color: Colour.white,
-          size: 30,
+      child: InkWell(
+        onTap: () {
+          isWishlist
+              ? BlocProvider.of<ProductDetailCubit>(context)
+                  .removeProductFromWishlist(productId)
+              : BlocProvider.of<ProductDetailCubit>(context)
+                  .addProductToWishlist(productId);
+        },
+        child: Container(
+          height: 50,
+          width: 50,
+          decoration: const BoxDecoration(
+              color: Colour.greenishBlue,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              )),
+          child: Icon(
+            Icons.favorite,
+            color: isWishlist ? Colour.red : Colour.white,
+            size: 30,
+          ),
         ),
       ),
     );

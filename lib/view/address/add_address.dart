@@ -14,6 +14,10 @@ class _AddAddressState extends State<AddAddress> {
   final TextEditingController _name = TextEditingController();
   final TextEditingController _mobile = TextEditingController();
   final TextEditingController _saveAs = TextEditingController();
+  final TextEditingController _latitude =
+      TextEditingController(text: '${Constants.initialLatitude}');
+  final TextEditingController _longitude =
+      TextEditingController(text: '${Constants.initialLongitude}');
 
   @override
   void dispose() {
@@ -22,6 +26,8 @@ class _AddAddressState extends State<AddAddress> {
     _name.dispose();
     _mobile.dispose();
     _saveAs.dispose();
+    _latitude.dispose();
+    _longitude.dispose();
     super.dispose();
   }
 
@@ -34,7 +40,11 @@ class _AddAddressState extends State<AddAddress> {
       ),
       body: Column(
         children: <Widget>[
-          Map(yourLocation: _yourLocation),
+          Map(
+            yourLocation: _yourLocation,
+            longitude: _longitude,
+            latitude: _latitude,
+          ),
           Expanded(
             child: AnimatedContainer(
               duration: const Duration(seconds: 2),
@@ -110,19 +120,21 @@ class _AddAddressState extends State<AddAddress> {
                 } else {
                   BlocProvider.of<CreateAddressCubit>(context).createAddress(
                     AddAddressModel(
-                      user_id:
-                          Constants.authenticationModel!.success.customerId,
-                      address: _flat.text,
-                      country: _yourLocation.text,
-                      city: _yourLocation.text,
-                      postal_code: _yourLocation.text,
-                      phone: _mobile.text,
-                      set_default: 1,
-                    ),
+                        user_id:
+                            Constants.authenticationModel!.success.customerId,
+                        address: _flat.text,
+                        country: _yourLocation.text,
+                        city: _yourLocation.text,
+                        postal_code: _yourLocation.text,
+                        phone: _mobile.text,
+                        set_default: 1,
+                        latitude: _latitude.text.toDouble(),
+                        longitude: _longitude.text.toDouble(),
+                        name_tag: _saveAs.text.toLowerCase()),
                   );
                 }
               },
-              child: state is CreateAddressInitial
+              child: state is CreateAddressLoading
                   ? const LoadingIndicator(
                       height: 40,
                     )

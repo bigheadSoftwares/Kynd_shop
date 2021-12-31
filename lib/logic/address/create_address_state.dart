@@ -9,6 +9,8 @@ abstract class CreateAddressState extends Equatable {
 
 class CreateAddressInitial extends CreateAddressState {}
 
+class CreateAddressLoading extends CreateAddressState {}
+
 class CreateAddressLoaded extends CreateAddressState {}
 
 class CreateAddressFailure extends CreateAddressState {

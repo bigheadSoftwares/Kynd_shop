@@ -30,6 +30,9 @@ class Cart extends StatelessWidget {
                 if (state is CartDetailsFailure) {
                   showSnackBar(context: context, msg: state.failure.message);
                 }
+                if (state is CartDetailsLoaded) {
+                  context.read<CartSummaryCubit>().getCartSummary();
+                }
               },
               builder: (BuildContext context, CartDetailsState state) {
                 if (state is CartDetailsLoaded) {
@@ -49,11 +52,12 @@ class Cart extends StatelessWidget {
                                         state
                                             .cartDetaiilsModel.data![index].id!,
                                         state.cartDetaiilsModel.data![index]
-                                            .quantity!);
+                                            .quantity!,
+                                        context.read<CartSummaryCubit>());
 
-                                context
-                                    .read<CartSummaryCubit>()
-                                    .getCartSummary();
+                                // context
+                                //     .read<CartSummaryCubit>()
+                                //     .getCartSummary();
                               },
                               onRemoveItem: () async {
                                 BlocProvider.of<CartDetailsCubit>(context)
@@ -61,10 +65,11 @@ class Cart extends StatelessWidget {
                                         state
                                             .cartDetaiilsModel.data![index].id!,
                                         state.cartDetaiilsModel.data![index]
-                                            .quantity!);
-                                context
-                                    .read<CartSummaryCubit>()
-                                    .getCartSummary();
+                                            .quantity!,
+                                        context.read<CartSummaryCubit>());
+                                // context
+                                //     .read<CartSummaryCubit>()
+                                //     .getCartSummary();
                               },
                               onaddDec: () async {
                                 BlocProvider.of<CartDetailsCubit>(context)
@@ -72,10 +77,11 @@ class Cart extends StatelessWidget {
                                         state
                                             .cartDetaiilsModel.data![index].id!,
                                         state.cartDetaiilsModel.data![index]
-                                            .quantity!);
-                                context
-                                    .read<CartSummaryCubit>()
-                                    .getCartSummary();
+                                            .quantity!,
+                                        context.read<CartSummaryCubit>());
+                                // context
+                                //     .read<CartSummaryCubit>()
+                                //     .getCartSummary();
                               },
                             );
                     },

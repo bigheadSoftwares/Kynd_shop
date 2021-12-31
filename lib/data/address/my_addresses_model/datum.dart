@@ -14,6 +14,10 @@ class Datum extends Equatable {
     this.postalCode,
     this.phone,
     this.setDefault,
+    this.username,
+    this.nameTag,
+    this.latitude,
+    this.longitude,
   });
 
   final int? id;
@@ -27,6 +31,11 @@ class Datum extends Equatable {
   final String? phone;
   @JsonKey(name: 'set_default')
   final int? setDefault;
+  final String? username;
+  @JsonKey(name: 'name_tag')
+  final String? nameTag;
+  final double? latitude;
+  final double? longitude;
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
 
@@ -41,6 +50,10 @@ class Datum extends Equatable {
     String? postalCode,
     String? phone,
     int? setDefault,
+    String? username,
+    String? nameTag,
+    double? latitude,
+    double? longitude,
   }) {
     return Datum(
       id: id ?? this.id,
@@ -51,6 +64,10 @@ class Datum extends Equatable {
       postalCode: postalCode ?? this.postalCode,
       phone: phone ?? this.phone,
       setDefault: setDefault ?? this.setDefault,
+      username: username ?? this.username,
+      nameTag: nameTag ?? this.nameTag,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
     );
   }
 
@@ -68,6 +85,10 @@ class Datum extends Equatable {
       postalCode,
       phone,
       setDefault,
+      username,
+      nameTag,
+      latitude,
+      longitude,
     ];
   }
 }

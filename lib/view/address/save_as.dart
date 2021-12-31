@@ -28,7 +28,7 @@ class _SaveAsWidgetState extends State<_SaveAsWidget> {
 
   void changeSaveAs(SaveAs value) {
     _saveAs.value = value;
-    widget.controller.text = value.toString().split('.').last;
+    widget.controller.text = describeEnum(value);
   }
 
   @override
