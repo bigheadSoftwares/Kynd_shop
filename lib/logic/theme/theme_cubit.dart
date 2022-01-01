@@ -27,8 +27,8 @@ List<_CustomTheme> customThemes = <_CustomTheme>[
       scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       errorColor: const Color(0xFFFD024A),
       textSelectionTheme: TextSelectionThemeData(
-        cursorColor: const Color(0xff0cba70),
-        selectionColor: const Color(0xff0cba70).withOpacity(0.6),
+        cursorColor: const Color(0xff248598),
+        selectionColor: const Color(0xff248598).withOpacity(0.6),
       ),
       fontFamily: 'Muli',
       colorScheme: _colorScheme,

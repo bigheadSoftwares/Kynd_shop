@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io';
 import 'package:easy_coding/handle_error.dart';
 import 'package:http/http.dart' as http;
@@ -7,6 +6,7 @@ import '../../utils/export_utilities.dart';
 
 part 'blog.dart';
 part 'blog_model.dart';
+part 'blog_comments_model.dart';
 
 class BlogRepository extends Blog {
   Future<BlogModel> getBlogs() async {
@@ -39,6 +39,39 @@ class BlogRepository extends Blog {
       description: description,
       image: image,
       category: category,
+    );
+
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      throw handleError(response);
+    }
+  }
+
+  Future<BlogCommentsModel> getComments(int blogId) async {
+    final http.Response response = await _getComments(blogId);
+
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      throw handleError(
+        response,
+        serverMessage: jsonDecode(response.body)['message'] as String,
+      );
+    }
+
+    try {
+      return blogCommentsModelFromJson(response.body);
+    } catch (_) {
+      throw const Failure(
+        message: 'Something went wrong with blog comment data parsing',
+      );
+    }
+  }
+
+  Future<void> addComment({
+    required int blogId,
+    required String comment,
+  }) async {
+    final http.Response response = await _addComment(
+      blogId: blogId,
+      comment: comment,
     );
 
     if (response.statusCode < 200 || response.statusCode >= 300) {

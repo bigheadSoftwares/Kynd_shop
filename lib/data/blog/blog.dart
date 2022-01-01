@@ -44,4 +44,42 @@ class Blog {
 
     return _response;
   }
+
+  Future<http.Response> _getComments(int blogId) async {
+    final Uri _url = Uri.parse('${Constants.host}getCommet');
+
+    final http.Response _response = await http.post(
+      _url,
+      body: jsonEncode(
+        <String, dynamic>{'blog_id': blogId},
+      ),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        HttpHeaders.authorizationHeader:
+            'Bearer ${Constants.authenticationModel!.success.token}',
+      },
+    );
+
+    return _response;
+  }
+
+  Future<http.Response> _addComment({
+    required int blogId,
+    required String comment,
+  }) async {
+    final Uri _url = Uri.parse('${Constants.host}blog_comment');
+    return await http.post(
+      _url,
+      body: jsonEncode(<String, dynamic>{
+        'blog_id': blogId,
+        'comment': comment,
+        'user_id': Constants.authenticationModel!.success.customerId,
+      }),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        HttpHeaders.authorizationHeader:
+            'Bearer ${Constants.authenticationModel!.success.token}',
+      },
+    );
+  }
 }
