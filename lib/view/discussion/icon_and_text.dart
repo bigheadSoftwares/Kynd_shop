@@ -28,7 +28,6 @@ class _IconAndText extends StatelessWidget {
             image: iconAsset,
             scale: iconScale ?? 1.5,
             color: iconColor,
-            
           ),
           sizedBoxWidth(8),
           SubHeading2(

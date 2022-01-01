@@ -62,7 +62,6 @@ class CartDetailsCubit extends Cubit<CartDetailsState> {
 
   void updateCartModel(
       int productId, bool isAdd, int quanitity, CartSummaryCubit cartSummary) {
-    print('THis is being called');
     Timer(const Duration(seconds: 2), () {
       cartSummary.getCartSummary();
     });
@@ -91,7 +90,6 @@ class CartDetailsCubit extends Cubit<CartDetailsState> {
     ).then((bool value) {
       if (!value) {
         updateRemoveItemModel(cartId, cartSummary, quantity: quantity);
-        print('THis is being called');
         cartSummary.getCartSummary(); //wishlist again on server failure
       }
     });
@@ -99,7 +97,6 @@ class CartDetailsCubit extends Cubit<CartDetailsState> {
 
   void updateRemoveItemModel(int id, CartSummaryCubit cartSummary,
       {int? quantity}) {
-    print('THis is being called');
     Timer(const Duration(seconds: 2), () {
       cartSummary.getCartSummary();
     });

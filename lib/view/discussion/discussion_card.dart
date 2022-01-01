@@ -32,7 +32,8 @@ class _DiscussionCard extends StatelessWidget {
                     ),
                     title: SubHeading1(blog.title ?? ''),
                     subtitle: SubHeading2(
-                      DateFormat('dd/MM/yyyy').format(DateTime.parse(blog.createdAt)),
+                      DateFormat('dd/MM/yyyy')
+                          .format(DateTime.parse(blog.createdAt)),
                       size: 14,
                       color: Colour.subtitleColor,
                     ),

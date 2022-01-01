@@ -45,6 +45,4 @@ class BlogRepository extends Blog {
       throw handleError(response);
     }
   }
-
-  
 }

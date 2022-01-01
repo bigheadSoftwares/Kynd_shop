@@ -2,6 +2,10 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kynd_shop/logic/cart/add_to_cart_cubit.dart';
+import 'package:kynd_shop/logic/coupon/coupon_cubit.dart';
+import 'package:kynd_shop/logic/coupon/coupon_remove_cubit.dart';
+import 'coupon_list.dart';
 import '../../logic/cart/cart_summary_cubit.dart';
 import '../../data/cart/cart_detaiils_model/datum.dart';
 import '../../logic/cart/cart_details_cubit.dart';
@@ -54,10 +58,6 @@ class Cart extends StatelessWidget {
                                         state.cartDetaiilsModel.data![index]
                                             .quantity!,
                                         context.read<CartSummaryCubit>());
-
-                                // context
-                                //     .read<CartSummaryCubit>()
-                                //     .getCartSummary();
                               },
                               onRemoveItem: () async {
                                 BlocProvider.of<CartDetailsCubit>(context)
@@ -67,9 +67,6 @@ class Cart extends StatelessWidget {
                                         state.cartDetaiilsModel.data![index]
                                             .quantity!,
                                         context.read<CartSummaryCubit>());
-                                // context
-                                //     .read<CartSummaryCubit>()
-                                //     .getCartSummary();
                               },
                               onaddDec: () async {
                                 BlocProvider.of<CartDetailsCubit>(context)
@@ -79,9 +76,6 @@ class Cart extends StatelessWidget {
                                         state.cartDetaiilsModel.data![index]
                                             .quantity!,
                                         context.read<CartSummaryCubit>());
-                                // context
-                                //     .read<CartSummaryCubit>()
-                                //     .getCartSummary();
                               },
                             );
                     },
@@ -96,11 +90,10 @@ class Cart extends StatelessWidget {
             ),
             sizedBoxHeight(20),
             const SubHeading2(
-              'Have a Promo code?',
+              'Apply a Coupon code!',
               size: 12,
               fontWeight: FontWeight.bold,
             ),
-            const _PromoContainer(),
             sizedBoxHeight(20),
             BlocConsumer<CartSummaryCubit, CartSummaryState>(
               bloc: context.read<CartSummaryCubit>()..getCartSummary(),
@@ -108,11 +101,17 @@ class Cart extends StatelessWidget {
                 if (state is CartSummaryFailure) {
                   showSnackBar(context: context, msg: state.failure.message);
                 }
+                if (state is CartSummaryLoaded) {
+                  context.read<CouponCubit>().controller.text =
+                      state.cartSummaryModel.couponCode!;
+                }
               },
               builder: (BuildContext context, CartSummaryState state) {
                 if (state is CartSummaryLoaded) {
                   return Column(
                     children: <Widget>[
+                      _PromoContainer(),
+                      sizedBoxHeight(20),
                       CartSummary(
                         title: 'Subtotal',
                         amount: '${state.cartSummaryModel.subTotal}',

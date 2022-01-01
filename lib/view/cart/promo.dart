@@ -1,7 +1,7 @@
 part of 'cart.dart';
 
 class _PromoContainer extends StatefulWidget {
-  const _PromoContainer({
+  _PromoContainer({
     Key? key,
   }) : super(key: key);
   @override
@@ -9,7 +9,6 @@ class _PromoContainer extends StatefulWidget {
 }
 
 class _PromoContainerState extends State<_PromoContainer> {
-  TextEditingController textEditingController = TextEditingController();
   bool isCoupnApplied = false;
 
   @override
@@ -23,25 +22,77 @@ class _PromoContainerState extends State<_PromoContainer> {
           children: <Widget>[
             Expanded(
               child: CustomTextField(
-                controller: textEditingController,
+                controller: context.read<CouponCubit>().controller,
+                readOnly: true,
               ),
             ),
-            const RoundContainer(
-              height: 22,
-              hPadding: 20,
-              vPadding: 0,
-              radius: 6,
-              color: Colour.greenishBlue,
-              child: SubHeading2(
-                'Apply',
-                size: 12,
-                fontWeight: FontWeight.bold,
-                color: Colour.white,
-              ),
-            ),
+            context.read<CouponCubit>().controller.text == ''
+                ? CouponButton(
+                    couponText: 'See Coupons',
+                    onTap: () {
+                      push(
+                        context,
+                        const CouponList(),
+                      );
+                    },
+                  )
+                : BlocConsumer<CouponRemoveCubit, CouponRemoveState>(
+                    listener: (BuildContext context, CouponRemoveState state) {
+                      if (state is CouponRemoveSuccess) {
+                        context.read<CartSummaryCubit>().getCartSummary();
+                      }
+                      if (state is CouponRemoveFailure) {
+                        showToast(state.failure.message);
+                      }
+                    },
+                    builder: (BuildContext context, CouponRemoveState state) {
+                      return state is CouponRemoveLoading
+                          ? const LoadingIndicator()
+                          : CouponButton(
+                              couponText: 'Remove',
+                              color: Colour.red,
+                              onTap: () {
+                                context
+                                    .read<CouponRemoveCubit>()
+                                    .removeCoupon();
+                              },
+                            );
+                    },
+                  ),
             sizedBoxWidth(15)
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CouponButton extends StatelessWidget {
+  const CouponButton({
+    Key? key,
+    required this.couponText,
+    required this.onTap,
+    this.color,
+  }) : super(key: key);
+
+  final String couponText;
+  final VoidCallback onTap;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return RoundContainer(
+      onTap: onTap,
+      height: 22,
+      hPadding: 20,
+      vPadding: 0,
+      radius: 6,
+      color: color ?? Colour.greenishBlue,
+      child: SubHeading2(
+        couponText,
+        size: 12,
+        fontWeight: FontWeight.bold,
+        color: Colour.white,
       ),
     );
   }

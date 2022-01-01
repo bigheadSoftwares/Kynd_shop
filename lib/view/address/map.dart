@@ -27,10 +27,10 @@ class _MapState extends State<Map> {
     final ValueNotifier<double> _mapHeight =
         ValueNotifier<double>(screenHeight(context) * 0.25);
     return BlocConsumer<LocationCubit, LocationState>(
-      listener: (BuildContext context, LocationState state) {
+      listener: (BuildContext context, LocationState state) async {
         if (state is LocationFetched) {
-          widget.yourLocation.text =
-              '${state.location?.latitude}, ${state.location?.longitude}';
+          widget.yourLocation.text = await getAddressFromLatLng(
+              state.location!.latitude, state.location!.longitude);
           widget.latitude.text = state.location?.latitude.toString() ?? '0.0';
           widget.longitude.text = state.location?.longitude.toString() ?? '0.0';
         }
@@ -59,11 +59,12 @@ class _MapState extends State<Map> {
                         ),
                         zoom: 14.5,
                       ),
-                      onCameraMove: (CameraPosition? cameraPosition) {
+                      onCameraMove: (CameraPosition? cameraPosition) async {
                         _mapHeight.value = screenHeight(context) * 0.7;
                         if (cameraPosition != null) {
-                          widget.yourLocation.text =
-                              '${cameraPosition.target.latitude}, ${cameraPosition.target.longitude}';
+                          widget.yourLocation.text = await getAddressFromLatLng(
+                              cameraPosition.target.latitude,
+                              cameraPosition.target.longitude);
                         }
                       },
                       onCameraIdle: () {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:kynd_shop/data/models/add_address_model.dart';
+import '../models/add_address_model.dart';
 import '../../utils/export_utilities.dart';
 
 class AddressDataProvider {

@@ -84,7 +84,6 @@ class _ProductDetailState extends State<ProductDetail> {
                               ? true
                               : false,
                       productId: state.productDetailModel.data?[0].id ?? 0),
-                  
                 ],
               ),
             );
