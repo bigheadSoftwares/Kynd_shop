@@ -4,12 +4,17 @@ class Blog {
   Future<http.Response> _getBlogs() async {
     final Uri _url = Uri.parse('${Constants.host}bloglist');
 
-    final http.Response _response =
-        await http.post(_url, headers: <String, String>{
-      'Content-Type': 'application/json',
-      HttpHeaders.authorizationHeader:
-          'Bearer ${Constants.authenticationModel!.success.token}',
-    });
+    final http.Response _response = await http.post(_url,
+        body: jsonEncode(
+          <String, dynamic>{
+            'user_id': Constants.authenticationModel!.success.customerId,
+          },
+        ),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          HttpHeaders.authorizationHeader:
+              'Bearer ${Constants.authenticationModel!.success.token}',
+        });
 
     return _response;
   }
@@ -51,7 +56,9 @@ class Blog {
     final http.Response _response = await http.post(
       _url,
       body: jsonEncode(
-        <String, dynamic>{'blog_id': blogId},
+        <String, dynamic>{
+          'blog_id': blogId,
+        },
       ),
       headers: <String, String>{
         'Content-Type': 'application/json',
@@ -75,6 +82,24 @@ class Blog {
         'comment': comment,
         'user_id': Constants.authenticationModel!.success.customerId,
       }),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        HttpHeaders.authorizationHeader:
+            'Bearer ${Constants.authenticationModel!.success.token}',
+      },
+    );
+  }
+
+  Future<http.Response> _like(int blogId) async {
+    final Uri _url = Uri.parse('${Constants.host}likeBlog');
+    return await http.post(
+      _url,
+      body: jsonEncode(
+        <String, dynamic>{
+          'blog_id': blogId,
+          'user_id': Constants.authenticationModel!.success.customerId,
+        },
+      ),
       headers: <String, String>{
         'Content-Type': 'application/json',
         HttpHeaders.authorizationHeader:

@@ -78,4 +78,12 @@ class BlogRepository extends Blog {
       throw handleError(response);
     }
   }
+
+  Future<void> like(int blogId) async {
+    final http.Response response = await _like(blogId);
+
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      throw handleError(response);
+    }
+  }
 }
