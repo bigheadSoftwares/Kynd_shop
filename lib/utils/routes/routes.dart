@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kynd_shop/data/authentication/login_data_model.dart';
+import '../../data/blog/blog_repository.dart';
 import '../../view/authenticationScreens/otp_screen.dart';
 import '../../view/introduction_screens/introduction_screens.dart';
 import '../../view/address/my_address.dart';
@@ -73,7 +75,7 @@ class Routes {
       case otpScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => OtpScreen(
-            phoneNumber: settings.arguments as String,
+            loginDataModel: settings.arguments as LoginDataModel,
           ),
         );
       case registerScreen:
@@ -123,7 +125,7 @@ class Routes {
         );
       case discussionDetails:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const DiscussionDetails(),
+          builder: (_) => DiscussionDetails(blog: settings.arguments as Datum),
         );
       case startDiscussion:
         return MaterialPageRoute<dynamic>(

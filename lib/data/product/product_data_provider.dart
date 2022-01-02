@@ -30,7 +30,7 @@ class ProductDataProvider {
       'name': query,
     });
     final Response response = await post(
-      Uri.parse('${Constants.host}product'),
+      Uri.parse('${Constants.host}products/search'),
       body: body,
       headers: <String, String>{
         'Authorization':

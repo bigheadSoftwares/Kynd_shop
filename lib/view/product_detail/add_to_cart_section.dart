@@ -33,66 +33,84 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 10,
-      color: Colour.white,
-      child: BlocListener<AddToCartCubit, AddToCartState>(
-        listener: (BuildContext context, AddToCartState state) {
-          if (state is AddToCartLoaded) {
-            isAddedToCart = !isAddedToCart!;
-            cartQuantity = (cartQuantity! + 1);
-            setState(() {});
-          }
-        },
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  isAddedToCart == true && cartQuantity != 0
-                      ? IncrementDecrementButton(
-                          number: cartQuantity!,
-                        )
-                      : AddToCartWidget(onAddToCart: () {
-                          context
-                              .read<AddToCartCubit>()
-                              .addToCart(productId ?? 1, 1);
-                        }),
-                  SubHeading2(
-                    '${Constants.rupee} $productPrice/-',
-                    color: Colour.greenishBlue,
-                    fontWeight: FontWeight.w500,
-                    size: 20,
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
-              child: RoundContainer(
-                onTap: () {
-                  pushReplacementNamed(context, Routes.cart);
-                },
-                hPadding: 10,
-                vPadding: 10,
-                radius: 30,
-                color: Colour.greenishBlue,
-                width: double.infinity,
-                child: const Center(
-                  child: SubHeading1(
-                    'Go to Cart',
-                    color: Colour.white,
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+    return BlocBuilder<ProductDetailCubit, ProductDetailState>(
+      builder: (BuildContext context, ProductDetailState state) {
+        return Material(
+          elevation: 10,
+          color: Colour.white,
+          child: state is ProductDetailLoaded
+              ? Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          state.productDetailModel.data![0].isAddedToCart ==
+                                      true &&
+                                  state.productDetailModel.data![0]
+                                          .cartQuantity !=
+                                      0
+                              ? IncrementDecrementButton(
+                                  number: state.productDetailModel.data![0]
+                                      .cartQuantity!,
+                                  onTapInc: () async {
+                                    BlocProvider.of<ProductDetailCubit>(context)
+                                        .addProductToCart(
+                                            productId!,
+                                            state.productDetailModel.data![0]
+                                                .cartQuantity!);
+                                  },
+                                  onTapDec: () async {
+                                    BlocProvider.of<ProductDetailCubit>(context)
+                                        .removeProductFromCart(
+                                            productId!,
+                                            state.productDetailModel.data![0]
+                                                .cartQuantity!);
+                                  },
+                                )
+                              : AddToCartWidget(onAddToCart: () {
+                                  BlocProvider.of<ProductDetailCubit>(context)
+                                      .addProductToCart(
+                                          productId!,
+                                          state.productDetailModel.data![0]
+                                              .cartQuantity!);
+                                }),
+                          SubHeading2(
+                            '${Constants.rupee} $productPrice/-',
+                            color: Colour.greenishBlue,
+                            fontWeight: FontWeight.w500,
+                            size: 20,
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 16),
+                      child: RoundContainer(
+                        onTap: () {
+                          pushReplacementNamed(context, Routes.cart);
+                        },
+                        hPadding: 10,
+                        vPadding: 10,
+                        radius: 30,
+                        color: Colour.greenishBlue,
+                        width: double.infinity,
+                        child: const Center(
+                          child: SubHeading1(
+                            'Go to Cart',
+                            color: Colour.white,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              : sizedBoxHeight(20),
+        );
+      },
     );
   }
 }

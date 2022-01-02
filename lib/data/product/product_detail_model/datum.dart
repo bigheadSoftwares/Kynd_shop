@@ -81,7 +81,7 @@ class Datum extends Equatable {
   @JsonKey(name: 'customer_id')
   final int? customerId;
   @JsonKey(name: 'is_added_to_cart')
-  final int? isAddedToCart;
+  final bool? isAddedToCart;
   @JsonKey(name: 'cart_quantity')
   final int? cartQuantity;
   @JsonKey(name: 'is_wishlisted')
@@ -118,7 +118,7 @@ class Datum extends Equatable {
     String? description,
     int? isUserLogin,
     int? customerId,
-    int? isAddedToCart,
+    bool? isAddedToCart,
     int? cartQuantity,
     int? isWishlisted,
   }) {

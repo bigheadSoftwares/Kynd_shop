@@ -23,12 +23,28 @@ class RegistrationError extends AuthenticationState {
   List<Failure> get props => <Failure>[error];
 }
 
+class LoginError extends AuthenticationState {
+  const LoginError(this.error);
+  final Failure error;
+
+  @override
+  List<Failure> get props => <Failure>[error];
+}
+
 class AuthenticationOtpSent extends AuthenticationState {
   const AuthenticationOtpSent(this.phoneNo);
   final String phoneNo;
 
   @override
   List<String> get props => <String>[phoneNo];
+}
+
+class LoginSuccessful extends AuthenticationState {
+  const LoginSuccessful(this.dataModel);
+  final LoginDataModel dataModel;
+
+  @override
+  List<LoginDataModel> get props => <LoginDataModel>[dataModel];
 }
 
 class AuthenticationError extends AuthenticationState {

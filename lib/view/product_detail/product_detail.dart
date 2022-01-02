@@ -41,14 +41,11 @@ class _ProductDetailState extends State<ProductDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colour.white,
-      bottomNavigationBar: BlocProvider<AddToCartCubit>(
-        create: (BuildContext context) => AddToCartCubit(),
-        child: _BottomCartSection(
-          productPrice: widget.productPrice,
-          isAddedToCart: widget.isAddedToCart,
-          cartQuantity: widget.cartQuantity,
-          productId: widget.productId,
-        ),
+      bottomNavigationBar: _BottomCartSection(
+        productPrice: widget.productPrice,
+        isAddedToCart: widget.isAddedToCart,
+        cartQuantity: widget.cartQuantity,
+        productId: widget.productId,
       ),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -86,7 +83,8 @@ class _ProductDetailState extends State<ProductDetail> {
                           state.productDetailModel.data?[0].isWishlisted == 1
                               ? true
                               : false,
-                      productId: state.productDetailModel.data?[0].id ?? 0)
+                      productId: state.productDetailModel.data?[0].id ?? 0),
+                  
                 ],
               ),
             );

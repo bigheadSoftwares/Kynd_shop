@@ -5,6 +5,8 @@ import 'logic/address/create_address_cubit.dart';
 import 'logic/cart/cart_summary_cubit.dart';
 import 'logic/cart/cart_details_cubit.dart';
 import 'logic/product/search_product_cubit.dart';
+import 'logic/blog/blog_cubit.dart';
+import 'logic/image_picking/image_picking_cubit.dart';
 import 'utils/export_utilities.dart';
 import 'logic/authentication/authentication_cubit.dart';
 import 'logic/order/order_detail_cubit.dart';
@@ -88,7 +90,12 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => AddressCubit(),
         ),
         BlocProvider<CreateAddressCubit>(
-          create: (BuildContext context) => CreateAddressCubit(),
+          create: (BuildContext context) => CreateAddressCubit(),),
+        BlocProvider<BlogCubit>(
+          create: (BuildContext context) => BlogCubit(),
+        ),
+        BlocProvider<ImagePickingCubit>(
+          create: (BuildContext context) => ImagePickingCubit(),
         ),
         BlocProvider<SearchProductCubit>(
           create: (BuildContext context) => SearchProductCubit(),

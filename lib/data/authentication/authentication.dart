@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:easy_coding/handle_error.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'login_data_model.dart';
 import '../../utils/export_utilities.dart';
 
 part 'authentication_repository.dart';
@@ -17,6 +18,26 @@ class Authentication {
     });
 
     final Uri url = Uri.parse('${Constants.host}auth/login');
+    final http.Response response = await http.post(
+      url,
+      body: body,
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+    );
+    return response;
+  }
+
+  Future<http.Response> _confirmCode(
+    int userId,
+    int verificationCode,
+  ) async {
+    final String body = jsonEncode(<String, dynamic>{
+      'user_id': userId,
+      'verification_code': verificationCode
+    });
+
+    final Uri url = Uri.parse('${Constants.host}auth/confirm_code');
     final http.Response response = await http.post(
       url,
       body: body,

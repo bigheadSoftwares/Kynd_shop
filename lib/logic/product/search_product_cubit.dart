@@ -9,7 +9,7 @@ part 'search_product_state.dart';
 class SearchProductCubit extends Cubit<SearchProductState> {
   SearchProductCubit() : super(SearchProductInitial());
   void searchProduct(String query) {
-    emit(SearchProductInitial());
+    // emit(SearchProductInitial());
     ProductRepository.searchProduct(query).then(
         (SearchProductModel searchProductModel) =>
             emit(SearchProductLoaded(searchProductModel)),

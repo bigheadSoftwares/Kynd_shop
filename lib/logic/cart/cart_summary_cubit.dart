@@ -10,6 +10,8 @@ class CartSummaryCubit extends Cubit<CartSummaryState> {
   CartSummaryCubit() : super(CartSummaryInitial());
 
   void getCartSummary() {
+    // print('This is called');
+    // emit(CartSummaryLoading());
     CartRepository.getCartSummary().then(
       (CartSummaryModel cartSummaryModel) => emit(
         CartSummaryLoaded(cartSummaryModel),

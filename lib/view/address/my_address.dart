@@ -106,7 +106,8 @@ class _Addresses extends StatelessWidget {
                   subtitle: SubHeading2(
                     '+91 ${state.myAddressesModel.data?[index].phone}\n${state.myAddressesModel.data?[index].address} ${state.myAddressesModel.data?[index].city}, ${state.myAddressesModel.data?[index].country} ${state.myAddressesModel.data?[index].postalCode}',
                     maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
+                    //TODO Uncomment this below line
+                    // overflow: TextOverflow.ellipsis,
                     color: Colour.subtitleColor,
                   ),
                 ),
