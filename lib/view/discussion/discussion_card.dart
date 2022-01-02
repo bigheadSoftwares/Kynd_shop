@@ -1,7 +1,7 @@
 part of 'discussion.dart';
 
 class _DiscussionCard extends StatelessWidget {
-  const _DiscussionCard({
+  _DiscussionCard({
     Key? key,
     this.showComments = true,
     required this.blog,
@@ -9,6 +9,7 @@ class _DiscussionCard extends StatelessWidget {
 
   final bool showComments;
   final Datum blog;
+  final ValueNotifier<bool> isLiked = ValueNotifier<bool>(false);
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +63,27 @@ class _DiscussionCard extends StatelessWidget {
                 const Divider(height: 24),
                 Row(
                   children: <Widget>[
-                    _IconAndText(
-                      iconAsset: Assets.like,
-                      iconColor: blog.isLiked == 1 ? Colour.greenishBlue : null,
-                      text: 'Like',
-                      textColor: blog.isLiked == 1 ? Colour.greenishBlue : null,
-                      fontSize: 14,
-                      iconScale: 2,
+                    ValueListenableBuilder<bool>(
+                      valueListenable: isLiked,
+                      builder:
+                          (BuildContext context, bool value, Widget? child) {
+                        final bool liked = blog.isLiked == 1 || value;
+                        return InkWell(
+                          onTap: () {
+                            if (!liked) {
+                              isLiked.value = true;
+                              context.read<BlogCubit>().like(blog.id);
+                            }
+                          },
+                          child: _IconAndText(
+                            iconAsset: liked ? Assets.likeFill : Assets.like,
+                            text: 'Like',
+                            textColor: liked ? Colour.greenishBlue : null,
+                            fontSize: 14,
+                            iconScale: liked ? null : 2,
+                          ),
+                        );
+                      },
                     ),
                     sizedBoxWidth(16),
                     if (showComments)
