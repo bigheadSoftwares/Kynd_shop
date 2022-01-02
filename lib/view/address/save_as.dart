@@ -24,11 +24,14 @@ class _SaveAsWidgetState extends State<_SaveAsWidget> {
   void initState() {
     super.initState();
     widget.controller.text = _saveAs.value.toString();
+    widget.controller.text = describeEnum(_saveAs.value);
+    show(describeEnum(_saveAs.value));
   }
 
   void changeSaveAs(SaveAs value) {
     _saveAs.value = value;
     widget.controller.text = describeEnum(value);
+    show(describeEnum(value));
   }
 
   @override
