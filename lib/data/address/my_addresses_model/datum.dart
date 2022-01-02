@@ -4,8 +4,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'datum.g.dart';
 
 @JsonSerializable()
-class Datum extends Equatable {
-  const Datum({
+class AddressDatum extends Equatable {
+  const AddressDatum({
     this.id,
     this.userId,
     this.address,
@@ -37,11 +37,11 @@ class Datum extends Equatable {
   final double? latitude;
   final double? longitude;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
+  factory AddressDatum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
 
   Map<String, dynamic> toJson() => _$DatumToJson(this);
 
-  Datum copyWith({
+  AddressDatum copyWith({
     int? id,
     int? userId,
     String? address,
@@ -55,7 +55,7 @@ class Datum extends Equatable {
     double? latitude,
     double? longitude,
   }) {
-    return Datum(
+    return AddressDatum(
       id: id ?? this.id,
       userId: userId ?? this.userId,
       address: address ?? this.address,

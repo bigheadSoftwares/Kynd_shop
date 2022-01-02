@@ -1,7 +1,16 @@
-part of 'my_address.dart';
 
-class Map extends StatefulWidget {
-  Map({
+
+import 'package:easy_coding/big_head_softwares.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../logic/location/location_cubit.dart';
+import '../../utils/export_utilities.dart';
+import '../../utils/functions/get_address_using_coordinates.dart';
+import 'package:provider/src/provider.dart';
+
+class MapWidget extends StatefulWidget {
+  MapWidget({
     Key? key,
     required this.yourLocation,
     required this.latitude,
@@ -12,10 +21,10 @@ class Map extends StatefulWidget {
   final TextEditingController longitude;
 
   @override
-  State<Map> createState() => _MapState();
+  State<MapWidget> createState() => _MapWidgetState();
 }
 
-class _MapState extends State<Map> {
+class _MapWidgetState extends State<MapWidget> {
   @override
   void initState() {
     super.initState();

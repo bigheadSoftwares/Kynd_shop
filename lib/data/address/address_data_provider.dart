@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:kynd_shop/utils/functions/show.dart';
 import '../models/add_address_model.dart';
 import '../../utils/export_utilities.dart';
 
@@ -19,6 +20,7 @@ class AddressDataProvider {
   }
 
   static Future<bool> createAddress(AddAddressModel data) async {
+    show(data);
     final Response response = await post(
       Uri.parse('${Constants.host}user/shipping/create'),
       body: data.toJson(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/data/authentication/login_data_model.dart';
+import '../../view/address/add_address.dart';
+import '../../data/authentication/login_data_model.dart';
 import '../../data/blog/blog_repository.dart';
 import '../../view/authenticationScreens/otp_screen.dart';
 import '../../view/introduction_screens/introduction_screens.dart';

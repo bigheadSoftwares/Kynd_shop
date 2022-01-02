@@ -1,4 +1,9 @@
-part of 'my_address.dart';
+
+import 'package:easy_coding/big_head_softwares.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import '../../utils/export_utilities.dart';
+import '../../utils/functions/show.dart';
 
 enum SaveAs {
   home,
@@ -6,18 +11,18 @@ enum SaveAs {
   others,
 }
 
-class _SaveAsWidget extends StatefulWidget {
-  const _SaveAsWidget({
+class SaveAsWidget extends StatefulWidget {
+  const SaveAsWidget({
     Key? key,
     required this.controller,
   }) : super(key: key);
   final TextEditingController controller;
 
   @override
-  State<_SaveAsWidget> createState() => _SaveAsWidgetState();
+  State<SaveAsWidget> createState() => _SaveAsWidgetState();
 }
 
-class _SaveAsWidgetState extends State<_SaveAsWidget> {
+class _SaveAsWidgetState extends State<SaveAsWidget> {
   final ValueNotifier<SaveAs> _saveAs = ValueNotifier<SaveAs>(SaveAs.home);
 
   @override
