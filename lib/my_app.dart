@@ -90,7 +90,8 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => AddressCubit(),
         ),
         BlocProvider<CreateAddressCubit>(
-          create: (BuildContext context) => CreateAddressCubit(),),
+          create: (BuildContext context) => CreateAddressCubit(),
+        ),
         BlocProvider<BlogCubit>(
           create: (BuildContext context) => BlogCubit(),
         ),

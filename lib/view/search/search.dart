@@ -22,13 +22,23 @@ class Search extends StatelessWidget {
           Expanded(
             child: BlocBuilder<SearchProductCubit, SearchProductState>(
               builder: (BuildContext context, SearchProductState state) {
-                if (state is SearchProductInitial ||
-                    state is SearchProductFailure) {
+                if (state is SearchProductInitial) {
                   return Column(
                     children: const <Widget>[
                       CustomImageWidget(
                         image: Assets.notSearch,
                         scale: 2.5,
+                      ),
+                    ],
+                  );
+                }
+                if (state is SearchProductLoaded &&
+                    state.searchProductModel.data!.isEmpty) {
+                  return Column(
+                    children: const <Widget>[
+                      SubHeading1(
+                        'No result found',
+                        color: Colour.lightGrey,
                       ),
                     ],
                   );
@@ -47,7 +57,7 @@ class Search extends StatelessWidget {
                           productName:
                               state.searchProductModel.data?[index].name,
                           productImage: state
-                              .searchProductModel.data?[index].thumbnailImage,
+                              .searchProductModel.data?[index].thumbnailImg,
                           productId: state.searchProductModel.data?[index].id,
                           basePrice:
                               state.searchProductModel.data?[index].basePrice,
@@ -58,17 +68,7 @@ class Search extends StatelessWidget {
                     },
                   );
                 }
-                if (state is SearchProductLoaded &&
-                    state.searchProductModel.data!.isEmpty) {
-                  return Column(
-                    children: const <Widget>[
-                      SubHeading1(
-                        'No result found',
-                        color: Colour.lightGrey,
-                      ),
-                    ],
-                  );
-                }
+
                 if (state is SearchProductFailure) {
                   return Column(
                     children: <Widget>[

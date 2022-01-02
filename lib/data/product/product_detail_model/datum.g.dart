@@ -38,7 +38,7 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       description: json['description'] as String?,
       isUserLogin: json['is_user_login'] as int?,
       customerId: json['customer_id'] as int?,
-      isAddedToCart: json['is_added_to_cart'] as int == 0 ? false : true,
+      isAddedToCart: json['is_added_to_cart'] as bool?,
       cartQuantity: json['cart_quantity'] as int?,
       isWishlisted: json['is_wishlisted'] as int?,
     );
