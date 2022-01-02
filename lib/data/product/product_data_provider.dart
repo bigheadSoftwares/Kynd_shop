@@ -28,6 +28,7 @@ class ProductDataProvider {
   static Future<Response> searchProduct(String query) async {
     final String body = jsonEncode(<String, dynamic>{
       'name': query,
+      'customer_id': Constants.authenticationModel!.success.customerId
     });
     final Response response = await post(
       Uri.parse('${Constants.host}products/search'),

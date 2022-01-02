@@ -9,7 +9,7 @@ part 'my_addresses_model.g.dart';
 class MyAddressesModel extends Equatable {
   const MyAddressesModel({this.data, this.success, this.status});
 
-  final List<Datum>? data;
+  final List<AddressDatum>? data;
   final bool? success;
   final int? status;
 
@@ -20,7 +20,7 @@ class MyAddressesModel extends Equatable {
   Map<String, dynamic> toJson() => _$MyAddressesModelToJson(this);
 
   MyAddressesModel copyWith({
-    List<Datum>? data,
+    List<AddressDatum>? data,
     bool? success,
     int? status,
   }) {

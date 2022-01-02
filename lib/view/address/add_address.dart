@@ -1,4 +1,16 @@
-part of 'my_address.dart';
+
+
+import 'package:easy_coding/big_head_softwares.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'map.dart';
+import '../../data/models/add_address_model.dart';
+import '../../logic/address/create_address_cubit.dart';
+import '../../utils/export_utilities.dart';
+import '../../utils/functions/snackbar.dart';
+import 'save_as.dart';
+import 'add_address_text_field.dart';
 
 class AddAddress extends StatefulWidget {
   const AddAddress({Key? key}) : super(key: key);
@@ -40,7 +52,7 @@ class _AddAddressState extends State<AddAddress> {
       ),
       body: Column(
         children: <Widget>[
-          Map(
+          MapWidget(
             yourLocation: _yourLocation,
             longitude: _longitude,
             latitude: _latitude,
@@ -57,22 +69,22 @@ class _AddAddressState extends State<AddAddress> {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      _AddAddressTextField(
+                      AddAddressTextField(
                         controller: _yourLocation,
                         label: 'Your Location',
                       ),
                       sizedBoxHeight(10),
-                      _AddAddressTextField(
+                      AddAddressTextField(
                         controller: _flat,
                         label: 'Flat/ Building / Street',
                       ),
                       sizedBoxHeight(10),
-                      _AddAddressTextField(
+                      AddAddressTextField(
                         controller: _name,
                         label: 'Name',
                       ),
                       sizedBoxHeight(10),
-                      _AddAddressTextField(
+                      AddAddressTextField(
                         controller: _mobile,
                         label: 'Mobile',
                         textInputFormatter: <TextInputFormatter>[
@@ -88,7 +100,7 @@ class _AddAddressState extends State<AddAddress> {
                     color: Colour.subtitleColor,
                     size: 16,
                   ),
-                  _SaveAsWidget(controller: _saveAs)
+                  SaveAsWidget(controller: _saveAs)
                 ],
               ),
             ),

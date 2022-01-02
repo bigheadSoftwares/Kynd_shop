@@ -14,6 +14,14 @@ class SearchProductLoaded extends SearchProductState {
   const SearchProductLoaded(this.searchProductModel);
   @override
   List<Object> get props => <Object>[searchProductModel];
+
+  SearchProductLoaded copyWith({
+    SearchProductModel? searchProductModel,
+  }) {
+    return SearchProductLoaded(
+      searchProductModel ?? this.searchProductModel,
+    );
+  }
 }
 
 class SearchProductFailure extends SearchProductState {

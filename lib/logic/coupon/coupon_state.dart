@@ -11,12 +11,12 @@ class CouponInitial extends CouponState {}
 
 class CouponLoaded extends CouponState {
   const CouponLoaded(this.coupnModel);
-  final CoupnModel coupnModel;
+  final CouponModel coupnModel;
   @override
   List<Object> get props => <Object>[coupnModel];
 
   CouponLoaded copyWith({
-    CoupnModel? coupnModel,
+    CouponModel? coupnModel,
   }) {
     return CouponLoaded(
       coupnModel ?? this.coupnModel,

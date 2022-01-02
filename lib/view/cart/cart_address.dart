@@ -1,21 +1,30 @@
 import 'package:easy_coding/big_head_softwares.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../utils/functions/get_address_using_coordinates.dart';
+import '../../utils/functions/show.dart';
+import '../../data/models/add_address_model.dart';
+import '../../logic/address/create_address_cubit.dart';
+import '../../utils/functions/snackbar.dart';
 import '../../logic/address/address_cubit.dart';
+import '../../logic/location/location_cubit.dart';
 import '../../utils/export_utilities.dart';
 
-class MyAddress extends StatefulWidget {
-  const MyAddress({Key? key}) : super(key: key);
+
+class CartAddress extends StatefulWidget {
+  const CartAddress({Key? key}) : super(key: key);
 
   @override
-  State<MyAddress> createState() => _MyAddressState();
+  State<CartAddress> createState() => _CartAddressState();
 }
 
-class _MyAddressState extends State<MyAddress> {
+class _CartAddressState extends State<CartAddress> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<AddressCubit>(context).getMyAddresses();
   }
 
   @override
@@ -24,7 +33,7 @@ class _MyAddressState extends State<MyAddress> {
       backgroundColor: Colour.lightGreyishBlue,
       appBar: appBar(
         context,
-        title: 'My Address',
+        title: 'Address',
       ),
       body: ListView(
         children: <Widget>[
@@ -92,7 +101,7 @@ class _Addresses extends StatelessWidget {
                       state.myAddressesModel.data?[index].nameTag ?? 'home'),
                   spaceBetweenTitleAndSubtitle: 4,
                   subtitle: SubHeading2(
-                    '${state.myAddressesModel.data?[index].phone}\n${state.myAddressesModel.data?[index].address} ${state.myAddressesModel.data?[index].city}, ${state.myAddressesModel.data?[index].country} ${state.myAddressesModel.data?[index].postalCode}',
+                    '+91 ${state.myAddressesModel.data?[index].phone}\n${state.myAddressesModel.data?[index].address} ${state.myAddressesModel.data?[index].city}, ${state.myAddressesModel.data?[index].country} ${state.myAddressesModel.data?[index].postalCode}',
                     maxLines: 3,
                     //TODO Uncomment this below line
                     // overflow: TextOverflow.ellipsis,

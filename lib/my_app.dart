@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'logic/blog/add_blog_comment_cubit.dart';
+import 'logic/blog/blog_comments_cubit.dart';
+import 'logic/coupon/apply_coupon_cubit.dart';
+import 'logic/coupon/coupon_cubit.dart';
+import 'logic/coupon/coupon_remove_cubit.dart';
 import 'logic/address/address_cubit.dart';
 import 'logic/address/create_address_cubit.dart';
 import 'logic/cart/cart_summary_cubit.dart';
@@ -95,11 +100,26 @@ class MyApp extends StatelessWidget {
         BlocProvider<BlogCubit>(
           create: (BuildContext context) => BlogCubit(),
         ),
+        BlocProvider<BlogCommentsCubit>(
+          create: (BuildContext context) => BlogCommentsCubit(),
+        ),
+        BlocProvider<AddBlogCommentCubit>(
+          create: (BuildContext context) => AddBlogCommentCubit(),
+        ),
         BlocProvider<ImagePickingCubit>(
           create: (BuildContext context) => ImagePickingCubit(),
         ),
         BlocProvider<SearchProductCubit>(
           create: (BuildContext context) => SearchProductCubit(),
+        ),
+        BlocProvider<CouponCubit>(
+          create: (BuildContext context) => CouponCubit(),
+        ),
+        BlocProvider<ApplyCouponCubit>(
+          create: (BuildContext context) => ApplyCouponCubit(),
+        ),
+        BlocProvider<CouponRemoveCubit>(
+          create: (BuildContext context) => CouponRemoveCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

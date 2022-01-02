@@ -6,11 +6,12 @@ class Datum extends Equatable {
   final int? id;
   final String? type;
   final String? code;
-  final String? details;
   final int? discount;
   final String? discountType;
-  final int? startDate;
-  final int? endDate;
+  final String? minBuy;
+  final String? maxDiscount;
+  final String? startDate;
+  final String? endDate;
   final String? createdAt;
   final String? updatedAt;
 
@@ -18,9 +19,10 @@ class Datum extends Equatable {
     this.id,
     this.type,
     this.code,
-    this.details,
     this.discount,
     this.discountType,
+    this.minBuy,
+    this.maxDiscount,
     this.startDate,
     this.endDate,
     this.createdAt,
@@ -31,11 +33,12 @@ class Datum extends Equatable {
         id: data['id'] as int?,
         type: data['type'] as String?,
         code: data['code'] as String?,
-        details: data['details'] as String?,
         discount: data['discount'] as int?,
         discountType: data['discount_type'] as String?,
-        startDate: data['start_date'] as int?,
-        endDate: data['end_date'] as int?,
+        minBuy: data['min_buy'] as String?,
+        maxDiscount: data['max_discount'] as String?,
+        startDate: data['start_date'] as String?,
+        endDate: data['end_date'] as String?,
         createdAt: data['created_at'] as String?,
         updatedAt: data['updated_at'] as String?,
       );
@@ -44,9 +47,10 @@ class Datum extends Equatable {
         'id': id,
         'type': type,
         'code': code,
-        'details': details,
         'discount': discount,
         'discount_type': discountType,
+        'min_buy': minBuy,
+        'max_discount': maxDiscount,
         'start_date': startDate,
         'end_date': endDate,
         'created_at': createdAt,
@@ -69,11 +73,12 @@ class Datum extends Equatable {
     int? id,
     String? type,
     String? code,
-    String? details,
     int? discount,
     String? discountType,
-    int? startDate,
-    int? endDate,
+    String? minBuy,
+    String? maxDiscount,
+    String? startDate,
+    String? endDate,
     String? createdAt,
     String? updatedAt,
   }) {
@@ -81,9 +86,10 @@ class Datum extends Equatable {
       id: id ?? this.id,
       type: type ?? this.type,
       code: code ?? this.code,
-      details: details ?? this.details,
       discount: discount ?? this.discount,
       discountType: discountType ?? this.discountType,
+      minBuy: minBuy ?? this.minBuy,
+      maxDiscount: maxDiscount ?? this.maxDiscount,
       startDate: startDate ?? this.startDate,
       endDate: endDate ?? this.endDate,
       createdAt: createdAt ?? this.createdAt,
@@ -100,9 +106,10 @@ class Datum extends Equatable {
       id,
       type,
       code,
-      details,
       discount,
       discountType,
+      minBuy,
+      maxDiscount,
       startDate,
       endDate,
       createdAt,

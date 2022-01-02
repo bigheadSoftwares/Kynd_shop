@@ -9,7 +9,7 @@ part of 'my_addresses_model.dart';
 MyAddressesModel _$MyAddressesModelFromJson(Map<String, dynamic> json) =>
     MyAddressesModel(
       data: (json['data'] as List<dynamic>?)
-          ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => AddressDatum.fromJson(e as Map<String, dynamic>))
           .toList(),
       success: json['success'] as bool?,
       status: json['status'] as int?,

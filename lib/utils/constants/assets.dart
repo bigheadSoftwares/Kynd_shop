@@ -78,4 +78,5 @@ class Assets {
   static const String addressCompany = 'assets/icons/address-company.png';
   static const String marker = 'assets/icons/marker.png';
   static const String otpBackground = 'assets/icons/otp.png';
+  static const String send = 'assets/icons/send.png';
 }

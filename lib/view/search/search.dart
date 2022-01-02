@@ -54,6 +54,20 @@ class Search extends StatelessWidget {
                           vertical: 12,
                         ),
                         child: ProductCard(
+                          onLike: () {
+                            BlocProvider.of<SearchProductCubit>(context)
+                                .addProductToWishlist(
+                              state.searchProductModel.data![index].id!,
+                            );
+                          },
+                          onDislike: () {
+                            BlocProvider.of<SearchProductCubit>(context)
+                                .removeProductFromWishlist(
+                              state.searchProductModel.data![index].id!,
+                            );
+                            // BlocProvider.of<FetchWishlistCubit>(context)
+                            //     .fetchWishlist();
+                          },
                           productName:
                               state.searchProductModel.data?[index].name,
                           productImage: state
@@ -63,6 +77,15 @@ class Search extends StatelessWidget {
                               state.searchProductModel.data?[index].basePrice,
                           baseDiscountedPrice: state.searchProductModel
                               .data?[index].baseDiscountedPrice,
+                          isWishlisted: state
+                              .searchProductModel.data?[index].isWishlisted,
+                          cartQuantity: state
+                              .searchProductModel.data?[index].cartQuantity,
+                          isAddedToCart: state.searchProductModel.data?[index]
+                                      .isAddedToCart ==
+                                  1
+                              ? true
+                              : false,
                         ),
                       );
                     },

@@ -1,11 +1,12 @@
 import 'package:http/http.dart';
-import 'package:kynd_shop/data/coupon/coupn_model/coupn_model.dart';
-import 'package:kynd_shop/data/coupon/coupon_data_provider.dart';
+import 'coupon_data_provider.dart';
+
+import 'coupon_model/coupon_model.dart';
 
 class CouponRepository {
-  static Future<CoupnModel> getCouponList() async {
+  static Future<CouponModel> getCouponList() async {
     final Response _response = await CouponDataProvider.getCouponsList();
-    CoupnModel _couponModel = CoupnModel.fromJson(_response.body);
+    CouponModel _couponModel = CouponModel.fromJson(_response.body);
     return _couponModel;
   }
 }

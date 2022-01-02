@@ -1,9 +1,20 @@
 part of 'discussion.dart';
 
-class DiscussionDetails extends StatelessWidget {
+class DiscussionDetails extends StatefulWidget {
   const DiscussionDetails({Key? key, required this.blog}) : super(key: key);
 
   final Datum blog;
+
+  @override
+  State<DiscussionDetails> createState() => _DiscussionDetailsState();
+}
+
+class _DiscussionDetailsState extends State<DiscussionDetails> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<BlogCommentsCubit>().getComments(widget.blog.id);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,24 +24,55 @@ class DiscussionDetails extends StatelessWidget {
         context,
         title: 'Comments',
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 20),
+      body: Stack(
+        alignment: Alignment.bottomCenter,
         children: <Widget>[
-          _DiscussionCard(
-            showComments: false,
-            blog: blog,
+          ListView(
+            padding: const EdgeInsets.fromLTRB(0, 0, 16, 80),
+            children: <Widget>[
+              _DiscussionCard(
+                showComments: false,
+                blog: widget.blog,
+              ),
+              sizedBoxHeight(20),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Heading2(
+                  context.watch<BlogCommentsCubit>().state
+                          is BlogCommentsSuccess
+                      ? '${(context.read<BlogCommentsCubit>().state as BlogCommentsSuccess).comments.data.length} Comments'
+                      : '0 Comments',
+                  size: 18,
+                ),
+              ),
+              const _Comments(),
+            ],
           ),
-          sizedBoxHeight(20),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Heading2(
-              '3852 Comments',
-              size: 18,
-            ),
-          ),
-          ListView.separated(
+          _AddComment(
+            blogId: widget.blog.id,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class _Comments extends StatelessWidget {
+  const _Comments({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BlogCommentsCubit, BlogCommentsState>(
+      builder: (BuildContext context, BlogCommentsState state) {
+        if (state is BlogCommentsError) {
+          return SubHeading2(state.error.serverMessage ?? state.error.message);
+        } else if (state is BlogCommentsSuccess) {
+          return ListView.separated(
             shrinkWrap: true,
-            itemCount: 5,
+            itemCount: state.comments.data.length,
+            reverse: true,
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
             separatorBuilder: (BuildContext context, int index) =>
@@ -55,13 +97,13 @@ class DiscussionDetails extends StatelessWidget {
                             bottomLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20),
                           )),
-                      child: const CustomListTile(
-                        title: SubHeading1(
-                          'Vikas Kumar',
+                      child: CustomListTile(
+                        title: const SubHeading1(
+                          'Please add username in the response',
                           size: 16,
                         ),
                         subtitle: SubHeading2(
-                          'Random comment just for testing purpose and nothing much. Please ignore it.',
+                          state.comments.data[index].comment,
                           size: 14,
                         ),
                       ),
@@ -70,7 +112,104 @@ class DiscussionDetails extends StatelessWidget {
                 ],
               );
             },
+          );
+        } else {
+          return const LoadingIndicator();
+        }
+      },
+    );
+  }
+}
+
+class _AddComment extends StatefulWidget {
+  const _AddComment({
+    Key? key,
+    required this.blogId,
+  }) : super(key: key);
+
+  final int blogId;
+
+  @override
+  State<_AddComment> createState() => _AddCommentState();
+}
+
+class _AddCommentState extends State<_AddComment> {
+  final TextEditingController _comment = TextEditingController();
+
+  @override
+  void dispose() {
+    _comment.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colour.white,
+      padding: const EdgeInsets.all(12.0),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: TextFormField(
+              controller: _comment,
+              style: const TextStyle(fontSize: 14),
+              decoration: InputDecoration(
+                isDense: true,
+                hintText: 'Say Something...',
+                hintStyle: const TextStyle(
+                  fontSize: 14,
+                  color: Colour.subtitleColor,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(40),
+                  borderSide: const BorderSide(
+                    color: Colour.greenishBlue,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(40),
+                  borderSide: const BorderSide(
+                    color: Colour.greenishBlue,
+                  ),
+                ),
+              ),
+            ),
           ),
+          BlocConsumer<AddBlogCommentCubit, AddBlogCommentState>(
+            listener: (BuildContext context, AddBlogCommentState state) {
+              if (state is AddBlogCommentFailure) {
+                showSnackBar(
+                  context: context,
+                  msg: state.error.serverMessage ?? state.error.message,
+                );
+              } else if (state is AddBlogCommentSuccess) {
+                context.read<BlogCommentsCubit>().getComments(widget.blogId);
+              }
+            },
+            builder: (BuildContext context, AddBlogCommentState state) {
+              if (state is AddBlogCommentLoading) {
+                return const LoadingIndicator(
+                  height: 20,
+                  width: 20,
+                );
+              } else {
+                return IconButton(
+                  onPressed: () async {
+                    FocusScope.of(context).unfocus();
+                    context.read<AddBlogCommentCubit>().addComment(
+                          blogId: widget.blogId,
+                          comment: _comment.text,
+                        );
+                    _comment.clear();
+                  },
+                  icon: Image.asset(
+                    Assets.send,
+                    scale: 2,
+                  ),
+                );
+              }
+            },
+          )
         ],
       ),
     );
