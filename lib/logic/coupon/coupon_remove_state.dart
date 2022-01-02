@@ -8,6 +8,7 @@ abstract class CouponRemoveState extends Equatable {
 }
 
 class CouponRemoveInitial extends CouponRemoveState {}
+
 class CouponRemoveLoading extends CouponRemoveState {}
 
 class CouponRemoveSuccess extends CouponRemoveState {}

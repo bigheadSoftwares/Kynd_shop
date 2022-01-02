@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
+import '../../utils/functions/show.dart';
 import '../models/add_address_model.dart';
 import '../../utils/export_utilities.dart';
 
@@ -24,6 +24,23 @@ class AddressDataProvider {
     final Response response = await post(
       Uri.parse('${Constants.host}user/shipping/create'),
       body: data.toJson(),
+      headers: Constants.headers,
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw Exception(response);
+    }
+  }
+
+  static Future<bool> makeDefault(int addressId) async {
+    dynamic body = jsonEncode(<String, dynamic>{
+      'user_id': Constants.authenticationModel!.success.customerId,
+      'id': addressId
+    });
+    final Response response = await post(
+      Uri.parse('${Constants.host}user/shipping/makedefault'),
+      body: body,
       headers: Constants.headers,
     );
     if (response.statusCode == 200) {

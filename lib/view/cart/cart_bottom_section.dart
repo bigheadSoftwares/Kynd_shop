@@ -11,7 +11,6 @@ class _CartBottomSection extends StatefulWidget {
 
 class _CartBottomSectionState extends State<_CartBottomSection> {
   List<AddressDatum> list = <AddressDatum>[];
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -29,17 +28,9 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
               listener: (BuildContext context, AddressState state) {
                 if (state is AddressLoaded) {
                   setState(() {
-                    list = state.myAddressesModel.data!
-                        .where(
-                            (AddressDatum element) => element.setDefault == 1)
-                        .toList();
+                    list = context.read<AddressCubit>().defaultAddress;
                   });
                   show(list);
-                  if (list.isEmpty) {
-                    setState(() {
-                      list.add(state.myAddressesModel.data![0]);
-                    });
-                  }
                 }
               },
               builder: (BuildContext context, AddressState state) {
@@ -55,16 +46,21 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
                               children: <Widget>[
                                 Expanded(
                                   child: SubHeading2(
-                                    '${list[0].address} ${list[0].city}, ${list[0].country} ${list[0].postalCode}',
+                                    '${list[0].username}',
                                     size: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SubHeading2(
-                                  'CHANGE',
-                                  color: Colour.greenishBlue,
-                                  size: 14,
-                                  fontWeight: FontWeight.w500,
+                                InkWell(
+                                  onTap: () {
+                                    push(context, const CartAddress());
+                                  },
+                                  child: const SubHeading2(
+                                    'CHANGE',
+                                    color: Colour.greenishBlue,
+                                    size: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 )
                               ],
                             ),

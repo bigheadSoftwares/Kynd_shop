@@ -1,5 +1,3 @@
-
-
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -137,6 +135,7 @@ class _AddAddressState extends State<AddAddress> {
                         address: _flat.text,
                         country: _yourLocation.text,
                         city: _yourLocation.text,
+                        username: _name.text,
                         postal_code: _yourLocation.text,
                         phone: _mobile.text,
                         set_default: 1,

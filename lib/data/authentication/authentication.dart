@@ -62,6 +62,20 @@ class Authentication {
     return response;
   }
 
+  Future<http.Response> getUserStatus({
+    required String phoneNo,
+    required String otp,
+  }) async {
+    final String body = jsonEncode(<String, dynamic>{
+      'id': Constants.authenticationModel!.success.customerId,
+    });
+    final http.Response response = await http.post(
+      Uri.parse('${Constants.host}user_status'),
+      body: body,
+    );
+    return response;
+  }
+
   Future<http.Response> _register({
     required String phoneNo,
     required String name,

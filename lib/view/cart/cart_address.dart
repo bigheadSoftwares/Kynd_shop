@@ -1,18 +1,9 @@
 import 'package:easy_coding/big_head_softwares.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../utils/functions/get_address_using_coordinates.dart';
-import '../../utils/functions/show.dart';
-import '../../data/models/add_address_model.dart';
-import '../../logic/address/create_address_cubit.dart';
-import '../../utils/functions/snackbar.dart';
+import 'package:kynd_shop/logic/address/make_default_cubit.dart';
 import '../../logic/address/address_cubit.dart';
-import '../../logic/location/location_cubit.dart';
 import '../../utils/export_utilities.dart';
-
 
 class CartAddress extends StatefulWidget {
   const CartAddress({Key? key}) : super(key: key);
@@ -96,7 +87,40 @@ class _Addresses extends StatelessWidget {
                 vPadding: 20,
                 color: Colour.white,
                 child: CustomListTile(
-                  leading: const _AddressIcon(),
+                  leading: state.myAddressesModel.data?[index].setDefault == 1
+                      ? const RoundContainer(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
+                          child: CustomImageWidget(
+                            image: Assets.radio,
+                            color: Colour.greenishBlue,
+                            scale: 1.4,
+                          ),
+                        )
+                      : BlocListener<MakeDefaultCubit, MakeDefaultState>(
+                          listener:
+                              (BuildContext context, MakeDefaultState state) {
+                            if (state is MakeDefaultLoaded) {
+                              context.read<AddressCubit>().getMyAddresses();
+                            }
+                          },
+                          child: RoundContainer(
+                              onTap: () {
+                                context.read<MakeDefaultCubit>().makeDefault(
+                                    state.myAddressesModel.data![index].id!);
+                              },
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
+                              child: const CustomImageWidget(
+                                image: Assets.unradio,
+                                color: Colour.greenishBlue,
+                                scale: 1.4,
+                              )),
+                        ),
                   title: SubHeading1(
                       state.myAddressesModel.data?[index].nameTag ?? 'home'),
                   spaceBetweenTitleAndSubtitle: 4,
@@ -107,6 +131,20 @@ class _Addresses extends StatelessWidget {
                     // overflow: TextOverflow.ellipsis,
                     color: Colour.subtitleColor,
                   ),
+                  description:
+                      state.myAddressesModel.data?[index].setDefault == 1
+                          ? const RoundContainer(
+                              vMargin: 10,
+                              hPadding: 20,
+                              vPadding: 5,
+                              color: Colour.greyishBlue,
+                              child: SubHeading1(
+                                'Recommended',
+                                color: Colour.greenishBlue,
+                                size: 12,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
                 ),
               ).outerNeumorphism();
             },

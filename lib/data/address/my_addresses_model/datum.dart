@@ -37,7 +37,8 @@ class AddressDatum extends Equatable {
   final double? latitude;
   final double? longitude;
 
-  factory AddressDatum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
+  factory AddressDatum.fromJson(Map<String, dynamic> json) =>
+      _$DatumFromJson(json);
 
   Map<String, dynamic> toJson() => _$DatumToJson(this);
 

@@ -2,8 +2,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/data/models/add_address_model.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
+import 'package:kynd_shop/view/cart/cart_address.dart';
+import '../../utils/functions/show.dart';
 import '../../data/address/my_addresses_model/datum.dart';
 import '../../logic/address/address_cubit.dart';
 import '../../logic/coupon/coupon_cubit.dart';
@@ -38,7 +38,7 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, title: 'Cart'),
-      bottomNavigationBar: _CartBottomSection(),
+      bottomNavigationBar: const _CartBottomSection(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: Column(
