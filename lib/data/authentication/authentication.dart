@@ -48,20 +48,6 @@ class Authentication {
     return response;
   }
 
-  Future<http.Response> _generateAndSendOtp({
-    required String phoneNo,
-    required String otp,
-  }) async {
-    final http.Response response = await http.post(
-        Uri.parse('${Constants.host}/api/auth/sendOtp'),
-        body: <String, dynamic>{
-          'otp': otp,
-          'phoneNo': phoneNo,
-          'secret': 'ind_cab',
-        });
-    return response;
-  }
-
   Future<http.Response> getUserStatus({
     required String phoneNo,
     required String otp,

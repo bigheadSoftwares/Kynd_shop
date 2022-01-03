@@ -43,16 +43,6 @@ class AuthenticationRepository extends Authentication {
     return _model;
   }
 
-  Future<void> sendOtp({required String phoneNo, required String otp}) async {
-    final http.Response response = await _generateAndSendOtp(
-      phoneNo: phoneNo,
-      otp: otp,
-    );
-    if (response.statusCode < 200 || response.statusCode >= 300) {
-      throw handleError(response);
-    }
-  }
-
   Future<void> register({
     required String phoneNo,
     required String name,

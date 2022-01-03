@@ -74,19 +74,6 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
   }
 
-  Future<void> sendOtp(String phoneNo) async {
-    otp = (Random().nextInt(9000) + 1000).toString();
-
-    _repo.sendOtp(phoneNo: phoneNo, otp: otp!).then(
-      (_) {
-        emit(AuthenticationOtpSent(phoneNo));
-      },
-      onError: (dynamic error, StackTrace stackTrance) {
-        emit(AuthenticationError(handleError(error)));
-      },
-    );
-  }
-
   Future<void> register({
     required String phoneNo,
     required String name,
