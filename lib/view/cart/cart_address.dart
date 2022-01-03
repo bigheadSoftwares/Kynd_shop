@@ -13,7 +13,6 @@ import '../../logic/address/address_cubit.dart';
 import '../../logic/location/location_cubit.dart';
 import '../../utils/export_utilities.dart';
 
-
 class CartAddress extends StatefulWidget {
   const CartAddress({Key? key}) : super(key: key);
 

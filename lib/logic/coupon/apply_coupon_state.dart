@@ -13,7 +13,7 @@ class ApplyCouponSuccess extends ApplyCouponState {
   final String couponCode;
 
   const ApplyCouponSuccess(this.couponCode);
-   @override
+  @override
   List<Object> get props => <Object>[couponCode];
 }
 
