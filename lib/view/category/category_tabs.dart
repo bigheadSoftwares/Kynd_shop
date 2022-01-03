@@ -46,7 +46,7 @@ class _CategoryTabsState extends State<CategoryTabs> {
           actions: <Widget>[
             IconButton(
               onPressed: () {
-                // push(context, const Search());
+                pushNamed(context, Routes.search);
               },
               color: Colour.white,
               icon: const Padding(

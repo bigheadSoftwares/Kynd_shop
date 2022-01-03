@@ -125,6 +125,10 @@ class _SearchFieldState extends State<SearchField> {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      readOnly: true,
+      onTap: () {
+        pushNamed(context, Routes.search);
+      },
       controller: _textEditingController,
       inputTextStyle: const TextStyle(
         color: Colour.white,

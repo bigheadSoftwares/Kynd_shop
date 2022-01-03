@@ -61,9 +61,9 @@ class ProductCard extends StatelessWidget {
           children: <Widget>[
             Column(
               children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: CustomImageWidget(image: Assets.beer, height: 140),
+                 Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomNetworkImageWidget(image: productImage ?? '', height: 140),
                 ),
                 const Divider(),
                 Padding(
