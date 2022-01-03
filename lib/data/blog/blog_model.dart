@@ -99,7 +99,8 @@ class Datum {
         description:
             json['description'] == null ? null : json['description'] as String,
         totalLike: json['total_like'] as int,
-        totalUnlike: json['total_unlike'] as int,
+        totalUnlike:
+            json['total_unlike'] == null ? 0 : json['total_unlike'] as int,
         status: json['status'] as int,
         createdAt: json['created_at'] as String,
         isLiked: json['isLiked'] as int,

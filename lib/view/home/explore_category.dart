@@ -87,15 +87,17 @@ class DrinkCategoryCard extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
+          height: 70,
           width: 70,
-          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+          // padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: backgroundColor,
           ),
-          child: const CustomImageWidget(
-            image: Assets.beer,
-            fit: BoxFit.contain,
+          child: CustomNetworkImageWidget(
+            image: image,
+            fit: BoxFit.cover,
+            scale: 0.3,
           ),
         ),
         sizedBoxHeight(8),

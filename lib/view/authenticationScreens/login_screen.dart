@@ -31,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocConsumer<AuthenticationCubit, AuthenticationState>(
         listener: (BuildContext context, AuthenticationState state) {
           if (state is LoginSuccessful) {
+            showToast('${state.dataModel.success.code}');
             log('This is otp ${state.dataModel.success.code}');
             pushNamed(
               context,

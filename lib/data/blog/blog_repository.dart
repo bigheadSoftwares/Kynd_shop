@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:easy_coding/handle_error.dart';
 import 'package:http/http.dart' as http;
+import 'package:kynd_shop/utils/functions/show.dart';
 import '../../utils/export_utilities.dart';
 
 part 'blog.dart';
@@ -21,7 +22,8 @@ class BlogRepository extends Blog {
 
     try {
       return blogModelFromJson(response.body);
-    } catch (_) {
+    } catch (e) {
+      show('this is the error');
       throw const Failure(
         message: 'Something went wrong with blog data parsing',
       );

@@ -18,7 +18,6 @@ class ProductDataProvider {
         'Content-Type': 'application/json'
       },
     );
-    show(response.statusCode);
     if (response.statusCode == 200) {
       return response;
     } else {

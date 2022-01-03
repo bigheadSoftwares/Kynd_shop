@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kynd_shop/utils/constants/assets.dart';
 
 class CustomImageWidget extends StatelessWidget {
   const CustomImageWidget({
@@ -58,6 +59,9 @@ class CustomNetworkImageWidget extends StatelessWidget {
       color: color,
       fit: fit ?? BoxFit.fill,
       scale: scale ?? 1,
+      errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+        return Image.asset(Assets.beer);
+      },
     );
   }
 }

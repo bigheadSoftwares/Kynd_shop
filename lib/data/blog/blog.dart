@@ -15,7 +15,6 @@ class Blog {
           HttpHeaders.authorizationHeader:
               'Bearer ${Constants.authenticationModel!.success.token}',
         });
-
     return _response;
   }
 

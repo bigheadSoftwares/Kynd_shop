@@ -24,6 +24,7 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   void initState() {
     super.initState();
+    showToast('${widget.loginDataModel.success.code}');
     context.read<AuthenticationCubit>().reset();
   }
 
