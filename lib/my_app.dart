@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kynd_shop/logic/address/make_default_cubit.dart';
+import 'package:kynd_shop/logic/product/recommended_product_cubit.dart';
 import 'logic/blog/add_blog_comment_cubit.dart';
 import 'logic/blog/blog_comments_cubit.dart';
 import 'logic/coupon/apply_coupon_cubit.dart';
@@ -124,6 +125,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CouponRemoveCubit>(
           create: (BuildContext context) => CouponRemoveCubit(),
+        ),
+        BlocProvider<RecommendedProductCubit>(
+          create: (BuildContext context) => RecommendedProductCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

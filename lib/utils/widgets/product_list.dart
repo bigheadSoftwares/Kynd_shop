@@ -10,11 +10,13 @@ class ProductListBlock extends StatelessWidget {
     required this.title,
     this.onTap,
     this.list,
+    this.height,
   }) : super(key: key);
 
   final String title;
   final Function()? onTap;
   final Widget? list;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class ProductListBlock extends StatelessWidget {
         ),
         sizedBoxHeight(15),
         SizedBox(
-          height: 325,
+          height: height ?? 325,
           child: list,
         ),
       ],

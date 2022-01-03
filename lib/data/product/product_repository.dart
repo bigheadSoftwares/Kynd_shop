@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:kynd_shop/data/product/recommended_product_model/recommended_product_model.dart';
 import '../../utils/functions/show.dart';
 import 'search_product_model/search_product_model.dart';
 import 'product_data_provider.dart';
@@ -22,5 +23,11 @@ class ProductRepository {
     SearchProductModel _searchProductModel = SearchProductModel.fromJson(
         jsonDecode(_response.body) as Map<String, dynamic>);
     return _searchProductModel;
+  }
+  static Future<RecommendedProductModel> recommendedProducts() async {
+    final Response _response = await ProductDataProvider.getRecommendedProducts();
+    RecommendedProductModel _recommendedProductModel = RecommendedProductModel.fromJson(
+        jsonDecode(_response.body) as Map<String, dynamic>);
+    return _recommendedProductModel;
   }
 }
