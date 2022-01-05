@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:kynd_shop/utils/functions/show.dart';
 import '../../utils/export_utilities.dart';
 
 class WishlistDataProvider {
@@ -30,6 +31,7 @@ class WishlistDataProvider {
         Uri.parse('${Constants.host}wishlists-removeproduct'),
         body: body,
         headers: Constants.headers);
+    show('this is the id $productId and wishlist response ${response.body}');
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['is_in_wishlist'] == false) {
       return true;

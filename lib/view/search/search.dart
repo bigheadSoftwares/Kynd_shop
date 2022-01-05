@@ -53,6 +53,7 @@ class _RecommendedProductsBlocState extends State<_RecommendedProductsBloc> {
         if (state is RecommendedProductLoaded) {
           return ProductListBlock(
             height: 315,
+            hideViewAll: true,
             title: 'Recommended',
             list: ListView.builder(
               padding: const EdgeInsets.symmetric(

@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/utils/functions/snackbar.dart';
+import '../../utils/functions/snackbar.dart';
 import '../../logic/authentication/authentication_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../utils/export_utilities.dart';
