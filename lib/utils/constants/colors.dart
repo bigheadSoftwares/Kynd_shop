@@ -23,6 +23,7 @@ class Colour {
   static const Color offWhite = Color(0xfff4f4f3);
   static const Color subtitleColor = Color(0xFF818181);
   static const Color greyishBlue = Color(0xFFE3ECEF);
+  static const Color darkGreyishBlue = Color(0xFFE1EBEE);
   static const Color lightGreyishBlue = Color(0xFFF2F6F8);
   static const Color fillColor = Color(0xFF262E54);
 }

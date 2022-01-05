@@ -34,17 +34,18 @@ class _MyAddressState extends State<MyAddress> {
             child: CustomButton(
               radius: 8,
               width: screenWidth(context) * 0.9,
-              backgroundColor: Colour.greyishBlue,
+              backgroundColor: Colour.darkGreyishBlue,
               padding: const EdgeInsets.symmetric(vertical: 15),
               onTap: () {
                 pushNamed(context, Routes.addAddress).then(
-                  (value) =>
+                  (Object? value) =>
                       BlocProvider.of<AddressCubit>(context).getMyAddresses(),
                 );
               },
               child: const SubHeading1(
-                'ADD ADDRESS',
+                'Add new address',
                 color: Colour.greenishBlue,
+                fontWeight: FontWeight.bold,
                 size: 18,
               ),
             ),
@@ -99,7 +100,7 @@ class _Addresses extends StatelessWidget {
                     color: Colour.subtitleColor,
                   ),
                 ),
-              ).outerNeumorphism();
+              );
             },
           );
         } else {
