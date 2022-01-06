@@ -1,7 +1,6 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/wishlist/fetch_wishlist_cubit.dart';
 import 'package:provider/src/provider.dart';
 
 import '../../logic/product/recommended_product_cubit.dart';

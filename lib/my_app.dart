@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kynd_shop/logic/address/make_default_cubit.dart';
+import 'package:kynd_shop/logic/filter/selected_filter_cubit.dart';
 import 'package:kynd_shop/logic/product/recommended_product_cubit.dart';
 import 'logic/blog/add_blog_comment_cubit.dart';
 import 'logic/blog/blog_comments_cubit.dart';
@@ -128,6 +129,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<RecommendedProductCubit>(
           create: (BuildContext context) => RecommendedProductCubit(),
+        ),
+        BlocProvider<SelectedFilterCubit>(
+          create: (BuildContext context) => SelectedFilterCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
