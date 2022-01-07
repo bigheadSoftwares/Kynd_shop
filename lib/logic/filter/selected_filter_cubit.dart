@@ -9,15 +9,8 @@ class SelectedFilterCubit extends Cubit<SelectedFilterModel> {
             max: 10000,
             sortBy: SortByEnum.price_low_to_high));
 
-  void updateBrandSet(String brandName) {
-    if (state.brandSet.contains(brandName)) {
-      state.brandSet.remove(brandName);
-      emit(state.copyWith(brandSet: state.brandSet));
-    } else {
-      state.brandSet.add(brandName);
-
-      emit(state.copyWith(brandSet: state.brandSet));
-    }
+  void updateBrandSet(Set<String> brandSet) {
+    emit(state.copyWith(brandSet: brandSet));
   }
 
   void updateMin(int min) {

@@ -209,15 +209,20 @@ class _BrandsFilterOptions extends StatelessWidget {
                                   const EdgeInsets.symmetric(vertical: 8.0),
                               child: CustomListTile(
                                 onTap: () {
+                                  Set<String> _set = <String>{};
+                                  _set.addAll(filterState.brandSet);
+                                  if (_set.contains(
+                                      state.brandsModel.data[index].name)) {
+                                    _set.remove(
+                                        state.brandsModel.data[index].name);
+                                  } else {
+                                    _set.add(
+                                        state.brandsModel.data[index].name);
+                                  }
                                   context
                                       .read<SelectedFilterCubit>()
-                                      .updateBrandSet(
-                                          state.brandsModel.data[index].name);
+                                      .updateBrandSet(_set);
                                 },
-                                backgroundColor: filterState.brandSet.contains(
-                                        state.brandsModel.data[index].name)
-                                    ? Colour.black
-                                    : Colour.transparent,
                                 leading: CircleAvatar(
                                   backgroundImage: NetworkImage(
                                       state.brandsModel.data[index].logo),
@@ -227,6 +232,13 @@ class _BrandsFilterOptions extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: Colour.lightGrey.withOpacity(0.8),
                                 ),
+                                trailing: filterState.brandSet.contains(
+                                        state.brandsModel.data[index].name)
+                                    ? const Icon(
+                                        Icons.check,
+                                        color: Colour.green,
+                                      )
+                                    : Container(),
                               ),
                             );
                           },
