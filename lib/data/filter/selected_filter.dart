@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 enum SortByEnum {
   price_high_to_low,
@@ -12,35 +13,30 @@ enum SortByEnum {
 
 class SelectedFilterModel extends Equatable {
   final Set<String> brandSet;
-  final int min;
-  final int max;
+  final RangeValues priceRange;
   final SortByEnum sortBy;
 
   const SelectedFilterModel({
     required this.brandSet,
-    required this.min,
-    required this.max,
+    required this.priceRange,
     required this.sortBy,
   });
 
   @override
   List<Object?> get props => <Object>[
         brandSet,
-        min,
-        max,
+        priceRange,
         sortBy,
       ];
 
   SelectedFilterModel copyWith({
     Set<String>? brandSet,
-    int? min,
-    int? max,
+    RangeValues? priceRange,
     SortByEnum? sortBy,
   }) {
     return SelectedFilterModel(
       brandSet: brandSet ?? this.brandSet,
-      min: min ?? this.min,
-      max: max ?? this.max,
+      priceRange: priceRange ?? this.priceRange,
       sortBy: sortBy ?? this.sortBy,
     );
   }

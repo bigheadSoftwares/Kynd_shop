@@ -1,9 +1,9 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/data/filter/selected_filter.dart';
-import 'package:kynd_shop/logic/brands/brands_cubit.dart';
-import 'package:kynd_shop/logic/filter/selected_filter_cubit.dart';
+import '../../data/filter/selected_filter.dart';
+import '../../logic/brands/brands_cubit.dart';
+import '../../logic/filter/selected_filter_cubit.dart';
 
 import '../../utils/export_utilities.dart';
 
@@ -267,8 +267,6 @@ class _PriceCategoryOptions extends StatefulWidget {
 }
 
 class _PriceCategoryOptionsState extends State<_PriceCategoryOptions> {
-  RangeValues _currentRangeValues = const RangeValues(50, 10000);
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -288,7 +286,7 @@ class _PriceCategoryOptionsState extends State<_PriceCategoryOptions> {
                 ),
                 sizedBoxHeight(20),
                 SubHeading2(
-                  '${Constants.rupee}${_currentRangeValues.start.ceil()} - ${Constants.rupee}${_currentRangeValues.end.ceil()}',
+                  '${Constants.rupee}${state.priceRange.start.ceil()} - ${Constants.rupee}${state.priceRange.end.ceil()}',
                   size: 16,
                   fontWeight: FontWeight.bold,
                   color: Colour.black,
@@ -297,24 +295,18 @@ class _PriceCategoryOptionsState extends State<_PriceCategoryOptions> {
                 RangeSlider(
                   inactiveColor: Colour.lightGrey.withOpacity(0.5),
                   activeColor: Colour.greenishBlue,
-                  values: _currentRangeValues,
+                  values: state.priceRange,
                   min: 50,
                   max: 10000,
                   divisions: 10000,
                   labels: RangeLabels(
-                    _currentRangeValues.start.round().toString(),
-                    _currentRangeValues.end.round().toString(),
+                    state.priceRange.start.round().toString(),
+                    state.priceRange.end.round().toString(),
                   ),
                   onChanged: (RangeValues values) {
                     context
                         .read<SelectedFilterCubit>()
-                        .updateMin(values.start.round());
-                    context
-                        .read<SelectedFilterCubit>()
-                        .updateMax(values.end.round());
-                    setState(() {
-                      _currentRangeValues = values;
-                    });
+                        .updateRange(values.start, values.end);
                   },
                 )
               ],
