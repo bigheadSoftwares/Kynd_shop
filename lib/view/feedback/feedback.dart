@@ -1,5 +1,8 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/feedback_cubit/feedback_cubit.dart';
+import '../../utils/functions/snackbar.dart';
 import '../../utils/export_utilities.dart';
 
 part 'emojis.dart';
@@ -14,6 +17,12 @@ class Feedback extends StatefulWidget {
 class _FeedbackState extends State<Feedback> {
   final TextEditingController _feedback = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final ValueNotifier<int> _selectedSmiley = ValueNotifier<int>(1);
+
+  void _changeSelectedSmiley(int index) {
+    _selectedSmiley.value = index;
+  }
 
   @override
   void dispose() {
@@ -42,7 +51,10 @@ class _FeedbackState extends State<Feedback> {
             color: Colour.subtitleColor,
           ),
           sizedBoxHeight(screenHeight(context) * 0.02),
-          _Emojis(),
+          _Emojis(
+            selectedSmiley: _selectedSmiley,
+            changeSelectedSmiley: _changeSelectedSmiley,
+          ),
           sizedBoxHeight(screenHeight(context) * 0.02),
           const SubHeading1(
             'Give us feedback',
@@ -73,20 +85,31 @@ class _FeedbackState extends State<Feedback> {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: CustomButton(
-        radius: 25,
-        width: screenWidth(context) * 0.9,
-        backgroundColor: Colour.greenishBlue,
-        padding: const EdgeInsets.symmetric(vertical: 15),
-        onTap: () {
-          if (_formKey.currentState!.validate()) {
-            pop(context);
+      floatingActionButton: BlocListener<FeedbackCubit, FeedbackState>(
+        listener: (BuildContext context, FeedbackState state) {
+          if (state is FeedbackLoaded) {
+            showSnackBar(
+                context: context, msg: 'Feedback submitted successfully');
+          } else if (state is FeedbackFailure) {
+            showSnackBar(context: context, msg: state.failure.message);
           }
         },
-        child: const SubHeading2(
-          'SUBMIT',
-          color: Colour.white,
-          size: 18,
+        child: CustomButton(
+          radius: 25,
+          width: screenWidth(context) * 0.9,
+          backgroundColor: Colour.greenishBlue,
+          padding: const EdgeInsets.symmetric(vertical: 15),
+          onTap: () {
+            if (_formKey.currentState!.validate()) {
+              context.read<FeedbackCubit>().sendFeedbck(
+                  rating: _selectedSmiley.value, feedback: _feedback.text);
+            }
+          },
+          child: const SubHeading2(
+            'SUBMIT',
+            color: Colour.white,
+            size: 18,
+          ),
         ),
       ),
     );
