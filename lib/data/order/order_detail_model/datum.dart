@@ -1,10 +1,24 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'datum.g.dart';
+import 'shipping_address.dart';
 
-@JsonSerializable()
 class Datum extends Equatable {
+  final ShippingAddress? shippingAddress;
+  final int? productId;
+  final String? productName;
+  final dynamic variation;
+  final String? price;
+  final String? tax;
+  final String? shippingCost;
+  final String? couponDiscount;
+  final int? quantity;
+  final String? paymentStatus;
+  final String? paymentStatusString;
+  final String? deliveryStatus;
+  final String? deliveryStatusString;
+
   const Datum({
     this.shippingAddress,
     this.productId,
@@ -21,35 +35,55 @@ class Datum extends Equatable {
     this.deliveryStatusString,
   });
 
-  @JsonKey(name: 'shipping_address')
-  final String? shippingAddress;
-  @JsonKey(name: 'product_id')
-  final int? productId;
-  @JsonKey(name: 'product_name')
-  final String? productName;
-  final dynamic variation;
-  final String? price;
-  final String? tax;
-  @JsonKey(name: 'shipping_cost')
-  final String? shippingCost;
-  @JsonKey(name: 'coupon_discount')
-  final String? couponDiscount;
-  final int? quantity;
-  @JsonKey(name: 'payment_status')
-  final String? paymentStatus;
-  @JsonKey(name: 'payment_status_string')
-  final String? paymentStatusString;
-  @JsonKey(name: 'delivery_status')
-  final String? deliveryStatus;
-  @JsonKey(name: 'delivery_status_string')
-  final String? deliveryStatusString;
+  factory Datum.fromMap(Map<String, dynamic> data) => Datum(
+        shippingAddress: data['shipping_address'] == null
+            ? null
+            : ShippingAddress.fromMap(
+                data['shipping_address'] as Map<String, dynamic>),
+        productId: data['product_id'] as int?,
+        productName: data['product_name'] as String?,
+        variation: data['variation'] as dynamic,
+        price: data['price'] as String?,
+        tax: data['tax'] as String?,
+        shippingCost: data['shipping_cost'] as String?,
+        couponDiscount: data['coupon_discount'] as String?,
+        quantity: data['quantity'] as int?,
+        paymentStatus: data['payment_status'] as String?,
+        paymentStatusString: data['payment_status_string'] as String?,
+        deliveryStatus: data['delivery_status'] as String?,
+        deliveryStatusString: data['delivery_status_string'] as String?,
+      );
 
-  factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
+  Map<String, dynamic> toMap() => {
+        'shipping_address': shippingAddress?.toMap(),
+        'product_id': productId,
+        'product_name': productName,
+        'variation': variation,
+        'price': price,
+        'tax': tax,
+        'shipping_cost': shippingCost,
+        'coupon_discount': couponDiscount,
+        'quantity': quantity,
+        'payment_status': paymentStatus,
+        'payment_status_string': paymentStatusString,
+        'delivery_status': deliveryStatus,
+        'delivery_status_string': deliveryStatusString,
+      };
 
-  Map<String, dynamic> toJson() => _$DatumToJson(this);
+  /// `dart:convert`
+  ///
+  /// Parses the string and returns the resulting Json object as [Datum].
+  factory Datum.fromJson(String data) {
+    return Datum.fromMap(json.decode(data) as Map<String, dynamic>);
+  }
+
+  /// `dart:convert`
+  ///
+  /// Converts [Datum] to a JSON string.
+  String toJson() => json.encode(toMap());
 
   Datum copyWith({
-    String? shippingAddress,
+    ShippingAddress? shippingAddress,
     int? productId,
     String? productName,
     dynamic variation,

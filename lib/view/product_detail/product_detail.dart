@@ -1,7 +1,7 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
+import '../../utils/functions/show.dart';
 
 import '../../logic/cart/add_to_cart_cubit.dart';
 import '../../logic/product/product_detail_cubit.dart';

@@ -1,9 +1,21 @@
 part of 'home.dart';
 
-class TopHeader extends StatelessWidget {
+class TopHeader extends StatefulWidget {
   const TopHeader({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<TopHeader> createState() => _TopHeaderState();
+}
+
+class _TopHeaderState extends State<TopHeader> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<UserStatusCubit>().userStatus();
+    context.read<AddressCubit>().getMyAddresses();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,20 +62,30 @@ class TopHeader extends StatelessWidget {
             ],
           ),
           sizedBoxHeight(15),
-          Row(
-            children: <Widget>[
-              const CustomImageWidget(
-                image: Assets.pin1,
-                scale: 1.8,
-              ),
-              sizedBoxWidth(5),
-              const SubHeading2(
-                '204, Foxrun, St.Davison - MI 48423',
-                fontWeight: FontWeight.w500,
-                color: Colour.white,
-                size: 14,
-              )
-            ],
+          BlocBuilder<AddressCubit, AddressState>(
+            builder: (BuildContext context, AddressState state) {
+              if (state is AddressLoaded) {
+                AddressDatum address =
+                    context.read<AddressCubit>().defaultAddress[0];
+                return Row(
+                  children: <Widget>[
+                    const CustomImageWidget(
+                      image: Assets.pin1,
+                      scale: 1.8,
+                    ),
+                    sizedBoxWidth(5),
+                    SubHeading2(
+                      '${address.address} ${address.city}',
+                      fontWeight: FontWeight.w500,
+                      color: Colour.white,
+                      size: 14,
+                    )
+                  ],
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
           ),
           sizedBoxHeight(15),
           const SearchField()
@@ -80,33 +102,41 @@ class _CoinContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RoundContainer(
-      onTap: () => pushNamed(
-        context,
-        Routes.pointEarned,
-      ),
-      radius: 20,
-      hPadding: 3,
-      vPadding: 3,
-      borderWidth: 1.4,
-      borderColor: Colour.white,
-      child: Row(
-        children: const <Widget>[
-          CustomImageWidget(
-            image: Assets.coin,
-            scale: 1.8,
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.0),
-            child: SubHeading2(
-              '2000 Kynd Points',
-              size: 10,
-              fontWeight: FontWeight.bold,
-              color: Colour.white,
+    return BlocBuilder<UserStatusCubit, UserStatusState>(
+      builder: (BuildContext context, UserStatusState state) {
+        if (state is UserStatusLoaded) {
+          return RoundContainer(
+            onTap: () => pushNamed(
+              context,
+              Routes.pointEarned,
             ),
-          )
-        ],
-      ),
+            radius: 20,
+            hPadding: 3,
+            vPadding: 3,
+            borderWidth: 1.4,
+            borderColor: Colour.white,
+            child: Row(
+              children: <Widget>[
+                const CustomImageWidget(
+                  image: Assets.coin,
+                  scale: 1.8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: SubHeading2(
+                    '${state.userData.data?.charity ?? 0}',
+                    size: 10,
+                    fontWeight: FontWeight.bold,
+                    color: Colour.white,
+                  ),
+                )
+              ],
+            ),
+          );
+        } else {
+          return const SizedBox.shrink();
+        }
+      },
     );
   }
 }

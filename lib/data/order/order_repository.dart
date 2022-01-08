@@ -17,8 +17,8 @@ class OrderRepository {
   ///Function to get order detail [`OrderDetailModel`]
   static Future<OrderDetailModel> orderDetailModel(int orderId) async {
     final Response _response = await OrderDataProvider.orderDetail(orderId);
-    OrderDetailModel _orderDetailModel = OrderDetailModel.fromJson(
-        jsonDecode(_response.body) as Map<String, dynamic>);
+    OrderDetailModel _orderDetailModel =
+        OrderDetailModel.fromJson(_response.body);
     return _orderDetailModel;
   }
 }

@@ -1,23 +1,43 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 import 'datum.dart';
 
-part 'order_detail_model.g.dart';
-
-@JsonSerializable()
 class OrderDetailModel extends Equatable {
-  const OrderDetailModel({this.data, this.success, this.status});
-
   final List<Datum>? data;
   final bool? success;
   final int? status;
 
-  factory OrderDetailModel.fromJson(Map<String, dynamic> json) {
-    return _$OrderDetailModelFromJson(json);
+  const OrderDetailModel({this.data, this.success, this.status});
+
+  factory OrderDetailModel.fromMap(Map<String, dynamic> data) {
+    return OrderDetailModel(
+      data: (data['data'] as List<dynamic>?)
+          ?.map((e) => Datum.fromMap(e as Map<String, dynamic>))
+          .toList(),
+      success: data['success'] as bool?,
+      status: data['status'] as int?,
+    );
   }
 
-  Map<String, dynamic> toJson() => _$OrderDetailModelToJson(this);
+  Map<String, dynamic> toMap() => {
+        'data': data?.map((e) => e.toMap()).toList(),
+        'success': success,
+        'status': status,
+      };
+
+  /// `dart:convert`
+  ///
+  /// Parses the string and returns the resulting Json object as [OrderDetailModel].
+  factory OrderDetailModel.fromJson(String data) {
+    return OrderDetailModel.fromMap(json.decode(data) as Map<String, dynamic>);
+  }
+
+  /// `dart:convert`
+  ///
+  /// Converts [OrderDetailModel] to a JSON string.
+  String toJson() => json.encode(toMap());
 
   OrderDetailModel copyWith({
     List<Datum>? data,

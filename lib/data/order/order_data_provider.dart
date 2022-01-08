@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:http/http.dart';
+import '../../utils/functions/show.dart';
 import '../../utils/export_utilities.dart';
 
 class OrderDataProvider {
@@ -25,6 +28,21 @@ class OrderDataProvider {
     );
     if (response.statusCode == 200) {
       return response;
+    } else {
+      throw Exception(response);
+    }
+  }
+
+  static Future<bool> createOrder(Map<String, dynamic> data) async {
+    dynamic body = jsonEncode(data);
+    show(body);
+    final Response response = await post(
+      Uri.parse('${Constants.host}order/store'),
+      body: body,
+      headers: Constants.headers,
+    );
+    if (response.statusCode == 200) {
+      return true;
     } else {
       throw Exception(response);
     }

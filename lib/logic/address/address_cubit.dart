@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
+import '../../utils/functions/show.dart';
 import '../../data/address/my_addresses_model/datum.dart';
 import '../../data/address/address_repository.dart';
 import '../../data/address/my_addresses_model/my_addresses_model.dart';
@@ -14,6 +14,7 @@ class AddressCubit extends Cubit<AddressState> {
   late List<AddressDatum> defaultAddress;
 
   void getMyAddresses() {
+    emit(AddressLoading());
     AddressRepository.getAddresses().then(
       (MyAddressesModel myAddressesModel) {
         defaultAddress = myAddressesModel.data!

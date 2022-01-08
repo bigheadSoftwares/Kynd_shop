@@ -43,36 +43,36 @@ class _OrderDetailState extends State<OrderDetail> {
           }
         },
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-          vertical: 16,
-        ),
-        child: CustomButton(
-          radius: 25,
-          backgroundColor: Colour.greenishBlue,
-          padding: const EdgeInsets.symmetric(vertical: 15),
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return ConfirmationDialog(
-                    onConfirm: () {
-                      pop(context);
-                      pop(context);
-                    },
-                    title: 'Are you sure ?',
-                    subtitle: 'Please Confirm Before Cancelling Your Order',
-                  );
-                });
-          },
-          child: const SubHeading2(
-            'CANCEL ORDER',
-            color: Colour.white,
-            size: 18,
-          ),
-        ),
-      ),
+      // bottomNavigationBar: Padding(
+      //   padding: const EdgeInsets.symmetric(
+      //     horizontal: 16.0,
+      //     vertical: 16,
+      //   ),
+      //   child: CustomButton(
+      //     radius: 25,
+      //     backgroundColor: Colour.greenishBlue,
+      //     padding: const EdgeInsets.symmetric(vertical: 15),
+      //     onTap: () {
+      //       showDialog(
+      //           context: context,
+      //           builder: (BuildContext context) {
+      //             return ConfirmationDialog(
+      //               onConfirm: () {
+      //                 pop(context);
+      //                 pop(context);
+      //               },
+      //               title: 'Are you sure ?',
+      //               subtitle: 'Please Confirm Before Cancelling Your Order',
+      //             );
+      //           });
+      //     },
+      //     child: const SubHeading2(
+      //       'CANCEL ORDER',
+      //       color: Colour.white,
+      //       size: 18,
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
@@ -102,9 +102,8 @@ class _OrderDetailColumn extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: _OrderDetailAddressTile(
             name: 'Home',
-            address: jsonDecode(
-                state.orderDetailModel.data?[0].shippingAddress ??
-                    '')['address'] as String,
+            address:
+                state.orderDetailModel.data?[0].shippingAddress?.address ?? '',
             asset: Assets.greenLocationPin,
           ),
         ),
@@ -141,33 +140,34 @@ class _OrderDetailColumn extends StatelessWidget {
           indent: 22,
           endIndent: 22,
         ),
-        const _BillDetailItem(
+        _BillDetailItem(
           item: 'Order Price',
-          amount: '₹2400',
+          amount: '${state.orderDetailModel.data?[0].price.toString()}',
         ),
         sizedBoxHeight(10),
-        const _BillDetailItem(
+        _BillDetailItem(
           item: 'Discount',
-          amount: '- ₹100',
+          amount:
+              '${state.orderDetailModel.data?[0].couponDiscount.toString()}',
           amountColor: Colour.subtitleColor,
         ),
+        // sizedBoxHeight(10),
+        // const _BillDetailItem(
+        //   item: 'Taxes and Charges',
+        //   amount: '₹100',
+        // ),
         sizedBoxHeight(10),
-        const _BillDetailItem(
-          item: 'Taxes and Charges',
-          amount: '₹100',
-        ),
-        sizedBoxHeight(10),
-        const _BillDetailItem(
+        _BillDetailItem(
           item: 'Delivery Fee',
-          amount: '₹100',
+          amount: '${state.orderDetailModel.data?[0].shippingCost.toString()}',
         ),
         sizedBoxHeight(10),
-        const _BillDetailItem(
+        _BillDetailItem(
           item: 'Total',
           itemColor: Colour.greenishBlue,
           itemTextSize: 20,
           itemTextWeight: FontWeight.w500,
-          amount: 'Rs. NA',
+          amount: '${state.orderDetailModel.data?[0].price.toString()}',
           amountTextSize: 20,
           amountColor: Colour.greenishBlue,
         ),

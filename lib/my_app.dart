@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/address/make_default_cubit.dart';
+import 'package:kynd_shop/data/user_status_data/user_status_data.dart';
+import 'package:kynd_shop/logic/user_status/user_status_cubit.dart';
+import 'logic/address/make_default_cubit.dart';
+import 'logic/order/create_order_cubit.dart';
 import 'logic/blog/add_blog_comment_cubit.dart';
 import 'logic/blog/blog_comments_cubit.dart';
 import 'logic/coupon/apply_coupon_cubit.dart';
@@ -95,6 +98,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<AddressCubit>(
           create: (BuildContext context) => AddressCubit(),
         ),
+        BlocProvider<UserStatusCubit>(
+          create: (BuildContext context) => UserStatusCubit(),
+        ),
         BlocProvider<CreateAddressCubit>(
           create: (BuildContext context) => CreateAddressCubit(),
         ),
@@ -124,6 +130,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<CouponRemoveCubit>(
           create: (BuildContext context) => CouponRemoveCubit(),
+        ),
+        BlocProvider<CreateOrderCubit>(
+          create: (BuildContext context) => CreateOrderCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

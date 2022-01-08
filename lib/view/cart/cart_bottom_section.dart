@@ -46,7 +46,7 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
                               children: <Widget>[
                                 Expanded(
                                   child: SubHeading2(
-                                    '${list[0].username}',
+                                    '${context.read<AddressCubit>().defaultAddress[0].username}',
                                     size: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -65,13 +65,13 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
                               ],
                             ),
                             subtitle: SubHeading2(
-                              '${list[0].address} ${list[0].city}, ${list[0].country} ${list[0].postalCode}',
+                              '${context.read<AddressCubit>().defaultAddress[0].address} ${context.read<AddressCubit>().defaultAddress[0].city}, ${context.read<AddressCubit>().defaultAddress[0].country} ${context.read<AddressCubit>().defaultAddress[0].postalCode}',
                               color: Colour.lightGrey.withOpacity(0.8),
                               size: 12,
                               fontWeight: FontWeight.w500,
                             ),
                           )
-                    : const SizedBox();
+                    : const SizedBox.shrink();
               },
             ),
           ),
@@ -81,7 +81,11 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
             child: CustomPrimaryButton(
               title: 'CONTINUE',
               onTap: () {
-                pushNamed(context, Routes.payment);
+                pushNamed(context, Routes.payment).then((dynamic value) {
+                  context.read<CartDetailsCubit>().getCartDetails();
+                  context.read<CartSummaryCubit>().getCartSummary();
+                  BlocProvider.of<AddressCubit>(context).getMyAddresses();
+                });
               },
             ),
           ),

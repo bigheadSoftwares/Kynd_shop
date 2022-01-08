@@ -2,7 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/view/cart/cart_address.dart';
+import 'cart_address.dart';
 import '../../utils/functions/show.dart';
 import '../../data/address/my_addresses_model/datum.dart';
 import '../../logic/address/address_cubit.dart';
@@ -31,7 +31,7 @@ class _CartState extends State<Cart> {
     super.initState();
     context.read<CartDetailsCubit>().getCartDetails();
     context.read<CartSummaryCubit>().getCartSummary();
-    BlocProvider.of<AddressCubit>(context).getMyAddresses();
+    context.read<AddressCubit>().getMyAddresses();
   }
 
   @override
@@ -138,10 +138,10 @@ class _CartState extends State<Cart> {
                         title: 'Charity Donation',
                         amount: '0',
                       ),
-                      CartSummary(
-                        title: 'Tax Rates',
-                        amount: '${state.cartSummaryModel.tax}',
-                      ),
+                      // CartSummary(
+                      //   title: 'Tax Rates',
+                      //   amount: '${state.cartSummaryModel.tax}',
+                      // ),
                       CartSummary(
                         title: 'Delivery fee',
                         amount: '${state.cartSummaryModel.shippingCost}',

@@ -52,7 +52,9 @@ class _CouponListState extends State<CouponList> {
                               context.read<CartSummaryCubit>().getCartSummary();
                               pop(context);
                             } else if (couponState is ApplyCouponFailure) {
-                              showToast(couponState.failure.message);
+                              showSnackBar(
+                                  context: context,
+                                  msg: couponState.failure.message);
                             }
                           },
                           child: ListView.separated(
@@ -61,42 +63,47 @@ class _CouponListState extends State<CouponList> {
                             itemCount: state.coupnModel.data!.length,
                             itemBuilder: (BuildContext context, int index) {
                               Datum coupon = state.coupnModel.data![index];
-                              return RoundContainer(
-                                padding: const EdgeInsets.all(20),
-                                color: Colour.white,
-                                child: CustomListTile(
-                                  title: SubHeading1(
-                                    coupon.code!,
-                                    size: 16,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                  subtitle: SubHeading2(
-                                    'Get upto ${Constants.rupee} ${coupon.maxDiscount} off on minimum purcahse of ${Constants.rupee} ${coupon.minBuy}',
-                                    size: 14,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  trailing: RoundContainer(
-                                    onTap: () {
-                                      context
-                                          .read<ApplyCouponCubit>()
-                                          .applyCoupon(coupon.code!);
-                                    },
-                                    height: 30,
-                                    hPadding: 25,
-                                    vPadding: 0,
-                                    radius: 6,
-                                    color: Colour.greenishBlue,
-                                    child: const Center(
-                                      child: SubHeading2(
-                                        'Apply',
-                                        size: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colour.white,
+                              DateTime now = DateTime.now();
+                              DateTime couponEndDate = DateTime.parse(
+                                  state.coupnModel.data![index].endDate!);
+                              return couponEndDate.isAfter(now)
+                                  ? RoundContainer(
+                                      padding: const EdgeInsets.all(20),
+                                      color: Colour.white,
+                                      child: CustomListTile(
+                                        title: SubHeading1(
+                                          coupon.code!,
+                                          size: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                        subtitle: SubHeading2(
+                                          'Get upto ${Constants.rupee} ${coupon.maxDiscount} off on minimum purcahse of ${Constants.rupee} ${coupon.minBuy}',
+                                          size: 14,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        trailing: RoundContainer(
+                                          onTap: () {
+                                            context
+                                                .read<ApplyCouponCubit>()
+                                                .applyCoupon(coupon.code!);
+                                          },
+                                          height: 30,
+                                          hPadding: 25,
+                                          vPadding: 0,
+                                          radius: 6,
+                                          color: Colour.greenishBlue,
+                                          child: const Center(
+                                            child: SubHeading2(
+                                              'Apply',
+                                              size: 14,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colour.white,
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              ).outerNeumorphism();
+                                    ).outerNeumorphism()
+                                  : const SizedBox.shrink();
                             },
                             separatorBuilder:
                                 (BuildContext context, int index) {

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:easy_coding/handle_error.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import '../user_status_data/user_status_data.dart';
 import 'login_data_model.dart';
 import '../../utils/export_utilities.dart';
 
@@ -48,17 +49,14 @@ class Authentication {
     return response;
   }
 
-  Future<http.Response> getUserStatus({
-    required String phoneNo,
-    required String otp,
-  }) async {
+  Future<http.Response> _getUserStatus() async {
     final String body = jsonEncode(<String, dynamic>{
       'id': Constants.authenticationModel!.success.customerId,
     });
     final http.Response response = await http.post(
-      Uri.parse('${Constants.host}user_status'),
-      body: body,
-    );
+        Uri.parse('${Constants.host}user_status'),
+        body: body,
+        headers: Constants.headers);
     return response;
   }
 

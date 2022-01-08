@@ -32,7 +32,7 @@ class CartSummary extends StatelessWidget {
             fontWeight: isBold! ? FontWeight.bold : FontWeight.w500,
           ),
           SubHeading2(
-            '${Constants.rupee}$amount',
+            '${Constants.rupee} $amount',
             size: size ?? 12,
             color: color,
             fontWeight: isBold! ? FontWeight.bold : FontWeight.w500,

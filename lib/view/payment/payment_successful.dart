@@ -1,7 +1,6 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import '../../utils/export_utilities.dart';
-import '../../utils/constants/colors.dart';
 
 class PaymentSuccessful extends StatelessWidget {
   const PaymentSuccessful({Key? key}) : super(key: key);
@@ -20,13 +19,13 @@ class PaymentSuccessful extends StatelessWidget {
               image: Assets.check1,
               scale: 2,
             ),
-            sizedBoxHeight(20),
-            const SubHeading2(
-              'Ref Id: 24223',
-              size: 18,
-              fontWeight: FontWeight.bold,
-              color: Colour.white,
-            ),
+            // sizedBoxHeight(20),
+            // const SubHeading2(
+            //   'Ref Id: 24223',
+            //   size: 18,
+            //   fontWeight: FontWeight.bold,
+            //   color: Colour.white,
+            // ),
             SubHeading2(
               'Payment Successful!',
               size: 26,
@@ -43,7 +42,7 @@ class PaymentSuccessful extends StatelessWidget {
             sizedBoxHeight(20),
             RoundContainer(
               onTap: () {
-                pushNamed(context, Routes.myOrders);
+                pushReplacementNamed(context, Routes.myOrders);
               },
               hPadding: 20,
               vPadding: 10,

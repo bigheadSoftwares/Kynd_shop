@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
+import '../../utils/functions/show.dart';
 import '../../utils/export_utilities.dart';
 
 class ProductDataProvider {

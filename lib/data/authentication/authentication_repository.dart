@@ -20,6 +20,23 @@ class AuthenticationRepository extends Authentication {
     return _model;
   }
 
+  Future<UserStatusData> userStatus() async {
+    UserStatusData _data;
+    final http.Response response = await _getUserStatus();
+    if (response.statusCode < 200 || response.statusCode >= 300) {
+      if (response.statusCode == 401) {
+        throw const Failure(message: 'User Not Found');
+      }
+      throw handleError(response);
+    }
+    try {
+      _data = UserStatusData.fromJson(response.body);
+    } catch (e) {
+      throw const Failure(message: 'Login Data parsing gone wrong');
+    }
+    return _data;
+  }
+
   Future<AuthenticationModel> confirmCode({
     required int userId,
     required int verificationCode,

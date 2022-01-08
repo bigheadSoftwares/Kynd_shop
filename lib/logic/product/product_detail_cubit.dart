@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/data/cart/cart_data_provider.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
+import '../../data/cart/cart_data_provider.dart';
 import '../../data/product/product_detail_model/datum.dart';
 import '../../data/wishlist/wishlist_data_provider.dart';
 import '../../data/product/product_repository.dart';

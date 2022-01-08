@@ -9,6 +9,8 @@ abstract class AddressState extends Equatable {
 
 class AddressInitial extends AddressState {}
 
+class AddressLoading extends AddressState {}
+
 class AddressLoaded extends AddressState {
   final MyAddressesModel myAddressesModel;
   const AddressLoaded(this.myAddressesModel);
