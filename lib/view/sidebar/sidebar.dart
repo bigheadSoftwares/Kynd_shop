@@ -35,7 +35,7 @@ class Sidebar extends StatelessWidget {
                         color: Colour.white,
                       );
                     } else {
-                      return const  SubHeading1(
+                      return const SubHeading1(
                         'Test',
                         color: Colour.white,
                       );

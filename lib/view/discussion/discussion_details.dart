@@ -98,8 +98,8 @@ class _Comments extends StatelessWidget {
                             bottomRight: Radius.circular(20),
                           )),
                       child: CustomListTile(
-                        title: const SubHeading1(
-                          'Please add username in the response',
+                        title: SubHeading1(
+                          state.comments.data[index].userName,
                           size: 16,
                         ),
                         subtitle: SubHeading2(

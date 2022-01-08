@@ -24,10 +24,13 @@ class ProductRepository {
         jsonDecode(_response.body) as Map<String, dynamic>);
     return _searchProductModel;
   }
+
   static Future<RecommendedProductModel> recommendedProducts() async {
-    final Response _response = await ProductDataProvider.getRecommendedProducts();
-    RecommendedProductModel _recommendedProductModel = RecommendedProductModel.fromJson(
-        jsonDecode(_response.body) as Map<String, dynamic>);
+    final Response _response =
+        await ProductDataProvider.getRecommendedProducts();
+    RecommendedProductModel _recommendedProductModel =
+        RecommendedProductModel.fromJson(
+            jsonDecode(_response.body) as Map<String, dynamic>);
     return _recommendedProductModel;
   }
 }

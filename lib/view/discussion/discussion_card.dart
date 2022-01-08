@@ -57,6 +57,9 @@ class _DiscussionCard extends StatelessWidget {
                     height: screenHeight(context) * 0.26,
                     width: screenWidth(context),
                     fit: BoxFit.cover,
+                    errorBuilder: (BuildContext context, Object error,
+                            StackTrace? stacktrace) =>
+                        Image.asset(Assets.discussion),
                   ),
                 sizedBoxHeight(12),
                 _IconAndText(

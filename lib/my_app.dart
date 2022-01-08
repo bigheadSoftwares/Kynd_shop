@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'logic/points_earned/points_earned_cubit.dart';
 import 'logic/filter/selected_filter_cubit.dart';
 import 'logic/order/create_order_cubit.dart';
 import 'logic/product/recommended_product_cubit.dart';
 import 'logic/user_status/user_status_cubit.dart';
-import 'logic/address/make_default_cubit.dart';
 import 'logic/address/make_default_cubit.dart';
 import 'logic/blog/add_blog_comment_cubit.dart';
 import 'logic/blog/blog_comments_cubit.dart';
@@ -134,12 +134,15 @@ class MyApp extends StatelessWidget {
           create: (BuildContext context) => CouponRemoveCubit(),
         ),
         BlocProvider<CreateOrderCubit>(
-          create: (BuildContext context) => CreateOrderCubit()),
+            create: (BuildContext context) => CreateOrderCubit()),
         BlocProvider<RecommendedProductCubit>(
           create: (BuildContext context) => RecommendedProductCubit(),
         ),
         BlocProvider<SelectedFilterCubit>(
           create: (BuildContext context) => SelectedFilterCubit(),
+        ),
+        BlocProvider<PointsEarnedCubit>(
+          create: (BuildContext context) => PointsEarnedCubit(),
         ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(

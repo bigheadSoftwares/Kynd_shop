@@ -10,7 +10,8 @@ part 'recommended_product_state.dart';
 
 class RecommendedProductCubit extends Cubit<RecommendedProductState> {
   RecommendedProductCubit() : super(RecommendedProductInitial());
-  RecommendedProductModel recommendedProductModel = const RecommendedProductModel();
+  RecommendedProductModel recommendedProductModel =
+      const RecommendedProductModel();
   void getRecommendedProducts() {
     ProductRepository.recommendedProducts().then(
         (RecommendedProductModel recommendedProductModel) {

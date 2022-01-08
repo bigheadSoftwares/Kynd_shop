@@ -42,6 +42,8 @@ class Comment {
     required this.id,
     required this.blogId,
     required this.userId,
+    required this.userName,
+    // required this.avatar,
     required this.comment,
     required this.setDefault,
   });
@@ -50,6 +52,8 @@ class Comment {
   int blogId;
   int userId;
   String comment;
+  String userName;
+  // String avatar;
   int setDefault;
 
   Comment copyWith({
@@ -57,6 +61,8 @@ class Comment {
     int? blogId,
     int? userId,
     String? comment,
+    String? userName,
+    // String? avatar,
     int? setDefault,
   }) =>
       Comment(
@@ -64,6 +70,8 @@ class Comment {
         blogId: blogId ?? this.blogId,
         userId: userId ?? this.userId,
         comment: comment ?? this.comment,
+        userName: userName ?? this.userName,
+        // avatar: avatar ?? this.avatar,
         setDefault: setDefault ?? this.setDefault,
       );
 
@@ -72,6 +80,8 @@ class Comment {
         blogId: json['blog_id'] as int,
         userId: json['user_id'] as int,
         comment: json['comment'] as String,
+        userName: json['username'] as String,
+        // avatar: json['avatar_original'] as String,
         setDefault: json['set_default'] as int,
       );
 
@@ -79,6 +89,8 @@ class Comment {
         'id': id,
         'blog_id': blogId,
         'user_id': userId,
+        'username': userName,
+        // 'avatar_original': avatar,
         'comment': comment,
         'set_default': setDefault,
       };

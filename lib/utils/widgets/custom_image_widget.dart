@@ -59,7 +59,8 @@ class CustomNetworkImageWidget extends StatelessWidget {
       color: color,
       fit: fit ?? BoxFit.fill,
       scale: scale ?? 1,
-      errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+      errorBuilder:
+          (BuildContext context, Object exception, StackTrace? stackTrace) {
         return Image.asset(Assets.beer);
       },
     );

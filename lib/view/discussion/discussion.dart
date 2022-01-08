@@ -62,7 +62,7 @@ class _DiscussionState extends State<Discussion> {
                   sizedBoxHeight(20),
               itemBuilder: (BuildContext context, int index) {
                 return _DiscussionCard(
-                  blog: state.blogs.data[index],
+                  blog: state.blogs.data[state.blogs.data.length - index - 1],
                 );
               },
             );

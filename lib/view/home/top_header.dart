@@ -74,11 +74,13 @@ class _TopHeaderState extends State<TopHeader> {
                       scale: 1.8,
                     ),
                     sizedBoxWidth(5),
-                    SubHeading2(
+                    Text(
                       '${address.address} ${address.city}',
-                      fontWeight: FontWeight.w500,
-                      color: Colour.white,
-                      size: 14,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colour.white,
+                          fontSize: 12,
+                          overflow: TextOverflow.clip),
                     )
                   ],
                 );

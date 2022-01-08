@@ -40,7 +40,7 @@ class _CombosState extends State<_Combos> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.62,
+                        childAspectRatio: 0.55,
                         mainAxisSpacing: 12,
                         crossAxisSpacing: 12,
                       ),

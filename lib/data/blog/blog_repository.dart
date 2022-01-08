@@ -56,13 +56,7 @@ class BlogRepository extends Blog {
       );
     }
 
-    try {
-      return blogCommentsModelFromJson(response.body);
-    } catch (_) {
-      throw const Failure(
-        message: 'Something went wrong with blog comment data parsing',
-      );
-    }
+    return blogCommentsModelFromJson(response.body);
   }
 
   Future<void> addComment({

@@ -103,9 +103,12 @@ class _Addresses extends StatelessWidget {
               );
             },
           );
+        } else if (state is AddressFailure) {
+          return Center(child: SubHeading2((state).failure.message));
         } else {
-          return Center(
-              child: SubHeading2((state as AddressFailure).failure.message));
+          return const Center(
+            child: LoadingIndicator(),
+          );
         }
       },
     );
@@ -133,7 +136,7 @@ class _AddressIcon extends StatelessWidget {
         child: CustomImageWidget(
           image: Assets.addressHome,
           color: Colour.greenishBlue,
-          scale: 1.4,
+          scale: 2,
         ),
       ),
     );
