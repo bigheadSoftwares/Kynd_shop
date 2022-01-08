@@ -19,7 +19,6 @@ class FetchWishlistCubit extends Cubit<FetchWishlistState> {
         FetchWishlistLoaded(wishlistModel),
       );
     }, onError: (dynamic error, dynamic stack) {
-      print(stack);
       emit(
         FetchWishlistFailure(
           handleError(error),

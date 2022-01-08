@@ -25,19 +25,12 @@ class _DiscussionCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: CustomListTile(
-                    leading: blog.userProfile != null
-                        ? Image.network(
-                            'http:${blog.userProfile}',
-                            height: 50,
-                            width: 50,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.asset(
-                            Assets.follower,
-                            height: 50,
-                            width: 50,
-                            fit: BoxFit.cover,
-                          ),
+                    leading: Image.asset(
+                      Assets.profile,
+                      height: 50,
+                      width: 50,
+                      fit: BoxFit.cover,
+                    ),
                     title: SubHeading1(blog.title ?? ''),
                     subtitle: SubHeading2(
                       DateFormat('dd/MM/yyyy')
@@ -47,7 +40,9 @@ class _DiscussionCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Divider(height: 24),
+                const Divider(
+                  height: 24,
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: SubHeading2(
