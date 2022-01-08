@@ -27,7 +27,7 @@ class _DiscussionCard extends StatelessWidget {
                   child: CustomListTile(
                     leading: blog.userProfile != null
                         ? Image.network(
-                            'http:${blog.userProfile}',
+                            '${blog.userProfile}',
                             height: 50,
                             width: 50,
                             fit: BoxFit.cover,
