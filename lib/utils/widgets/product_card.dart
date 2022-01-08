@@ -125,15 +125,15 @@ class ProductCard extends StatelessWidget {
                       ),
                     ),
             ),
-            Positioned(
-              top: 5,
-              left: -5,
-              // alignment: Alignment.topLeft,
-              child: Transform.scale(
-                scale: 0.6,
-                child: const Points(points: 7),
-              ),
-            )
+            // Positioned(
+            //   top: 5,
+            //   left: -5,
+            //   // alignment: Alignment.topLeft,
+            //   child: Transform.scale(
+            //     scale: 0.6,
+            //     child: const Points(points: 7),
+            //   ),
+            // )
           ],
         ),
       ),

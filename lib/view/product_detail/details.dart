@@ -25,11 +25,11 @@ class _ProductDetail extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Transform.scale(
-              scale: 0.6,
-              alignment: Alignment.centerLeft,
-              child: const Points(points: 20),
-            ),
+            // Transform.scale(
+            //   scale: 0.6,
+            //   alignment: Alignment.centerLeft,
+            //   child: const Points(points: 20),
+            // ),
             sizedBoxHeight(5),
 
             CustomTitle(title: productName),

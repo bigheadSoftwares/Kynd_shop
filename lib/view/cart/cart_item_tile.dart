@@ -50,11 +50,11 @@ class _CartItemTile extends StatelessWidget {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Transform.scale(
-            scale: 0.5,
-            alignment: Alignment.centerLeft,
-            child: const Points(points: 12),
-          ),
+          // Transform.scale(
+          //   scale: 0.5,
+          //   alignment: Alignment.centerLeft,
+          //   child: const Points(points: 12),
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[

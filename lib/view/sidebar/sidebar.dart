@@ -1,5 +1,7 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/user_status/user_status_cubit.dart';
 import 'package:share/share.dart';
 import '../../utils/export_utilities.dart';
 
@@ -25,9 +27,20 @@ class Sidebar extends StatelessWidget {
                   backgroundImage: AssetImage(Assets.profile),
                 ),
                 spaceBetweenLeadingAndTitle: 16,
-                title: const SubHeading1(
-                  'Rohit Prajapati',
-                  color: Colour.white,
+                title: BlocBuilder<UserStatusCubit, UserStatusState>(
+                  builder: (BuildContext context, UserStatusState state) {
+                    if (state is UserStatusLoaded) {
+                      return SubHeading1(
+                        state.userData.data?.userDetails?.name ?? '',
+                        color: Colour.white,
+                      );
+                    } else {
+                      return const  SubHeading1(
+                        'Test',
+                        color: Colour.white,
+                      );
+                    }
+                  },
                 ),
                 subtitle: InkWell(
                   onTap: () {

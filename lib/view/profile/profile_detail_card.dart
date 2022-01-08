@@ -35,14 +35,14 @@ class _ProfileDetailCard extends StatelessWidget {
                   phone,
                   color: Colour.subtitleColor,
                 ),
-                sizedBoxHeight(4),
-                Points(
-                  points: 2000,
-                  onTap: () => pushNamed(
-                    context,
-                    Routes.pointEarned,
-                  ),
-                ),
+                // sizedBoxHeight(4),
+                // Points(
+                //   points: 2000,
+                //   onTap: () => pushNamed(
+                //     context,
+                //     Routes.pointEarned,
+                //   ),
+                // ),
                 sizedBoxHeight(10)
               ],
             ),
