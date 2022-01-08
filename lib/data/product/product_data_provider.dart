@@ -18,7 +18,6 @@ class ProductDataProvider {
         'Content-Type': 'application/json'
       },
     );
-    show(response.statusCode);
     if (response.statusCode == 200) {
       return response;
     } else {
@@ -48,13 +47,12 @@ class ProductDataProvider {
     }
   }
 
-  static Future<Response> getRecommendedProducts(int productId) async {
+  static Future<Response> getRecommendedProducts() async {
     final String body = jsonEncode(<String, dynamic>{
-      'product_id': productId,
       'customer_id': Constants.authenticationModel!.success.customerId,
     });
     final Response response = await post(
-      Uri.parse('${Constants.host}product'),
+      Uri.parse('${Constants.host}recommend'),
       body: body,
       headers: <String, String>{
         'Authorization':

@@ -24,12 +24,13 @@ class CategoryDataProvider {
   static Future<Response> _getSubCategoryProducts(int subCategoryId) async {
     final Response response = await post(
       Uri.parse(
-        '${Constants.host}products/sub-category',
+        '${Constants.host}products/search',
       ),
       body: jsonEncode(
         <String, dynamic>{
           'category_id': subCategoryId,
-          'customer_id': Constants.authenticationModel!.success.customerId
+          'customer_id': Constants.authenticationModel!.success.customerId,
+          'sort_key': 'price_low_to_high'
         },
       ),
       headers: <String, String>{

@@ -47,21 +47,26 @@ class _WishlistState extends State<Wishlist> {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
               ),
-              itemCount: state.wishlistModel.data?.length ?? 0,
+              itemCount: state.wishlistModel.data
+                      ?.where((Datum element) => element.isWishlisted == 1)
+                      .length ??
+                  0,
               itemBuilder: (BuildContext context, int index) {
-                Datum? datum = state.wishlistModel.data?[index];
+                Datum? datum = state.wishlistModel.data
+                    ?.where((Datum element) => element.isWishlisted == 1)
+                    .toList()[index];
                 return ProductCard(
                   isWishlisted: state.wishlistModel.data?[index].isWishlisted,
                   onLike: () {
                     BlocProvider.of<FetchWishlistCubit>(context)
                         .addProductToWishlist(
-                      state.wishlistModel.data![index].id!,
+                      datum!.id!,
                     );
                   },
                   onDislike: () {
                     BlocProvider.of<FetchWishlistCubit>(context)
                         .removeProductFromWishlist(
-                      state.wishlistModel.data![index].id!,
+                      datum!.id!,
                     );
                     // BlocProvider.of<FetchWishlistCubit>(context)
                     //     .fetchWishlist();

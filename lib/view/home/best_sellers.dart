@@ -27,7 +27,33 @@ class _BestSellersState extends State<_BestSellers> {
         } else if (state is BestsellersLoaded) {
           return ProductListBlock(
             title: 'Bestsellers',
-            onTap: () {},
+            onTap: () {
+              push(
+                context,
+                ViewAllGrid(
+                  title: 'Bestsellers',
+                  viewAllChild: GridView.builder(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 12,
+                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.62,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 12,
+                    ),
+                    itemCount: state.bestSellersModel.data?.length ?? 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _ProductCardWidget(
+                        index: index,
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
             list: ListView.builder(
               padding: const EdgeInsets.only(
                 left: 12,
@@ -40,54 +66,8 @@ class _BestSellersState extends State<_BestSellers> {
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10, left: 14),
-                  child: ProductCard(
-                    isWishlisted:
-                        state.bestSellersModel.data?[index].isWishlisted,
-                    onLike: () {
-                      BlocProvider.of<BestsellersCubit>(context)
-                          .addProductToWishlist(
-                        state.bestSellersModel.data![index].id!,
-                      );
-                    },
-                    onDislike: () {
-                      BlocProvider.of<BestsellersCubit>(context)
-                          .removeProductFromWishlist(
-                        state.bestSellersModel.data![index].id!,
-                      );
-                    },
-                    onAddToCart: () async {
-                      BlocProvider.of<BestsellersCubit>(context)
-                          .addProductToCart(
-                              state.bestSellersModel.data![index].id!,
-                              state
-                                  .bestSellersModel.data![index].cartQuantity!);
-                    },
-                    onIncTap: () async {
-                      BlocProvider.of<BestsellersCubit>(context)
-                          .addProductToCart(
-                              state.bestSellersModel.data![index].id!,
-                              state
-                                  .bestSellersModel.data![index].cartQuantity!);
-                    },
-                    onDecTap: () async {
-                      BlocProvider.of<BestsellersCubit>(context)
-                          .removeProductFromCart(
-                              state.bestSellersModel.data![index].id!,
-                              state
-                                  .bestSellersModel.data![index].cartQuantity!);
-                    },
-                    productName: state.bestSellersModel.data?[index].name ?? '',
-                    productId: state.bestSellersModel.data?[index].id,
-                    isAddedToCart:
-                        state.bestSellersModel.data?[index].isAddedToCart,
-                    cartQuantity:
-                        state.bestSellersModel.data?[index].cartQuantity,
-                    productImage:
-                        state.bestSellersModel.data?[index].thumbnailImage ??
-                            '',
-                    basePrice: state.bestSellersModel.data?[index].basePrice,
-                    baseDiscountedPrice:
-                        state.bestSellersModel.data?[index].baseDiscountedPrice,
+                  child: _ProductCardWidget(
+                    index: index,
                   ),
                 );
               },
@@ -97,6 +77,62 @@ class _BestSellersState extends State<_BestSellers> {
           return const SizedBox.shrink();
         }
       },
+    );
+  }
+}
+
+class _ProductCardWidget extends StatefulWidget {
+  const _ProductCardWidget({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
+  final int index;
+
+  @override
+  State<_ProductCardWidget> createState() => _ProductCardWidgetState();
+}
+
+class _ProductCardWidgetState extends State<_ProductCardWidget> {
+  late BestsellersLoaded state;
+  @override
+  Widget build(BuildContext context) {
+    state = context.watch<BestsellersCubit>().state as BestsellersLoaded;
+    return ProductCard(
+      isWishlisted: state.bestSellersModel.data?[widget.index].isWishlisted,
+      onLike: () {
+        BlocProvider.of<BestsellersCubit>(context).addProductToWishlist(
+          state.bestSellersModel.data![widget.index].id!,
+        );
+      },
+      onDislike: () {
+        BlocProvider.of<BestsellersCubit>(context).removeProductFromWishlist(
+          state.bestSellersModel.data![widget.index].id!,
+        );
+      },
+      onAddToCart: () async {
+        BlocProvider.of<BestsellersCubit>(context).addProductToCart(
+            state.bestSellersModel.data![widget.index].id!,
+            state.bestSellersModel.data![widget.index].cartQuantity!);
+      },
+      onIncTap: () async {
+        BlocProvider.of<BestsellersCubit>(context).addProductToCart(
+            state.bestSellersModel.data![widget.index].id!,
+            state.bestSellersModel.data![widget.index].cartQuantity!);
+      },
+      onDecTap: () async {
+        BlocProvider.of<BestsellersCubit>(context).removeProductFromCart(
+            state.bestSellersModel.data![widget.index].id!,
+            state.bestSellersModel.data![widget.index].cartQuantity!);
+      },
+      productName: state.bestSellersModel.data?[widget.index].name ?? '',
+      productId: state.bestSellersModel.data?[widget.index].id,
+      isAddedToCart: state.bestSellersModel.data?[widget.index].isAddedToCart,
+      cartQuantity: state.bestSellersModel.data?[widget.index].cartQuantity,
+      productImage:
+          state.bestSellersModel.data?[widget.index].thumbnailImage ?? '',
+      basePrice: state.bestSellersModel.data?[widget.index].basePrice,
+      baseDiscountedPrice:
+          state.bestSellersModel.data?[widget.index].baseDiscountedPrice,
     );
   }
 }

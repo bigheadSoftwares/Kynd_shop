@@ -10,11 +10,15 @@ class ProductListBlock extends StatelessWidget {
     required this.title,
     this.onTap,
     this.list,
+    this.height,
+    this.hideViewAll,
   }) : super(key: key);
 
   final String title;
   final Function()? onTap;
   final Widget? list;
+  final double? height;
+  final bool? hideViewAll;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +30,21 @@ class ProductListBlock extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               CustomTitle(title: title),
-              InkWell(
-                onTap: onTap,
-                child: const SubHeading2(
-                  'View All',
-                  color: Colour.greenishBlue,
-                  fontWeight: FontWeight.bold,
+              if (hideViewAll != true)
+                InkWell(
+                  onTap: onTap,
+                  child: const SubHeading2(
+                    'View All',
+                    color: Colour.greenishBlue,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
             ],
           ),
         ),
         sizedBoxHeight(15),
         SizedBox(
-          height: 325,
+          height: height ?? 325,
           child: list,
         ),
       ],

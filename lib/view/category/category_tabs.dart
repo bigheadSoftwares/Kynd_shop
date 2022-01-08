@@ -2,6 +2,7 @@ import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kynd_shop/logic/cart/add_to_cart_cubit.dart';
+import 'package:kynd_shop/view/filters/filter.dart';
 import '../../data/categories/sub_category_products_model/datum.dart';
 import '../../utils/export_utilities.dart';
 
@@ -58,7 +59,7 @@ class _CategoryTabsState extends State<CategoryTabs> {
             ),
             IconButton(
               onPressed: () {
-                // push(context, const Filter());
+                pushNamed(context, Routes.filter);
               },
               color: Colour.white,
               icon: const Padding(

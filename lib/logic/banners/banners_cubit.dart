@@ -12,9 +12,9 @@ class BannersCubit extends Cubit<BannersState> {
   BannersCubit() : super(BannersInitial());
 
   List<Widget> _list = const <Widget>[
-    CustomImageWidget(image: Assets.banner),
-    CustomImageWidget(image: Assets.banner),
-    CustomImageWidget(image: Assets.banner),
+    // CustomImageWidget(image: Assets.banner),
+    // CustomImageWidget(image: Assets.banner),
+    // CustomImageWidget(image: Assets.banner),
   ];
 
   void getBanners() {
@@ -24,7 +24,7 @@ class BannersCubit extends Cubit<BannersState> {
         bannerModel.data!
             .map(
               (Datum e) => _list.add(
-                const CustomImageWidget(image: Assets.banner),
+                CustomNetworkImageWidget(image: e.photo!, fit: BoxFit.cover),
               ),
             )
             .toList();

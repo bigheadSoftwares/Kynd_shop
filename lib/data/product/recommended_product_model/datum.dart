@@ -59,7 +59,6 @@ class Datum extends Equatable {
     this.baseDiscountedPrice,
     this.basePrice,
     this.isUserLogin,
-    this.customerId,
     this.isAddedToCart,
     this.cartQuantity,
     this.isWishlisted,
@@ -152,8 +151,6 @@ class Datum extends Equatable {
   final int? basePrice;
   @JsonKey(name: 'is_user_login')
   final int? isUserLogin;
-  @JsonKey(name: 'customer_id')
-  final String? customerId;
   @JsonKey(name: 'is_added_to_cart')
   final int? isAddedToCart;
   @JsonKey(name: 'cart_quantity')
@@ -218,7 +215,6 @@ class Datum extends Equatable {
     int? baseDiscountedPrice,
     int? basePrice,
     int? isUserLogin,
-    String? customerId,
     int? isAddedToCart,
     int? cartQuantity,
     int? isWishlisted,
@@ -276,7 +272,6 @@ class Datum extends Equatable {
       baseDiscountedPrice: baseDiscountedPrice ?? this.baseDiscountedPrice,
       basePrice: basePrice ?? this.basePrice,
       isUserLogin: isUserLogin ?? this.isUserLogin,
-      customerId: customerId ?? this.customerId,
       isAddedToCart: isAddedToCart ?? this.isAddedToCart,
       cartQuantity: cartQuantity ?? this.cartQuantity,
       isWishlisted: isWishlisted ?? this.isWishlisted,
@@ -341,7 +336,6 @@ class Datum extends Equatable {
       baseDiscountedPrice,
       basePrice,
       isUserLogin,
-      customerId,
       isAddedToCart,
       cartQuantity,
       isWishlisted,
