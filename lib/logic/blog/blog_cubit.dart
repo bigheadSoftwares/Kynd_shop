@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
 import '../../data/blog/blog_repository.dart';
 
 part 'blog_state.dart';
@@ -15,8 +14,6 @@ class BlogCubit extends Cubit<BlogState> {
     _repo.getBlogs().then((BlogModel blog) {
       emit(BlogLoaded(blog));
     }, onError: (dynamic error, StackTrace trace) {
-      show(error);
-      show(trace);
       emit(BlogError(handleError(error)));
     });
   }

@@ -43,6 +43,7 @@ class Datum {
     this.title,
     this.slug,
     this.description,
+    this.userProfile,
     required this.isLiked,
     required this.totalLike,
     required this.totalUnlike,
@@ -60,6 +61,7 @@ class Datum {
   int totalLike;
   int totalUnlike;
   int status;
+  String? userProfile;
   String createdAt;
 
   Datum copyWith({
@@ -99,6 +101,9 @@ class Datum {
         description:
             json['description'] == null ? null : json['description'] as String,
         totalLike: json['total_like'] as int,
+        userProfile: json['user_profile'] == null
+            ? null
+            : json['user_profile'] as String,
         totalUnlike:
             json['total_unlike'] == null ? 0 : json['total_unlike'] as int,
         status: json['status'] as int,

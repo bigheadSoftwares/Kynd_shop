@@ -41,16 +41,16 @@ class _DiscussionState extends State<Discussion> {
       appBar: appBar(
         context,
         title: 'Discussion',
-        actions: <Widget>[
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: CustomImageWidget(
-              image: Assets.search1,
-              color: Colour.white,
-            ),
-          ),
-          sizedBoxWidth(8),
-        ],
+        // actions: <Widget>[
+        //   const Padding(
+        //     padding: EdgeInsets.all(16.0),
+        //     child: CustomImageWidget(
+        //       image: Assets.search1,
+        //       color: Colour.white,
+        //     ),
+        //   ),
+        //   sizedBoxWidth(8),
+        // ],
       ),
       body: BlocBuilder<BlogCubit, BlogState>(
         builder: (BuildContext context, BlogState state) {
