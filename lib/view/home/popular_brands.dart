@@ -41,8 +41,20 @@ class _PopularBrandsState extends State<_PopularBrands> {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
-                    return _ImageWidget(
-                      brand: state.brandsModel.data[index],
+                    return InkWell(
+                      onTap: () {
+                        push(
+                          context,
+                          PopularBrandProducts(
+                            brandId: state.brandsModel.data[index].id,
+                          ),
+                        ).then((value) {
+                          context.read<SelectedFilterCubit>().resetFilters();
+                        });
+                      },
+                      child: _ImageWidget(
+                        brand: state.brandsModel.data[index],
+                      ),
                     );
                   },
                 ),
@@ -71,25 +83,25 @@ class _ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(4.0),
-      child: CircleAvatar(
-        radius: 50,
-        backgroundImage: AssetImage(Assets.turborg),
-      ),
-      // child: CachedNetworkImage(
-      //   imageUrl: brand.logo,
-      //   imageBuilder: (BuildContext context, ImageProvider imageProvider) {
-      //     return CircleAvatar(
-      //       radius: 50,
-      //       backgroundImage: imageProvider,
-      //     );
-      //   },
-      //   errorWidget: (BuildContext context, String url, dynamic error) {
-      //     debugPrint('$error');
-      //     return const Icon(Icons.error);
-      //   },
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      // child: CircleAvatar(
+      //   radius: 50,
+      //   backgroundImage: NetworkImage(brand.logo),
       // ),
+      child: CachedNetworkImage(
+        imageUrl: brand.logo,
+        imageBuilder: (BuildContext context, ImageProvider imageProvider) {
+          return CircleAvatar(
+            radius: 50,
+            backgroundImage: imageProvider,
+          );
+        },
+        errorWidget: (BuildContext context, String url, dynamic error) {
+          debugPrint('$error');
+          return const Icon(Icons.error);
+        },
+      ),
     );
   }
 }

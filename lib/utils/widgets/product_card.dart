@@ -67,40 +67,45 @@ class ProductCard extends StatelessWidget {
                       image: productImage ?? '', height: 140),
                 ),
                 const Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SubHeading2(
-                        productName ?? '',
-                        // overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      sizedBoxHeight(4),
-                      CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 0),
-                      sizedBoxHeight(4),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          SubHeading2(
-                            '${Constants.rupee} ${baseDiscountedPrice ?? 'NA'}/-',
+                SizedBox(
+                  height: 125,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          child: SubHeading2(
+                            productName ?? '',
+                            // overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                             fontWeight: FontWeight.w500,
                           ),
-                          isAddedToCart == true && cartQuantity != 0
-                              ? IncrementDecrementButton(
-                                  number: cartQuantity ?? 1,
-                                  onTapInc: onIncTap,
-                                  onTapDec: onDecTap,
-                                )
-                              : AddToCartWidget(
-                                  onAddToCart: onAddToCart,
-                                ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        sizedBoxHeight(4),
+                        CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 0),
+                        sizedBoxHeight(4),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            SubHeading2(
+                              '${Constants.rupee} ${baseDiscountedPrice ?? 'NA'}/-',
+                              fontWeight: FontWeight.w500,
+                            ),
+                            isAddedToCart == true && cartQuantity != 0
+                                ? IncrementDecrementButton(
+                                    number: cartQuantity ?? 1,
+                                    onTapInc: onIncTap,
+                                    onTapDec: onDecTap,
+                                  )
+                                : AddToCartWidget(
+                                    onAddToCart: onAddToCart,
+                                  ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

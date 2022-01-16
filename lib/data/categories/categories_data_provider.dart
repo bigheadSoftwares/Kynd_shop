@@ -21,14 +21,18 @@ class CategoryDataProvider {
     }
   }
 
-  static Future<Response> _getSubCategoryProducts(
-    int subCategoryId, {
+  static Future<Response> _getSubCategoryProducts({
+    int? subCategoryId,
     SelectedFilterModel? selectedFilterModel,
   }) async {
     Map<String, dynamic> body = <String, dynamic>{
-      'categories': subCategoryId,
       'customer_id': Constants.authenticationModel!.success.customerId,
     };
+    if (subCategoryId != null) {
+      body.addAll(<String, dynamic>{
+        'categories': subCategoryId,
+      });
+    }
     if (selectedFilterModel != null) {
       body.addAll(<String, dynamic>{
         'sort_key': selectedFilterModel.sortBy == SortByEnum.none

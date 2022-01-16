@@ -15,13 +15,13 @@ class SubCategoryProductsCubit extends Cubit<SubCategoryProductsState> {
   SubCategoryProductsCubit() : super(SubCategoryProductsInitial());
   SubCategoryProductsModel subCategoryProductsModel =
       const SubCategoryProductsModel();
-  void getSubCategoryProducts(
-    int subCategoryId, {
+  void getSubCategoryProducts({
+    int? subCategoryId,
     SelectedFilterModel? selectedFilterModel,
   }) {
     emit(SubCategoryProductsInitial());
     CategoryRepository.subCategoryProducts(
-      subCategoryId,
+      subCategoryId: subCategoryId,
       selectedFilterModel: selectedFilterModel,
     ).then(
       (SubCategoryProductsModel subCategoryProductsModel) {

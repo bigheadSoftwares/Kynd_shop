@@ -30,13 +30,13 @@ class CategoryRepository {
   }
 
   ///Function to get the sub categories products [`SubCategoryProductsModel`] of the category
-  static Future<SubCategoryProductsModel> subCategoryProducts(
-    int subCategoryId, {
+  static Future<SubCategoryProductsModel> subCategoryProducts({
+    int? subCategoryId,
     SelectedFilterModel? selectedFilterModel,
   }) async {
     final Response _response =
         await CategoryDataProvider._getSubCategoryProducts(
-      subCategoryId,
+      subCategoryId: subCategoryId,
       selectedFilterModel: selectedFilterModel,
     );
     SubCategoryProductsModel _subCategoryProductsModel =

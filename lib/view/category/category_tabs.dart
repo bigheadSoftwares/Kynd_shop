@@ -228,7 +228,7 @@ class _TabsState extends State<_Tabs> with TickerProviderStateMixin {
     context.read<SelectedFilterCubit>().currentCategoryTabId =
         widget.state.subCategoryModel.data![0].id!;
     BlocProvider.of<SubCategoryProductsCubit>(context).getSubCategoryProducts(
-      context.read<SelectedFilterCubit>().currentCategoryTabId,
+      subCategoryId: context.read<SelectedFilterCubit>().currentCategoryTabId,
       selectedFilterModel: context.read<SelectedFilterCubit>().state,
     );
   }

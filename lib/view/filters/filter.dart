@@ -40,7 +40,8 @@ class Filter extends StatelessWidget {
               context.read<SelectedFilterCubit>().resetFilters();
               BlocProvider.of<SubCategoryProductsCubit>(context)
                   .getSubCategoryProducts(
-                context.read<SelectedFilterCubit>().currentCategoryTabId,
+                subCategoryId:
+                    context.read<SelectedFilterCubit>().currentCategoryTabId,
                 selectedFilterModel: context.read<SelectedFilterCubit>().state,
               );
             },
@@ -87,7 +88,8 @@ class _FilterWidgetState extends State<_FilterWidget> {
         onTap: () {
           BlocProvider.of<SubCategoryProductsCubit>(context)
               .getSubCategoryProducts(
-            context.read<SelectedFilterCubit>().currentCategoryTabId,
+            subCategoryId:
+                context.read<SelectedFilterCubit>().currentCategoryTabId,
             selectedFilterModel: context.read<SelectedFilterCubit>().state,
           );
           pop(context);
