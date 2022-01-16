@@ -21,23 +21,42 @@ class CategoryDataProvider {
     }
   }
 
-  static Future<Response> _getSubCategoryProducts(int subCategoryId) async {
+  static Future<Response> _getSubCategoryProducts(
+    int subCategoryId, {
+    SelectedFilterModel? selectedFilterModel,
+  }) async {
+    Map<String, dynamic> body = <String, dynamic>{
+      'categories': subCategoryId,
+      'customer_id': Constants.authenticationModel!.success.customerId,
+    };
+    if (selectedFilterModel != null) {
+      body.addAll(<String, dynamic>{
+        'sort_key': selectedFilterModel.sortBy == SortByEnum.none
+            ? 'price_low_to_high'
+            : describeEnum(selectedFilterModel.sortBy),
+        'min': selectedFilterModel.priceRange.start,
+        'max': selectedFilterModel.priceRange.end,
+      });
+      if (selectedFilterModel.brandSet.isNotEmpty) {
+        StringBuffer stringBuffer = StringBuffer();
+        stringBuffer.writeAll(selectedFilterModel.brandSet.toList(), ',');
+        body.addAll(<String, dynamic>{
+          'brands': stringBuffer.toString(),
+        });
+      }
+    }
     final Response response = await post(
       Uri.parse(
         '${Constants.host}products/search',
       ),
-      body: jsonEncode(
-        <String, dynamic>{
-          'category_id': subCategoryId,
-          'customer_id': Constants.authenticationModel!.success.customerId,
-          'sort_key': 'price_low_to_high'
-        },
-      ),
+      body: jsonEncode(body),
       headers: <String, String>{
         'Authorization': Constants.authenticationModel!.success.token,
         'Content-Type': 'application/json'
       },
     );
+    show(
+        'requesting subcategories body -> $body --- response -> ${response.statusCode}');
     if (response.statusCode == 200) {
       return response;
     } else {

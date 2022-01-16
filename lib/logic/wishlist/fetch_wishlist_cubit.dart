@@ -47,7 +47,7 @@ class FetchWishlistCubit extends Cubit<FetchWishlistState> {
 
   void updateModel(int productId, bool isAdd) {
     List<Datum>? data = wishlistModel.data?.map((Datum e) {
-      if (e.id == productId) {
+      if (e.product!.productId == productId) {
         return e.copyWith(isWishlisted: isAdd ? 1 : 0);
       }
       return e;

@@ -1,6 +1,10 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import '../filter/selected_filter.dart';
+import '../../utils/functions/show.dart';
 import 'sub_category_products_model/sub_category_products_model.dart';
 import '../../utils/constants/constants.dart';
 import 'category_model/category_model.dart';
@@ -27,9 +31,14 @@ class CategoryRepository {
 
   ///Function to get the sub categories products [`SubCategoryProductsModel`] of the category
   static Future<SubCategoryProductsModel> subCategoryProducts(
-      int subCategoryId) async {
+    int subCategoryId, {
+    SelectedFilterModel? selectedFilterModel,
+  }) async {
     final Response _response =
-        await CategoryDataProvider._getSubCategoryProducts(subCategoryId);
+        await CategoryDataProvider._getSubCategoryProducts(
+      subCategoryId,
+      selectedFilterModel: selectedFilterModel,
+    );
     SubCategoryProductsModel _subCategoryProductsModel =
         SubCategoryProductsModel.fromJson(
             jsonDecode(_response.body) as Map<String, dynamic>);

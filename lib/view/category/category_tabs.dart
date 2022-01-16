@@ -1,18 +1,12 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/cart/add_to_cart_cubit.dart';
-import 'package:kynd_shop/view/filters/filter.dart';
+import '../../logic/filter/selected_filter_cubit.dart';
 import '../../data/categories/sub_category_products_model/datum.dart';
 import '../../utils/export_utilities.dart';
 
 import '../../logic/category/sub_category_cubit.dart';
 import '../../logic/category/sub_category_products_cubit.dart';
-import '../../utils/constants/assets.dart';
-import '../../utils/constants/colors.dart';
-import '../../utils/widgets/app_bar.dart';
-import '../../utils/widgets/custom_image_widget.dart';
-import '../../utils/widgets/product_card.dart';
 
 class CategoryTabs extends StatefulWidget {
   const CategoryTabs({
@@ -34,70 +28,69 @@ class _CategoryTabsState extends State<CategoryTabs> {
     BlocProvider.of<SubCategoryCubit>(context).getSubCategory(
       widget.categoryId,
     );
-    BlocProvider.of<SubCategoryProductsCubit>(context)
-        .getSubCategoryProducts(widget.categoryId);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar(
-          context,
-          title: widget.categoryName,
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                pushNamed(context, Routes.search);
-              },
-              color: Colour.white,
-              icon: const Padding(
-                padding: EdgeInsets.all(6.0),
-                child: CustomImageWidget(
-                  image: Assets.search1,
-                ),
+      appBar: appBar(
+        context,
+        title: widget.categoryName,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              pushNamed(context, Routes.search);
+            },
+            color: Colour.white,
+            icon: const Padding(
+              padding: EdgeInsets.all(6.0),
+              child: CustomImageWidget(
+                image: Assets.search1,
               ),
             ),
-            IconButton(
-              onPressed: () {
-                pushNamed(context, Routes.filter);
-              },
-              color: Colour.white,
-              icon: const Padding(
-                padding: EdgeInsets.all(6.0),
-                child: CustomImageWidget(
-                  image: Assets.filter,
-                ),
+          ),
+          IconButton(
+            onPressed: () {
+              pushNamed(context, Routes.filter);
+            },
+            color: Colour.white,
+            icon: const Padding(
+              padding: EdgeInsets.all(6.0),
+              child: CustomImageWidget(
+                image: Assets.filter,
               ),
             ),
-          ],
-        ),
-        body: BlocBuilder<SubCategoryCubit, SubCategoryState>(
-          builder: (BuildContext context, SubCategoryState state) {
-            if (state is SubCategoryLoaded) {
-              if (state.subCategoryModel.data!.isEmpty) {
-                return const Center(child: SubHeading2('Nothing Available'));
-              }
-              return DefaultTabController(
-                length: state.subCategoryModel.data?.length ?? 0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _Tabs(
-                      state: state,
-                    ),
-                    _TabView(
-                      tabLength: state.subCategoryModel.data?.length ?? 0,
-                    ),
-                  ],
-                ),
-              );
-            } else {
-              return const Scaffold(
-                body: LoadingIndicator(),
-              );
+          ),
+        ],
+      ),
+      body: BlocBuilder<SubCategoryCubit, SubCategoryState>(
+        builder: (BuildContext context, SubCategoryState state) {
+          if (state is SubCategoryLoaded) {
+            if (state.subCategoryModel.data!.isEmpty) {
+              return const Center(child: SubHeading2('Nothing Available'));
             }
-          },
-        ));
+            return DefaultTabController(
+              length: state.subCategoryModel.data?.length ?? 0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  _Tabs(
+                    state: state,
+                  ),
+                  _TabView(
+                    tabLength: state.subCategoryModel.data?.length ?? 0,
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return const Scaffold(
+              body: LoadingIndicator(),
+            );
+          }
+        },
+      ),
+    );
   }
 }
 
@@ -113,11 +106,6 @@ class _TabView extends StatefulWidget {
 }
 
 class _TabViewState extends State<_TabView> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -210,17 +198,47 @@ class _TabViewState extends State<_TabView> {
   }
 }
 
-class _Tabs extends StatelessWidget {
+class _Tabs extends StatefulWidget {
   const _Tabs({
     Key? key,
     required this.state,
   }) : super(key: key);
   final SubCategoryLoaded state;
+
+  @override
+  State<_Tabs> createState() => _TabsState();
+}
+
+class _TabsState extends State<_Tabs> with TickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    getSubCategoryProducts();
+    super.initState();
+    _tabController = TabController(
+        length: widget.state.subCategoryModel.data?.length ?? 0, vsync: this);
+    _tabController.addListener(() {
+      context.read<SelectedFilterCubit>().currentCategoryTabId =
+          widget.state.subCategoryModel.data![_tabController.index].id!;
+      getSubCategoryProducts();
+    });
+  }
+
+  void getSubCategoryProducts() {
+    context.read<SelectedFilterCubit>().currentCategoryTabId =
+        widget.state.subCategoryModel.data![0].id!;
+    BlocProvider.of<SubCategoryProductsCubit>(context).getSubCategoryProducts(
+      context.read<SelectedFilterCubit>().currentCategoryTabId,
+      selectedFilterModel: context.read<SelectedFilterCubit>().state,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
       elevation: 5,
       child: TabBar(
+        controller: _tabController,
         isScrollable: true,
         indicatorColor: Colour.greenishBlue,
         indicatorWeight: 3,
@@ -229,10 +247,12 @@ class _Tabs extends StatelessWidget {
         unselectedLabelColor: Colour.black,
         tabs: <Widget>[
           ...List<Tab>.generate(
-            state.subCategoryModel.data?.length ?? 0,
-            (int index) => Tab(
-              text: state.subCategoryModel.data?[index].name ?? '',
-            ),
+            widget.state.subCategoryModel.data?.length ?? 0,
+            (int index) {
+              return Tab(
+                text: widget.state.subCategoryModel.data?[index].name ?? '',
+              );
+            },
           )
         ],
       ),

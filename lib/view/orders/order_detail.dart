@@ -142,7 +142,7 @@ class _OrderDetailColumn extends StatelessWidget {
         ),
         _BillDetailItem(
           item: 'Order Price',
-          amount: '${state.orderDetailModel.data?[0].price.toString()}',
+          amount: 'Total is not coming',
         ),
         sizedBoxHeight(10),
         _BillDetailItem(
@@ -167,7 +167,7 @@ class _OrderDetailColumn extends StatelessWidget {
           itemColor: Colour.greenishBlue,
           itemTextSize: 20,
           itemTextWeight: FontWeight.w500,
-          amount: '${state.orderDetailModel.data?[0].price.toString()}',
+          amount: 'Total is not coming',
           amountTextSize: 20,
           amountColor: Colour.greenishBlue,
         ),

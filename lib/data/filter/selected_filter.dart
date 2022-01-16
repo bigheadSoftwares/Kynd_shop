@@ -8,11 +8,12 @@ enum SortByEnum {
   price_low_to_high,
   new_arrival,
   popularity,
-  top_rated
+  top_rated,
+  none,
 }
 
 class SelectedFilterModel extends Equatable {
-  final Set<String> brandSet;
+  final Set<int> brandSet;
   final RangeValues priceRange;
   final SortByEnum sortBy;
 
@@ -30,7 +31,7 @@ class SelectedFilterModel extends Equatable {
       ];
 
   SelectedFilterModel copyWith({
-    Set<String>? brandSet,
+    Set<int>? brandSet,
     RangeValues? priceRange,
     SortByEnum? sortBy,
   }) {

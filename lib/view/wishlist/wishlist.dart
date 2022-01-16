@@ -29,7 +29,9 @@ class _WishlistState extends State<Wishlist> {
           if (state is FetchWishlistInitial) {
             return const LoadingIndicator();
           } else if (state is FetchWishlistLoaded) {
-            if (state.wishlistModel.data!.isEmpty) {
+            if (state.wishlistModel.data!
+                .where((Datum element) => element.isWishlisted == 1)
+                .isEmpty) {
               return const Center(
                 child: SubHeading2(
                   'Nothing in wishlist',
@@ -56,24 +58,24 @@ class _WishlistState extends State<Wishlist> {
                     ?.where((Datum element) => element.isWishlisted == 1)
                     .toList()[index];
                 return ProductCard(
-                  isWishlisted: state.wishlistModel.data?[index].isWishlisted,
+                  isWishlisted: datum?.isWishlisted,
                   onLike: () {
                     BlocProvider.of<FetchWishlistCubit>(context)
                         .addProductToWishlist(
-                      datum!.id!,
+                      datum!.product!.productId!,
                     );
                   },
                   onDislike: () {
                     BlocProvider.of<FetchWishlistCubit>(context)
                         .removeProductFromWishlist(
-                      datum!.id!,
+                      datum!.product!.productId!,
                     );
                     // BlocProvider.of<FetchWishlistCubit>(context)
                     //     .fetchWishlist();
                   },
                   productName: datum?.product?.name,
                   productImage: datum?.product?.thumbnailImage,
-                  productId: datum?.id,
+                  productId: datum?.product!.productId,
                   basePrice: datum?.product?.basePrice,
                   baseDiscountedPrice: datum?.product?.baseDiscountedPrice,
                   cartQuantity: datum?.product?.baseDiscountedPrice,
