@@ -258,6 +258,7 @@ class _BrandsFilterOptions extends StatelessWidget {
                                       .updateBrandSet(_set);
                                 },
                                 leading: CircleAvatar(
+                                  backgroundColor: Colour.white,
                                   backgroundImage: NetworkImage(
                                       state.brandsModel.data[index].logo),
                                 ),
