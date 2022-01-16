@@ -51,7 +51,7 @@ class Authentication {
 
   Future<http.Response> _getUserStatus() async {
     final String body = jsonEncode(<String, dynamic>{
-      'id': Constants.authenticationModel!.success.customerId,
+      'id': Constants.authenticationModel?.success.customerId ?? 0,
     });
     final http.Response response = await http.post(
         Uri.parse('${Constants.host}user_status'),

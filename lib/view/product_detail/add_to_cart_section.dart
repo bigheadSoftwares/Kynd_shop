@@ -55,28 +55,53 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
                               ? IncrementDecrementButton(
                                   number: state.productDetailModel.data![0]
                                       .cartQuantity!,
-                                  onTapInc: () async {
-                                    BlocProvider.of<ProductDetailCubit>(context)
-                                        .addProductToCart(
-                                            productId!,
-                                            state.productDetailModel.data![0]
-                                                .cartQuantity!);
-                                  },
-                                  onTapDec: () async {
-                                    BlocProvider.of<ProductDetailCubit>(context)
-                                        .removeProductFromCart(
-                                            productId!,
-                                            state.productDetailModel.data![0]
-                                                .cartQuantity!);
-                                  },
+                                  onTapInc: Constants.isSkipped
+                                      ? () {
+                                          showSnackBar(
+                                              context: context,
+                                              msg:
+                                                  'Please login to use complete functionality');
+                                        }
+                                      : () async {
+                                          BlocProvider.of<ProductDetailCubit>(
+                                                  context)
+                                              .addProductToCart(
+                                                  productId!,
+                                                  state.productDetailModel
+                                                      .data![0].cartQuantity!);
+                                        },
+                                  onTapDec: Constants.isSkipped
+                                      ? () {
+                                          showSnackBar(
+                                              context: context,
+                                              msg:
+                                                  'Please login to use complete functionality');
+                                        }
+                                      : () async {
+                                          BlocProvider.of<ProductDetailCubit>(
+                                                  context)
+                                              .removeProductFromCart(
+                                                  productId!,
+                                                  state.productDetailModel
+                                                      .data![0].cartQuantity!);
+                                        },
                                 )
-                              : AddToCartWidget(onAddToCart: () {
-                                  BlocProvider.of<ProductDetailCubit>(context)
-                                      .addProductToCart(
-                                          productId!,
-                                          state.productDetailModel.data![0]
-                                              .cartQuantity!);
-                                }),
+                              : AddToCartWidget(
+                                  onAddToCart: Constants.isSkipped
+                                      ? () {
+                                          showSnackBar(
+                                              context: context,
+                                              msg:
+                                                  'Please login to use complete functionality');
+                                        }
+                                      : () {
+                                          BlocProvider.of<ProductDetailCubit>(
+                                                  context)
+                                              .addProductToCart(
+                                                  productId!,
+                                                  state.productDetailModel
+                                                      .data![0].cartQuantity!);
+                                        }),
                           SubHeading2(
                             '${Constants.rupee} $productPrice/-',
                             color: Colour.greenishBlue,

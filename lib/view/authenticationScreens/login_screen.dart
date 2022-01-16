@@ -54,6 +54,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.fromLTRB(
                       30, screenHeight(context) * 0.1, 30, 20),
                   children: <Widget>[
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: InkWell(
+                        onTap: () {
+                          Constants.isSkipped = true;
+                          saveBool(key: Constants.skippedStatus, value: true);
+                          pushNamed(context, Routes.home);
+                        },
+                        child: const Text(
+                          'SKIP',
+                          // size: 18,
+                          // fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    sizedBoxHeight(screenHeight(context) * 0.01),
                     const Heading2(
                       'Let\'s Sign You In',
                       size: 26,

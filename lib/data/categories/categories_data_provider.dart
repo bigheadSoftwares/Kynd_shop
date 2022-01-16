@@ -29,12 +29,12 @@ class CategoryDataProvider {
       body: jsonEncode(
         <String, dynamic>{
           'category_id': subCategoryId,
-          'customer_id': Constants.authenticationModel!.success.customerId,
+          'customer_id': Constants.authenticationModel?.success.customerId ?? 0,
           'sort_key': 'price_low_to_high'
         },
       ),
       headers: <String, String>{
-        'Authorization': Constants.authenticationModel!.success.token,
+        'Authorization': Constants.authenticationModel?.success.token ?? '',
         'Content-Type': 'application/json'
       },
     );

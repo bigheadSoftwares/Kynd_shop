@@ -12,6 +12,7 @@ class Constants {
   static const double initialLatitude = 28.7041;
   static const double initialLongitude = 77.1025;
   static bool isLoggedIn = false;
+  static bool isSkipped = false;
   static bool isIntroSeen = false;
   static const int userId = 1;
 
@@ -23,6 +24,7 @@ class Constants {
   //? Keys
   static const String loginModelKey = 'loginModel';
   static const String loginStatus = 'loginStatus';
+  static const String skippedStatus = 'skippedStatus';
   static const String introScreenStatus = 'introScreenStatus';
 
   // static const Map<String, String>? headers = <String, String>{
@@ -33,7 +35,7 @@ class Constants {
 
   static Map<String, String> headers = {
     HttpHeaders.authorizationHeader:
-        'Bearer ${Constants.authenticationModel!.success.token}',
+        'Bearer ${Constants.authenticationModel?.success.token ?? ''}',
     'Content-Type': 'application/json'
   };
 }
