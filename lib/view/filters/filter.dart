@@ -224,7 +224,7 @@ class _BrandsFilterOptions extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SubHeading2(
-                  'Show Sort By',
+                  'Show By Brands',
                   size: 14,
                   fontWeight: FontWeight.bold,
                   color: Colour.lightGrey,
@@ -264,7 +264,10 @@ class _BrandsFilterOptions extends StatelessWidget {
                                 title: SubHeading2(
                                   state.brandsModel.data[index].name,
                                   fontWeight: FontWeight.w500,
-                                  color: Colour.lightGrey.withOpacity(0.8),
+                                  color: filterState.brandSet.contains(
+                                          state.brandsModel.data[index].id)
+                                      ? Colour.black
+                                      : Colour.lightGrey.withOpacity(0.8),
                                 ),
                                 trailing: filterState.brandSet.contains(
                                         state.brandsModel.data[index].id)

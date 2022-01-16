@@ -117,6 +117,10 @@ class _TabViewState extends State<_TabView> {
                 BlocBuilder<SubCategoryProductsCubit, SubCategoryProductsState>(
               builder: (BuildContext context, SubCategoryProductsState state) {
                 if (state is SubCategoryProductsLoaded) {
+                  if (state.subCategoryProductsModel.data!.isEmpty) {
+                    return const Center(
+                        child: SubHeading2('Nothing Available'));
+                  }
                   return GridView.builder(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 20,
