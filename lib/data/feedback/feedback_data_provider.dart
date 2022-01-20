@@ -21,7 +21,7 @@ class FeedBackDataProvider {
     if (response.statusCode == 200) {
       return true;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 }

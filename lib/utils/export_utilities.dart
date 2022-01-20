@@ -2,6 +2,7 @@ export 'routes/routes.dart';
 export '../utils/constants/colors.dart';
 export '../utils/constants/constants.dart';
 export '../utils/constants/assets.dart';
+export '../utils/handle_error.dart';
 export './extension/glassmorphism.dart';
 export './extension/neumorphism.dart';
 export './extension/shimmer.dart';

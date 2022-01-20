@@ -32,21 +32,35 @@ class _TopHeaderState extends State<TopHeader> {
           sizedBoxHeight(20),
           Row(
             children: <Widget>[
-              InkWell(
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const CustomImageWidget(
-                    image: Assets.menu,
-                    scale: 1.8,
+              if (Constants.isLoggedIn)
+                InkWell(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const CustomImageWidget(
+                      image: Assets.menu,
+                      scale: 1.8,
+                    ),
                   ),
                 ),
-              ),
+              if (!Constants.isLoggedIn)
+                IconButton(
+                  onPressed: () {
+                    pushNamedAndRemoveUntil(
+                        context, Routes.ageConfirmationScreen);
+                  },
+                  icon: const Icon(
+                    Icons.login,
+                    color: Colour.white,
+                  ),
+                ),
               const Spacer(),
               InkWell(
-                onTap: () => pushNamed(context, Routes.discussion),
+                onTap: () => Constants.isLoggedIn
+                    ? pushNamed(context, Routes.discussion)
+                    : showToast('Please login first'),
                 child: const CustomImageWidget(
                   image: Assets.discussion,
                   scale: 1.8,
@@ -58,7 +72,7 @@ class _TopHeaderState extends State<TopHeader> {
                 scale: 1.8,
               ),
               sizedBoxWidth(18),
-              const _CoinContainer(),
+              if (Constants.isLoggedIn) const _CoinContainer(),
             ],
           ),
           sizedBoxHeight(15),

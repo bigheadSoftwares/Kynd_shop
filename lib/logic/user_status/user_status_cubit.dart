@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
+import 'package:easy_coding/handle_error.dart' as bighead;
 import 'package:equatable/equatable.dart';
+import 'package:kynd_shop/utils/export_utilities.dart';
 import '../../data/authentication/authentication.dart';
 import '../../data/user_status_data/user_status_data.dart';
 
@@ -18,7 +19,7 @@ class UserStatusCubit extends Cubit<UserStatusState> {
         emit(UserStatusLoaded(value));
       },
       onError: (dynamic error, StackTrace stackTrace) {
-        emit(UserStatusFailure(handleError(error)));
+        emit(UserStatusFailure(bighead.handleError(error)));
       },
     );
   }

@@ -12,59 +12,47 @@ class ProductDataProvider {
     final Response response = await post(
       Uri.parse('${Constants.host}product'),
       body: body,
-      headers: <String, String>{
-        'Authorization':
-            'Bearer ${Constants.authenticationModel?.success.token ?? ''}',
-        'Content-Type': 'application/json'
-      },
+      headers: Constants.headers,
     );
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
   static Future<Response> searchProduct(String query) async {
     final String body = jsonEncode(<String, dynamic>{
       'name': query,
-      'customer_id': Constants.authenticationModel!.success.customerId
+      'customer_id': Constants.authenticationModel?.success.customerId
     });
     final Response response = await post(
       Uri.parse('${Constants.host}products/search'),
       body: body,
-      headers: <String, String>{
-        'Authorization':
-            'Bearer ${Constants.authenticationModel!.success.token}',
-        'Content-Type': 'application/json'
-      },
+      headers: Constants.headers,
     );
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['success'] == true) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
   static Future<Response> getRecommendedProducts() async {
     final String body = jsonEncode(<String, dynamic>{
-      'customer_id': Constants.authenticationModel!.success.customerId,
+      'customer_id': Constants.authenticationModel?.success.customerId,
     });
     final Response response = await post(
       Uri.parse('${Constants.host}recommend'),
       body: body,
-      headers: <String, String>{
-        'Authorization':
-            'Bearer ${Constants.authenticationModel!.success.token}',
-        'Content-Type': 'application/json'
-      },
+      headers: Constants.headers,
     );
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['success'] == true) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 }

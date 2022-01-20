@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
+import 'package:easy_coding/handle_error.dart' as bighead;
 import 'package:equatable/equatable.dart';
+import '../../utils/export_utilities.dart';
 import '../../utils/functions/show.dart';
 import '../../data/address/my_addresses_model/datum.dart';
 import '../../data/address/address_repository.dart';
@@ -32,7 +33,7 @@ class AddressCubit extends Cubit<AddressState> {
       onError: (dynamic error, dynamic stack) {
         emit(
           AddressFailure(
-            handleError(error),
+            bighead.handleError(error),
           ),
         );
       },

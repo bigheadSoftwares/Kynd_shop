@@ -11,14 +11,15 @@ class WishlistDataProvider {
       'user_id': Constants.authenticationModel!.success.customerId
     });
     final Response response = await post(
-        Uri.parse('${Constants.host}wishlists-add-product'),
-        body: body,
-        headers: Constants.headers);
+      Uri.parse('${Constants.host}wishlists-add-product'),
+      body: body,
+      headers: Constants.headers,
+    );
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['is_in_wishlist'] == true) {
       return true;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
@@ -28,15 +29,16 @@ class WishlistDataProvider {
       'user_id': Constants.authenticationModel!.success.customerId
     });
     final Response response = await post(
-        Uri.parse('${Constants.host}wishlists-removeproduct'),
-        body: body,
-        headers: Constants.headers);
+      Uri.parse('${Constants.host}wishlists-removeproduct'),
+      body: body,
+      headers: Constants.headers,
+    );
     show('this is the id $productId and wishlist response ${response.body}');
     if (response.statusCode == 200 &&
         jsonDecode(response.body)['is_in_wishlist'] == false) {
       return true;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
@@ -50,7 +52,7 @@ class WishlistDataProvider {
         jsonDecode(response.body)['success'] == true) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 }

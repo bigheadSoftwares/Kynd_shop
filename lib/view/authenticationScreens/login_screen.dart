@@ -33,6 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is LoginSuccessful) {
             showToast('${state.dataModel.success.code}');
             log('This is otp ${state.dataModel.success.code}');
+            Constants.isLoggedIn = true;
+            Constants.isSkipped = false;
             pushNamed(
               context,
               Routes.otpScreen,

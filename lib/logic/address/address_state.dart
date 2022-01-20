@@ -19,7 +19,7 @@ class AddressLoaded extends AddressState {
 }
 
 class AddressFailure extends AddressState {
-  final Failure failure;
+  final bighead.Failure failure;
 
   const AddressFailure(this.failure);
   @override

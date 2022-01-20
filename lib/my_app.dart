@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/feedback_cubit/feedback_cubit.dart';
+import 'logic/feedback_cubit/feedback_cubit.dart';
 import 'logic/points_earned/points_earned_cubit.dart';
 import 'logic/filter/selected_filter_cubit.dart';
 import 'logic/order/create_order_cubit.dart';
@@ -170,6 +170,7 @@ class CustomMaterial extends StatelessWidget {
       theme: state,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
+      navigatorKey: Constants.navigatorKey,
     );
   }
 }

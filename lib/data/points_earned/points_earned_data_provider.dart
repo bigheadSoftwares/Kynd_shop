@@ -19,7 +19,7 @@ class PointsEarnedDataProvider {
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 }

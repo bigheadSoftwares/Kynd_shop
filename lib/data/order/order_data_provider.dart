@@ -15,7 +15,7 @@ class OrderDataProvider {
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
@@ -29,7 +29,7 @@ class OrderDataProvider {
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
@@ -44,7 +44,7 @@ class OrderDataProvider {
     if (response.statusCode == 200) {
       return true;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 }

@@ -6,12 +6,13 @@ import '../../utils/constants/constants.dart';
 class CouponDataProvider {
   static Future<Response> getCouponsList() async {
     final Response response = await get(
-        Uri.parse('${Constants.host}coupon/list'),
-        headers: Constants.headers);
+      Uri.parse('${Constants.host}coupon/list'),
+      headers: Constants.headers,
+    );
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
@@ -29,7 +30,7 @@ class CouponDataProvider {
     if (response.statusCode == 200 && data['result'] == true) {
       return true;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 

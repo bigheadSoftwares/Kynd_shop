@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
+import 'package:easy_coding/handle_error.dart' as bighead;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '../../utils/export_utilities.dart';
@@ -35,7 +35,7 @@ class BannersCubit extends Cubit<BannersState> {
       onError: (dynamic error, dynamic stack) {
         emit(
           BannersFailure(
-            handleError(error),
+            bighead.handleError(error),
           ),
         );
       },

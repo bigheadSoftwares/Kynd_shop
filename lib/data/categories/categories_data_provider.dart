@@ -2,22 +2,26 @@ part of 'categories_repository.dart';
 
 class CategoryDataProvider {
   static Future<Response> _getCategories() async {
-    final Response response =
-        await get(Uri.parse('${Constants.host}categories'));
+    final Response response = await get(
+      Uri.parse('${Constants.host}categories'),
+      headers: Constants.headers,
+    );
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
   static Future<Response> _getSubCategories(int categoryId) async {
-    final Response response =
-        await get(Uri.parse('${Constants.host}sub-categories/$categoryId'));
+    final Response response = await get(
+      Uri.parse('${Constants.host}sub-categories/$categoryId'),
+      headers: Constants.headers,
+    );
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
@@ -26,7 +30,7 @@ class CategoryDataProvider {
     SelectedFilterModel? selectedFilterModel,
   }) async {
     Map<String, dynamic> body = <String, dynamic>{
-      'customer_id': Constants.authenticationModel!.success.customerId,
+      'customer_id': Constants.authenticationModel?.success.customerId ?? 0,
     };
     if (subCategoryId != null) {
       body.addAll(<String, dynamic>{
@@ -54,17 +58,14 @@ class CategoryDataProvider {
         '${Constants.host}products/search',
       ),
       body: jsonEncode(body),
-      headers: <String, String>{
-        'Authorization': Constants.authenticationModel?.success.token ?? '',
-        'Content-Type': 'application/json'
-      },
+      headers: Constants.headers,
     );
     show(
         'requesting subcategories body -> $body --- response -> ${response.statusCode}');
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 }

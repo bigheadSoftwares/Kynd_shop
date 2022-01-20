@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
 import '../../data/authentication/authentication.dart';
 
 class Constants {
@@ -39,4 +41,6 @@ class Constants {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   };
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 }

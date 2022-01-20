@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
+import 'package:easy_coding/handle_error.dart' as bighead;
 import 'package:equatable/equatable.dart';
+// import 'package:kynd_shop/utils/export_utilities.dart';
 import '../../data/brands/brands_repo.dart';
 
 part 'brands_state.dart';
@@ -16,7 +17,7 @@ class BrandsCubit extends Cubit<BrandsState> {
         emit(BrandsSuccess(brands));
       },
       onError: (dynamic error, StackTrace trace) {
-        emit(BrandsError(handleError(error)));
+        emit(BrandsError(bighead.handleError(error)));
       },
     );
   }

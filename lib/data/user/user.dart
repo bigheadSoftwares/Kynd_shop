@@ -5,10 +5,7 @@ class User {
     final Uri _url = Uri.parse('${Constants.host}auth/user');
     final http.Response _response = await http.get(
       _url,
-      headers: <String, String>{
-        'Authorization':
-            'Bearer ${Constants.authenticationModel!.success.token}',
-      },
+      headers: Constants.headers,
     );
     return _response;
   }
@@ -18,11 +15,7 @@ class User {
     final http.Response _response = await http.post(
       _url,
       body: userModelToJson(user),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        HttpHeaders.authorizationHeader:
-            'Bearer ${Constants.authenticationModel!.success.token}',
-      },
+      headers: Constants.headers,
     );
     return _response;
   }

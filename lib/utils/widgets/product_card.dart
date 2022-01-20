@@ -101,7 +101,15 @@ class ProductCard extends StatelessWidget {
                                     onTapDec: onDecTap,
                                   )
                                 : AddToCartWidget(
-                                    onAddToCart: onAddToCart,
+                                    onAddToCart: Constants.isSkipped ||
+                                            !Constants.isLoggedIn
+                                        ? () {
+                                            showSnackBar(
+                                                context: context,
+                                                msg:
+                                                    'Please login to use complete functionality');
+                                          }
+                                        : onAddToCart,
                                   ),
                           ],
                         ),

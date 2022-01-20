@@ -29,7 +29,7 @@ class BestsellersLoaded extends BestsellersState {
 
 class BestsellersFailure extends BestsellersState {
   const BestsellersFailure(this.failure);
-  final Failure failure;
+  final bighead.Failure failure;
 
   @override
   List<Object> get props => <Object>[failure];

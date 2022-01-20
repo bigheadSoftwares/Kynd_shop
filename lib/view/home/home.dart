@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colour.white,
-      drawer: const Sidebar(),
+      drawer: Constants.isLoggedIn ? const Sidebar() : const SizedBox(),
       body: RefreshIndicator(
         color: Colour.greenishBlue,
         onRefresh: () async {

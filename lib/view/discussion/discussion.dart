@@ -73,17 +73,19 @@ class _DiscussionState extends State<Discussion> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => pushNamed(
-          context,
-          Routes.startDiscussion,
-        ),
-        backgroundColor: Colour.greenishBlue,
-        child: const CustomImageWidget(
-          image: Assets.startDiscussion,
-          scale: 1.6,
-        ),
-      ),
+      floatingActionButton: !Constants.isLoggedIn
+          ? const SizedBox()
+          : FloatingActionButton(
+              onPressed: () => pushNamed(
+                context,
+                Routes.startDiscussion,
+              ),
+              backgroundColor: Colour.greenishBlue,
+              child: const CustomImageWidget(
+                image: Assets.startDiscussion,
+                scale: 1.6,
+              ),
+            ),
     );
   }
 }

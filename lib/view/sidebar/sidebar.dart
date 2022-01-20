@@ -102,6 +102,7 @@ class Sidebar extends StatelessWidget {
             title: 'Are you sure ?',
             subtitle: 'Please Confirm to Logout',
             onConfirm: () async {
+              Constants.isLoggedIn = false;
               await deleteLocalKey(Constants.loginModelKey);
               await deleteLocalKey(Constants.loginStatus);
               pushNamedAndRemoveUntil(
