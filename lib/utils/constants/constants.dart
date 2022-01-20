@@ -12,6 +12,7 @@ class Constants {
   static const double initialLatitude = 28.7041;
   static const double initialLongitude = 77.1025;
   static bool isLoggedIn = false;
+  static bool isSkipped = false;
   static bool isIntroSeen = false;
   static const int userId = 1;
 
@@ -23,6 +24,7 @@ class Constants {
   //? Keys
   static const String loginModelKey = 'loginModel';
   static const String loginStatus = 'loginStatus';
+  static const String skippedStatus = 'skippedStatus';
   static const String introScreenStatus = 'introScreenStatus';
 
   // static const Map<String, String>? headers = <String, String>{
@@ -31,9 +33,10 @@ class Constants {
   //       'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjRkNDE4N2NjMDJmNWVlZDdmYmE5OTQyMWI2NjM1YmFjNDhiMWZiYTJiNGJjMTdkNjc0ZmJmOTBmZDFmMDFlZmE0NmQyMDg1MjUwMDYxYWFlIn0.eyJhdWQiOiIxIiwianRpIjoiNGQ0MTg3Y2MwMmY1ZWVkN2ZiYTk5NDIxYjY2MzViYWM0OGIxZmJhMmI0YmMxN2Q2NzRmYmY5MGZkMWYwMWVmYTQ2ZDIwODUyNTAwNjFhYWUiLCJpYXQiOjE2MzkyMDIwODMsIm5iZiI6MTYzOTIwMjA4MywiZXhwIjoxNjcwNzM4MDgzLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.OflLLbsdaY47Mfhz5fJzY-5IIWVYWyyS392977YN9QFMv_FPH-hwxLvBZ2AnVf9Y6wLsqmjtxvLgIRJpl4xNMRmYDjhX-6iCXOam2osDAfBhUVr8QlpspfuW3V6rjlhEA68gtU8tjrmvK8JT_knE-MQbV4hOrCe2NZRgoPfcK_U8C4ItrWr8ofRooTxvdiAd1MaYu1Wso6BnP17PhGRiY1WEb7ZxKGscZnK06eL27fAx6EPlJOGBPGiyw8mDIztHvV3oA4wpf92ADsUvBN8VicJSirX9T1WNMtQlGCpiYZ3i8Q7HmsqBtyToAEFKMltEr_XIAlwMzJm3DEy7RRCkItjIY0fcyTAMdQzkZ8wXd2pr7xPbb0ZD-1bR0P13VypSg-xuQ1ZqMg4CWg2EX-lCFVt-kDifHeYPAE5oiYhSgXuBaAB8G8-vzhMoXc6XIxeXQpADg7p-F5B2pqV1ZbRLL3X7LHPvfWjZFMP5V2_ksXbswu8fdL7Xn2EkLb4bg0TO9FLHk35v7f7gvPtWkrh2evzRE3WVkOJK6y4Kj0WVvmJ_elzJKWxrgRIDKf-psZ612IeMywONp64y3wHsSef_IrfL-JzLf4VA1VlkQ4VNZLdGRAHg5YBFivCh8okAUuqrie9WeB6Lx_HJpobiTNPePRLd7LowY_sgf-Ni_Q91EQE'
   // };
 
-  static Map<String, String> headers = {
+  static Map<String, String> headers = <String, String>{
     HttpHeaders.authorizationHeader:
-        'Bearer ${Constants.authenticationModel!.success.token}',
-    'Content-Type': 'application/json'
+        'Bearer ${Constants.authenticationModel?.success.token ?? ''}',
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
   };
 }

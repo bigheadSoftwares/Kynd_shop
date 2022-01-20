@@ -23,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void getPreferencesAndNavigateAccordingly() async {
     Constants.isIntroSeen = await readBool(Constants.introScreenStatus);
     Constants.isLoggedIn = await readBool(Constants.loginStatus);
+    Constants.isSkipped = await readBool(Constants.skippedStatus);
     if (Constants.isLoggedIn) {
       Constants.authenticationModel = authenticationModelFromJson(
         await readData(Constants.loginModelKey),
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       const Duration(seconds: 3),
       () {
-        if (Constants.isLoggedIn) {
+        if (Constants.isLoggedIn || Constants.isSkipped) {
           pushNamedAndRemoveUntil(context, Routes.home);
         } else {
           pushNamedAndRemoveUntil(context, Routes.ageConfirmationScreen);

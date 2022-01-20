@@ -1,9 +1,8 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../utils/functions/snackbar.dart';
 import '../../utils/functions/show.dart';
-
-import '../../logic/cart/add_to_cart_cubit.dart';
 import '../../logic/product/product_detail_cubit.dart';
 import '../../utils/export_utilities.dart';
 import '../../utils/widgets/add_to_cart_widget.dart';
@@ -116,13 +115,19 @@ class _FavoriteIcon extends StatelessWidget {
       top: screenHeight(context) * 0.35,
       right: 25,
       child: InkWell(
-        onTap: () {
-          isWishlist
-              ? BlocProvider.of<ProductDetailCubit>(context)
-                  .removeProductFromWishlist(productId)
-              : BlocProvider.of<ProductDetailCubit>(context)
-                  .addProductToWishlist(productId);
-        },
+        onTap: Constants.isSkipped
+            ? () {
+                showSnackBar(
+                    context: context,
+                    msg: 'Please login to use complete functionality');
+              }
+            : () {
+                isWishlist
+                    ? BlocProvider.of<ProductDetailCubit>(context)
+                        .removeProductFromWishlist(productId)
+                    : BlocProvider.of<ProductDetailCubit>(context)
+                        .addProductToWishlist(productId);
+              },
         child: Container(
           height: 50,
           width: 50,

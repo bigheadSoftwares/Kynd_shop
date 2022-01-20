@@ -112,6 +112,23 @@ class Sidebar extends StatelessWidget {
           );
         },
       );
+    } else if (sidebarItem.name.toLowerCase() == 'login') {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return ConfirmationDialog(
+            title: 'Are you sure ?',
+            subtitle: 'Please Confirm to Login',
+            onConfirm: () async {
+              await deleteLocalKey(Constants.skippedStatus);
+              pushNamedAndRemoveUntil(
+                context,
+                Routes.ageConfirmationScreen,
+              );
+            },
+          );
+        },
+      );
     } else if (sidebarItem.name.toLowerCase() == 'share app') {
       Share.share(
         'https://play.google.com/store/apps/details?id=com.app.Symphonian',

@@ -9,7 +9,7 @@ class AddressDataProvider {
   static Future<Response> getAddresses() async {
     final Response response = await get(
       Uri.parse(
-          '${Constants.host}user/shipping/address/${Constants.authenticationModel!.success.customerId}'),
+          '${Constants.host}user/shipping/address/${Constants.authenticationModel?.success.customerId ?? 0}'),
       headers: Constants.headers,
     );
     if (response.statusCode == 200) {

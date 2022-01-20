@@ -62,9 +62,15 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
     asset: Assets.termsAndCondition,
     route: Routes.termsAndCondition,
   ),
-  SidebarItems(
-    name: 'Logout',
-    asset: Assets.logout,
-    route: Routes.home,
-  ),
+  Constants.isSkipped
+      ? SidebarItems(
+          name: 'Login',
+          asset: Assets.logout,
+          route: Routes.home,
+        )
+      : SidebarItems(
+          name: 'Logout',
+          asset: Assets.logout,
+          route: Routes.home,
+        ),
 ];

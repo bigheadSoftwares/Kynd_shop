@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:kynd_shop/data/product/recommended_product_model/recommended_product_model.dart';
+import 'recommended_product_model/recommended_product_model.dart';
 import '../../utils/functions/show.dart';
 import 'search_product_model/search_product_model.dart';
 import 'product_data_provider.dart';

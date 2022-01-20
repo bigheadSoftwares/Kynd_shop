@@ -55,7 +55,7 @@ class CategoryDataProvider {
       ),
       body: jsonEncode(body),
       headers: <String, String>{
-        'Authorization': Constants.authenticationModel!.success.token,
+        'Authorization': Constants.authenticationModel?.success.token ?? '',
         'Content-Type': 'application/json'
       },
     );

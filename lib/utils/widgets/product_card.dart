@@ -1,5 +1,6 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
+import '../functions/snackbar.dart';
 
 import '../../view/product_detail/product_detail.dart';
 import '../export_utilities.dart';
@@ -122,7 +123,14 @@ class ProductCard extends StatelessWidget {
                       ),
                     )
                   : IconButton(
-                      onPressed: onLike,
+                      onPressed: Constants.isSkipped
+                          ? () {
+                              showSnackBar(
+                                  context: context,
+                                  msg:
+                                      'Please login to use complete functionality');
+                            }
+                          : onLike,
                       icon: const Icon(
                         Icons.favorite_outline_rounded,
                         color: Colour.lightGrey,
