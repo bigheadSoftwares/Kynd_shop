@@ -16,6 +16,7 @@ class CartDetailsCubit extends Cubit<CartDetailsState> {
   CartDetailsCubit() : super(CartDetailsInitial());
   CartDetaiilsModel cartDetaiilsModel = CartDetaiilsModel();
   void getCartDetails() {
+    emit(CartDetailsInitial());
     CartRepository.getCartDetails().then(
       (CartDetaiilsModel cartDetaiilsModel) {
         this.cartDetaiilsModel = cartDetaiilsModel;

@@ -97,18 +97,16 @@ class ProductCard extends StatelessWidget {
                             isAddedToCart == true && cartQuantity != 0
                                 ? IncrementDecrementButton(
                                     number: cartQuantity ?? 1,
-                                    onTapInc: onIncTap,
-                                    onTapDec: onDecTap,
+                                    onTapInc: !Constants.isLoggedIn
+                                        ? showLoginToast
+                                        : onIncTap,
+                                    onTapDec: !Constants.isLoggedIn
+                                        ? showLoginToast
+                                        : onDecTap,
                                   )
                                 : AddToCartWidget(
-                                    onAddToCart: Constants.isSkipped ||
-                                            !Constants.isLoggedIn
-                                        ? () {
-                                            showSnackBar(
-                                                context: context,
-                                                msg:
-                                                    'Please login to use complete functionality');
-                                          }
+                                    onAddToCart: !Constants.isLoggedIn
+                                        ? showLoginToast
                                         : onAddToCart,
                                   ),
                           ],
@@ -123,7 +121,8 @@ class ProductCard extends StatelessWidget {
               alignment: Alignment.topRight,
               child: isWishlisted == 1
                   ? IconButton(
-                      onPressed: onDislike,
+                      onPressed:
+                          !Constants.isLoggedIn ? showLoginToast : onDislike,
                       icon: const Icon(
                         Icons.favorite,
                         color: Colour.red,
@@ -131,14 +130,8 @@ class ProductCard extends StatelessWidget {
                       ),
                     )
                   : IconButton(
-                      onPressed: Constants.isSkipped
-                          ? () {
-                              showSnackBar(
-                                  context: context,
-                                  msg:
-                                      'Please login to use complete functionality');
-                            }
-                          : onLike,
+                      onPressed:
+                          !Constants.isLoggedIn ? showLoginToast : onLike,
                       icon: const Icon(
                         Icons.favorite_outline_rounded,
                         color: Colour.lightGrey,

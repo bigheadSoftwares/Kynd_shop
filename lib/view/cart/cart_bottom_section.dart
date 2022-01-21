@@ -10,7 +10,7 @@ class _CartBottomSection extends StatefulWidget {
 }
 
 class _CartBottomSectionState extends State<_CartBottomSection> {
-  List<AddressDatum> list = <AddressDatum>[];
+  List<AddressDatum>? list = <AddressDatum>[];
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -35,7 +35,7 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
               },
               builder: (BuildContext context, AddressState state) {
                 return state is AddressLoaded
-                    ? list.isEmpty
+                    ? list!.isEmpty
                         ? const SizedBox()
                         : CustomListTile(
                             leading: const CustomImageWidget(
@@ -46,7 +46,7 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
                               children: <Widget>[
                                 Expanded(
                                   child: SubHeading2(
-                                    '${context.read<AddressCubit>().defaultAddress[0].username}',
+                                    '${context.read<AddressCubit>().defaultAddress?[0].username}',
                                     size: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -65,10 +65,11 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
                               ],
                             ),
                             subtitle: SubHeading2(
-                              '${context.read<AddressCubit>().defaultAddress[0].address} ${context.read<AddressCubit>().defaultAddress[0].city}, ${context.read<AddressCubit>().defaultAddress[0].country} ${context.read<AddressCubit>().defaultAddress[0].postalCode}',
+                              '${context.read<AddressCubit>().defaultAddress?[0].address} ${context.read<AddressCubit>().defaultAddress?[0].city}, ${context.read<AddressCubit>().defaultAddress?[0].country} ${context.read<AddressCubit>().defaultAddress?[0].postalCode}',
                               color: Colour.lightGrey.withOpacity(0.8),
                               size: 12,
                               fontWeight: FontWeight.w500,
+                              maxLines: 3,
                             ),
                           )
                     : const SizedBox.shrink();

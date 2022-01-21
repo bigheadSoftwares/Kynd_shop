@@ -33,8 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is LoginSuccessful) {
             showToast('${state.dataModel.success.code}');
             log('This is otp ${state.dataModel.success.code}');
-            Constants.isLoggedIn = true;
-            Constants.isSkipped = false;
             pushNamed(
               context,
               Routes.otpScreen,
@@ -61,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: InkWell(
                         onTap: () {
                           Constants.isSkipped = true;
+                          Constants.isLoggedIn = false;
                           saveBool(key: Constants.skippedStatus, value: true);
                           pushNamed(context, Routes.home);
                         },

@@ -55,13 +55,8 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
                               ? IncrementDecrementButton(
                                   number: state.productDetailModel.data![0]
                                       .cartQuantity!,
-                                  onTapInc: Constants.isSkipped
-                                      ? () {
-                                          showSnackBar(
-                                              context: context,
-                                              msg:
-                                                  'Please login to use complete functionality');
-                                        }
+                                  onTapInc: !Constants.isLoggedIn
+                                      ? showLoginToast
                                       : () async {
                                           BlocProvider.of<ProductDetailCubit>(
                                                   context)
@@ -70,13 +65,8 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
                                                   state.productDetailModel
                                                       .data![0].cartQuantity!);
                                         },
-                                  onTapDec: Constants.isSkipped
-                                      ? () {
-                                          showSnackBar(
-                                              context: context,
-                                              msg:
-                                                  'Please login to use complete functionality');
-                                        }
+                                  onTapDec: !Constants.isLoggedIn
+                                      ? showLoginToast
                                       : () async {
                                           BlocProvider.of<ProductDetailCubit>(
                                                   context)
@@ -87,13 +77,8 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
                                         },
                                 )
                               : AddToCartWidget(
-                                  onAddToCart: Constants.isSkipped
-                                      ? () {
-                                          showSnackBar(
-                                              context: context,
-                                              msg:
-                                                  'Please login to use complete functionality');
-                                        }
+                                  onAddToCart: !Constants.isLoggedIn
+                                      ? showLoginToast
                                       : () {
                                           BlocProvider.of<ProductDetailCubit>(
                                                   context)
@@ -115,9 +100,11 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 16),
                       child: RoundContainer(
-                        onTap: () {
-                          pushReplacementNamed(context, Routes.cart);
-                        },
+                        onTap: Constants.isLoggedIn
+                            ? () {
+                                pushReplacementNamed(context, Routes.cart);
+                              }
+                            : showLoginToast,
                         hPadding: 10,
                         vPadding: 10,
                         radius: 30,

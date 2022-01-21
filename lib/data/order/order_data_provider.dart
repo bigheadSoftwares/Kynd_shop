@@ -8,7 +8,7 @@ class OrderDataProvider {
   static Future<Response> orderList() async {
     final Response response = await get(
       Uri.parse(
-        '${Constants.host}purchase-history/${Constants.authenticationModel!.success.customerId}',
+        '${Constants.host}purchase-history/${Constants.authenticationModel?.success.customerId}',
       ),
       headers: Constants.headers,
     );

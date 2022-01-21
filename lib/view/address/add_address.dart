@@ -129,19 +129,21 @@ class _AddAddressState extends State<AddAddress> {
                   showToast('Please enter all details');
                 } else {
                   BlocProvider.of<CreateAddressCubit>(context).createAddress(
+                    //TODO: send city, postal code and country by geocoding
                     AddAddressModel(
-                        user_id:
-                            Constants.authenticationModel!.success.customerId,
-                        address: _flat.text,
-                        country: _yourLocation.text,
-                        city: _yourLocation.text,
-                        username: _name.text,
-                        postal_code: _yourLocation.text,
-                        phone: _mobile.text,
-                        set_default: 1,
-                        latitude: _latitude.text.toDouble(),
-                        longitude: _longitude.text.toDouble(),
-                        name_tag: _saveAs.text.toLowerCase()),
+                      user_id:
+                          Constants.authenticationModel!.success.customerId,
+                      address: _flat.text,
+                      country: _yourLocation.text,
+                      city: _yourLocation.text,
+                      username: _name.text,
+                      postal_code: _yourLocation.text,
+                      phone: _mobile.text,
+                      set_default: 1,
+                      latitude: _latitude.text.toDouble(),
+                      longitude: _longitude.text.toDouble(),
+                      name_tag: _saveAs.text.toLowerCase(),
+                    ),
                   );
                 }
               },

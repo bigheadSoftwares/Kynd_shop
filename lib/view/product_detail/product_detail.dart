@@ -33,7 +33,6 @@ class _ProductDetailState extends State<ProductDetail> {
   @override
   void initState() {
     super.initState();
-    show('This is called');
     BlocProvider.of<ProductDetailCubit>(context)
         .getProductDetail(widget.productId ?? 0);
   }
@@ -115,12 +114,8 @@ class _FavoriteIcon extends StatelessWidget {
       top: screenHeight(context) * 0.35,
       right: 25,
       child: InkWell(
-        onTap: Constants.isSkipped
-            ? () {
-                showSnackBar(
-                    context: context,
-                    msg: 'Please login to use complete functionality');
-              }
+        onTap: !Constants.isLoggedIn
+            ? showLoginToast
             : () {
                 isWishlist
                     ? BlocProvider.of<ProductDetailCubit>(context)

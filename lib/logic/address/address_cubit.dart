@@ -12,7 +12,7 @@ part 'address_state.dart';
 class AddressCubit extends Cubit<AddressState> {
   AddressCubit() : super(AddressInitial());
 
-  late List<AddressDatum> defaultAddress;
+  List<AddressDatum>? defaultAddress = <AddressDatum>[];
 
   void getMyAddresses() {
     emit(AddressLoading());
@@ -23,8 +23,8 @@ class AddressCubit extends Cubit<AddressState> {
             .toList();
 
         show(defaultAddress);
-        if (defaultAddress.isEmpty) {
-          defaultAddress.add(myAddressesModel.data![0]);
+        if (defaultAddress!.isEmpty && myAddressesModel.data!.isNotEmpty) {
+          defaultAddress!.add(myAddressesModel.data![0]);
         }
         emit(
           AddressLoaded(myAddressesModel),

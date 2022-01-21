@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:kynd_shop/utils/functions/show.dart';
 import '../user_status_data/user_status_data.dart';
 import 'login_data_model.dart';
 import '../../utils/export_utilities.dart';
@@ -23,6 +24,7 @@ class Authentication {
       body: body,
       headers: Constants.headers,
     );
+    show('login response ${response.body}');
     return response;
   }
 
@@ -41,6 +43,7 @@ class Authentication {
       body: body,
       headers: Constants.headers,
     );
+    show(response.body);
     return response;
   }
 

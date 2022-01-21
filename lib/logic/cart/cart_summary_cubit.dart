@@ -11,7 +11,7 @@ class CartSummaryCubit extends Cubit<CartSummaryState> {
 
   void getCartSummary() {
     // print('This is called');
-    // emit(CartSummaryLoading());
+    emit(CartSummaryLoading());
     CartRepository.getCartSummary().then(
       (CartSummaryModel cartSummaryModel) => emit(
         CartSummaryLoaded(cartSummaryModel),

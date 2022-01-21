@@ -107,7 +107,9 @@ class _Addresses extends StatelessWidget {
           return Center(child: SubHeading2((state).failure.message));
         } else {
           return const Center(
-            child: LoadingIndicator(),
+            child: LinearProgressIndicator(
+              color: Colour.greenishBlue,
+            ),
           );
         }
       },
