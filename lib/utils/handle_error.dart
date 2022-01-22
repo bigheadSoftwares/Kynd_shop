@@ -14,11 +14,11 @@ Failure handleError(dynamic response, {String? serverMessage}) {
         message: 'Not authorized to perform action',
         type: errorType.unAuthorized,
       );
-      showToast('Please login to continue');
-      Constants.navigatorKey.currentState!.pushNamedAndRemoveUntil(
-        Routes.loginScreen,
-        (dynamic route) => false,
-      );
+      // showToast('Please login to continue');
+      // Constants.navigatorKey.currentState!.pushNamedAndRemoveUntil(
+      //   Routes.loginScreen,
+      //   (dynamic route) => false,
+      // );
     } else if (statusCode == 400) {
       _failure = Failure(
         serverMessage: serverMessage ?? '',
