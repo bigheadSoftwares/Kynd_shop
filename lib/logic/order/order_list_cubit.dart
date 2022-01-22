@@ -9,6 +9,7 @@ part 'order_list_state.dart';
 class OrderListCubit extends Cubit<OrderListState> {
   OrderListCubit() : super(OrderListInitial());
   void getOrderList() {
+    emit(OrderListInitial());
     OrderRepository.orderListModel().then(
       (OrderListModel orderListModel) => emit(
         OrderListLoaded(orderListModel),

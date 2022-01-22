@@ -25,7 +25,7 @@ class _CouponListState extends State<CouponList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colour.lightGrey.withOpacity(0),
+      backgroundColor: Colour.white,
       appBar: appBar(context, title: 'Coupons'),
       body: BlocConsumer<CouponCubit, CouponState>(
         listener: (BuildContext context, CouponState state) {

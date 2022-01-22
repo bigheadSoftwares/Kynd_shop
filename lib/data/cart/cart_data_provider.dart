@@ -20,6 +20,7 @@ class CartDataProvider {
       headers: Constants.headers,
     );
     show(body);
+    show(Constants.headers);
     show(rawData.body);
     if (rawData.statusCode == 200) {
       return true;

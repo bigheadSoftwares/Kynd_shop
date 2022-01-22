@@ -27,7 +27,7 @@ class Blog {
     final http.MultipartRequest request = http.MultipartRequest('POST', _url);
 
     request.headers.addAll(
-      Constants.headers,
+      Constants.headers!,
     );
 
     request.fields['title'] = title;

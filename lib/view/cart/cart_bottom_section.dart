@@ -42,7 +42,17 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
               builder: (BuildContext context, AddressState state) {
                 return state is AddressLoaded
                     ? list!.isEmpty
-                        ? const SizedBox()
+                        ? InkWell(
+                            onTap: () {
+                              push(context, const CartAddress());
+                            },
+                            child: const SubHeading2(
+                              'ADD AN ADDRESS',
+                              color: Colour.greenishBlue,
+                              size: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
                         : CustomListTile(
                             leading: const CustomImageWidget(
                               image: Assets.pin2,

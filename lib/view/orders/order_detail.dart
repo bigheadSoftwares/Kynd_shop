@@ -104,7 +104,13 @@ class _OrderDetailColumn extends StatelessWidget {
             name: 'Home',
             address: state.orderDetailModel.data!.isNotEmpty
                 ? (state.orderDetailModel.data?[0].shippingAddress?.address ??
-                    '')
+                    '' +
+                        (state.orderDetailModel.data?[0].shippingAddress?.city
+                                as String? ??
+                            '') +
+                        (state.orderDetailModel.data?[0].shippingAddress
+                                ?.country ??
+                            ''))
                 : '',
             asset: Assets.greenLocationPin,
           ),

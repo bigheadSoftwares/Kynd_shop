@@ -60,9 +60,7 @@ class _OtpScreenState extends State<OtpScreen> {
               BlocConsumer<AuthenticationCubit, AuthenticationState>(
                 listener: (BuildContext context, AuthenticationState state) {
                   if (state is AuthenticationSuccessful) {
-                    Constants.isLoggedIn = true;
-                    Constants.isSkipped = false;
-                    pushNamed(context, Routes.home);
+                    pushNamedAndRemoveUntil(context, Routes.home);
                   }
                 },
                 builder: (BuildContext context, AuthenticationState state) {
