@@ -11,6 +11,7 @@ class PointsEarnedCubit extends Cubit<PointsEarnedState> {
   PointsEarnedCubit() : super(PointsEarnedInitial());
   double totalPoints = 0;
   void pointsEarned() {
+    emit(PointsEarnedInitial());
     PointsEarnedRepo.pointsEarned().then(
       (PointsEarnedModel pointsEarnedModel) {
         for (Datum point in pointsEarnedModel.data!) {

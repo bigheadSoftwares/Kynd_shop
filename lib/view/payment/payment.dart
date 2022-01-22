@@ -81,9 +81,11 @@ class _CheckoutButton extends StatelessWidget {
                 'payment_status': 'pending',
                 'grand_total': cartSummaryState.cartSummaryModel.grandTotal!
                     .replaceAll('Rs', '')
+                    .replaceAll(',', '')
                     .toDouble(),
                 'coupon_discount': cartSummaryState.cartSummaryModel.discount!
                     .replaceAll('Rs', '')
+                    .replaceAll(',', '')
                     .toDouble()
               };
               context.read<CreateOrderCubit>().createOrder(data);

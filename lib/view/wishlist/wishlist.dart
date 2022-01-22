@@ -59,6 +59,12 @@ class _WishlistState extends State<Wishlist> {
                     .toList()[index];
                 return ProductCard(
                   isWishlisted: datum?.isWishlisted,
+                  isAddedToCart:
+                      state.wishlistModel.data![index].product?.isAddedToCart ==
+                          1,
+                  cartQuantity:
+                      state.wishlistModel.data?[index].product?.cartQuantity ??
+                          0,
                   onLike: () {
                     BlocProvider.of<FetchWishlistCubit>(context)
                         .addProductToWishlist(
@@ -73,12 +79,33 @@ class _WishlistState extends State<Wishlist> {
                     // BlocProvider.of<FetchWishlistCubit>(context)
                     //     .fetchWishlist();
                   },
+                  onAddToCart: () async {
+                    BlocProvider.of<FetchWishlistCubit>(context)
+                        .addProductToCart(
+                      state.wishlistModel.data![index].product!.productId!,
+                      state.wishlistModel.data![index].product!.cartQuantity!,
+                    );
+                  },
+                  onIncTap: () async {
+                    BlocProvider.of<FetchWishlistCubit>(context)
+                        .addProductToCart(
+                      state.wishlistModel.data![index].product!.productId!,
+                      state.wishlistModel.data![index].product!.cartQuantity!,
+                    );
+                  },
+                  onDecTap: () async {
+                    BlocProvider.of<FetchWishlistCubit>(context)
+                        .removeProductFromCart(
+                      state.wishlistModel.data![index].product!.productId!,
+                      state.wishlistModel.data![index].product!.cartQuantity!,
+                    );
+                  },
                   productName: datum?.product?.name,
                   productImage: datum?.product?.thumbnailImage,
                   productId: datum?.product!.productId,
                   basePrice: datum?.product?.basePrice,
                   baseDiscountedPrice: datum?.product?.baseDiscountedPrice,
-                  cartQuantity: datum?.product?.baseDiscountedPrice,
+                  // cartQuantity: datum?.product?.baseDiscountedPrice,
                 );
               },
             );

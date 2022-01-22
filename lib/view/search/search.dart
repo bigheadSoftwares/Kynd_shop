@@ -78,6 +78,27 @@ class _RecommendedProductsBlocState extends State<_RecommendedProductsBloc> {
                       // BlocProvider.of<FetchWishlistCubit>(context)
                       //     .fetchWishlist();
                     },
+                    onAddToCart: () async {
+                      BlocProvider.of<RecommendedProductCubit>(context)
+                          .addProductToCart(
+                              state.recommendedProductModel.data![index].id!,
+                              state.recommendedProductModel.data![index]
+                                  .cartQuantity!);
+                    },
+                    onIncTap: () async {
+                      BlocProvider.of<RecommendedProductCubit>(context)
+                          .addProductToCart(
+                              state.recommendedProductModel.data![index].id!,
+                              state.recommendedProductModel.data![index]
+                                  .cartQuantity!);
+                    },
+                    onDecTap: () async {
+                      BlocProvider.of<RecommendedProductCubit>(context)
+                          .removeProductFromCart(
+                              state.recommendedProductModel.data![index].id!,
+                              state.recommendedProductModel.data![index]
+                                  .cartQuantity!);
+                    },
                     productName:
                         state.recommendedProductModel.data?[index].name,
                     productImage:
@@ -129,7 +150,8 @@ class _SearchResultsBloc extends StatelessWidget {
           );
         }
         if (state is SearchProductLoaded &&
-            state.searchProductModel.data!.isEmpty) {
+            (state.searchProductModel.data != null &&
+                state.searchProductModel.data!.isEmpty)) {
           return Column(
             children: const <Widget>[
               SubHeading1(
@@ -165,13 +187,34 @@ class _SearchResultsBloc extends StatelessWidget {
                     // BlocProvider.of<FetchWishlistCubit>(context)
                     //     .fetchWishlist();
                   },
+                  onAddToCart: () async {
+                    BlocProvider.of<SearchProductCubit>(context)
+                        .addProductToCart(
+                            state.searchProductModel.data![index].id!,
+                            state
+                                .searchProductModel.data![index].cartQuantity!);
+                  },
+                  onIncTap: () async {
+                    BlocProvider.of<SearchProductCubit>(context)
+                        .addProductToCart(
+                            state.searchProductModel.data![index].id!,
+                            state
+                                .searchProductModel.data![index].cartQuantity!);
+                  },
+                  onDecTap: () async {
+                    BlocProvider.of<SearchProductCubit>(context)
+                        .removeProductFromCart(
+                            state.searchProductModel.data![index].id!,
+                            state
+                                .searchProductModel.data![index].cartQuantity!);
+                  },
                   productName: state.searchProductModel.data?[index].name,
                   productImage:
                       state.searchProductModel.data?[index].thumbnailImg,
                   productId: state.searchProductModel.data?[index].id,
                   basePrice: state.searchProductModel.data?[index].basePrice,
-                  baseDiscountedPrice: state
-                      .searchProductModel.data?[index].baseDiscountedPrice,
+                  baseDiscountedPrice:
+                      state.searchProductModel.data?[index].baseDiscountedPrice,
                   isWishlisted:
                       state.searchProductModel.data?[index].isWishlisted,
                   cartQuantity:

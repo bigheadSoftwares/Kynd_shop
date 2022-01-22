@@ -12,9 +12,11 @@ class User {
 
   Future<http.Response> _updateUser({required UserModel user}) async {
     final Uri _url = Uri.parse('${Constants.host}user/info/update');
+    Map<String, dynamic> body = userModelToJson(user);
+    body.addAll(<String, dynamic>{'image': ''});
     final http.Response _response = await http.post(
       _url,
-      body: userModelToJson(user),
+      body: jsonEncode(body),
       headers: Constants.headers,
     );
     return _response;

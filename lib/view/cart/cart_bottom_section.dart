@@ -10,6 +10,12 @@ class _CartBottomSection extends StatefulWidget {
 }
 
 class _CartBottomSectionState extends State<_CartBottomSection> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<AddressCubit>().getMyAddresses();
+  }
+
   List<AddressDatum>? list = <AddressDatum>[];
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,7 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
                   setState(() {
                     list = context.read<AddressCubit>().defaultAddress;
                   });
-                  show(list);
+                  show('this is the default address list $list');
                 }
               },
               builder: (BuildContext context, AddressState state) {
@@ -77,19 +83,21 @@ class _CartBottomSectionState extends State<_CartBottomSection> {
             ),
           ),
           sizedBoxHeight(20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
-            child: CustomPrimaryButton(
-              title: 'CONTINUE',
-              onTap: () {
-                pushNamed(context, Routes.payment).then((dynamic value) {
-                  context.read<CartDetailsCubit>().getCartDetails();
-                  context.read<CartSummaryCubit>().getCartSummary();
-                  BlocProvider.of<AddressCubit>(context).getMyAddresses();
-                });
-              },
+          if (list!.isNotEmpty)
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16),
+              child: CustomPrimaryButton(
+                title: 'CONTINUE',
+                onTap: () {
+                  pushNamed(context, Routes.payment).then((dynamic value) {
+                    context.read<CartDetailsCubit>().getCartDetails();
+                    context.read<CartSummaryCubit>().getCartSummary();
+                    BlocProvider.of<AddressCubit>(context).getMyAddresses();
+                  });
+                },
+              ),
             ),
-          ),
           sizedBoxHeight(10),
         ],
       ),

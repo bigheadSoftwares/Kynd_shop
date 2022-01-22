@@ -31,7 +31,6 @@ class _CartState extends State<Cart> {
     super.initState();
     context.read<CartDetailsCubit>().getCartDetails();
     context.read<CartSummaryCubit>().getCartSummary();
-    context.read<AddressCubit>().getMyAddresses();
   }
 
   @override
@@ -41,10 +40,13 @@ class _CartState extends State<Cart> {
         if (cartDetailState is CartDetailsLoaded) {
           return Scaffold(
             appBar: appBar(context, title: 'Cart'),
-            bottomNavigationBar: cartDetailState.cartDetaiilsModel.data!.isEmpty
-                ? const SizedBox()
-                : const _CartBottomSection(),
-            body: cartDetailState.cartDetaiilsModel.data!.isEmpty
+            bottomNavigationBar:
+                cartDetailState.cartDetaiilsModel.data!.isEmpty ||
+                        cartDetailState.cartDetaiilsModel.data![0].quantity == 0
+                    ? const SizedBox()
+                    : const _CartBottomSection(),
+            body: cartDetailState.cartDetaiilsModel.data!.isEmpty ||
+                    cartDetailState.cartDetaiilsModel.data![0].quantity == 0
                 ? SizedBox(
                     height: screenHeight(context),
                     child: const Center(

@@ -60,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onTap: () {
                           Constants.isSkipped = true;
                           Constants.isLoggedIn = false;
+                          Constants.authenticationModel = null;
                           saveBool(key: Constants.skippedStatus, value: true);
                           pushNamed(context, Routes.home);
                         },

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/points_earned/points_earned_cubit.dart';
-import 'package:kynd_shop/utils/functions/snackbar.dart';
+import '../../logic/points_earned/points_earned_cubit.dart';
+import '../../utils/functions/snackbar.dart';
 import '../../data/user/user_repository.dart';
 import '../../logic/user/user_cubit.dart';
 

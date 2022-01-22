@@ -132,7 +132,7 @@ class Sidebar extends StatelessWidget {
       );
     } else if (sidebarItem.name.toLowerCase() == 'share app') {
       Share.share(
-        'https://play.google.com/store/apps/details?id=com.app.Symphonian',
+        'https://play.google.com/store/apps/details?id=com.example.kynd_shop',
       );
     } else {
       pushNamed(context, sidebarItem.route);
