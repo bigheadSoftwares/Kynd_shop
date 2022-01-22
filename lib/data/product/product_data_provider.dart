@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart';
 import '../../utils/functions/show.dart';
 import '../../utils/export_utilities.dart';
@@ -12,7 +13,11 @@ class ProductDataProvider {
     final Response response = await post(
       Uri.parse('${Constants.host}product'),
       body: body,
-      headers: Constants.headers,
+      headers: <String, String>{
+        // HttpHeaders.authorizationHeader: '',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
     );
     if (response.statusCode == 200) {
       return response;
