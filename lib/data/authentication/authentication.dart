@@ -22,7 +22,10 @@ class Authentication {
     final http.Response response = await http.post(
       url,
       body: body,
-      headers: Constants.headers,
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
     );
     show('login response ${response.body}');
     return response;
@@ -41,7 +44,10 @@ class Authentication {
     final http.Response response = await http.post(
       url,
       body: body,
-      headers: Constants.headers,
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
     );
     show(response.body);
     return response;

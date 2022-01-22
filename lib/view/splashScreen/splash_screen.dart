@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
       const Duration(seconds: 3),
       () {
-        if (Constants.isLoggedIn || Constants.isSkipped) {
+        if (Constants.isLoggedIn) {
           pushNamedAndRemoveUntil(context, Routes.home);
         } else {
           pushNamedAndRemoveUntil(context, Routes.ageConfirmationScreen);
