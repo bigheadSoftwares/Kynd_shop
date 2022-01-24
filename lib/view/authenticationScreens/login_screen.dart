@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onTap: () {
                           Constants.isSkipped = true;
                           saveBool(key: Constants.skippedStatus, value: true);
-                          pushNamed(context, Routes.home);``
+                          pushNamed(context, Routes.home);
                         },
                         child: const Text(
                           'SKIP',
