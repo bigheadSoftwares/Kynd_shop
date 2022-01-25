@@ -29,7 +29,7 @@ class _Emojis extends StatelessWidget {
             GestureDetector(
               onTap: () => changeSelectedSmiley(3),
               child: CustomImageWidget(
-                image: value == 2 ? Assets.colouredSmile2 : Assets.smile2,
+                image: value == 3 ? Assets.colouredSmile2 : Assets.smile2,
                 height: 80,
                 width: 80,
               ),
@@ -38,7 +38,7 @@ class _Emojis extends StatelessWidget {
             GestureDetector(
               onTap: () => changeSelectedSmiley(5),
               child: CustomImageWidget(
-                image: value == 3 ? Assets.colouredSmile3 : Assets.smile3,
+                image: value == 5 ? Assets.colouredSmile3 : Assets.smile3,
                 height: 80,
                 width: 80,
               ),

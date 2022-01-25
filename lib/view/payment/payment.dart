@@ -34,8 +34,11 @@ class Payment extends StatelessWidget {
                     state: state,
                   ),
                   const Spacer(),
-                  _CheckoutButton(
-                    cartSummaryState: state,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _CheckoutButton(
+                      cartSummaryState: state,
+                    ),
                   ),
                 ],
               );
@@ -72,15 +75,17 @@ class _CheckoutButton extends StatelessWidget {
             onTap: () {
               Map<String, dynamic> data = <String, dynamic>{
                 'shipping_address': jsonEncode(
-                    context.read<AddressCubit>().defaultAddress[0].toJson()),
+                    context.read<AddressCubit>().defaultAddress?[0].toJson()),
                 'user_id': Constants.authenticationModel!.success.customerId,
                 'payment_type': 'cash_on-delivery',
                 'payment_status': 'pending',
                 'grand_total': cartSummaryState.cartSummaryModel.grandTotal!
                     .replaceAll('Rs', '')
+                    .replaceAll(',', '')
                     .toDouble(),
                 'coupon_discount': cartSummaryState.cartSummaryModel.discount!
                     .replaceAll('Rs', '')
+                    .replaceAll(',', '')
                     .toDouble()
               };
               context.read<CreateOrderCubit>().createOrder(data);

@@ -5,12 +5,14 @@ import '../../data/filter/selected_filter.dart';
 class SelectedFilterCubit extends Cubit<SelectedFilterModel> {
   SelectedFilterCubit()
       : super(const SelectedFilterModel(
-          brandSet: <String>{},
+          brandSet: <int>{},
           priceRange: RangeValues(50, 10000),
-          sortBy: SortByEnum.price_low_to_high,
+          sortBy: SortByEnum.none,
         ));
 
-  void updateBrandSet(Set<String> brandSet) {
+  late int currentCategoryTabId;
+
+  void updateBrandSet(Set<int> brandSet) {
     emit(state.copyWith(brandSet: brandSet));
   }
 
@@ -20,5 +22,13 @@ class SelectedFilterCubit extends Cubit<SelectedFilterModel> {
 
   void updateSortBy(SortByEnum sortByEnum) {
     emit(state.copyWith(sortBy: sortByEnum));
+  }
+
+  void resetFilters() {
+    emit(state.copyWith(
+      brandSet: <int>{},
+      priceRange: const RangeValues(50, 10000),
+      sortBy: SortByEnum.none,
+    ));
   }
 }

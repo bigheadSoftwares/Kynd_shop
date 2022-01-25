@@ -26,7 +26,7 @@ class IncrementDecrementButton extends StatelessWidget {
           icon: Icon(
             Icons.remove,
             color: color ?? Colour.greenishBlue,
-            size: 18,
+            size: 16,
           ),
         ),
         RoundContainer(
@@ -49,7 +49,7 @@ class IncrementDecrementButton extends StatelessWidget {
           icon: Icon(
             Icons.add,
             color: color ?? Colour.greenishBlue,
-            size: 18,
+            size: 16,
           ),
         ),
       ],

@@ -3,7 +3,7 @@ part of 'user_repository.dart';
 UserModel userModelFromJson(String str) =>
     UserModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
-String userModelToJson(UserModel data) => json.encode(data.toJson());
+Map<String, dynamic> userModelToJson(UserModel data) => data.toJson();
 
 class UserModel {
   UserModel({

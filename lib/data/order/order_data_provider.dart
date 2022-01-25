@@ -8,14 +8,14 @@ class OrderDataProvider {
   static Future<Response> orderList() async {
     final Response response = await get(
       Uri.parse(
-        '${Constants.host}purchase-history/${Constants.authenticationModel!.success.customerId}',
+        '${Constants.host}purchase-history/${Constants.authenticationModel?.success.customerId}',
       ),
       headers: Constants.headers,
     );
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
@@ -29,7 +29,7 @@ class OrderDataProvider {
     if (response.statusCode == 200) {
       return response;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 
@@ -44,7 +44,7 @@ class OrderDataProvider {
     if (response.statusCode == 200) {
       return true;
     } else {
-      throw Exception(response);
+      throw response;
     }
   }
 }

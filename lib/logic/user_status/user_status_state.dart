@@ -18,7 +18,7 @@ class UserStatusLoaded extends UserStatusState {
 }
 
 class UserStatusFailure extends UserStatusState {
-  final Failure failure;
+  final bighead.Failure failure;
 
   const UserStatusFailure(this.failure);
   @override

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
+import 'package:kynd_shop/utils/export_utilities.dart';
 import '../../data/cart/cart_repository.dart';
 import '../../data/cart/cart_summary_model.dart';
 
@@ -11,7 +11,7 @@ class CartSummaryCubit extends Cubit<CartSummaryState> {
 
   void getCartSummary() {
     // print('This is called');
-    // emit(CartSummaryLoading());
+    emit(CartSummaryLoading());
     CartRepository.getCartSummary().then(
       (CartSummaryModel cartSummaryModel) => emit(
         CartSummaryLoaded(cartSummaryModel),

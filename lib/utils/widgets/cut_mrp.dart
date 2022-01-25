@@ -22,7 +22,7 @@ class CutMrp extends StatelessWidget {
           color: Colour.lightGrey,
         ),
         Text(
-          '\$$mrp',
+          '\$ $mrp',
           style: TextStyle(
             fontSize: size ?? 12,
             color: Colour.lightGrey,

@@ -70,6 +70,8 @@ class _Addresses extends StatelessWidget {
             width: screenWidth(context) * 0.8,
             itemCount: 3,
           );
+        } else if (state is AddressLoading) {
+          return const LinearProgressIndicator();
         } else if (state is AddressLoaded) {
           return ListView.separated(
             padding: const EdgeInsets.symmetric(

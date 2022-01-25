@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
@@ -8,8 +10,14 @@ class OrderDetailModel extends Equatable {
   final List<Datum>? data;
   final bool? success;
   final int? status;
+  final num? grand_total;
 
-  const OrderDetailModel({this.data, this.success, this.status});
+  const OrderDetailModel({
+    this.data,
+    this.success,
+    this.status,
+    this.grand_total,
+  });
 
   factory OrderDetailModel.fromMap(Map<String, dynamic> data) {
     return OrderDetailModel(
@@ -18,6 +26,7 @@ class OrderDetailModel extends Equatable {
           .toList(),
       success: data['success'] as bool?,
       status: data['status'] as int?,
+      grand_total: data['grand_total'] as num?,
     );
   }
 
@@ -25,6 +34,7 @@ class OrderDetailModel extends Equatable {
         'data': data?.map((e) => e.toMap()).toList(),
         'success': success,
         'status': status,
+        'grand_total': grand_total,
       };
 
   /// `dart:convert`
@@ -48,6 +58,7 @@ class OrderDetailModel extends Equatable {
       data: data ?? this.data,
       success: success ?? this.success,
       status: status ?? this.status,
+      grand_total: grand_total ?? this.grand_total,
     );
   }
 
@@ -55,5 +66,5 @@ class OrderDetailModel extends Equatable {
   bool get stringify => true;
 
   @override
-  List<Object?> get props => [data, success, status];
+  List<Object?> get props => [data, success, status, grand_total];
 }

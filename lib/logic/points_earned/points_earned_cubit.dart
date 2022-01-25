@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
+import 'package:kynd_shop/utils/export_utilities.dart';
 import '../../data/points_earned/points_earned_model/datum.dart';
 import '../../data/points_earned/points_earned_data_provider.dart';
 import '../../data/points_earned/points_earned_model/points_earned_model.dart';
@@ -11,6 +11,7 @@ class PointsEarnedCubit extends Cubit<PointsEarnedState> {
   PointsEarnedCubit() : super(PointsEarnedInitial());
   double totalPoints = 0;
   void pointsEarned() {
+    emit(PointsEarnedInitial());
     PointsEarnedRepo.pointsEarned().then(
       (PointsEarnedModel pointsEarnedModel) {
         for (Datum point in pointsEarnedModel.data!) {

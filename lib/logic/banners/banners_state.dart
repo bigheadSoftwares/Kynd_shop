@@ -19,7 +19,7 @@ class BannersLoaded extends BannersState {
 
 class BannersFailure extends BannersState {
   const BannersFailure(this.failure);
-  final Failure failure;
+  final bighead.Failure failure;
 
   @override
   List<Object> get props => <Object>[failure];

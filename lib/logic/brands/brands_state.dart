@@ -21,8 +21,8 @@ class BrandsSuccess extends BrandsState {
 
 class BrandsError extends BrandsState {
   const BrandsError(this.error);
-  final Failure error;
+  final bighead.Failure error;
 
   @override
-  List<Object> get props => <Failure>[error];
+  List<Object> get props => <bighead.Failure>[error];
 }

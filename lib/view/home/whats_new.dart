@@ -46,7 +46,7 @@ class _WhatsNewState extends State<_WhatsNew> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.55,
+                        childAspectRatio: 0.5,
                         mainAxisSpacing: 12,
                         crossAxisSpacing: 12,
                       ),

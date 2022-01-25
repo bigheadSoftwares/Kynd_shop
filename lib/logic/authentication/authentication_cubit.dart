@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
 import '../../data/authentication/login_data_model.dart';
 import '../../utils/export_utilities.dart';
@@ -47,12 +48,20 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
           .then(
         (AuthenticationModel value) {
           _authenticationModel = value;
-          Constants.authenticationModel = value;
           saveData(
             key: Constants.loginModelKey,
             data: authenticationModelToJson(_authenticationModel!),
           ).then(
             (_) {
+              Constants.authenticationModel = value;
+              Constants.headers = <String, String>{
+                HttpHeaders.authorizationHeader:
+                    'Bearer ${value.success.token}',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              };
+              Constants.isLoggedIn = true;
+              Constants.isSkipped = false;
               saveBool(key: Constants.loginStatus, value: true);
               emit(AuthenticationSuccessful());
             },

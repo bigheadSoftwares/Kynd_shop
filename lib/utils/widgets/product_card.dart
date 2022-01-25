@@ -63,66 +63,56 @@ class ProductCard extends StatelessWidget {
             Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(6.0),
                   child: CustomNetworkImageWidget(
                       image: productImage ?? '', height: 140),
                 ),
                 const Divider(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SubHeading2(
-                        productName ?? '',
-                        // overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      sizedBoxHeight(4),
-                      CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 0),
-                      sizedBoxHeight(4),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          SubHeading2(
-                            '${Constants.rupee} ${baseDiscountedPrice ?? 'NA'}/-',
+                SizedBox(
+                  height: 125,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          child: SubHeading2(
+                            productName ?? '',
+                            // overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                             fontWeight: FontWeight.w500,
                           ),
-                          isAddedToCart == true && cartQuantity != 0
-                              ? IncrementDecrementButton(
-                                  number: cartQuantity ?? 1,
-                                  onTapInc: Constants.isSkipped
-                                      ? () {
-                                          showSnackBar(
-                                              context: context,
-                                              msg:
-                                                  'Please login to use complete functionality');
-                                        }
-                                      : onIncTap,
-                                  onTapDec: Constants.isSkipped
-                                      ? () {
-                                          showSnackBar(
-                                              context: context,
-                                              msg:
-                                                  'Please login to use complete functionality');
-                                        }
-                                      : onDecTap,
-                                )
-                              : AddToCartWidget(
-                                  onAddToCart: Constants.isSkipped
-                                      ? () {
-                                          showSnackBar(
-                                              context: context,
-                                              msg:
-                                                  'Please login to use complete functionality');
-                                        }
-                                      : onAddToCart,
-                                ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        sizedBoxHeight(4),
+                        CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 0),
+                        sizedBoxHeight(4),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            SubHeading2(
+                              '\$ ${baseDiscountedPrice ?? 'NA'}/-',
+                              fontWeight: FontWeight.w500,
+                            ),
+                            isAddedToCart == true && cartQuantity != 0
+                                ? IncrementDecrementButton(
+                                    number: cartQuantity ?? 1,
+                                    onTapInc: !Constants.isLoggedIn
+                                        ? showLoginToast
+                                        : onIncTap,
+                                    onTapDec: !Constants.isLoggedIn
+                                        ? showLoginToast
+                                        : onDecTap,
+                                  )
+                                : AddToCartWidget(
+                                    onAddToCart: !Constants.isLoggedIn
+                                        ? showLoginToast
+                                        : onAddToCart,
+                                  ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -131,7 +121,8 @@ class ProductCard extends StatelessWidget {
               alignment: Alignment.topRight,
               child: isWishlisted == 1
                   ? IconButton(
-                      onPressed: onDislike,
+                      onPressed:
+                          !Constants.isLoggedIn ? showLoginToast : onDislike,
                       icon: const Icon(
                         Icons.favorite,
                         color: Colour.red,
@@ -139,14 +130,8 @@ class ProductCard extends StatelessWidget {
                       ),
                     )
                   : IconButton(
-                      onPressed: Constants.isSkipped
-                          ? () {
-                              showSnackBar(
-                                  context: context,
-                                  msg:
-                                      'Please login to use complete functionality');
-                            }
-                          : onLike,
+                      onPressed:
+                          !Constants.isLoggedIn ? showLoginToast : onLike,
                       icon: const Icon(
                         Icons.favorite_outline_rounded,
                         color: Colour.lightGrey,

@@ -14,7 +14,7 @@ class _ProfileDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180,
+      height: 160,
       width: screenHeight(context),
       child: Stack(
         children: <Widget>[
@@ -24,12 +24,14 @@ class _ProfileDetailCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                SubHeading1(name, size: 20),
                 sizedBoxHeight(4),
-                SubHeading2(
-                  email,
-                  color: Colour.subtitleColor,
-                ),
+                SubHeading1(name, size: 20),
+                if (email.isNotEmpty) sizedBoxHeight(4),
+                if (email.isNotEmpty)
+                  SubHeading2(
+                    email,
+                    color: Colour.subtitleColor,
+                  ),
                 sizedBoxHeight(4),
                 SubHeading2(
                   phone,

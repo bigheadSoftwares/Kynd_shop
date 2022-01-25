@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
+import 'package:kynd_shop/utils/export_utilities.dart';
 import '../../data/categories/categories_repository.dart';
 import '../../data/categories/category_model/category_model.dart';
 

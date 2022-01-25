@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/data/cart/cart_data_provider.dart';
+import 'package:kynd_shop/utils/export_utilities.dart';
+import '../../utils/functions/show.dart';
+import '../../data/cart/cart_data_provider.dart';
+import '../../data/filter/selected_filter.dart';
 import '../../data/categories/sub_category_products_model/datum.dart';
 import '../../data/wishlist/wishlist_data_provider.dart';
 import '../../data/categories/categories_repository.dart';
@@ -13,8 +15,15 @@ class SubCategoryProductsCubit extends Cubit<SubCategoryProductsState> {
   SubCategoryProductsCubit() : super(SubCategoryProductsInitial());
   SubCategoryProductsModel subCategoryProductsModel =
       const SubCategoryProductsModel();
-  void getSubCategoryProducts(int subCategoryId) {
-    CategoryRepository.subCategoryProducts(subCategoryId).then(
+  void getSubCategoryProducts({
+    int? subCategoryId,
+    SelectedFilterModel? selectedFilterModel,
+  }) {
+    emit(SubCategoryProductsInitial());
+    CategoryRepository.subCategoryProducts(
+      subCategoryId: subCategoryId,
+      selectedFilterModel: selectedFilterModel,
+    ).then(
       (SubCategoryProductsModel subCategoryProductsModel) {
         this.subCategoryProductsModel = subCategoryProductsModel;
         emit(
@@ -22,6 +31,8 @@ class SubCategoryProductsCubit extends Cubit<SubCategoryProductsState> {
         );
       },
       onError: (dynamic error, dynamic stack) {
+        show('Error SubCategoryProductsCubit -> $error');
+        show('Stack SubCategoryProductsCubit -> $stack');
         emit(
           SubCategoryProductsFailure(
             handleError(error),

@@ -78,6 +78,27 @@ class _RecommendedProductsBlocState extends State<_RecommendedProductsBloc> {
                       // BlocProvider.of<FetchWishlistCubit>(context)
                       //     .fetchWishlist();
                     },
+                    onAddToCart: () async {
+                      BlocProvider.of<RecommendedProductCubit>(context)
+                          .addProductToCart(
+                              state.recommendedProductModel.data![index].id!,
+                              state.recommendedProductModel.data![index]
+                                  .cartQuantity!);
+                    },
+                    onIncTap: () async {
+                      BlocProvider.of<RecommendedProductCubit>(context)
+                          .addProductToCart(
+                              state.recommendedProductModel.data![index].id!,
+                              state.recommendedProductModel.data![index]
+                                  .cartQuantity!);
+                    },
+                    onDecTap: () async {
+                      BlocProvider.of<RecommendedProductCubit>(context)
+                          .removeProductFromCart(
+                              state.recommendedProductModel.data![index].id!,
+                              state.recommendedProductModel.data![index]
+                                  .cartQuantity!);
+                    },
                     productName:
                         state.recommendedProductModel.data?[index].name,
                     productImage:
@@ -116,90 +137,110 @@ class _SearchResultsBloc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: BlocBuilder<SearchProductCubit, SearchProductState>(
-        builder: (BuildContext context, SearchProductState state) {
-          if (state is SearchProductInitial) {
-            return Column(
-              children: const <Widget>[
-                CustomImageWidget(
-                  image: Assets.notSearch,
-                  scale: 2.5,
+    return BlocBuilder<SearchProductCubit, SearchProductState>(
+      builder: (BuildContext context, SearchProductState state) {
+        if (state is SearchProductInitial) {
+          return Column(
+            children: const <Widget>[
+              CustomImageWidget(
+                image: Assets.notSearch,
+                scale: 2.5,
+              ),
+            ],
+          );
+        }
+        if (state is SearchProductLoaded &&
+            (state.searchProductModel.data != null &&
+                state.searchProductModel.data!.isEmpty)) {
+          return Column(
+            children: const <Widget>[
+              SubHeading1(
+                'No result found',
+                color: Colour.lightGrey,
+              ),
+            ],
+          );
+        }
+        if (state is SearchProductLoaded) {
+          return ListView.builder(
+            primary: false,
+            shrinkWrap: true,
+            itemCount: state.searchProductModel.data?.length ?? 0,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 12,
                 ),
-              ],
-            );
-          }
-          if (state is SearchProductLoaded &&
-              state.searchProductModel.data!.isEmpty) {
-            return Column(
-              children: const <Widget>[
-                SubHeading1(
-                  'No result found',
-                  color: Colour.lightGrey,
+                child: ProductCard(
+                  onLike: () {
+                    BlocProvider.of<SearchProductCubit>(context)
+                        .addProductToWishlist(
+                      state.searchProductModel.data![index].id!,
+                    );
+                  },
+                  onDislike: () {
+                    BlocProvider.of<SearchProductCubit>(context)
+                        .removeProductFromWishlist(
+                      state.searchProductModel.data![index].id!,
+                    );
+                    // BlocProvider.of<FetchWishlistCubit>(context)
+                    //     .fetchWishlist();
+                  },
+                  onAddToCart: () async {
+                    BlocProvider.of<SearchProductCubit>(context)
+                        .addProductToCart(
+                            state.searchProductModel.data![index].id!,
+                            state
+                                .searchProductModel.data![index].cartQuantity!);
+                  },
+                  onIncTap: () async {
+                    BlocProvider.of<SearchProductCubit>(context)
+                        .addProductToCart(
+                            state.searchProductModel.data![index].id!,
+                            state
+                                .searchProductModel.data![index].cartQuantity!);
+                  },
+                  onDecTap: () async {
+                    BlocProvider.of<SearchProductCubit>(context)
+                        .removeProductFromCart(
+                            state.searchProductModel.data![index].id!,
+                            state
+                                .searchProductModel.data![index].cartQuantity!);
+                  },
+                  productName: state.searchProductModel.data?[index].name,
+                  productImage:
+                      state.searchProductModel.data?[index].thumbnailImg,
+                  productId: state.searchProductModel.data?[index].id,
+                  basePrice: state.searchProductModel.data?[index].basePrice,
+                  baseDiscountedPrice:
+                      state.searchProductModel.data?[index].baseDiscountedPrice,
+                  isWishlisted:
+                      state.searchProductModel.data?[index].isWishlisted,
+                  cartQuantity:
+                      state.searchProductModel.data?[index].cartQuantity,
+                  isAddedToCart:
+                      state.searchProductModel.data?[index].isAddedToCart == 1
+                          ? true
+                          : false,
                 ),
-              ],
-            );
-          }
-          if (state is SearchProductLoaded) {
-            return ListView.builder(
-              primary: false,
-              shrinkWrap: true,
-              itemCount: state.searchProductModel.data?.length ?? 0,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 12,
-                  ),
-                  child: ProductCard(
-                    onLike: () {
-                      BlocProvider.of<SearchProductCubit>(context)
-                          .addProductToWishlist(
-                        state.searchProductModel.data![index].id!,
-                      );
-                    },
-                    onDislike: () {
-                      BlocProvider.of<SearchProductCubit>(context)
-                          .removeProductFromWishlist(
-                        state.searchProductModel.data![index].id!,
-                      );
-                      // BlocProvider.of<FetchWishlistCubit>(context)
-                      //     .fetchWishlist();
-                    },
-                    productName: state.searchProductModel.data?[index].name,
-                    productImage:
-                        state.searchProductModel.data?[index].thumbnailImg,
-                    productId: state.searchProductModel.data?[index].id,
-                    basePrice: state.searchProductModel.data?[index].basePrice,
-                    baseDiscountedPrice: state
-                        .searchProductModel.data?[index].baseDiscountedPrice,
-                    isWishlisted:
-                        state.searchProductModel.data?[index].isWishlisted,
-                    cartQuantity:
-                        state.searchProductModel.data?[index].cartQuantity,
-                    isAddedToCart:
-                        state.searchProductModel.data?[index].isAddedToCart == 1
-                            ? true
-                            : false,
-                  ),
-                );
-              },
-            );
-          }
+              );
+            },
+          );
+        }
 
-          if (state is SearchProductFailure) {
-            return Column(
-              children: <Widget>[
-                SubHeading1(
-                  state.failure.message,
-                  color: Colour.lightGrey,
-                ),
-              ],
-            );
-          }
-          return Container();
-        },
-      ),
+        if (state is SearchProductFailure) {
+          return Column(
+            children: <Widget>[
+              SubHeading1(
+                state.failure.message,
+                color: Colour.lightGrey,
+              ),
+            ],
+          );
+        }
+        return Container();
+      },
     );
   }
 }

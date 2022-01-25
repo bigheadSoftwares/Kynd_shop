@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import '../../data/authentication/authentication.dart';
@@ -28,11 +29,17 @@ class _SplashScreenState extends State<SplashScreen> {
       Constants.authenticationModel = authenticationModelFromJson(
         await readData(Constants.loginModelKey),
       );
+      Constants.headers = <String, String>{
+        HttpHeaders.authorizationHeader:
+            'Bearer ${Constants.authenticationModel?.success.token}',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      };
     }
-    Timer(
+    Future<dynamic>.delayed(
       const Duration(seconds: 3),
       () {
-        if (Constants.isLoggedIn || Constants.isSkipped) {
+        if (Constants.isLoggedIn) {
           pushNamedAndRemoveUntil(context, Routes.home);
         } else {
           pushNamedAndRemoveUntil(context, Routes.ageConfirmationScreen);

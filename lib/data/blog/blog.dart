@@ -4,17 +4,15 @@ class Blog {
   Future<http.Response> _getBlogs() async {
     final Uri _url = Uri.parse('${Constants.host}bloglist');
 
-    final http.Response _response = await http.post(_url,
-        body: jsonEncode(
-          <String, dynamic>{
-            'user_id': Constants.authenticationModel!.success.customerId,
-          },
-        ),
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-          HttpHeaders.authorizationHeader:
-              'Bearer ${Constants.authenticationModel!.success.token}',
-        });
+    final http.Response _response = await http.post(
+      _url,
+      body: jsonEncode(
+        <String, dynamic>{
+          'user_id': Constants.authenticationModel?.success.customerId,
+        },
+      ),
+      headers: Constants.headers,
+    );
     return _response;
   }
 
@@ -28,11 +26,9 @@ class Blog {
 
     final http.MultipartRequest request = http.MultipartRequest('POST', _url);
 
-    request.headers.addAll(<String, String>{
-      'Content-Type': 'multipart/form-data',
-      HttpHeaders.authorizationHeader:
-          'Bearer ${Constants.authenticationModel!.success.token}',
-    });
+    request.headers.addAll(
+      Constants.headers!,
+    );
 
     request.fields['title'] = title;
     request.fields['slug'] = title;
@@ -40,7 +36,7 @@ class Blog {
     request.fields['image'] = image;
     request.fields['category_id'] = category.toString();
     request.fields['user_id'] =
-        Constants.authenticationModel!.success.customerId.toString();
+        Constants.authenticationModel?.success.customerId.toString() ?? '0';
 
     request.files.add(await http.MultipartFile.fromPath('banner', image));
 
@@ -59,11 +55,7 @@ class Blog {
           'blog_id': blogId,
         },
       ),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        HttpHeaders.authorizationHeader:
-            'Bearer ${Constants.authenticationModel!.success.token}',
-      },
+      headers: Constants.headers,
     );
 
     return _response;
@@ -79,13 +71,9 @@ class Blog {
       body: jsonEncode(<String, dynamic>{
         'blog_id': blogId,
         'comment': comment,
-        'user_id': Constants.authenticationModel!.success.customerId,
+        'user_id': Constants.authenticationModel?.success.customerId,
       }),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        HttpHeaders.authorizationHeader:
-            'Bearer ${Constants.authenticationModel!.success.token}',
-      },
+      headers: Constants.headers,
     );
   }
 
@@ -96,14 +84,10 @@ class Blog {
       body: jsonEncode(
         <String, dynamic>{
           'blog_id': blogId,
-          'user_id': Constants.authenticationModel!.success.customerId,
+          'user_id': Constants.authenticationModel?.success.customerId,
         },
       ),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-        HttpHeaders.authorizationHeader:
-            'Bearer ${Constants.authenticationModel!.success.token}',
-      },
+      headers: Constants.headers,
     );
   }
 }

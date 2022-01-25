@@ -29,7 +29,9 @@ class _WishlistState extends State<Wishlist> {
           if (state is FetchWishlistInitial) {
             return const LoadingIndicator();
           } else if (state is FetchWishlistLoaded) {
-            if (state.wishlistModel.data!.isEmpty) {
+            if (state.wishlistModel.data!
+                .where((Datum element) => element.isWishlisted == 1)
+                .isEmpty) {
               return const Center(
                 child: SubHeading2(
                   'Nothing in wishlist',
@@ -43,7 +45,7 @@ class _WishlistState extends State<Wishlist> {
               ),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.55,
+                childAspectRatio: 0.5,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
               ),
@@ -56,27 +58,54 @@ class _WishlistState extends State<Wishlist> {
                     ?.where((Datum element) => element.isWishlisted == 1)
                     .toList()[index];
                 return ProductCard(
-                  isWishlisted: state.wishlistModel.data?[index].isWishlisted,
+                  isWishlisted: datum?.isWishlisted,
+                  isAddedToCart:
+                      state.wishlistModel.data![index].product?.isAddedToCart ==
+                          1,
+                  cartQuantity:
+                      state.wishlistModel.data?[index].product?.cartQuantity ??
+                          0,
                   onLike: () {
                     BlocProvider.of<FetchWishlistCubit>(context)
                         .addProductToWishlist(
-                      datum!.id!,
+                      datum!.product!.productId!,
                     );
                   },
                   onDislike: () {
                     BlocProvider.of<FetchWishlistCubit>(context)
                         .removeProductFromWishlist(
-                      datum!.id!,
+                      datum!.product!.productId!,
                     );
                     // BlocProvider.of<FetchWishlistCubit>(context)
                     //     .fetchWishlist();
                   },
+                  onAddToCart: () async {
+                    BlocProvider.of<FetchWishlistCubit>(context)
+                        .addProductToCart(
+                      state.wishlistModel.data![index].product!.productId!,
+                      state.wishlistModel.data![index].product!.cartQuantity!,
+                    );
+                  },
+                  onIncTap: () async {
+                    BlocProvider.of<FetchWishlistCubit>(context)
+                        .addProductToCart(
+                      state.wishlistModel.data![index].product!.productId!,
+                      state.wishlistModel.data![index].product!.cartQuantity!,
+                    );
+                  },
+                  onDecTap: () async {
+                    BlocProvider.of<FetchWishlistCubit>(context)
+                        .removeProductFromCart(
+                      state.wishlistModel.data![index].product!.productId!,
+                      state.wishlistModel.data![index].product!.cartQuantity!,
+                    );
+                  },
                   productName: datum?.product?.name,
                   productImage: datum?.product?.thumbnailImage,
-                  productId: datum?.id,
+                  productId: datum?.product!.productId,
                   basePrice: datum?.product?.basePrice,
                   baseDiscountedPrice: datum?.product?.baseDiscountedPrice,
-                  cartQuantity: datum?.product?.baseDiscountedPrice,
+                  // cartQuantity: datum?.product?.baseDiscountedPrice,
                 );
               },
             );

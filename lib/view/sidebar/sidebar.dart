@@ -102,6 +102,7 @@ class Sidebar extends StatelessWidget {
             title: 'Are you sure ?',
             subtitle: 'Please Confirm to Logout',
             onConfirm: () async {
+              Constants.isLoggedIn = false;
               await deleteLocalKey(Constants.loginModelKey);
               await deleteLocalKey(Constants.loginStatus);
               pushNamedAndRemoveUntil(
@@ -131,7 +132,7 @@ class Sidebar extends StatelessWidget {
       );
     } else if (sidebarItem.name.toLowerCase() == 'share app') {
       Share.share(
-        'https://play.google.com/store/apps/details?id=com.app.Symphonian',
+        'https://play.google.com/store/apps/details?id=com.example.kynd_shop',
       );
     } else {
       pushNamed(context, sidebarItem.route);

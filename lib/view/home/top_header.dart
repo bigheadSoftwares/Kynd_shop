@@ -32,33 +32,52 @@ class _TopHeaderState extends State<TopHeader> {
           sizedBoxHeight(20),
           Row(
             children: <Widget>[
-              InkWell(
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const CustomImageWidget(
-                    image: Assets.menu,
-                    scale: 1.8,
+              if (Constants.isLoggedIn)
+                InkWell(
+                  onTap: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const CustomImageWidget(
+                      image: Assets.menu,
+                      scale: 1.8,
+                    ),
                   ),
                 ),
-              ),
+              if (!Constants.isLoggedIn)
+                IconButton(
+                  onPressed: () {
+                    pushNamedAndRemoveUntil(
+                        context, Routes.ageConfirmationScreen);
+                  },
+                  icon: const Icon(
+                    Icons.login,
+                    color: Colour.white,
+                  ),
+                ),
               const Spacer(),
               InkWell(
-                onTap: () => pushNamed(context, Routes.discussion),
+                onTap: () => Constants.isLoggedIn
+                    ? pushNamed(context, Routes.discussion)
+                    : showToast('Please login first'),
                 child: const CustomImageWidget(
                   image: Assets.discussion,
                   scale: 1.8,
                 ),
               ),
               sizedBoxWidth(18),
-              const CustomImageWidget(
-                image: Assets.notification,
-                scale: 1.8,
+              InkWell(
+                onTap: () => Constants.isLoggedIn
+                    ? () {}
+                    : showToast('Please login first'),
+                child: const CustomImageWidget(
+                  image: Assets.notification,
+                  scale: 1.8,
+                ),
               ),
               sizedBoxWidth(18),
-              const _CoinContainer(),
+              if (Constants.isLoggedIn) const _CoinContainer(),
             ],
           ),
           sizedBoxHeight(15),
@@ -66,21 +85,28 @@ class _TopHeaderState extends State<TopHeader> {
             builder: (BuildContext context, AddressState state) {
               if (state is AddressLoaded) {
                 AddressDatum address =
-                    context.read<AddressCubit>().defaultAddress[0];
+                    context.read<AddressCubit>().defaultAddress!.isNotEmpty
+                        ? context.read<AddressCubit>().defaultAddress![0]
+                        : const AddressDatum(address: '', city: '');
                 return Row(
                   children: <Widget>[
-                    const CustomImageWidget(
-                      image: Assets.pin1,
-                      scale: 1.8,
-                    ),
+                    if (context.read<AddressCubit>().defaultAddress!.isNotEmpty)
+                      const CustomImageWidget(
+                        image: Assets.pin1,
+                        scale: 1.8,
+                      ),
                     sizedBoxWidth(5),
-                    Text(
-                      '${address.address} ${address.city}',
-                      style: const TextStyle(
+                    Flexible(
+                      child: Text(
+                        '${address.address} ${address.city}',
+                        maxLines: 1,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colour.white,
                           fontSize: 12,
-                          overflow: TextOverflow.clip),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                     )
                   ],
                 );

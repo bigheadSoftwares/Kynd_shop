@@ -73,6 +73,8 @@ class _PointEarnedState extends State<PointEarned> {
                     size: 20,
                   ),
                   sizedBoxHeight(16),
+                  if (state.pointsEarnedModel.data!.isEmpty)
+                    const Center(child: SubHeading2('No points history')),
                   Expanded(
                     child: ListView.separated(
                       itemCount: state.pointsEarnedModel.data?.length ?? 0,

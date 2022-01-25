@@ -1,7 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/filter/selected_filter_cubit.dart';
+import 'popular_brand_products.dart';
 import '../../data/address/my_addresses_model/datum.dart';
 import '../../logic/address/address_cubit.dart';
 import '../../logic/user_status/user_status_cubit.dart';
@@ -32,7 +35,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colour.white,
-      drawer: const Sidebar(),
+      drawer: Constants.isLoggedIn ? const Sidebar() : const SizedBox(),
       body: RefreshIndicator(
         color: Colour.greenishBlue,
         onRefresh: () async {

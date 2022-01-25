@@ -99,14 +99,14 @@ class _OrderDetailColumn extends StatelessWidget {
         // ),
         sizedBoxHeight(16),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: _OrderDetailAddressTile(
-            name: 'Home',
-            address:
-                state.orderDetailModel.data?[0].shippingAddress?.address ?? '',
-            asset: Assets.greenLocationPin,
-          ),
-        ),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: _OrderDetailAddressTile(
+              name: 'Home',
+              address: state.orderDetailModel.data!.isNotEmpty
+                  ? '${state.orderDetailModel.data?[0].shippingAddress?.address} ${state.orderDetailModel.data![0].shippingAddress!.city}'
+                  : '',
+              asset: Assets.greenLocationPin,
+            )),
         sizedBoxHeight(16),
         Container(
           height: 40,
@@ -142,13 +142,14 @@ class _OrderDetailColumn extends StatelessWidget {
         ),
         _BillDetailItem(
           item: 'Order Price',
-          amount: '${state.orderDetailModel.data?[0].price.toString()}',
+          amount: '${Constants.rupee}${state.orderDetailModel.grand_total}',
         ),
         sizedBoxHeight(10),
         _BillDetailItem(
           item: 'Discount',
-          amount:
-              '${state.orderDetailModel.data?[0].couponDiscount.toString()}',
+          amount: state.orderDetailModel.data!.isNotEmpty
+              ? '${state.orderDetailModel.data?[0].couponDiscount.toString()}'
+              : '',
           amountColor: Colour.subtitleColor,
         ),
         // sizedBoxHeight(10),
@@ -159,7 +160,9 @@ class _OrderDetailColumn extends StatelessWidget {
         sizedBoxHeight(10),
         _BillDetailItem(
           item: 'Delivery Fee',
-          amount: '${state.orderDetailModel.data?[0].shippingCost.toString()}',
+          amount: state.orderDetailModel.data!.isNotEmpty
+              ? '${state.orderDetailModel.data?[0].shippingCost.toString()}'
+              : '',
         ),
         sizedBoxHeight(10),
         _BillDetailItem(
@@ -167,7 +170,7 @@ class _OrderDetailColumn extends StatelessWidget {
           itemColor: Colour.greenishBlue,
           itemTextSize: 20,
           itemTextWeight: FontWeight.w500,
-          amount: '${state.orderDetailModel.data?[0].price.toString()}',
+          amount: '${Constants.rupee}${state.orderDetailModel.grand_total}',
           amountTextSize: 20,
           amountColor: Colour.greenishBlue,
         ),

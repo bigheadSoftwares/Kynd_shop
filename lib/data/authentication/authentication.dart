@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:easy_coding/handle_error.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:kynd_shop/utils/functions/show.dart';
 import '../user_status_data/user_status_data.dart';
 import 'login_data_model.dart';
 import '../../utils/export_utilities.dart';
@@ -24,8 +24,10 @@ class Authentication {
       body: body,
       headers: <String, String>{
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
     );
+    show('login response ${response.body}');
     return response;
   }
 
@@ -44,8 +46,10 @@ class Authentication {
       body: body,
       headers: <String, String>{
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
     );
+    show(response.body);
     return response;
   }
 
@@ -54,9 +58,10 @@ class Authentication {
       'id': Constants.authenticationModel?.success.customerId ?? 0,
     });
     final http.Response response = await http.post(
-        Uri.parse('${Constants.host}user_status'),
-        body: body,
-        headers: Constants.headers);
+      Uri.parse('${Constants.host}user_status'),
+      body: body,
+      headers: Constants.headers,
+    );
     return response;
   }
 
@@ -77,9 +82,7 @@ class Authentication {
     final http.Response response = await http.post(
       url,
       body: body,
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
+      headers: Constants.headers,
     );
     return response;
   }

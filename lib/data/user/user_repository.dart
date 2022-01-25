@@ -1,7 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:easy_coding/handle_error.dart';
 import 'package:http/http.dart' as http;
+import '../../utils/functions/show.dart';
 import '../../utils/export_utilities.dart';
 
 part 'user.dart';
@@ -28,7 +27,7 @@ class UserRepository extends User {
 
   Future<void> updateUserInfo(UserModel user) async {
     http.Response response = await _updateUser(user: user);
-
+    show(response.body);
     if (response.statusCode < 200 || response.statusCode >= 300) {
       throw handleError(
         response,

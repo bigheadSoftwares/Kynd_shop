@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:easy_coding/handle_error.dart';
+import 'package:easy_coding/handle_error.dart' as bighead;
 import 'package:equatable/equatable.dart';
+import '../../utils/export_utilities.dart';
 import '../../utils/functions/show.dart';
 import '../../data/address/my_addresses_model/datum.dart';
 import '../../data/address/address_repository.dart';
@@ -11,7 +12,7 @@ part 'address_state.dart';
 class AddressCubit extends Cubit<AddressState> {
   AddressCubit() : super(AddressInitial());
 
-  late List<AddressDatum> defaultAddress;
+  List<AddressDatum>? defaultAddress = <AddressDatum>[];
 
   void getMyAddresses() {
     emit(AddressLoading());
@@ -22,8 +23,8 @@ class AddressCubit extends Cubit<AddressState> {
             .toList();
 
         show(defaultAddress);
-        if (defaultAddress.isEmpty) {
-          defaultAddress.add(myAddressesModel.data![0]);
+        if (defaultAddress!.isEmpty && myAddressesModel.data!.isNotEmpty) {
+          defaultAddress!.add(myAddressesModel.data![0]);
         }
         emit(
           AddressLoaded(myAddressesModel),
@@ -32,7 +33,7 @@ class AddressCubit extends Cubit<AddressState> {
       onError: (dynamic error, dynamic stack) {
         emit(
           AddressFailure(
-            handleError(error),
+            bighead.handleError(error),
           ),
         );
       },

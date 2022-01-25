@@ -88,8 +88,8 @@ class _FeedbackState extends State<Feedback> {
       floatingActionButton: BlocListener<FeedbackCubit, FeedbackState>(
         listener: (BuildContext context, FeedbackState state) {
           if (state is FeedbackLoaded) {
-            showSnackBar(
-                context: context, msg: 'Feedback submitted successfully');
+            showToast('Feedback submitted successfully');
+            pop(context);
           } else if (state is FeedbackFailure) {
             showSnackBar(context: context, msg: state.failure.message);
           }

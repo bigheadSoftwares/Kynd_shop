@@ -1,14 +1,18 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../logic/category/sub_category_products_cubit.dart';
+
 import '../../data/filter/selected_filter.dart';
 import '../../logic/brands/brands_cubit.dart';
 import '../../logic/filter/selected_filter_cubit.dart';
-
 import '../../utils/export_utilities.dart';
 
 class Filter extends StatelessWidget {
-  const Filter({Key? key}) : super(key: key);
+  const Filter({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,15 @@ class Filter extends StatelessWidget {
         ),
         actions: <Widget>[
           InkWell(
-            onTap: () {},
+            onTap: () {
+              context.read<SelectedFilterCubit>().resetFilters();
+              BlocProvider.of<SubCategoryProductsCubit>(context)
+                  .getSubCategoryProducts(
+                subCategoryId:
+                    context.read<SelectedFilterCubit>().currentCategoryTabId,
+                selectedFilterModel: context.read<SelectedFilterCubit>().state,
+              );
+            },
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16.0),
               child: SubHeading2(
@@ -51,7 +63,9 @@ class Filter extends StatelessWidget {
 }
 
 class _FilterWidget extends StatefulWidget {
-  const _FilterWidget({Key? key}) : super(key: key);
+  const _FilterWidget({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<_FilterWidget> createState() => _FilterWidgetState();
@@ -69,6 +83,27 @@ class _FilterWidgetState extends State<_FilterWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: CustomButton(
+        onTap: () {
+          BlocProvider.of<SubCategoryProductsCubit>(context)
+              .getSubCategoryProducts(
+            subCategoryId:
+                context.read<SelectedFilterCubit>().currentCategoryTabId,
+            selectedFilterModel: context.read<SelectedFilterCubit>().state,
+          );
+          pop(context);
+        },
+        backgroundColor: Colour.greenishBlue,
+        radius: 6,
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        width: 200,
+        child: const SubHeading2(
+          'Apply',
+          fontWeight: FontWeight.w500,
+          color: Colour.white,
+        ),
+      ),
       body: Row(
         children: <Widget>[
           _CategoryTitles(
@@ -189,7 +224,7 @@ class _BrandsFilterOptions extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SubHeading2(
-                  'Show Sort By',
+                  'Show By Brands',
                   size: 14,
                   fontWeight: FontWeight.bold,
                   color: Colour.lightGrey,
@@ -209,31 +244,34 @@ class _BrandsFilterOptions extends StatelessWidget {
                                   const EdgeInsets.symmetric(vertical: 8.0),
                               child: CustomListTile(
                                 onTap: () {
-                                  Set<String> _set = <String>{};
+                                  Set<int> _set = <int>{};
                                   _set.addAll(filterState.brandSet);
                                   if (_set.contains(
-                                      state.brandsModel.data[index].name)) {
+                                      state.brandsModel.data[index].id)) {
                                     _set.remove(
-                                        state.brandsModel.data[index].name);
+                                        state.brandsModel.data[index].id);
                                   } else {
-                                    _set.add(
-                                        state.brandsModel.data[index].name);
+                                    _set.add(state.brandsModel.data[index].id);
                                   }
                                   context
                                       .read<SelectedFilterCubit>()
                                       .updateBrandSet(_set);
                                 },
                                 leading: CircleAvatar(
+                                  backgroundColor: Colour.white,
                                   backgroundImage: NetworkImage(
                                       state.brandsModel.data[index].logo),
                                 ),
                                 title: SubHeading2(
                                   state.brandsModel.data[index].name,
                                   fontWeight: FontWeight.w500,
-                                  color: Colour.lightGrey.withOpacity(0.8),
+                                  color: filterState.brandSet.contains(
+                                          state.brandsModel.data[index].id)
+                                      ? Colour.black
+                                      : Colour.lightGrey.withOpacity(0.8),
                                 ),
                                 trailing: filterState.brandSet.contains(
-                                        state.brandsModel.data[index].name)
+                                        state.brandsModel.data[index].id)
                                     ? const Icon(
                                         Icons.check,
                                         color: Colour.green,
@@ -406,10 +444,10 @@ class _SortFilterOptions extends StatelessWidget {
                   ),
                   title: SubHeading2(
                     "What's New",
-                    fontWeight: FontWeight.w500,
                     color: state.sortBy == SortByEnum.new_arrival
                         ? Colour.black
                         : Colour.lightGrey.withOpacity(0.8),
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 sizedBoxHeight(20),
@@ -430,6 +468,7 @@ class _SortFilterOptions extends StatelessWidget {
                     color: state.sortBy == SortByEnum.price_low_to_high
                         ? Colour.black
                         : Colour.lightGrey.withOpacity(0.8),
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 sizedBoxHeight(20),
@@ -450,6 +489,7 @@ class _SortFilterOptions extends StatelessWidget {
                     color: state.sortBy == SortByEnum.price_high_to_low
                         ? Colour.black
                         : Colour.lightGrey.withOpacity(0.8),
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 sizedBoxHeight(20),
@@ -470,6 +510,7 @@ class _SortFilterOptions extends StatelessWidget {
                     color: state.sortBy == SortByEnum.top_rated
                         ? Colour.black
                         : Colour.lightGrey.withOpacity(0.8),
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 sizedBoxHeight(20),
@@ -490,6 +531,7 @@ class _SortFilterOptions extends StatelessWidget {
                     color: state.sortBy == SortByEnum.popularity
                         ? Colour.black
                         : Colour.lightGrey.withOpacity(0.8),
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
