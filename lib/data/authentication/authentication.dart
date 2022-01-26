@@ -82,7 +82,10 @@ class Authentication {
     final http.Response response = await http.post(
       url,
       body: body,
-      headers: Constants.headers,
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
     );
     return response;
   }

@@ -19,7 +19,8 @@ class AddAddress extends StatefulWidget {
 
 class _AddAddressState extends State<AddAddress> {
   final TextEditingController _yourLocation = TextEditingController()
-    ..text = '${Constants.initialLatitude}, ${Constants.initialLongitude}';
+    ..text = '';
+  // ..text = '${Constants.initialLatitude}, ${Constants.initialLongitude}';
   final TextEditingController _flat = TextEditingController();
   final TextEditingController _name = TextEditingController();
   final TextEditingController _mobile = TextEditingController();

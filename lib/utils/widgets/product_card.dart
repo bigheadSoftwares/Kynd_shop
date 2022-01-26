@@ -91,7 +91,7 @@ class ProductCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             SubHeading2(
-                              '${Constants.rupee} ${baseDiscountedPrice ?? 'NA'}/-',
+                              '\$ ${baseDiscountedPrice ?? 'NA'}/-',
                               fontWeight: FontWeight.w500,
                             ),
                             isAddedToCart == true && cartQuantity != 0

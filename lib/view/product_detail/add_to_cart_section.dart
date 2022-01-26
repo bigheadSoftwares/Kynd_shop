@@ -88,7 +88,7 @@ class _BottomCartSectionState extends State<_BottomCartSection> {
                                                       .data![0].cartQuantity!);
                                         }),
                           SubHeading2(
-                            '${Constants.rupee} $productPrice/-',
+                            '\$ $productPrice/-',
                             color: Colour.greenishBlue,
                             fontWeight: FontWeight.w500,
                             size: 20,

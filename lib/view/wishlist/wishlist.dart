@@ -45,7 +45,7 @@ class _WishlistState extends State<Wishlist> {
               ),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.55,
+                childAspectRatio: 0.5,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
               ),

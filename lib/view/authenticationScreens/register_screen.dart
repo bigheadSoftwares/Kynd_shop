@@ -48,6 +48,7 @@ class RegisterScreen extends StatelessWidget {
                 CustomTextField(
                   controller: name,
                   filled: true,
+                  keyboardType: TextInputType.visiblePassword,
                   fillColor: Colour.white,
                   hintStyle: TextStyle(
                     color: Colour.lightGrey.withOpacity(0.3),
@@ -72,7 +73,7 @@ class RegisterScreen extends StatelessWidget {
                   controller: mobileNumber,
                   filled: true,
                   fillColor: Colour.white,
-                  // keyboardType: TextInputType.visiblePassword,
+                  keyboardType: TextInputType.number,
                   maxLength: 10,
                   digitsOnly: true,
                   hintStyle: TextStyle(
@@ -96,6 +97,7 @@ class RegisterScreen extends StatelessWidget {
                 sizedBoxHeight(screenHeight(context) * 0.015),
                 CustomTextField(
                   controller: referralCode,
+                  keyboardType: TextInputType.visiblePassword,
                   filled: true,
                   fillColor: Colour.white,
                   hintStyle: TextStyle(
@@ -158,7 +160,7 @@ class _RegisterButton extends StatelessWidget {
         if (state is RegistrationSuccessful) {
           pop(context);
           showToast(
-            'Registration Successful Please Login',
+            'Registration Successful',
             duration: 6,
           );
         } else if (state is RegistrationError) {

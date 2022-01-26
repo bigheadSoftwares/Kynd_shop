@@ -99,22 +99,14 @@ class _OrderDetailColumn extends StatelessWidget {
         // ),
         sizedBoxHeight(16),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: _OrderDetailAddressTile(
-            name: 'Home',
-            address: state.orderDetailModel.data!.isNotEmpty
-                ? (state.orderDetailModel.data?[0].shippingAddress?.address ??
-                    '' +
-                        (state.orderDetailModel.data?[0].shippingAddress?.city
-                                as String? ??
-                            '') +
-                        (state.orderDetailModel.data?[0].shippingAddress
-                                ?.country ??
-                            ''))
-                : '',
-            asset: Assets.greenLocationPin,
-          ),
-        ),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: _OrderDetailAddressTile(
+              name: 'Home',
+              address: state.orderDetailModel.data!.isNotEmpty
+                  ? '${state.orderDetailModel.data?[0].shippingAddress?.address} ${state.orderDetailModel.data![0].shippingAddress!.city}'
+                  : '',
+              asset: Assets.greenLocationPin,
+            )),
         sizedBoxHeight(16),
         Container(
           height: 40,

@@ -45,6 +45,7 @@ class Home extends StatelessWidget {
           context.read<NewProductsCubit>().getNewProducts();
           context.read<CombosCubit>().getCombos();
           context.read<BrandsCubit>().fetchBrands();
+          context.read<UserStatusCubit>().userStatus();
         },
         child: SingleChildScrollView(
           child: Column(
