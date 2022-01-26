@@ -72,6 +72,7 @@ class RegisterScreen extends StatelessWidget {
                   controller: mobileNumber,
                   filled: true,
                   fillColor: Colour.white,
+                  // keyboardType: TextInputType.visiblePassword,
                   maxLength: 10,
                   digitsOnly: true,
                   hintStyle: TextStyle(

@@ -15,6 +15,13 @@ class _AgeConfirmationScreenState extends State<AgeConfirmationScreen> {
   final TextEditingController age = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   DateTime? pickedDate;
+  bool _isAgreed = false;
+
+  void _onCheckboxTap() {
+    setState(() {
+      _isAgreed = !_isAgreed;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +95,15 @@ class _AgeConfirmationScreenState extends State<AgeConfirmationScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Icon(Icons.check_box, color: Colour.greenishBlue),
+                    _isAgreed
+                        ? IconButton(
+                            onPressed: _onCheckboxTap,
+                            icon: const Icon(Icons.check_box,
+                                color: Colour.greenishBlue))
+                        : IconButton(
+                            onPressed: _onCheckboxTap,
+                            icon: const Icon(Icons.check_box_outline_blank,
+                                color: Colour.lightGrey)),
                     sizedBoxWidth(screenWidth(context) * 0.02),
                     const SubHeading2(
                       'I agree the Terms & Conditions',
@@ -132,12 +147,15 @@ class _AgeConfirmationScreenState extends State<AgeConfirmationScreen> {
                   backgroundColor: Colour.greenishBlue,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   onTap: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate() && _isAgreed) {
                       if (Constants.isIntroSeen) {
                         pushNamed(context, Routes.loginScreen);
                       } else {
                         pushNamed(context, Routes.introScreens);
                       }
+                    }
+                    if (!_isAgreed) {
+                      showToast('Please accept the terms and condition');
                     }
                   },
                   child: const SubHeading2(
