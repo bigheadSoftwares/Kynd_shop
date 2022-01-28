@@ -74,7 +74,7 @@ class Authentication {
     final String body = jsonEncode(<String, String>{
       'phone': phoneNo,
       'name': name,
-      'dob': DateFormat('dd-mm-yyyy').format(dob),
+      'dob': DateFormat('dd-MM-yyyy').format(dob),
       'referral_code': referral ?? '',
     });
 

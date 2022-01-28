@@ -56,7 +56,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   hintText: 'Enter your name',
                   validate: (String? value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null || value.trim().isEmpty) {
                       return 'Please enter your name';
                     }
                     return null;
@@ -74,7 +74,7 @@ class RegisterScreen extends StatelessWidget {
                   filled: true,
                   fillColor: Colour.white,
                   keyboardType: TextInputType.number,
-                  maxLength: 10,
+                  maxLength: Constants.maxPhoneNumberLength,
                   digitsOnly: true,
                   hintStyle: TextStyle(
                     color: Colour.lightGrey.withOpacity(0.3),
@@ -84,6 +84,10 @@ class RegisterScreen extends StatelessWidget {
                   validate: (String? value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your mobile number';
+                    }
+                    if (value.trim().isNotEmpty &&
+                        value.length < Constants.minPhoneNumberLength) {
+                      return 'Please enter a valid mobile number';
                     }
                     return null;
                   },

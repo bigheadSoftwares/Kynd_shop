@@ -39,12 +39,14 @@ class AddAddressTextField extends StatelessWidget {
           readOnly: readOnly,
           cursorHeight: 20,
           cursorColor: Colour.greenishBlue,
-          keyboardType: keyboardType,
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
           ),
           validator: validator,
+          keyboardType: keyboardType == TextInputType.number
+              ? keyboardType
+              : TextInputType.visiblePassword,
           inputFormatters: textInputFormatter,
           decoration: InputDecoration(
             isDense: true,

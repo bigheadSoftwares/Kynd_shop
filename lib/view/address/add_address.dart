@@ -88,6 +88,8 @@ class _AddAddressState extends State<AddAddress> {
                         label: 'Mobile',
                         textInputFormatter: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(
+                              Constants.maxPhoneNumberLength),
                         ],
                         keyboardType: TextInputType.number,
                       ),
@@ -122,12 +124,16 @@ class _AddAddressState extends State<AddAddress> {
               backgroundColor: Colour.greenishBlue,
               padding: const EdgeInsets.symmetric(vertical: 12),
               onTap: () {
-                if (_flat.text.isEmpty ||
-                    _mobile.text.isEmpty ||
-                    _yourLocation.text.isEmpty ||
-                    _name.text.isEmpty ||
-                    _saveAs.text.isEmpty) {
+                if (_flat.text.trim().isEmpty ||
+                    _mobile.text.trim().isEmpty ||
+                    _yourLocation.text.trim().isEmpty ||
+                    _name.text.trim().isEmpty ||
+                    _saveAs.text.trim().isEmpty) {
                   showToast('Please enter all details');
+                }
+                if (_mobile.text.trim().length <
+                    Constants.minPhoneNumberLength) {
+                  showToast('Please enter a valid phone number');
                 } else {
                   BlocProvider.of<CreateAddressCubit>(context).createAddress(
                     //TODO: send city, postal code and country by geocoding

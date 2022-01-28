@@ -98,14 +98,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.w600),
                       digitsOnly: true,
                       keyboardType: TextInputType.number,
-                      maxLength: 10,
+                      maxLength: Constants.maxPhoneNumberLength,
                       hintText: '+91 XXXXXXXXXX',
                       validate: (String? value) {
                         if (value == null || value.isEmpty) {
                           return 'Mobile Number is required';
                         }
-                        if (value.length != 10) {
-                          return 'Mobile Number must be 10 digits';
+                        if (value.trim().isNotEmpty &&
+                            value.length < Constants.minPhoneNumberLength) {
+                          return 'Please enter a valid mobile number';
                         }
                         return null;
                       },

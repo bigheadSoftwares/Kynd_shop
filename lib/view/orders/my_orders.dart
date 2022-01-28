@@ -38,7 +38,7 @@ class _MyOrdersState extends State<MyOrders> {
             return const LoadingIndicator();
           } else if (state is OrderListLoaded) {
             if ((state.orderListModel.data?.length ?? 0) == 0) {
-              return const SubHeading2("You've ordered nothing");
+              return const Center(child: SubHeading2("You've ordered nothing"));
             }
             return ListView.separated(
               padding: const EdgeInsets.all(12),

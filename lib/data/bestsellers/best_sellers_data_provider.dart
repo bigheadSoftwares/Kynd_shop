@@ -11,6 +11,7 @@ class BestSellersDataProvider {
     if (response.statusCode == 200) {
       return response;
     } else {
+      // ignore: only_throw_errors
       throw response;
     }
   }
