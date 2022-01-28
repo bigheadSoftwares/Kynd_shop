@@ -7,7 +7,6 @@ class BestSellersDataProvider {
           '${Constants.host}products/best-seller/${Constants.authenticationModel?.success.customerId ?? 0}'),
       headers: Constants.headers,
     );
-    show(response.body);
     if (response.statusCode == 200) {
       return response;
     } else {

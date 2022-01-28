@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../logic/image_picking/image_picking_cubit.dart';
 import '../../logic/points_earned/points_earned_cubit.dart';
 import '../../utils/functions/snackbar.dart';
 import '../../data/user/user_repository.dart';
@@ -78,6 +81,7 @@ class _ProfileState extends State<Profile> {
                             name: state.user.name,
                             email: state.user.email ?? '',
                             phone: state.user.phone,
+                            image: state.user.avatarOriginal ?? '',
                           ),
                           sizedBoxHeight(20),
                           _ProfileListTile(

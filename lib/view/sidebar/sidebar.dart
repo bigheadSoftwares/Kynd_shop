@@ -22,9 +22,15 @@ class Sidebar extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 12),
               child: CustomListTile(
-                leading: const CircleAvatar(
+                leading: CircleAvatar(
+                  backgroundColor: Colour.white,
                   radius: 45,
-                  backgroundImage: AssetImage(Assets.profile),
+                  backgroundImage: (Constants.userModel?.avatarOriginal ==
+                                  null ||
+                              Constants.userModel!.avatarOriginal!.isEmpty
+                          ? const AssetImage(Assets.profile)
+                          : NetworkImage(Constants.userModel!.avatarOriginal!))
+                      as ImageProvider,
                 ),
                 spaceBetweenLeadingAndTitle: 16,
                 title: BlocBuilder<UserStatusCubit, UserStatusState>(

@@ -25,7 +25,6 @@ class _EditProfileState extends State<EditProfile> {
     _name.text = widget.user.name;
     _email.text = widget.user.email ?? 'Please update your email';
     _mobileNo.text = widget.user.phone;
-
     _dob.text = widget.user.dob ?? 'Please update your date of birth';
   }
 
@@ -56,6 +55,13 @@ class _EditProfileState extends State<EditProfile> {
             vertical: 16,
           ),
           children: <Widget>[
+            BlocProvider<ImagePickingCubit>(
+              create: (BuildContext context) => ImagePickingCubit(),
+              child: _UploadImage(
+                user: widget.user,
+              ),
+            ),
+            sizedBoxHeight(4),
             _EditScreenTextField(
               controller: _name,
               label: 'Name',
@@ -145,6 +151,55 @@ class _EditProfileState extends State<EditProfile> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _UploadImage extends StatelessWidget {
+  const _UploadImage({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
+
+  final UserModel user;
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<ImagePickingCubit, ImagePickingState>(
+      listener: (BuildContext context, ImagePickingState state) {
+        if (state is ImagePicked) {
+          context.read<UserCubit>().updateUserImage(
+                file: state.file,
+                user: user,
+              );
+        }
+      },
+      builder: (BuildContext context, ImagePickingState state) {
+        return Column(
+          children: <Widget>[
+            Align(
+              child: CircleAvatar(
+                radius: 50,
+                backgroundColor: Colour.white,
+                backgroundImage: (state is ImagePicked
+                    ? FileImage(File(state.file.path))
+                    : user.avatarOriginal!.isEmpty
+                        ? const AssetImage(Assets.profile)
+                        : NetworkImage(user.avatarOriginal!)) as ImageProvider,
+              ),
+            ),
+            sizedBoxHeight(4),
+            GestureDetector(
+              onTap: () {
+                context.read<ImagePickingCubit>().pickFromGallery();
+              },
+              child: const SubHeading1(
+                'Change Image',
+                size: 12,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

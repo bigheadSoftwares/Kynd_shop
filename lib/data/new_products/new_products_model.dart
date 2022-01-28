@@ -97,7 +97,8 @@ class Datum {
             ? null
             : List<Map<String, String>>.from(json['photos'].map(
                 (x) => Map.from(x as Map<dynamic, dynamic>).map(
-                  (k, v) => MapEntry<String, String>(k as String, v as String),
+                  (k, v) => MapEntry<String, String>(
+                      k as String, v == null ? '' : v as String),
                 ),
               ) as Iterable<dynamic>),
         thumbnailImage: json['thumbnail_img'] == null

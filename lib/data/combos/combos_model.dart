@@ -87,8 +87,9 @@ class Datum {
         id: json['id'] as int,
         name: json['name'] as String,
         photos: List<Map<String, String>>.from(json['photos'].map(
-          (x) => Map.from(x as Map<dynamic, dynamic>).map(
-              (k, v) => MapEntry<String, String>(k as String, v as String)),
+          (x) => Map.from(x as Map<dynamic, dynamic>).map((k, v) =>
+              MapEntry<String, String>(
+                  k as String, v == null ? '' : v as String)),
         ) as Iterable<dynamic>),
         thumbnailImage: json['thumbnail_img'] as String,
         basePrice: json['base_price'] as int,

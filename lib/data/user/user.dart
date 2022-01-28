@@ -21,4 +21,25 @@ class User {
     );
     return _response;
   }
+
+  Future<http.Response> _updateUserImage(
+      {required UserModel user, required XFile image}) async {
+    final Uri _url = Uri.parse('${Constants.host}user/info/update');
+
+    final http.MultipartRequest request = http.MultipartRequest('POST', _url);
+
+    request.headers.addAll(
+      Constants.headers!,
+    );
+    request.fields['email'] = user.email ?? '';
+    request.fields['name'] = user.name;
+    request.fields['dob'] = user.dob.toString();
+    request.fields['user_id'] =
+        Constants.authenticationModel?.success.customerId.toString() ?? '0';
+
+    request.files.add(await http.MultipartFile.fromPath('image', image.path));
+
+    final http.StreamedResponse _response = await request.send();
+    return await http.Response.fromStream(_response);
+  }
 }

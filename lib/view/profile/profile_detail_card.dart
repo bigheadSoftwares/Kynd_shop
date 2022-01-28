@@ -1,16 +1,18 @@
 part of 'profile.dart';
 
 class _ProfileDetailCard extends StatelessWidget {
-  const _ProfileDetailCard({
-    Key? key,
-    required this.name,
-    required this.email,
-    required this.phone,
-  }) : super(key: key);
+  const _ProfileDetailCard(
+      {Key? key,
+      required this.name,
+      required this.email,
+      required this.phone,
+      required this.image})
+      : super(key: key);
 
   final String name;
   final String email;
   final String phone;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -49,13 +51,24 @@ class _ProfileDetailCard extends StatelessWidget {
               ],
             ),
           ),
-          const Align(
-            alignment: Alignment(0, -2.2),
-            child: CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage(Assets.profile),
+          if (image.isEmpty)
+            const Align(
+              alignment: Alignment(0, -2.2),
+              child: CircleAvatar(
+                backgroundColor: Colour.white,
+                radius: 50,
+                backgroundImage: AssetImage(Assets.profile),
+              ),
+            )
+          else
+            Align(
+              alignment: const Alignment(0, -2.2),
+              child: CircleAvatar(
+                backgroundColor: Colour.white,
+                radius: 50,
+                backgroundImage: NetworkImage(image),
+              ),
             ),
-          ),
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/utils/export_utilities.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../utils/export_utilities.dart';
 import '../../data/user/user_repository.dart';
 
 part 'user_state.dart';
@@ -25,6 +26,13 @@ class UserCubit extends Cubit<UserState> {
         onError: (dynamic error, StackTrace trace) {
       emit(UserFailure(handleError(error)));
     });
+  }
+
+  void updateUserImage({
+    required XFile file,
+    required UserModel user,
+  }) {
+    _repo.updateUserImage(file: file, user: user);
   }
 
   void reset() => emit(UserInitial());
