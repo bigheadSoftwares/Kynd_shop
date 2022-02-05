@@ -9,8 +9,8 @@ class _ProductDetail extends StatelessWidget {
     required this.description,
   }) : super(key: key);
   final String productName;
-  final int basePrice;
-  final int discountedPrice;
+  final num basePrice;
+  final num discountedPrice;
   final String description;
 
   @override

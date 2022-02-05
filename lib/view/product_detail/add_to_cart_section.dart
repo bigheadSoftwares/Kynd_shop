@@ -8,7 +8,7 @@ class _BottomCartSection extends StatefulWidget {
     this.cartQuantity,
     this.productId,
   }) : super(key: key);
-  final int? productPrice;
+  final num? productPrice;
   final bool? isAddedToCart;
   final int? cartQuantity;
   final int? productId;
@@ -19,7 +19,7 @@ class _BottomCartSection extends StatefulWidget {
 class _BottomCartSectionState extends State<_BottomCartSection> {
   bool? isAddedToCart = false;
   int? cartQuantity;
-  int? productPrice;
+  num? productPrice;
   int? productId;
 
   @override

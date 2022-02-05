@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:kynd_shop/utils/functions/show.dart';
+import 'package:kynd_shop/view/home/home.dart';
 import '../../utils/export_utilities.dart';
 
 class CartDataProvider {
@@ -70,12 +72,13 @@ class CartDataProvider {
     }
   }
 
-  static Future<bool> cartDestroy(int cartId) async {
+  static Future<bool> cartDestroy(int cartId, BuildContext context) async {
     final Response response = await get(
       Uri.parse('${Constants.host}cart/destroy/$cartId}'),
       headers: Constants.headers,
     );
     if (response.statusCode == 200) {
+      getAllProducts(context);
       return true;
     } else {
       throw response;

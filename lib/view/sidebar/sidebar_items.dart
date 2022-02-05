@@ -23,6 +23,11 @@ List<SidebarItems> _sidebarItems = <SidebarItems>[
     route: Routes.aboutUs,
   ),
   SidebarItems(
+    name: 'Cart',
+    asset: Assets.myOrders,
+    route: Routes.cart,
+  ),
+  SidebarItems(
     name: 'My Orders',
     asset: Assets.myOrders,
     route: Routes.myOrders,

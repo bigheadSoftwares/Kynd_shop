@@ -51,9 +51,9 @@ class Datum extends Equatable {
   final String? thumbnailImage;
   final List<String>? tags;
   @JsonKey(name: 'price_lower')
-  final int? priceLower;
+  final num? priceLower;
   @JsonKey(name: 'price_higher')
-  final int? priceHigher;
+  final num? priceHigher;
   @JsonKey(name: 'whats_new')
   final int? whatsNew;
   final int? combo;
@@ -100,8 +100,8 @@ class Datum extends Equatable {
     List<String>? photos,
     String? thumbnailImage,
     List<String>? tags,
-    int? priceLower,
-    int? priceHigher,
+    num? priceLower,
+    num? priceHigher,
     int? whatsNew,
     int? combo,
     int? currentStock,

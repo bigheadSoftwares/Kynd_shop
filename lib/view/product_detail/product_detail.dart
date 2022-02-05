@@ -23,7 +23,7 @@ class ProductDetail extends StatefulWidget {
   final int? productId;
   final bool? isAddedToCart;
   final int? cartQuantity;
-  final int? productPrice;
+  final num? productPrice;
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
@@ -57,34 +57,36 @@ class _ProductDetailState extends State<ProductDetail> {
           if (state is ProductDetailInitial) {
             return const LoadingIndicator();
           } else if (state is ProductDetailLoaded) {
-            return SingleChildScrollView(
-              child: Stack(
-                children: <Widget>[
-                  SizedBox(
-                    height: screenHeight(context),
-                  ),
-                  _ProductImage(
-                    imageUrl:
-                        state.productDetailModel.data?[0].thumbnailImage ?? '',
-                  ),
-                  _ProductDetail(
-                    productName: state.productDetailModel.data?[0].name ?? '',
-                    basePrice:
-                        (state.productDetailModel.data?[0].priceLower ?? 0) +
-                            (state.productDetailModel.data?[0].discount ?? 0),
-                    description:
-                        state.productDetailModel.data?[0].description ??
-                            'No description available.',
-                    discountedPrice:
-                        state.productDetailModel.data?[0].priceLower ?? 0,
-                  ),
-                  _FavoriteIcon(
-                      isWishlist:
-                          state.productDetailModel.data?[0].isWishlisted == 1
-                              ? true
-                              : false,
-                      productId: state.productDetailModel.data?[0].id ?? 0),
-                ],
+            return SafeArea(
+              child: SingleChildScrollView(
+                child: Stack(
+                  children: <Widget>[
+                    SizedBox(
+                      height: screenHeight(context),
+                    ),
+                    _ProductImage(
+                      imageUrl:
+                          state.productDetailModel.data?[0].thumbnailImage ?? '',
+                    ),
+                    _ProductDetail(
+                      productName: state.productDetailModel.data?[0].name ?? '',
+                      basePrice:
+                          (state.productDetailModel.data?[0].priceLower ?? 0) +
+                              (state.productDetailModel.data?[0].discount ?? 0),
+                      description:
+                          state.productDetailModel.data?[0].description ??
+                              'No description available.',
+                      discountedPrice:
+                          state.productDetailModel.data?[0].priceLower ?? 0,
+                    ),
+                    _FavoriteIcon(
+                        isWishlist:
+                            state.productDetailModel.data?[0].isWishlisted == 1
+                                ? true
+                                : false,
+                        productId: state.productDetailModel.data?[0].id ?? 0),
+                  ],
+                ),
               ),
             );
           } else {

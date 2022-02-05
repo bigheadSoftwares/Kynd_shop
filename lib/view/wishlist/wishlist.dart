@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kynd_shop/view/home/home.dart';
 import '../../data/wishlist/wishlist_model/datum.dart';
 import '../../logic/wishlist/fetch_wishlist_cubit.dart';
 import '../../utils/widgets/product_card.dart';
@@ -24,7 +27,14 @@ class _WishlistState extends State<Wishlist> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, title: 'Wishlist'),
-      body: BlocBuilder<FetchWishlistCubit, FetchWishlistState>(
+      body: BlocConsumer<FetchWishlistCubit, FetchWishlistState>(
+        listener: (BuildContext cxt, FetchWishlistState state) {
+          if (state is FetchWishlistLoaded) {
+            Timer(const Duration(seconds: 2), () {
+              getAllProducts(context);
+            });
+          }
+        },
         builder: (BuildContext context, FetchWishlistState state) {
           if (state is FetchWishlistInitial) {
             return const LoadingIndicator();

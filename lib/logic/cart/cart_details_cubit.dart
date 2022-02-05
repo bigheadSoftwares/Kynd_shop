@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:kynd_shop/logic/cart/cart_summary_cubit.dart';
 import 'package:kynd_shop/utils/export_utilities.dart';
 import '../../data/cart/cart_data_provider.dart';
@@ -83,12 +84,11 @@ class CartDetailsCubit extends Cubit<CartDetailsState> {
     cartDetaiilsModel = cartDetaiilsModel.copyWith(data: data);
   }
 
-  void removeCartItem(int cartId, int quantity, CartSummaryCubit cartSummary) {
+  void removeCartItem(int cartId, int quantity, CartSummaryCubit cartSummary,
+      BuildContext context) {
     updateRemoveItemModel(
         cartId, cartSummary); //removing product from the model locally
-    CartDataProvider.cartDestroy(
-      cartId,
-    ).then((bool value) {
+    CartDataProvider.cartDestroy(cartId, context).then((bool value) {
       if (!value) {
         updateRemoveItemModel(cartId, cartSummary, quantity: quantity);
         cartSummary.getCartSummary(); //wishlist again on server failure

@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../home/home.dart';
 import 'cart_address.dart';
 import '../../utils/functions/show.dart';
 import '../../data/address/my_addresses_model/datum.dart';
@@ -40,13 +41,15 @@ class _CartState extends State<Cart> {
         if (cartDetailState is CartDetailsLoaded) {
           return Scaffold(
             appBar: appBar(context, title: 'Cart'),
-            bottomNavigationBar:
-                cartDetailState.cartDetaiilsModel.data!.isEmpty ||
-                        cartDetailState.cartDetaiilsModel.data![0].quantity == 0
-                    ? const SizedBox()
-                    : const _CartBottomSection(),
+            bottomNavigationBar: cartDetailState
+                        .cartDetaiilsModel.data!.isEmpty ||
+                    (cartDetailState.cartDetaiilsModel.data![0].quantity == 0 &&
+                        cartDetailState.cartDetaiilsModel.data!.length == 1)
+                ? const SizedBox()
+                : const _CartBottomSection(),
             body: cartDetailState.cartDetaiilsModel.data!.isEmpty ||
-                    cartDetailState.cartDetaiilsModel.data![0].quantity == 0
+                    (cartDetailState.cartDetaiilsModel.data![0].quantity == 0 &&
+                        cartDetailState.cartDetaiilsModel.data!.length == 1)
                 ? SizedBox(
                     height: screenHeight(context),
                     child: const Center(
@@ -104,7 +107,8 @@ class _CartState extends State<Cart> {
                                                     state.cartDetaiilsModel
                                                         .data![index].quantity!,
                                                     context.read<
-                                                        CartSummaryCubit>());
+                                                        CartSummaryCubit>(),
+                                                    context);
                                           },
                                           onaddDec: () async {
                                             BlocProvider.of<CartDetailsCubit>(

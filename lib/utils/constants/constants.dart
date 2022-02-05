@@ -18,7 +18,7 @@ class Constants {
   static bool isSkipped = false;
   static bool isIntroSeen = false;
   static int maxPhoneNumberLength = 13;
-  static int minPhoneNumberLength = 4;
+  static int minPhoneNumberLength = 8;
   // static const int userId = 1;
 
   static const String geoCodingApiKey =

@@ -28,7 +28,7 @@ class ProductCard extends StatelessWidget {
   final String? productImage;
   final int? basePrice;
   final int? productId;
-  final int? baseDiscountedPrice;
+  final num? baseDiscountedPrice;
   final bool? isAddedToCart;
   final int? cartQuantity;
   final int? isWishlisted;

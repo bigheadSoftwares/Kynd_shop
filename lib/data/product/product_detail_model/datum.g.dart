@@ -16,12 +16,10 @@ Datum _$DatumFromJson(Map<String, dynamic> json) => Datum(
       brand: json['brand'] == null
           ? null
           : Brand.fromJson(json['brand'] as Map<String, dynamic>),
-      photos:
-          (json['photos'] as List<dynamic>?)?.map((e) => e as String).toList(),
       thumbnailImage: json['thumbnail_image'] as String?,
       tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      priceLower: json['price_lower'] as int?,
-      priceHigher: json['price_higher'] as int?,
+      priceLower: json['price_lower'] as num?,
+      priceHigher: json['price_higher'] as num?,
       whatsNew: json['whats_new'] as int?,
       combo: json['combo'] as int?,
       currentStock: json['current_stock'] as int?,

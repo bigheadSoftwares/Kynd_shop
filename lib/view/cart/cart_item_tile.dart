@@ -17,15 +17,15 @@ class _CartItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomListTile(
       leading: RoundContainer(
-        hPadding: 30,
-        vPadding: 10,
-        radius: 8,
-        borderColor: Colour.lightGrey.withOpacity(0.2),
-        child: const CustomImageWidget(
-          image: Assets.beer,
-          height: 80,
-        ),
-      ),
+          hPadding: 30,
+          vPadding: 10,
+          radius: 8,
+          borderColor: Colour.lightGrey.withOpacity(0.2),
+          child: CustomNetworkImageWidget(
+            image: item.product?.image ?? '',
+            height: 70,
+            width: screenWidth(context) * 0.14,
+          )),
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

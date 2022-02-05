@@ -71,7 +71,7 @@ class Datum {
   final List<Map<String, String>>? photos;
   final String? thumbnailImage;
   final int? basePrice;
-  final int? baseDiscountedPrice;
+  final num? baseDiscountedPrice;
   final int? whatsNew;
   final String? unit;
   final int? discount;
@@ -93,7 +93,7 @@ class Datum {
         ) as Iterable<dynamic>),
         thumbnailImage: json['thumbnail_img'] as String,
         basePrice: json['base_price'] as int,
-        baseDiscountedPrice: json['base_discounted_price'] as int,
+        baseDiscountedPrice: json['base_discounted_price'] as num,
         whatsNew: json['whats_new'] as int,
         unit: json['unit'] as String,
         discount: json['discount'] as int,
@@ -134,7 +134,7 @@ class Datum {
     List<Map<String, String>>? photos,
     String? thumbnailImage,
     int? basePrice,
-    int? baseDiscountedPrice,
+    num? baseDiscountedPrice,
     int? whatsNew,
     String? unit,
     int? discount,

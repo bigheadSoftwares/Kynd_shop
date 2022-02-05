@@ -9,7 +9,7 @@ class CutMrp extends StatelessWidget {
     required this.mrp,
     this.size,
   }) : super(key: key);
-  final int mrp;
+  final num mrp;
   final double? size;
 
   @override

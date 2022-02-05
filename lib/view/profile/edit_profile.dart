@@ -182,7 +182,8 @@ class _UploadImage extends StatelessWidget {
                 backgroundColor: Colour.white,
                 backgroundImage: (state is ImagePicked
                     ? FileImage(File(state.file.path))
-                    : user.avatarOriginal!.isEmpty
+                    : user.avatarOriginal == null ||
+                            user.avatarOriginal!.isEmpty
                         ? const AssetImage(Assets.profile)
                         : NetworkImage(user.avatarOriginal!)) as ImageProvider,
               ),
@@ -233,6 +234,7 @@ class _EditScreenTextField extends StatelessWidget {
         TextFormField(
           controller: controller,
           onTap: onTap,
+          keyboardType: TextInputType.visiblePassword,
           readOnly: readOnly,
           style: const TextStyle(
             fontSize: 20,

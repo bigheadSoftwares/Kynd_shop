@@ -32,6 +32,7 @@ class Assets {
   static const String mobileNumber = 'assets/icons/profile-smartphone.png';
   static const String home = 'assets/icons/home-menu.png';
   static const String costumerCare = 'assets/icons/support-menu.png';
+  static const String cart = 'assets/icons/cart.png';
   static const String termsAndCondition = 'assets/icons/terms-menu.png';
   static const String share = 'assets/icons/share-menu.png';
   static const String logout = 'assets/icons/logout-menu.png';

@@ -78,7 +78,7 @@ class Datum {
   final List<Map<String, String>>? photos;
   final String? thumbnailImage;
   final int? basePrice;
-  final int? baseDiscountedPrice;
+  final num? baseDiscountedPrice;
   final int? whatsNew;
   final String? unit;
   final int? discount;
@@ -108,7 +108,7 @@ class Datum {
             json['base_price'] == null ? null : json['base_price'] as int,
         baseDiscountedPrice: json['base_discounted_price'] == null
             ? null
-            : json['base_discounted_price'] as int,
+            : json['base_discounted_price'] as num,
         whatsNew: json['whats_new'] == null ? null : json['whats_new'] as int,
         unit: json['unit'] == null ? null : json['unit'] as String,
         discount: json['discount'] == null ? null : json['discount'] as int,
@@ -149,7 +149,7 @@ class Datum {
     List<Map<String, String>>? photos,
     String? thumbnailImage,
     int? basePrice,
-    int? baseDiscountedPrice,
+    num? baseDiscountedPrice,
     int? whatsNew,
     String? unit,
     int? discount,

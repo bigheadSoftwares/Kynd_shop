@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:kynd_shop/data/cart/cart_data_provider.dart';
 import 'package:kynd_shop/utils/export_utilities.dart';
 import 'package:kynd_shop/utils/functions/show.dart';
