@@ -1,8 +1,8 @@
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/data/authentication/login_data_model.dart';
-import 'package:kynd_shop/utils/functions/snackbar.dart';
+import '../../data/authentication/login_data_model.dart';
+import '../../utils/functions/snackbar.dart';
 import '../../logic/authentication/authentication_cubit.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../utils/export_utilities.dart';

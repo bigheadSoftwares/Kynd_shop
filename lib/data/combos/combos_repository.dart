@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'combos_model.dart';
 
 import '../../utils/constants/constants.dart';
+import 'combos_model.dart';
+
 part 'combos_data_provider.dart';
 
 class CombosRepository {

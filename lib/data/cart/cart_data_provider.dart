@@ -1,17 +1,15 @@
 import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
-import 'package:kynd_shop/view/home/home.dart';
+import '../../utils/functions/show.dart';
+import '../../view/home/home.dart';
 import '../../utils/export_utilities.dart';
 
 class CartDataProvider {
   static Future<bool> addToCart(
       {required int productId, required int quantity}) async {
-    final body = jsonEncode(<String, dynamic>{
+    final String body = jsonEncode(<String, dynamic>{
       'id': productId,
       'user_id': Constants.authenticationModel?.success.customerId,
       'quantity': quantity

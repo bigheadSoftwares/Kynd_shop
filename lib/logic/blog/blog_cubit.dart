@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_coding/handle_error.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
+import '../../utils/functions/show.dart';
 import '../../data/blog/blog_repository.dart';
 
 part 'blog_state.dart';

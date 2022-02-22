@@ -3,7 +3,7 @@ import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/user_status/user_status_cubit.dart';
+import '../../logic/user_status/user_status_cubit.dart';
 import 'package:share/share.dart';
 import '../../utils/export_utilities.dart';
 

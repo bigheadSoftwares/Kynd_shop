@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../utils/export_utilities.dart';
+
 import '../../data/user/user_repository.dart';
+import '../../utils/export_utilities.dart';
 
 part 'user_state.dart';
 

@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart';
-import '../../utils/functions/show.dart';
+
 import '../../utils/export_utilities.dart';
+import '../../utils/functions/show.dart';
 
 class ProductDataProvider {
   static Future<Response> getProductDetail(int productId) async {

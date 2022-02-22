@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/utils/export_utilities.dart';
+
 import '../../data/cart/cart_data_provider.dart';
-import '../../data/wishlist/wishlist_data_provider.dart';
 import '../../data/combos/combos_model.dart';
 import '../../data/combos/combos_repository.dart';
+import '../../data/wishlist/wishlist_data_provider.dart';
+import '../../utils/export_utilities.dart';
 
 part 'combos_state.dart';
 

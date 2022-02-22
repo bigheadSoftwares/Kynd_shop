@@ -13,8 +13,10 @@ class _TopHeaderState extends State<TopHeader> {
   @override
   void initState() {
     super.initState();
-    context.read<UserStatusCubit>().userStatus();
-    context.read<AddressCubit>().getMyAddresses();
+    if (Constants.isLoggedIn) {
+      context.read<UserStatusCubit>().userStatus();
+      context.read<AddressCubit>().getMyAddresses();
+    }
   }
 
   @override

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:kynd_shop/data/cart/cart_data_provider.dart';
-import 'package:kynd_shop/utils/export_utilities.dart';
+import '../../data/cart/cart_data_provider.dart';
+import '../../utils/export_utilities.dart';
 import '../../data/product/recommended_product_model/datum.dart';
 import '../../data/wishlist/wishlist_data_provider.dart';
 import '../../data/product/product_repository.dart';

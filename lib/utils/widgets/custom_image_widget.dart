@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kynd_shop/utils/constants/assets.dart';
+import '../constants/assets.dart';
 
 class CustomImageWidget extends StatelessWidget {
   const CustomImageWidget({

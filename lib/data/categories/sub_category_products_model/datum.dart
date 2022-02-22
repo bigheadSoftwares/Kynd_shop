@@ -164,7 +164,7 @@ class Datum extends Equatable {
   final int? combo;
   final int? sales;
   @JsonKey(name: 'base_discounted_price')
-  final int? baseDiscountedPrice;
+  final num? baseDiscountedPrice;
   @JsonKey(name: 'base_price')
   final int? basePrice;
   @JsonKey(name: 'is_user_login')

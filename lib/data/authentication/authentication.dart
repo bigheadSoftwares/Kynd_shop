@@ -1,13 +1,15 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:kynd_shop/utils/functions/show.dart';
+
+import '../../utils/export_utilities.dart';
+import '../../utils/functions/show.dart';
 import '../user_status_data/user_status_data.dart';
 import 'login_data_model.dart';
-import '../../utils/export_utilities.dart';
 
-part 'authentication_repository.dart';
 part 'authentication_model.dart';
+part 'authentication_repository.dart';
 
 // All the api calls related to [Authentication] will be found here
 class Authentication {
