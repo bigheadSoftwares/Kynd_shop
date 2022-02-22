@@ -39,26 +39,26 @@ class _ProductDetailState extends State<ProductDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colour.white,
-      bottomNavigationBar: _BottomCartSection(
-        productPrice: widget.productPrice,
-        isAddedToCart: widget.isAddedToCart,
-        cartQuantity: widget.cartQuantity,
-        productId: widget.productId,
-      ),
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
-      body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
-        builder: (BuildContext context, ProductDetailState state) {
-          if (state is ProductDetailInitial) {
-            return const LoadingIndicator();
-          } else if (state is ProductDetailLoaded) {
-            return SafeArea(
-              child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colour.white,
+        bottomNavigationBar: _BottomCartSection(
+          productPrice: widget.productPrice,
+          isAddedToCart: widget.isAddedToCart,
+          cartQuantity: widget.cartQuantity,
+          productId: widget.productId,
+        ),
+        extendBodyBehindAppBar: true,
+        // appBar: AppBar(
+        //   elevation: 0,
+        //   backgroundColor: Colors.transparent,
+        // ),
+        body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
+          builder: (BuildContext context, ProductDetailState state) {
+            if (state is ProductDetailInitial) {
+              return const LoadingIndicator();
+            } else if (state is ProductDetailLoaded) {
+              return SingleChildScrollView(
                 child: Stack(
                   children: <Widget>[
                     SizedBox(
@@ -87,15 +87,15 @@ class _ProductDetailState extends State<ProductDetail> {
                         productId: state.productDetailModel.data?[0].id ?? 0),
                   ],
                 ),
-              ),
-            );
-          } else {
-            return Center(
-              child:
-                  SubHeading2((state as ProductDetailFailure).failure.message),
-            );
-          }
-        },
+              );
+            } else {
+              return Center(
+                child:
+                    SubHeading2((state as ProductDetailFailure).failure.message),
+              );
+            }
+          },
+        ),
       ),
     );
   }

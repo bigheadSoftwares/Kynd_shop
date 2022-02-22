@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/view/home/home.dart';
+import '../home/home.dart';
 import '../../data/wishlist/wishlist_model/datum.dart';
 import '../../logic/wishlist/fetch_wishlist_cubit.dart';
 import '../../utils/widgets/product_card.dart';

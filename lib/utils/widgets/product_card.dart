@@ -83,9 +83,16 @@ class ProductCard extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        sizedBoxHeight(4),
-                        CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 0),
-                        sizedBoxHeight(4),
+                        // basePrice != baseDiscountedPrice
+                        //     ? sizedBoxHeight(4)
+                        //     : const SizedBox.shrink(),
+                        basePrice != baseDiscountedPrice
+                            ? CutMrp(mrp: basePrice ?? baseDiscountedPrice ?? 0)
+                            : const SizedBox.shrink(),
+                        basePrice != baseDiscountedPrice
+                            ? sizedBoxHeight(4)
+                            : const SizedBox.shrink(),
+                        // sizedBoxHeight(4),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,

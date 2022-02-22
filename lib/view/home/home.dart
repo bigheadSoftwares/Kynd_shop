@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_coding/big_head_softwares.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kynd_shop/logic/cart/cart_details_cubit.dart';
 import '../../logic/user/user_cubit.dart';
 import '../../logic/filter/selected_filter_cubit.dart';
 import 'popular_brand_products.dart';

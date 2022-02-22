@@ -21,22 +21,12 @@ class _ProductImage extends StatelessWidget {
         ),
       ),
       width: screenWidth(context),
-      height: screenHeight(context) * 0.4,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          // CustomNetworkImageWidget(
-          //   image: Assets.beer,
-          //   fit: BoxFit.contain,
-          // ),
-          CustomNetworkImageWidget(
-            image: imageUrl,
-            fit: BoxFit.fill,
-            width: screenWidth(context),
-            height: screenHeight(context) * 0.4,
-          ),
-        ],
+      height: screenHeight(context) * 0.5,
+      child: CustomNetworkImageWidget(
+        image: imageUrl,
+        fit: BoxFit.fill,
+        // width: screenWidth(context),
+        // height: screenHeight(context) * 0.4,
       ),
     );
   }
