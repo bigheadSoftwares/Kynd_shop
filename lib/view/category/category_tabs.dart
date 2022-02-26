@@ -110,6 +110,7 @@ class _TabViewState extends State<_TabView> {
   Widget build(BuildContext context) {
     return Expanded(
       child: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           ...List<Widget>.generate(
             widget.tabLength,
@@ -217,20 +218,17 @@ class _TabsState extends State<_Tabs> with TickerProviderStateMixin {
   late TabController _tabController;
   @override
   void initState() {
-    getSubCategoryProducts();
+    getSubCategoryProducts(0);
     super.initState();
     _tabController = TabController(
-        length: widget.state.subCategoryModel.data?.length ?? 0, vsync: this);
-    _tabController.addListener(() {
-      context.read<SelectedFilterCubit>().currentCategoryTabId =
-          widget.state.subCategoryModel.data![_tabController.index].id!;
-      getSubCategoryProducts();
-    });
+      length: widget.state.subCategoryModel.data?.length ?? 0,
+      vsync: this,
+    );
   }
 
-  void getSubCategoryProducts() {
+  void getSubCategoryProducts(int index) {
     context.read<SelectedFilterCubit>().currentCategoryTabId =
-        widget.state.subCategoryModel.data![0].id!;
+        widget.state.subCategoryModel.data![index].id!;
     BlocProvider.of<SubCategoryProductsCubit>(context).getSubCategoryProducts(
       subCategoryId: context.read<SelectedFilterCubit>().currentCategoryTabId,
       selectedFilterModel: context.read<SelectedFilterCubit>().state,
@@ -249,6 +247,7 @@ class _TabsState extends State<_Tabs> with TickerProviderStateMixin {
         labelPadding: const EdgeInsets.symmetric(horizontal: 20),
         labelColor: Colour.greenishBlue,
         unselectedLabelColor: Colour.black,
+        onTap: getSubCategoryProducts,
         tabs: <Widget>[
           ...List<Tab>.generate(
             widget.state.subCategoryModel.data?.length ?? 0,

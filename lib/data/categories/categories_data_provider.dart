@@ -53,12 +53,13 @@ class CategoryDataProvider {
         });
       }
     }
+
     final Response response = await post(
       Uri.parse(
         '${Constants.host}products/search',
       ),
       body: jsonEncode(body),
-      headers: Constants.headers,
+      headers:Constants.headers ,
     );
     show(
         'requesting subcategories body -> $body --- response -> ${response.statusCode}');

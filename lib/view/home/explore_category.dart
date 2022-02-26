@@ -89,15 +89,17 @@ class DrinkCategoryCard extends StatelessWidget {
         Container(
           height: 70,
           width: 70,
-          // padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: backgroundColor,
           ),
-          child: CustomNetworkImageWidget(
-            image: image,
-            fit: BoxFit.cover,
-            scale: 0.3,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: CustomNetworkImageWidget(
+              image: image,
+              fit: BoxFit.cover,
+              scale: 0.3,
+            ),
           ),
         ),
         sizedBoxHeight(8),
