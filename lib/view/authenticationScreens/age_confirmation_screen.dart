@@ -64,8 +64,9 @@ class _AgeConfirmationScreenState extends State<AgeConfirmationScreen> {
                 ),
                 CustomTextField(
                   controller: age,
+                  textAlign: TextAlign.center,
                   filled: true,
-                  hintText: 'DD/MM/YYY',
+                  hintText: 'DD/MM/YYYY',
                   readOnly: true,
                   validate: (String? value) {
                     if (value == null || value.isEmpty) {
@@ -73,6 +74,7 @@ class _AgeConfirmationScreenState extends State<AgeConfirmationScreen> {
                     } else if ((DateTime.now().year - pickedDate!.year) < 25) {
                       return 'You need to be above 25 years of age';
                     }
+                    return null;
                   },
                   onTap: () async {
                     pickedDate = await pickDate(context);
@@ -183,13 +185,16 @@ class _DetailsListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomListTile(
+    return ListTile(
+      horizontalTitleGap: 0,
+      minLeadingWidth: 25,
+      minVerticalPadding: 10,
       leading: const Icon(
         Icons.circle,
         color: Colour.greenishBlue,
-        size: 15,
+        size: 13,
       ),
-      spaceBetweenLeadingAndTitle: screenWidth(context) * 0.03,
+      // spaceBetweenLeadingAndTitle: screenWidth(context) * 0.03,
       title: SubHeading2(
         text,
         size: 14,

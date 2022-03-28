@@ -132,17 +132,16 @@ class _OtpScreenState extends State<OtpScreen> {
                   backgroundColor: Colour.greenishBlue,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   onTap: () {
-                    if (textEditingController.text ==
-                        widget.loginDataModel.success.code.toString()) {
-                      context.read<AuthenticationCubit>().confirmCode(
-                            userId: widget.loginDataModel.success.customerId,
-                            confirmCode: widget.loginDataModel.success.code,
-                            // confirmCode: 376488
-                          );
-                    } else {
-                      showSnackBar(
-                          context: context, msg: 'Please enter correct otp');
-                    }
+                    // if (textEditingController.text ==
+                    //     widget.loginDataModel.success.code.toString()) {
+                    context.read<AuthenticationCubit>().confirmCode(
+                          userId: widget.loginDataModel.success.customerId,
+                          userInputOtp: textEditingController.text,
+                        );
+                    // } else {
+                    //   showSnackBar(
+                    //       context: context, msg: 'Please enter correct otp');
+                    // }
                   },
                   child: const SubHeading2(
                     'VERIFY',
@@ -159,12 +158,21 @@ class _OtpScreenState extends State<OtpScreen> {
                   size: 12,
                 ),
               ),
-              const Center(
-                child: SubHeading1(
-                  'RESEND',
-                  color: Colour.greenishBlue,
-                  fontWeight: FontWeight.w700,
-                  size: 14,
+              GestureDetector(
+                onTap: () {
+                  context.read<AuthenticationCubit>().validateAndLogin(
+                        phoneNo:
+                            widget.loginDataModel.success.userDetails.phone,
+                        isFromOtpScreen: true,
+                      );
+                },
+                child: const Center(
+                  child: SubHeading1(
+                    'RESEND',
+                    color: Colour.greenishBlue,
+                    fontWeight: FontWeight.w700,
+                    size: 14,
+                  ),
                 ),
               )
             ],

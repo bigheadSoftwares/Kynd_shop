@@ -27,14 +27,34 @@ class RegisterScreen extends StatelessWidget {
               padding:
                   EdgeInsets.fromLTRB(30, screenHeight(context) * 0.1, 30, 40),
               children: <Widget>[
+                Align(
+                  alignment: Alignment.topRight,
+                  child: InkWell(
+                    onTap: () {
+                      Constants.isSkipped = true;
+                      Constants.isLoggedIn = false;
+                      Constants.authenticationModel = null;
+                      saveBool(key: Constants.skippedStatus, value: true);
+                      pushNamed(context, Routes.home);
+                    },
+                    child: const Text(
+                      'SKIP',
+                      // size: 18,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                sizedBoxHeight(screenHeight(context) * 0.01),
                 const Heading2(
-                  'Sign Up',
+                  'Let\'s Sign You In',
                   size: 26,
                   fontWeight: FontWeight.w700,
                 ),
                 sizedBoxHeight(screenHeight(context) * 0.01),
                 SubHeading1(
-                  'Let\'s get you started',
+                  "Welcome back, you've been missed!",
                   color: Colour.lightGrey.withOpacity(0.7),
                   size: 16,
                 ),
@@ -43,6 +63,7 @@ class RegisterScreen extends StatelessWidget {
                   'Name',
                   // color: Colour.lightGrey.withOpacity(0.7),
                   size: 16,
+                  fontWeight: FontWeight.w700,
                 ),
                 sizedBoxHeight(screenHeight(context) * 0.015),
                 CustomTextField(
@@ -51,7 +72,7 @@ class RegisterScreen extends StatelessWidget {
                   keyboardType: TextInputType.visiblePassword,
                   fillColor: Colour.white,
                   hintStyle: TextStyle(
-                    color: Colour.lightGrey.withOpacity(0.3),
+                    color: Colour.lightGrey.withOpacity(0.5),
                     fontWeight: FontWeight.w600,
                   ),
                   hintText: 'Enter your name',
@@ -67,6 +88,7 @@ class RegisterScreen extends StatelessWidget {
                   'Mobile number',
                   // color: Colour.lightGrey.withOpacity(0.7),
                   size: 16,
+                  fontWeight: FontWeight.w700,
                 ),
                 sizedBoxHeight(screenHeight(context) * 0.015),
                 CustomTextField(
@@ -77,7 +99,7 @@ class RegisterScreen extends StatelessWidget {
                   maxLength: Constants.maxPhoneNumberLength,
                   digitsOnly: true,
                   hintStyle: TextStyle(
-                    color: Colour.lightGrey.withOpacity(0.3),
+                    color: Colour.lightGrey.withOpacity(0.5),
                     fontWeight: FontWeight.w600,
                   ),
                   hintText: 'Enter your mobile number',
@@ -97,6 +119,7 @@ class RegisterScreen extends StatelessWidget {
                   'Referral Code',
                   // color: Colour.lightGrey.withOpacity(0.7),
                   size: 16,
+                  fontWeight: FontWeight.w700,
                 ),
                 sizedBoxHeight(screenHeight(context) * 0.015),
                 CustomTextField(
@@ -105,7 +128,7 @@ class RegisterScreen extends StatelessWidget {
                   filled: true,
                   fillColor: Colour.white,
                   hintStyle: TextStyle(
-                      color: Colour.lightGrey.withOpacity(0.3),
+                      color: Colour.lightGrey.withOpacity(0.5),
                       fontWeight: FontWeight.w600),
                   hintText: 'Enter your referral code',
                 ),

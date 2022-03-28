@@ -40,11 +40,15 @@ class AuthenticationOtpSent extends AuthenticationState {
 }
 
 class LoginSuccessful extends AuthenticationState {
-  const LoginSuccessful(this.dataModel);
+  const LoginSuccessful(
+    this.dataModel, {
+    this.isFromOtpScreen = false,
+  });
   final LoginDataModel dataModel;
+  final bool isFromOtpScreen;
 
   @override
-  List<LoginDataModel> get props => <LoginDataModel>[dataModel];
+  List<Object> get props => <Object>[dataModel, isFromOtpScreen];
 }
 
 class AuthenticationError extends AuthenticationState {
