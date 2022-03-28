@@ -10,17 +10,20 @@ abstract class PointsEarnedState extends Equatable {
 class PointsEarnedInitial extends PointsEarnedState {}
 
 class PointsEarnedLoaded extends PointsEarnedState {
-  const PointsEarnedLoaded(this.pointsEarnedModel);
+  const PointsEarnedLoaded(this.pointsEarnedModel, this.totalPoints);
   final PointsEarnedModel pointsEarnedModel;
+  final double totalPoints;
 
   @override
-  List<Object> get props => <Object>[pointsEarnedModel];
+  List<Object> get props => <Object>[pointsEarnedModel, totalPoints];
 
   PointsEarnedLoaded copyWith({
     PointsEarnedModel? pointsEarnedModel,
+    double? totalPoints,
   }) {
     return PointsEarnedLoaded(
       pointsEarnedModel ?? this.pointsEarnedModel,
+      totalPoints ?? this.totalPoints,
     );
   }
 }

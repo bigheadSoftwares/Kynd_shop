@@ -36,7 +36,7 @@ class ProductListBlock extends StatelessWidget {
                   child: const SubHeading2(
                     'View All',
                     color: Colour.greenishBlue,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
             ],

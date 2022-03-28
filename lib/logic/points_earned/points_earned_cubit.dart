@@ -9,11 +9,11 @@ part 'points_earned_state.dart';
 
 class PointsEarnedCubit extends Cubit<PointsEarnedState> {
   PointsEarnedCubit() : super(PointsEarnedInitial());
-  double totalPoints = 0;
   void pointsEarned() {
     emit(PointsEarnedInitial());
     PointsEarnedRepo.pointsEarned().then(
       (PointsEarnedModel pointsEarnedModel) {
+        double totalPoints = 0;
         for (Datum point in pointsEarnedModel.data!) {
           totalPoints = totalPoints +
               (double.parse(
@@ -21,7 +21,7 @@ class PointsEarnedCubit extends Cubit<PointsEarnedState> {
               ));
         }
         emit(
-          PointsEarnedLoaded(pointsEarnedModel),
+          PointsEarnedLoaded(pointsEarnedModel, totalPoints),
         );
       },
       onError: (dynamic error, dynamic stack) {

@@ -52,7 +52,7 @@ class _PointEarnedState extends State<PointEarned> {
                         children: <Widget>[
                           sizedBoxHeight(16),
                           Heading1(
-                            '${context.read<PointsEarnedCubit>().totalPoints}',
+                            state.totalPoints.toStringAsFixed(2),
                             color: Colour.white,
                             fontWeight: FontWeight.w500,
                           ),
@@ -69,7 +69,7 @@ class _PointEarnedState extends State<PointEarned> {
                   ),
                   sizedBoxHeight(16),
                   const Heading2(
-                    'Point History',
+                    'POINT HISTORY',
                     size: 20,
                   ),
                   sizedBoxHeight(16),
@@ -95,7 +95,7 @@ class _PointEarnedState extends State<PointEarned> {
                             '${state.pointsEarnedModel.data![index].title}',
                           ),
                           subtitle: SubHeading2(
-                            'On ${DateFormat('ddMMMMyy').format(DateTime.parse(state.pointsEarnedModel.data![index].createdAt!))}',
+                            'On ${DateFormat('MMM dd, yyyy').format(DateTime.parse(state.pointsEarnedModel.data![index].createdAt!))}',
                             color: Colour.subtitleColor,
                             size: 14,
                           ),
@@ -108,7 +108,7 @@ class _PointEarnedState extends State<PointEarned> {
                                 size: 22,
                               ),
                               SubHeading2(
-                                'Order id: ${state.pointsEarnedModel.data![index].orderId}',
+                                'Order id: #${state.pointsEarnedModel.data![index].orderId}',
                                 color: Colour.subtitleColor,
                                 size: 12,
                               ),
