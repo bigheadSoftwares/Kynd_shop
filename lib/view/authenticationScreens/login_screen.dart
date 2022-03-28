@@ -33,11 +33,13 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state is LoginSuccessful) {
             showToast('${state.dataModel.success.code}');
             log('This is otp ${state.dataModel.success.code}');
-            pushNamed(
-              context,
-              Routes.otpScreen,
-              arguments: state.dataModel,
-            );
+            if (!state.isFromOtpScreen) {
+              pushNamed(
+                context,
+                Routes.otpScreen,
+                arguments: state.dataModel,
+              );
+            }
           } else if (state is LoginError) {
             showSnackBar(context: context, msg: state.error.message);
           }
@@ -54,24 +56,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: EdgeInsets.fromLTRB(
                       30, screenHeight(context) * 0.1, 30, 20),
                   children: <Widget>[
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: InkWell(
-                        onTap: () {
-                          Constants.isSkipped = true;
-                          Constants.isLoggedIn = false;
-                          Constants.authenticationModel = null;
-                          saveBool(key: Constants.skippedStatus, value: true);
-                          pushNamed(context, Routes.home);
-                        },
-                        child: const Text(
-                          'SKIP',
-                          // size: 18,
-                          // fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    sizedBoxHeight(screenHeight(context) * 0.01),
+                    // Align(
+                    //   alignment: Alignment.topRight,
+                    //   child: InkWell(
+                    //     onTap: () {
+                    //       Constants.isSkipped = true;
+                    //       Constants.isLoggedIn = false;
+                    //       Constants.authenticationModel = null;
+                    //       saveBool(key: Constants.skippedStatus, value: true);
+                    //       pushNamed(context, Routes.home);
+                    //     },
+                    //     child: const Text(
+                    //       'SKIP',
+                    //       // size: 18,
+                    //       // fontWeight: FontWeight.w700,
+                    //     ),
+                    //   ),
+                    // ),
+                    // sizedBoxHeight(screenHeight(context) * 0.01),
                     const Heading2(
                       'Let\'s Sign You In',
                       size: 26,

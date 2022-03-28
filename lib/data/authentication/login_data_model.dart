@@ -4,12 +4,14 @@
 
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+
 LoginDataModel loginDataModelFromJson(String str) =>
     LoginDataModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String loginDataModelToJson(LoginDataModel data) => json.encode(data.toJson());
 
-class LoginDataModel {
+class LoginDataModel extends Equatable {
   LoginDataModel({
     required this.success,
   });
@@ -23,9 +25,12 @@ class LoginDataModel {
   Map<String, dynamic> toJson() => {
         "success": success.toJson(),
       };
+
+  @override
+  List<Object?> get props => [success];
 }
 
-class Success {
+class Success extends Equatable {
   Success({
     required this.customerId,
     required this.message,
@@ -52,9 +57,12 @@ class Success {
         "customer_id": customerId,
         "code": code,
       };
+
+  @override
+  List<Object?> get props => [customerId, message, userDetails, code];
 }
 
-class UserDetails {
+class UserDetails extends Equatable {
   UserDetails({
     required this.phone,
   });
@@ -68,4 +76,7 @@ class UserDetails {
   Map<String, dynamic> toJson() => {
         "phone": phone,
       };
+
+  @override
+  List<Object?> get props => [phone];
 }

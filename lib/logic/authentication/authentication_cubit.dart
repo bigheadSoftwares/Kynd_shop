@@ -18,12 +18,16 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   Future<void> validateAndLogin({
     required String phoneNo,
+    bool? isFromOtpScreen,
   }) async {
     // if (otp.length < 4 || otp != this.otp) {
     emit(AuthenticationLoading());
     _repo.loginData(phoneNo: phoneNo).then(
       (LoginDataModel value) {
-        emit(LoginSuccessful(value));
+        emit(LoginSuccessful(
+          value,
+          isFromOtpScreen: isFromOtpScreen ?? false,
+        ));
       },
       onError: (dynamic error, StackTrace stackTrace) {
         emit(LoginError(handleError(error)));
@@ -33,10 +37,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
   Future<void> confirmCode({
     required int userId,
-    required int confirmCode,
+    required String userInputOtp,
   }) async {
-    // if (otp.length < 4 || otp != this.otp) {
-    if (2 == 3) {
+    int confirmCode = (state as LoginSuccessful).dataModel.success.code;
+    if (confirmCode.toString().length < 4 ||
+        confirmCode.toString() != userInputOtp) {
+      // if (2 == 3) {
       emit(const AuthenticationError(Failure(message: 'Invalid OTP')));
     } else {
       emit(AuthenticationLoading());
